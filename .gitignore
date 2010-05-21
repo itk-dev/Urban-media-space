@@ -1,0 +1,15 @@
+*.esproj
+*.kpf
+*.tmproj
+.cache
+.project
+.settings
+*/_notes
+nbproject
+.DS_Store
+._*
+/sites/default/settings.php
+/sites/default/files
+/files
+CVS
+*.patch
