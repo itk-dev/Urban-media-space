@@ -13,3 +13,5 @@ nbproject
 /files
 CVS
 *.patch
+tmp
+backup
