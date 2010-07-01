@@ -1,0 +1,13 @@
+; $Id: urbanmediaspace.info,v 1.7 2007/12/04 20:58:44 goba Exp $
+name = Urban Mediaspace
+description = Them for the Urban Mediaspace website.
+version = VERSION
+core = 6.x
+base theme = ninesixty
+stylesheets[all][] = urbanmediaspace.css
+
+; Information added by drupal.org packaging script on 2010-06-02
+version = "6.17"
+project = "drupal"
+datestamp = "1275505216"
+
