@@ -1,6 +1,7 @@
-/* $Id: urbanmediaspace.css,v 1.0.0.1 2010/06/30 11:54:58 goba Exp $ */
+html {
+  background: url('gfx/backgrounds/urban-media-space-1.jpg') no-repeat;
+}
 
-/**
- * Urban Mediaspace, for Drupal 6.x
- * Brian Jensen, mail@magnify.dk
- */
+body {
+  background: url('gfx/body_background.png') no-repeat center 196px;
+}
