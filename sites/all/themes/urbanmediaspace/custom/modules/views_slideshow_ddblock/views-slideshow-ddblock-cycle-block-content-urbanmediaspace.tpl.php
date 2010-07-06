@@ -2,7 +2,7 @@
 // $Id$
 
 /*!
- * Dynamic display block module template: vsd-upright-40p - content template
+ * Dynamic display block module template: urbanmediaspace - content template
  * Copyright (c) 2008 - 2010 P. Blaauw All rights reserved.
  * Version 1.2 (13-APR-2010)
  * Licenced under GPL license
@@ -11,7 +11,7 @@
 
 /**
  * @file
- * Dynamic display block module template: vsd-upright-40p - content template
+ * Dynamic display block module template: urbanmediaspace - content template
  *
  * Available variables:
  * - $settings['origin']: From which module comes the block.
@@ -38,10 +38,8 @@ drupal_add_css($directory . '/custom/modules/views_slideshow_ddblock/' . $settin
 <div id="views-slideshow-ddblock-<?php print $settings['delta'] ?>" class="views-slideshow-ddblock-cycle-<?php print $settings['template'] ?> clear-block">
  <div class="container clear-block border">
   <div class="container-inner clear-block border">
-   <?php if ($settings['pager_position'] == "top") : ?>
     <!-- custom pager images --> 
     <?php print $views_slideshow_ddblock_pager_content ?>
-   <?php else : ?>
     <?php if ($settings['pager2'] == 1 && $settings['pager2_position']['pager'] === 'pager'): ?>  
      <!-- prev next pager. -->
      <div id="views-slideshow-ddblock-prev-next-pager-<?php print $settings['delta'] ?>" class="prev-next-pager views-slideshow-ddblock-pager clear-block">
@@ -50,7 +48,6 @@ drupal_add_css($directory . '/custom/modules/views_slideshow_ddblock/' . $settin
       <a class="next" href="#"><?php print $settings['pager2_pager_next']?></a>
      </div>
     <?php endif; ?>  
-   <?php endif; ?> 
    <!-- slider content -->
    <div class="slider clear-block border">
     <div class="slider-inner clear-block border">
