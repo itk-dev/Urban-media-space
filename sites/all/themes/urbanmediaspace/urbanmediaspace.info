@@ -24,7 +24,9 @@ base theme = zen_ninesixty
   ; You can also override any of Zen's stylesheets or any module's stylesheets,
   ; an /extremely/ useful feature. See the excellent Drupal 6 Theme Guide at
   ; http://drupal.org/node/171209 for more details.
-stylesheets[all][]   = urbanmediaspace.css
+stylesheets[all][]   = css/urbanmediaspace.css
+stylesheets[all][]   = css/custom-admin.css
+
   ; To prevent stylesheets of a base theme or of a module from being included in
   ; our sub-theme, we specify it in our .info file (and we don't need to have a
   ; stylesheet in our sub-theme with that name.) For example, we prevent the
@@ -43,9 +45,11 @@ stylesheets[all][]   = zen.css
   ; To add a new region, copy Zen's page.tpl.php to your sub-theme's directory,
   ; add a line line to this file, and then add the new variable to your
   ; page.tpl.php template.
+regions[aaktopbar]      = Aarhus Kommune topbar
 regions[left]           = left sidebar
 regions[right]          = right sidebar
 regions[navbar]         = navigation bar
+regions[mainmenu]       = Mainmenu
 regions[content_top]    = content top
 regions[content_bottom] = content bottom
 regions[header]         = header

@@ -1,0 +1,216 @@
+/* CSS: Brian Jensen @ www.magnify.dk */
+
+
+
+
+/*
+  Font, colors etc.
+*/
+
+/*
+  Default
+*/
+
+body {
+  font: 100%/150% Verdana, Arial, sans-serif;
+}
+
+/*
+  aaktopbar
+*/
+
+#aaktopbar a {
+  color: #000;
+  font: 12px Arial, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+#aaktopbar a:link, #aaktopbar a:visited {
+}
+
+#aaktopbar a:hover, #aaktopbar a:active {
+  text-decoration: underline;
+}
+
+/*
+  Generel elements
+*/
+
+h1#page-title {
+  color: #3f3f3f;
+  font: 225% Georgia, Times New Roman, Arial, sans-serif;
+}
+
+/*
+  Mainmenu
+*/
+
+#main-menu {
+  line-height: 250%;
+}
+
+#main-menu li.first {
+  margin: 0 15px 0 30px;
+}
+
+#main-menu li {
+  margin: 0 15px;
+}
+
+#main-menu a, #main-menu a:link, #main-menu a:visited {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#main-menu a:hover, #main-menu a:active {
+  text-decoration: underline;
+}
+
+/*
+  Content
+*/
+
+#content {
+  font-size: 75%;
+  color: #726557;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  Layout
+*/
+
+/*
+  Backgrounds
+*/
+
+html {
+  height: 100%;
+}
+
+body {
+  background: url('../gfx/backgrounds/urban-media-space-1.jpg') no-repeat center 80px;
+  min-height: 100%;
+}
+
+/*
+  Wrapper
+*/
+
+#wrapper {
+  background: url('../gfx/body-background.png') no-repeat center 196px;
+  left: 0;
+  height: 900px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/*
+  Aarhus Kommune topbar
+*/
+
+#aaktopbar {
+  background: #fff url('../gfx/aak-topbar-bg.gif') repeat-x top;
+  border-bottom: 5px solid #dfdfdf;
+  height: 75px;
+}
+
+#aaktopbar #block-block-1 {
+  float: right;
+  display: block;
+  line-height: 425%;
+}
+
+#aaktopbar #block-block-2 {
+  float: left;
+  width: 103px;
+}
+
+/*
+  Logo
+*/
+
+#branding {
+  position: relative;
+}
+
+#logo {
+  left: 10px;
+  position: absolute;
+  top: 30px;
+}
+
+#logo a {
+  display: block;
+}
+
+/*
+  Page
+*/
+
+#page {
+  height: 100%;
+  position: relative;
+}
+
+/*
+  Mainmenu
+*/
+
+#main-menu {
+  position: absolute;
+  top: 125px;
+}
+
+#main-menu ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#main-menu ul.menu li {
+  display: inline;
+}
+
+/*
+  Main
+*/
+
+#main {
+  background-color: #fff;
+  margin: 0;
+  min-height: 500px;
+  position: absolute;
+  top: 165px;
+  width: 960px;
+}
+
+/*
+  Content
+*/
+
+#content {
+  padding: 10px;
+}
+
+.front #content {
+   background: url('../gfx/content-shadow-background.gif') no-repeat;
+}
+.front #content-inner {
+  padding: 30px;
+}

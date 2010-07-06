@@ -1,0 +1,17 @@
+; $Id: vsd_if_examples.info,v 1.1.2.2 2010/03/31 04:32:02 ppblaauw Exp $
+name = Views slideshow: DDblock Examples
+description = Slideshow examples using image field.<br />Installs content type, view and example content.
+dependencies[] = views_slideshow
+dependencies[] = views_slideshow_ddblock
+dependencies[] = content
+dependencies[] = content_copy
+dependencies[] = imagefield 
+
+package = Views
+core = 6.x
+; Information added by drupal.org packaging script on 2010-04-25
+version = "6.x-2.x-dev"
+core = "6.x"
+project = "views_slideshow_ddblock"
+datestamp = "1272198133"
+

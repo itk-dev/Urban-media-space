@@ -12,19 +12,25 @@
   <?php print $scripts; ?>
 </head>
 
-<body class="<?php print $body_classes; ?>">
+<body class="<?php print $classes; ?>">
+  <div id="wrapper">
+  <?php if ($aaktopbar): ?>
+    <div id="aaktopbar" class="region clear-block">
+      <div id="aaktopbar-inner" class="container-16">
+        <?php print $aaktopbar; ?>
+      </div>
+    </div> <!--//end #aaktopbar -->
+  <?php endif; ?>
+
   <div id="page" class="container-16 clear-block">
 
     <a name="navigation-top" id="navigation-top"></a>
-    <?php if ($primary_links || $secondary_links || $navbar): ?>
-      <div id="skip-to-nav"><a href="#navigation"><?php print t('Skip to Navigation'); ?></a></div>
-    <?php endif; ?>
 
     <div id="site-header" class="clear-block">
 	    <div id="header-inner">
-        <div id="branding" class="grid-4 clear-block">
+        <div id="branding" class="clear-block">
           <?php if ($linked_logo_img): ?>
-            <span id="logo" class="grid-1 alpha"><?php print $linked_logo_img; ?></span>
+            <span id="logo"><?php print $linked_logo_img; ?></span>
           <?php endif; ?>
           <?php if ($site_name): ?>
 		  <?php if ($title): ?>
@@ -68,6 +74,14 @@
         <?php endif; ?>
       </div> <!--/#site-subheader -->
 	  </div> <!--/#site-header -->
+
+    <?php if ($mainmenu): ?>
+      <div id="main-menu" class="clear-block">
+        <div id="main-menu-inner" class="container-16">
+          <?php print $mainmenu; ?>
+        </div>
+      </div> <!--//end #aaktopbar -->
+    <?php endif; ?>
 
     <div id="main" class="column <?php print ns('grid-16', $left, 4, $right, 3) . ' ' . ns('push-4', !$left, 4); ?>">
   	  <div id="content">
@@ -142,7 +156,7 @@
 
   </div> <!-- /#page -->
 
-<?php print $closure; ?>
-
+  <?php print $closure; ?>
+  </div>
 </body>
 </html>
