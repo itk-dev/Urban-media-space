@@ -83,8 +83,8 @@
       </div> <!--//end #aaktopbar -->
     <?php endif; ?>
 
-    <div id="main" class="column <?php print ns('grid-16', $left, 4, $right, 3) . ' ' . ns('push-4', !$left, 4); ?>">
-  	  <div id="content">
+    <div id="main">
+  	  <div id="content" class="column <?php print ns('grid-16', $left, 4, $right, 4) . ' ' . ns('push-4', !$left, 4); ?>">
   	    <div id="content-inner">
 
           <?php print $breadcrumb; ?>
@@ -120,23 +120,24 @@
 
 		</div> <!-- // #content-inner -->
 	  </div> <!-- //#content -->
+
+          <?php if ($left): ?>
+          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-12', $right, 3); ?>">
+                  <div id="sidebar-left-inner">
+              <?php print $left; ?>
+            </div>
+          </div> <!-- //end #sidebar-left-inner -->
+          <?php endif; ?>
+
+          <?php if ($right): ?>
+          <div id="sidebar-right" class="column sidebar region grid-4">
+                  <div id="sidebar-right-inner">
+              <?php print $right; ?>
+            </div>
+          </div> <!--//end #sidebar-right-inner -->
+          <?php endif; ?>
+
 	</div> <!-- //end #main -->
-
-    <?php if ($left): ?>
-    <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-12', $right, 3); ?>">
-	    <div id="sidebar-left-inner">
-        <?php print $left; ?>
-      </div>
-    </div> <!-- //end #sidebar-left-inner -->
-    <?php endif; ?>
-
-    <?php if ($right): ?>
-    <div id="sidebar-right" class="column sidebar region grid-3">
-	    <div id="sidebar-right-inner">
-        <?php print $right; ?>
-      </div>
-    </div> <!--//end #sidebar-right-inner -->
-    <?php endif; ?>
 
     <div id="footer" class="prefix-1 suffix-1">
       <?php if ($footer): ?>

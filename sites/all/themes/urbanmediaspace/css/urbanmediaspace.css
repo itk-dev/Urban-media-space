@@ -68,7 +68,12 @@ h1#page-title {
 }
 
 #main-menu a:hover, #main-menu a:active {
-  text-decoration: underline;
+  color: #ffdcb9;
+}
+
+#main-menu a.active, #main-menu a.active:hover {
+  color: #fff;
+  font-weight: bold;
 }
 
 /*
@@ -87,9 +92,9 @@ h1#page-title {
 .front .content p a.nodepicker-link {
   background: url('../gfx/sprites-icons.png') no-repeat 0 0;
   color: #f45000;
-  font-size: 125%;
+  font-size: 110%;
   font-weight: bold;
-  padding: 2px 0 2px 30px;
+  padding: 3px 0 3px 30px;
   text-decoration: none;
 }
 
@@ -140,6 +145,57 @@ body {
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+/*
+  Grid styling
+*/
+
+.grid-1,
+.grid-2,
+.grid-3,
+.grid-4,
+.grid-5,
+.grid-6,
+.grid-7,
+.grid-8,
+.grid-9,
+.grid-10,
+.grid-11,
+.grid-12,
+.grid-13,
+.grid-14,
+.grid-15,
+.grid-16 {
+  margin: 0;
+}
+
+.container-12 .grid-3, .container-16 .grid-4 {
+  width: 240px;
+}
+
+/*
+  Context
+*/
+
+body.context-editing div.context-block-region div.context-block {
+  opacity: 1;
+}
+
+body.context-editing .region.region-right .ui-sortable {
+  background-color: #cccccc;
+  border: 2px dashed #666666;
+  border-radius: 4px;
+  color: #666666;
+  display: block !important;
+  margin: 10px 0;
+  opacity: 0.5;
+  padding: 25px 0;
+  z-index: 100;
+}
+
+body.context-editing .region .context-block {
+  z-index: 150px;
 }
 
 /*
@@ -217,9 +273,10 @@ body {
   background-color: #fff;
   margin: 0;
   min-height: 500px;
+  padding: 10px;
   position: absolute;
   top: 165px;
-  width: 960px;
+  width: 940px;
 }
 
 /*
@@ -227,15 +284,15 @@ body {
 */
 
 #content {
-  padding: 10px;
+  
 }
 
 /*
   Front specific
 */
 
-.front #content {
-   background: url('../gfx/content-shadow-background.gif') no-repeat;
+.front #main {
+   background: #fff url('../gfx/content-shadow-background.gif') no-repeat;
 }
 .front #content-inner {
   padding: 30px;
