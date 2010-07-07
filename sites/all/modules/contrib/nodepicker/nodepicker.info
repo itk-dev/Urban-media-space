@@ -1,0 +1,14 @@
+; $Id: nodepicker.info,v 1.1 2010/03/08 12:08:53 blixxxa Exp $
+name = "Node Picker"
+description = "A node picker for WYSIWYG editors that inserts links into content."
+core = "6.x"
+dependencies[] = "views"
+dependencies[] = "wysiwyg"
+dependencies[] = "jquery_ui"
+
+; Information added by drupal.org packaging script on 2010-06-09
+version = "6.x-1.0-alpha4"
+core = "6.x"
+project = "nodepicker"
+datestamp = "1276060507"
+

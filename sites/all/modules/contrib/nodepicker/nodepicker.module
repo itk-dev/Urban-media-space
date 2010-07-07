@@ -1,0 +1,280 @@
+<?php
+// $Id: nodepicker.module,v 1.1.2.8 2010/06/03 06:15:59 blixxxa Exp $
+
+/**
+ * @file
+ *  Module hooks for Node picker.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function nodepicker_menu() {
+  $items = array();
+  
+  $items['admin/settings/nodepicker'] = array(
+  	'title' => 'Node picker',
+  	'description' => 'Settings for the Node picker module.',
+  	'page callback' => 'drupal_get_form',
+    'page arguments' => array('nodepicker_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nodepicker.admin.inc',
+    'file path' => drupal_get_path('module', 'nodepicker'),
+  );
+  
+  $items['nodepicker/ajax'] = array(
+    'title' => 'AJAX Callback',
+    'page callback' => 'nodepicker_ajax',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'nodepicker.page.inc',
+  );
+  
+  $items['nodepicker/%'] = array(
+    'title' => 'Node picker',
+    'page callback' => 'nodepicker_page',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'nodepicker.page.inc',
+  );
+  
+  return $items;
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function nodepicker_theme() {
+  $path = drupal_get_path('module', 'nodepicker') .'/theme';
+  
+  $theme['nodepicker_page'] = array(
+    'template' => 'nodepicker-page',
+    'path' => $path,
+    'arguments' => array('styles' => NULL, 'messages' => NULL, 'content' => NULL, 'scripts' => NULL),
+  );
+  
+  $theme['nodepicker_nodes'] = array(
+    'template' => 'nodepicker-nodes',
+    'path' => $path,
+    'arguments' => array(),
+  );
+  
+   $theme['nodepicker_menu'] = array(
+    'template' => 'nodepicker-menu',
+    'path' => $path,
+    'arguments' => array(),
+  );
+  
+   $theme['nodepicker_taxonomy'] = array(
+    'template' => 'nodepicker-taxonomy',
+    'path' => $path,
+    'arguments' => array(),
+  );
+
+  return $theme;
+}
+
+/**
+ * Template preprocess function for theme_nodepicker_page().
+ */
+function template_preprocess_nodepicker_page(&$variables) {
+  $variables['base_path'] = base_path();
+  $variables['language'] = $GLOBALS['language'];
+  $variables['language']->dir = $GLOBALS['language']->direction ? 'rtl' : 'ltr';
+}
+
+/**
+ * Template preprocess function for theme_nodepicker_nodes().
+ */
+function template_preprocess_nodepicker_nodes(&$variables) {
+  // Get view.
+  $view = views_get_view('nodepicker_nodes');
+  $view->set_display('default');
+  
+  $settings = array(
+    'views' => array(
+      'ajax_path' => url('views/ajax'),
+      'ajaxViews' => array(
+        array(
+          'view_name' => $view->name,
+          'view_display_id' => $view->current_display,
+          'view_path' => $_GET['q'],
+          'view_dom_id' => 1,
+          'pager_element' => $view->pager['element'],
+        ),
+      ),
+    ),
+  );
+  drupal_add_js($settings, 'setting');
+  
+  // Available tabs.
+  $tabs = variable_get('nodepicker_tabs', array());
+  if(isset($tabs['taxonomy']) && $tabs['taxonomy']) {
+    $variables['taxonomy_button'] = l(t('Taxonomy'), 'nodepicker/taxonomy', array('attributes' => array('class' => 'button', 'id' => 'taxonomy-button')));
+  }
+  
+  if(isset($tabs['menu']) && $tabs['menu']) {
+    $variables['menu_button'] = l(t('Menu'), 'nodepicker/menu', array('attributes' => array('class' => 'button', 'id' => 'menu-button')));
+  }
+  
+  // Set content.
+  $variables['content'] = $view->execute_display('default');
+}
+
+/**
+ * Template preprocess function for theme_nodepicker_menu().
+ */
+function template_preprocess_nodepicker_menu(&$variables) {
+  $variables['content'] = 'Menu';
+  
+  // Available tabs.
+  $tabs = variable_get('nodepicker_tabs', array());
+  if(isset($tabs['taxonomy']) && $tabs['taxonomy']) {
+    $variables['taxonomy_button'] = l(t('Taxonomy'), 'nodepicker/taxonomy', array('attributes' => array('class' => 'button', 'id' => 'taxonomy-button')));
+  }
+  
+  $variables['nodes_button'] = l(t('Nodes'), 'nodepicker/nodes', array('attributes' => array('class' => 'button', 'id' => 'nodes-button')));
+}
+
+/**
+ * Template preprocess function for theme_nodepicker_taxonomy().
+ */
+function template_preprocess_nodepicker_taxonomy(&$variables) {
+  // Get view.
+  $view = views_get_view('nodepicker_taxonomy');
+  $view->set_display('default');
+  
+  $settings = array(
+    'views' => array(
+      'ajax_path' => url('views/ajax'),
+      'ajaxViews' => array(
+        array(
+          'view_name' => $view->name,
+          'view_display_id' => $view->current_display,
+          'view_path' => $_GET['q'],
+          'view_dom_id' => 1,
+          'pager_element' => $view->pager['element'],
+        ),
+      ),
+    ),
+  );
+  drupal_add_js($settings, 'setting');
+  
+  // Available tabs.
+  $tabs = variable_get('nodepicker_tabs', array());
+  if(isset($tabs['menu']) && $tabs['menu']) {
+    $variables['menu_button'] = l(t('Menu'), 'nodepicker/menu', array('attributes' => array('class' => 'button', 'id' => 'menu-button')));
+  }
+  
+  $variables['nodes_button'] = l(t('Nodes'), 'nodepicker/nodes', array('attributes' => array('class' => 'button', 'id' => 'nodes-button')));
+  
+  // Set content.
+  $variables['content'] = $view->execute_display('default');
+}
+
+/**
+ * Implementation of hook_views_api().
+ */
+function nodepicker_views_api() {
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'nodepicker') .'/includes',
+  );
+}
+
+/**
+ * Implementation of hook_wysiwyg_include_directory().
+ */
+function nodepicker_wysiwyg_include_directory($type) {
+  switch ($type) {
+    case 'plugins':
+      return $type;
+  }
+}
+
+/**
+ * Implementation of hook_filter().
+ */
+function nodepicker_filter($op, $delta = 0, $format = -1, $text = '') {
+  if ($op == 'list') {
+    return array(
+      0 => t('Node Picker Links'),
+    );
+  }
+
+  switch ($delta) {
+    case 0:
+      switch ($op) {
+        case 'description':
+          return t('Replaces Node Picker Link tags with real links.');
+
+        case 'no cache':
+          return FALSE;
+
+        case 'prepare':
+          return $text;
+
+        case 'process':
+          $processed = FALSE;
+          foreach (nodepicker_get_tags($text) as $unexpanded_macro => $macro) {
+            $expanded_macro = nodepicker_render_tag($macro);
+            $text = str_replace($unexpanded_macro, $expanded_macro, $text);
+          }
+          return $text;
+      }
+      break;
+  }
+}
+
+/**
+ * Find tags.
+ */
+function nodepicker_get_tags($text) {
+  $m = array();
+  preg_match_all('/ \[ ( [^\[\]]+ )* \] /x', $text, $matches);
+  // Don't process duplicates.
+  $tag_match = (array) array_unique($matches[1]);
+  
+  foreach ($tag_match as $macro) {
+    $current_macro = '['. $macro .']';
+    $param = array_map('trim', explode('==', $macro));
+    // The first macro param is assumed to be the function name.
+    $func_name = array_shift($param);
+    if ($func_name == 'nodepicker') {
+      // The full unaltered filter string is the key for the array of filter attributes.
+      $m[$current_macro] = implode('==', $param);
+    }
+  }
+  
+  return $m;
+}
+
+/**
+ * Returned an link rendered from a tag.
+ */
+function nodepicker_render_tag($rawtag) {
+  // Get attributes.
+  $attr = nodepicker_decode_tag($rawtag);
+  
+  // Create link.
+  $link = l($attr['link_text'], drupal_get_path_alias($attr['href']), array('attributes' => array('title' => $attr['title'], 'class' => 'nodepicker-link'), 'html' => TRUE));
+  
+  return $link;
+}
+
+/**
+ * Decode a tag.
+ */
+function nodepicker_decode_tag($rawtag) {
+  $tag = array();
+  
+  // {URL}=={TITLE}=={LINK_TEXT}
+  $attr = array_map('trim', explode('==', $rawtag));
+  
+  $tag['href'] = $attr[0];
+  $tag['title'] = rawurldecode($attr[1]);
+  $tag['link_text'] = rawurldecode($attr[2]);
+  
+  return $tag;
+}
