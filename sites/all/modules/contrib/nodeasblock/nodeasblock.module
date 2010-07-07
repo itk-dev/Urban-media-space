@@ -1,0 +1,385 @@
+<?php
+// $Id: nodeasblock.module,v 1.8.2.4 2009/08/20 04:23:01 herc Exp $
+
+/**
+ * @file
+ * Allows those with the appropriate permissions the right to create blocks 
+ * for each node using nodeapi.
+ */
+
+/**
+ * @name Node as block visibility settings
+ * @{
+ */
+
+/**
+ * Indicates that node as block feature is disabled for the specific content type.
+ */
+define('NODEASBLOCK_DISABLED', 0);
+
+/**
+ * Indicates that the node author decide whether to create a block 
+ * for the node.
+ */
+define('NODEASBLOCK_PER_NODE', 1);
+
+/**
+ * Indicates that a node block is created always for the specific content type.
+ */
+define('NODEASBLOCK_ALWAYS', 2);
+
+/**
+ * @} End of "Node as block visibility settings".
+ */
+
+/**
+ * @name Node as block build modes.
+ * @{
+ */
+
+define('NODEASBLOCK_BUILD_TEASER', 'nodeasblock teaser');
+define('NODEASBLOCK_BUILD_FULL', 'nodeasblock full');
+
+/**
+ * @} End of "Node as block build modes".
+ */
+/**
+ * Indicates that a node block is created always for the specific content type.
+ */
+define('NODEASBLOCK_ALWAYS', 2);
+
+/**
+ * @} End of "Node as block visibility settings".
+ */
+
+/**
+ * Implementation of hook_perm().
+ */
+function nodeasblock_perm() {
+  return array('create blocks for nodes', 'administer blocks for nodes');
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function nodeasblock_theme() {
+  return array(
+    'nodeasblock' => array(
+      'arguments' => array('node' => NULL),
+      'template' => 'nodeasblock',
+    ),
+  );
+}
+
+/**
+ * Implementation of hook_form_alter_node_type_form().
+ */
+function nodeasblock_form_node_type_form_alter($form, $form_state) {
+  if (isset($form['identity']['type'])) {
+    
+    // The theme system might not yet be initialized.
+    init_theme();
+    $theme = variable_get('theme_default', 'garland');
+
+    $node_type = $form['#node_type']->type;
+    $form['nodeasblockset'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Node as block settings'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+    $form['nodeasblockset']['nodeasblock'] = array(
+      '#type' => 'radios',
+      '#title' => t('Create blocks from this content type'),
+      '#default_value' => variable_get('nodeasblock_'. $node_type, 1),
+      '#options' => array(
+        NODEASBLOCK_DISABLED => t('Never (Disabled)'), 
+        NODEASBLOCK_PER_NODE => t('On a per node basis'), 
+        NODEASBLOCK_ALWAYS => t('Always')
+      ),
+      '#return_value' => 1,
+      '#description' => t('Allow users to make these nodes visible as sidebar blocks.'),
+    );
+    
+    // Regions to select from default theme.
+    $regions = system_region_list($theme);
+    $form['nodeasblockset']['nodeasblock_region'] = array(
+      '#type' => 'select',
+      '#multiple' => TRUE,
+      '#title' => t('Select allowed regions for these blocks'),
+      '#options' => $regions,
+      '#default_value' => variable_get('nodeasblock_region_'. $node_type, array()),
+      '#description' => t('These are only the regions defined for the default theme'),
+    );
+    $form['nodeasblockset']['nodeasblock_default_region'] = array(
+      '#type' => 'select',
+      '#title' => t('Default region'),
+      '#options' => $regions,
+      '#default_value' => variable_get('nodeasblock_default_region_'. $node_type, system_default_region($theme)),
+    );
+    $form['nodeasblockset']['nodeasblock_default_weight'] = array(
+      '#type' => 'weight',
+      '#title' => t('Default weight'),
+      '#options' => $regions,
+      '#default_value' => variable_get('nodeasblock_default_weight_'. $node_type, 0),
+    );   
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function nodeasblock_form_alter($form, $form_state, $form_id) {
+  if (isset($form['type']) && $form['type']['#value'] .'_node_form' == $form_id &&
+    variable_get('nodeasblock_'. $form['type']['#value'], TRUE) &&
+    user_access('create blocks for nodes')) {
+    _nodeasblock_node_form($form);
+  }
+}
+
+/**
+ * Helper function to provide the node form additions.
+ */
+function _nodeasblock_node_form(&$form) {
+  // The theme system might not yet be initialized.
+  init_theme();
+  $theme = variable_get('theme_default', 'garland');
+  
+  $node = $form['#node'];
+  
+  if (isset($node->nid)) {
+    $block = db_fetch_array(db_query("SELECT * FROM {blocks} WHERE module = '%s' AND delta = '%s' AND theme = '%s'", 'nodeasblock', $node->nid, $theme));
+  }
+  else {
+    $block = array(
+      'status' => 1, 
+      'roles' => array(),
+      'region' => variable_get('nodeasblock_default_region_'. $node->type, system_default_region($theme)),
+      'weight' => variable_get('nodeasblock_default_weight_'. $node->type, 0),
+      'custom' => 0, 'visibility' => 0, 
+      'pages' => ''
+    );
+    $node->nid = 0;
+  }
+  
+  if (!isset($node->nodeasblock)) {
+    $node->nodeasblock = 0;
+  }
+  
+  $form['nodeasblockset'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Provide a block'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#tree' => TRUE
+  );
+  $form['nodeasblockset']['status'] = array('#type' => 'value', '#value' => $block['status']);
+
+  // If variable not set we'll assume 1 = on a per node basis.
+  $form['nodeasblockset']['nodeasblock'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Create a block for this node?'),
+    '#default_value' => $node->nodeasblock,
+    '#description' => t('Check this box to create a block for this node. The block will contain the teaser.'),
+  );
+
+  // Slight change to the UI if the block is required.
+  if (variable_get("nodeasblock_$node->type", NODEASBLOCK_PER_NODE) == NODEASBLOCK_ALWAYS) {
+    $form['nodeasblockset']['nodeasblock']['#default_value'] = TRUE;
+    $form['nodeasblockset']['nodeasblock']['#disabled'] = 'disabled';
+    $form['nodeasblockset']['#collapsed'] = FALSE;
+  }
+
+  // Advanced settings.
+  if (user_access('administer blocks') || user_access('administer blocks for nodes')) {
+    // Fetch available list of regions.
+    $theme_regions = system_region_list($theme);
+    $allowed_regions = array(BLOCK_REGION_NONE => '<'. t('none') .'>');
+    foreach (variable_get("nodeasblock_region_". $node->type, array()) as $region) {
+      if (array_key_exists($region, $theme_regions)) {
+        $allowed_regions[$region] = $theme_regions[$region];
+      }
+    }
+    $form['nodeasblockset']['region'] = array(
+      '#type' => 'select',
+      '#options' => $allowed_regions,
+      '#title' => t('Region'),
+      '#default_value' => $block['region'],
+      '#description' => t('The region of the page this block should appear in.'),
+    );
+    $form['nodeasblockset']['weight'] = array(
+      '#type' => 'weight',
+      '#title' => t('Weight'),
+      '#default_value' => $block['weight'],
+      '#description' => t('The weight of this block. Larger numbers move a block farther down in a region.')
+    );
+    
+    // Save title and reset after.
+    module_load_include('inc', 'block', 'block.admin');
+    $title = drupal_get_title();
+    $form_state = array('storage' => NULL, 'submitted' => FALSE);
+    $block_form = block_admin_configure($form_state, 'nodeasblock', $node->nid);
+    drupal_set_title($title);
+
+    foreach (array('block_settings', 'page_vis_settings') as $category) {
+      $form['nodeasblockset'][$category] = $block_form[$category];
+      $form['nodeasblockset'][$category]['#collapsed'] = TRUE;
+      $form['nodeasblockset'][$category]['#parents'] = array('nodeasblockset');
+    }
+
+    // Really advanced settings, only for real block administrators.
+    if (user_access('administer blocks')) {
+      foreach (array('user_vis_settings', 'role_vis_settings') as $category) {
+        $form['nodeasblockset'][$category] = $block_form[$category];
+        $form['nodeasblockset'][$category]['#collapsed'] = TRUE;
+        $form['nodeasblockset'][$category]['#parents'] = array('nodeasblockset');
+      }
+    }
+    else {
+      $form['nodeasblock']['custom'] = array('#type' => 'value', '#value' => $block['custom']);
+    }
+  }
+  else {
+    // Just pass values.
+    foreach (array('region', 'weight', 'title', 'custom', 'roles', 'visibility', 'pages') as $field) {
+      $form['nodeasblockset'][$field] = array('#type' => 'value', '#value' => $block[$field]);
+    }
+  }
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ */
+function nodeasblock_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  switch ($op) {
+    case 'load':
+      $node->nodeasblock = db_result(db_query('SELECT nid FROM {nodeasblock} WHERE nid = %d', $node->nid));
+      break; 
+
+    case 'insert':
+    case 'update':
+      // Only modify/create block if the current user has access.
+      if (user_access('create blocks for nodes')) {      
+        // First delete the entry from the table if it exists.
+        db_query('DELETE FROM {nodeasblock} WHERE nid = %d', $node->nid);
+        if ($node->nodeasblockset['nodeasblock'] || variable_get("nodeasblock_$node->type", NODEASBLOCK_DISABLED) == NODEASBLOCK_ALWAYS) {
+          db_query('INSERT INTO {nodeasblock} VALUES (%d)', $node->nid);
+          drupal_set_message(t('The block configuration has been saved.'));
+          nodeasblock_save_block($node);
+        }
+      }
+      break;
+      
+    case 'delete':
+      db_query("DELETE FROM {nodeasblock} WHERE nid = %d", $node->nid);
+      // Calling _block_rehash() will delete the block entry from 
+      // the {blocks} table and other related tables.
+      _block_rehash();
+      break;
+  }
+}
+
+/**
+ * Save the block data associated to a node. 
+ *
+ * @param $node
+ *   The node object. 
+ */
+
+function nodeasblock_save_block($node) {
+  // Fetch block data.
+  $block = $node->nodeasblockset;
+  // This will actually creates the block.
+  _block_rehash();
+  // Update block data.
+  db_query("UPDATE {blocks} SET status = %d, region = '%s', weight = %d, visibility = %d, pages = '%s', 
+    custom = %d, title = '%s' WHERE module = 'nodeasblock' AND delta = '%s'",
+    $block['status'], $block['region'], $block['weight'], $block['visibility'], trim($block['pages']), 
+    $block['custom'], $block['title'], $node->nid
+  );
+
+  if (is_array($block['roles'])) {
+    db_query("DELETE FROM {blocks_roles} WHERE module = 'nodeasblock' AND delta = '%s'", $node->nid);
+    foreach (array_filter($block['roles']) as $rid) {
+      db_query("INSERT INTO {blocks_roles} (rid, module, delta) VALUES (%d, 'nodeasblock', '%s')", $rid, $node->nid);
+    }
+  }
+  cache_clear_all();
+}
+
+/**
+ * Implementation of hook_block().
+ */
+function nodeasblock_block($op = 'list', $delta = 0) {
+  if ($op == 'list') {
+    // Get the list of nodeblock nodes from database.
+    $result = db_query('SELECT nid FROM {nodeasblock}');
+    $blocks = array();
+    while ($row = db_fetch_object($result)) {
+      $node = node_load($row->nid);
+      $blocks[$row->nid]['info'] = check_plain($node->title); 
+    }
+    return $blocks;
+  }
+  elseif ($op == 'view') {
+    // Don't show on own node page
+    if (arg(0) == 'node' && arg(1) == $delta) {
+      return;
+    }
+    // Load the node if it's published. 
+    if ($node = node_load(array('nid' => $delta, 'status' => 1))) {
+      // Don't show nodes in other languages than current. Integration with i18n node languages.
+      global $language;
+      if (empty($node->language) || $node->language == $language->language) {
+        return array(
+          'subject' => l($node->title, 'node/'. $node->nid),
+          'content' => nodeasblock_block_content($node),
+        );
+      }
+    }
+  }
+}
+
+function nodeasblock_block_content($node) {
+  $node->build_mode = NODEASBLOCK_BUILD_TEASER;
+  $node = node_build_content($node, TRUE, FALSE);
+  $node->body = drupal_render($node->content);
+
+  return theme('nodeasblock', $node);
+}
+
+/**
+ * Implementation of hook_content_build_modes().
+ */
+function nodeasblock_content_build_modes() {
+  return array(
+    'block' => array(
+      'title' => t('Block'),
+      'build modes' => array(
+        NODEASBLOCK_BUILD_TEASER => array(
+          'title' => t('Teaser'),
+        ),
+        NODEASBLOCK_BUILD_FULL => array(
+          'title' => t('Full node'),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Process variables for nodeasblock.tpl.php.
+ *
+ * The $variables array contains the following arguments:
+ * - $node
+ *
+ * @see nodeasblock.tpl.php
+ */
+function template_preprocess_nodeasblock(&$variables) {
+  $node = $variables['node'];
+  // If the user has permissions to edit the node, then add a link.
+  if (node_access('update', $node)) {
+    $variables['edit_link'] =  l('['. t('edit') .']', 'node/'. $node->nid .'/edit', array("title" => t("Edit")));
+  }
+  $variables['content'] = $variables['node']->body;
+}

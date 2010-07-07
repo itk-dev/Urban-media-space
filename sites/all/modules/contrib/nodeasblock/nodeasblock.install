@@ -1,0 +1,41 @@
+<?php
+// $Id: nodeasblock.install,v 1.4 2008/10/16 02:08:54 herc Exp $
+
+/**
+ * @file
+ * Install file for nodeasblock module. 
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function nodeasblock_schema() {
+  $schema['nodeasblock'] = array(
+    'description' => t('Stores {node.nid} of nodes to be displayed as blocks.'),
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => t('Primary Key: Node ID'),
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function nodeasblock_install() {
+  drupal_install_schema('nodeasblock');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ * 
+ * Remove the database schema, module variables and rehash the 'blocks' table.
+ */
+function nodeasblock_uninstall() {
+  drupal_uninstall_schema('nodeasblock');
+}
