@@ -182,7 +182,9 @@ body.context-editing div.context-block-region div.context-block {
   opacity: 1;
 }
 
-body.context-editing .region.region-right .ui-sortable {
+body.context-editing .region.region-right .ui-sortable,
+body.context-editing .region.region-content-top .ui-sortable
+{
   background-color: #cccccc;
   border: 2px dashed #666666;
   border-radius: 4px;

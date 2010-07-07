@@ -92,9 +92,9 @@
           <?php print $messages; ?>
           <?php print $help; ?>
 
-          <?php if ($content_top): ?>
-          <div id="content-top" class="region region-content_top">
-            <?php print $content_top; ?>
+         ¤<?php if ($content_top): ?>
+          <div id="content-top" class="region region-content-top">
+            ¤¤<?php print $content_top; ?>
           </div> <!-- /#content-top -->
           <?php endif; ?>
 
