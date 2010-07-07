@@ -15,6 +15,10 @@ body {
   font: 100%/150% Verdana, Arial, sans-serif;
 }
 
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+  margin-bottom: 10px;
+}
+
 /*
   aaktopbar
 */
@@ -75,6 +79,24 @@ h1#page-title {
   font-size: 75%;
   color: #726557;
 }
+
+/*
+  Front specific
+*/
+
+.front .content p a.nodepicker-link {
+  background: url('../gfx/sprites-icons.png') no-repeat 0 0;
+  color: #f45000;
+  font-size: 125%;
+  font-weight: bold;
+  padding: 2px 0 2px 30px;
+  text-decoration: none;
+}
+
+.front .content p a.nodepicker-link:hover {
+  color: #000;
+}
+
 
 
 
@@ -207,6 +229,10 @@ body {
 #content {
   padding: 10px;
 }
+
+/*
+  Front specific
+*/
 
 .front #content {
    background: url('../gfx/content-shadow-background.gif') no-repeat;

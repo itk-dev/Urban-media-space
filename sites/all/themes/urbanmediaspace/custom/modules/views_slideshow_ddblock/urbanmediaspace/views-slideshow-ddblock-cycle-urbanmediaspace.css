@@ -6,15 +6,14 @@
  * http://www.gnu.org/licenses/gpl.html 
  */
 
- /*
- div.views-slideshow-ddblock-cycle-urbanmediaspace div.container{background-color:#fff;width:475px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.container{background-color:#fff;width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.container-inner{height:358px;position:relative;z-index:0;}
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider{float:left;width:475px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider{float:left;width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider-inner{background:transparent url(../images/transparent_bg.png) repeat scroll 0 0!important;height:303px;overflow:hidden;position:relative;visibility:hidden;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide{display:none;height:100%;left:0;position:absolute;top:0;}
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-inner img{height:303px;margin:0 !important;padding:0 !important;width:475px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-inner img{height:303px;margin:0 !important;padding:0 !important;width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text{background:transparent url(../images/transparent_bg.png) repeat scroll 0 0!important;position:absolute;}
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-horizontal{height:85px;left:0;width:475px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-horizontal{height:85px;left:0;width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-vertical{height:303px;width:140px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-top{top:7px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-right{bottom:0;right:30px;}
@@ -44,7 +43,7 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-read-more-horizontal
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-read-more-vertical a:hover{right:5px;}
 
 /* custom pager */
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager{width:475px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager{width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager-inner{height:50px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item{float:left;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item-inner{width:75px;}
@@ -55,7 +54,7 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a:focus{outli
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager img{border:none;height:40px;margin:0 !important;padding:0 !important;vertical-align:middle;width:60px;}
 
 /*previous next pager */
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager{background:#000;clear:both;display:block;height:17px;left:0;position:relative;width:475px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager{background:#000;clear:both;display:block;height:17px;left:0;position:relative;width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager a{background:#000;border:none;color:#fff;display:block;float:left;font-family:Tahoma,Arial,sans-serif;font-size:.8em;font-weight:bold;height:13px;line-height:13px;margin:0 2px 0 0;text-align:center;text-decoration:none !important;width:90px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager a.prev{left:0;position:absolute;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager a.count{left:178px;position:absolute;}
@@ -65,7 +64,7 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager a:hover{ba
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.prev-next-pager a:focus{outline:none;}
 
 /*previous next pager on the slide*/
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.views-slideshow-ddblock-prev-next-slide {left:0;position: absolute;top:110px;width:475px;z-index: 50;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.views-slideshow-ddblock-prev-next-slide {left:0;position: absolute;top:110px;width:910px;z-index: 50;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.views-slideshow-ddblock-prev-next-slide a {color:#fff;display:block;height:50px;margin:0;padding:0;width:50px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.views-slideshow-ddblock-prev-next-slide a:focus{outline:none;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.next-container{float: right;height: 50px;opacity: 0.7;position: relative;width: 50px;}
@@ -75,4 +74,3 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.views-slideshow-ddblock-pr
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.spacer-vertical{display:block;float:left;height:50px;width:5px;background-color:#ccc;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.spacer-horizontal{clear:both;height:5px;background-color:#ccc;}
-*/
