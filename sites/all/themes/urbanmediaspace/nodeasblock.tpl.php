@@ -29,7 +29,5 @@
  * @see template_preprocess_block()
  */
 ?>
-<?php
-  $view = views_get_view('spotbox');
-  print $view->execute_display('Spotbox: Image + link', array($node->nid));
-?>
+
+<?php print views_embed_view('spotbox', 'page_1', $node->nid); ?>
