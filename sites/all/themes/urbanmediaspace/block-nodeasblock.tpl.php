@@ -29,7 +29,12 @@
  * @see template_preprocess_block()
  */
 ?>
-<?php
-  $view = views_get_view('spotbox');
-  print $view->execute_display('Spotbox: Image + link', array($node->nid));
-?>
+<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="<?php print $classes; ?>"><div class="block-inner">
+
+  <div class="content">
+    <?php print $block->content; ?>
+  </div>
+
+  <?php print $edit_links; ?>
+
+</div></div> <!-- /block-inner, /block -->
