@@ -68,7 +68,7 @@
         <?php endif; ?>
 
         <?php if ($header): ?>
-        <div id="header-region" class="region <?php print ns('grid-14', $mission, 7); ?> clear-block">
+        <div id="header-region" class="region <?php print ns('grid-16', $mission, 7); ?> clear-block">
           <?php print $header; ?>
         </div>
         <?php endif; ?>

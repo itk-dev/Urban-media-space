@@ -35,6 +35,8 @@ stylesheets[all][]   = zen.css
 
   ; Optionally add some jquery scripts to your theme.
 ; scripts[] = script.js
+  scripts[] = js/jquery.example.min.js
+  scripts[] = js/common.js
 
   ; The regions defined in Zen's default page.tpl.php file.  The name in
   ; brackets is the name of the variable in the page.tpl.php file, (e.g.

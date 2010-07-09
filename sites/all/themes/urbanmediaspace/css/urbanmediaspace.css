@@ -198,6 +198,15 @@ body {
   margin: 0;
 }
 
+.container-12 .grid-12, .container-16 .grid-16 {
+  width: 960px;
+}
+
+.container-16 .suffix-1,
+.container-16 .prefix-1 {
+  padding: 0;
+}
+
 .container-12 .grid-3, .container-16 .grid-4 {
   width: 220px;
 }
@@ -306,6 +315,54 @@ body.context-editing .region .context-block {
   position: absolute;
   top: 165px;
   width: 940px;
+}
+
+/*
+  Search
+*/
+
+#block-search-0 {
+  float: right;
+  right: 15px;
+  position: absolute;
+  top: 0;
+}
+
+#search-block-form #edit-search-block-form-1-wrapper label {
+   display: none;
+}
+
+#search-block-form #edit-search-block-form-1-wrapper {
+  border: 4px solid #d4d4d4;
+  *border: 0;
+  display: block;
+  float: left;
+  line-height: 100%;
+  margin: 0 10px 0 0;
+  *margin: 1px 10px 0 0;
+  *width: 325px;
+}
+
+#search-block-form #edit-search-block-form-1 {
+  background: #fff url('../gfx/sprites-icons.png') no-repeat 5px -162px;
+  border: 1px solid #c3c3c3;
+  *border: 4px solid #d4d4d4;
+  padding: 5px 5px 5px 28px;
+  *padding: 6px 5px 6px 28px;
+  width: 290px;
+}
+
+#search-block-form #edit-submit {
+  background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -361px;
+  border: 4px solid #d4d4d4;
+  cursor: pointer;
+  line-height: 100%;
+  height: 36px;
+  padding: 5px 15px;
+}
+
+#search-block-form #edit-submit:hover {
+  background: #ebebeb url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -487px;
 }
 
 /*
