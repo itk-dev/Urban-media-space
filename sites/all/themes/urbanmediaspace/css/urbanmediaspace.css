@@ -124,7 +124,6 @@ h1#page-title {
 }
 
 .block-nodeasblock .spotbox .link a:hover {
-  border-bottom: 1px dotted #e3c9bd;
   color: #8d3205;
 }
 
@@ -212,8 +211,7 @@ body.context-editing div.context-block-region div.context-block {
 }
 
 body.context-editing .region.region-right .ui-sortable,
-body.context-editing .region.region-content-top .ui-sortable
-{
+body.context-editing #content-bottom .ui-sortable {
   background-color: #cccccc;
   border: 2px dashed #666666;
   border-radius: 4px;
@@ -316,6 +314,10 @@ body.context-editing .region .context-block {
 
 #content {
   width: 720px;
+}
+
+#content.grid-16 {
+  width: 940px;
 }
 
 /*
