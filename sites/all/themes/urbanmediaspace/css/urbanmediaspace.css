@@ -99,8 +99,37 @@ h1#page-title {
 }
 
 .front .content p a.nodepicker-link:hover {
-  color: #000;
+  color: #8d3205;
 }
+
+/*
+  Spotboxes
+*/
+
+.block-nodeasblock .spotbox * {
+  color: #fff;
+  font-size: 90%;
+  text-decoration: none;
+}
+
+.block-nodeasblock .spotbox .content {
+  color: #726557;
+  font-size: 90%;
+  line-height: 135%;
+}
+
+.block-nodeasblock .spotbox .link a {
+  color: #f45000;
+  font-weight: bold;
+}
+
+.block-nodeasblock .spotbox .link a:hover {
+  border-bottom: 1px dotted #e3c9bd;
+  color: #8d3205;
+}
+
+
+
 
 
 
@@ -171,7 +200,7 @@ body {
 }
 
 .container-12 .grid-3, .container-16 .grid-4 {
-  width: 240px;
+  width: 220px;
 }
 
 /*
@@ -286,7 +315,7 @@ body.context-editing .region .context-block {
 */
 
 #content {
-  
+  width: 720px;
 }
 
 /*
@@ -298,4 +327,60 @@ body.context-editing .region .context-block {
 }
 .front #content-inner {
   padding: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  Spotboxes
+*/
+
+.block-nodeasblock .spotbox {
+  border: 1px solid #d3d3d3;
+  padding: 4px;
+  min-height: 185px;
+  overflow: auto;
+}
+
+.block-nodeasblock .spotbox .title {
+  background: #4f4e4e url('../gfx/sprites-gradient-bgs.png') repeat-x 0 0;
+  line-height: 245%;
+}
+
+.block-nodeasblock .spotbox .title a {
+  display: block;
+  padding: 0 0 0 10px;
+}
+
+.block-nodeasblock .spotbox .image {
+  line-height: 100%;
+  margin: 4px 0;
+}
+
+.block-nodeasblock .spotbox .content {
+  background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -190px;
+  padding: 7px;
+}
+
+.block-nodeasblock .spotbox .link {
+  background: url('../gfx/sprites-icons.png') no-repeat 0 -76px;
+  float: right;
+  margin: 1px 4px 0 0;
+  padding: 1px 0 3px 20px;
 }

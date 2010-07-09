@@ -29,7 +29,7 @@
  * @see template_preprocess_block()
  */
 ?>
-<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="<?php print $classes; ?>"><div class="block-inner">
+<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block-<?php print $block->module; ?>">
 
   <div class="content">
     <?php print $block->content; ?>
@@ -37,4 +37,4 @@
 
   <?php print $edit_links; ?>
 
-</div></div> <!-- /block-inner, /block -->
+</div> <!-- /block-inner, /block -->
