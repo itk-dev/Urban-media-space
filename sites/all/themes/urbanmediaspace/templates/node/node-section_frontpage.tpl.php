@@ -2,7 +2,7 @@
 // $Id: node.tpl.php,v 1.1 2009/06/26 00:33:39 duvien Exp $
 
 /**
- * @file node.tpl.php
+ * @file node-section_frontpage.tpl
  *
  * Theme implementation to display a node.
  *

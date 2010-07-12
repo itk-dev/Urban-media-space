@@ -29,10 +29,12 @@ p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
   text-decoration: none;
 }
 
-#aaktopbar a:link, #aaktopbar a:visited {
+#aaktopbar a:link,
+#aaktopbar a:visited {
 }
 
-#aaktopbar a:hover, #aaktopbar a:active {
+#aaktopbar a:hover,
+#aaktopbar a:active {
   text-decoration: underline;
 }
 
@@ -41,8 +43,31 @@ p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
 */
 
 h1#page-title {
+  border-bottom: 1px solid #e5e5e5;
   color: #3f3f3f;
   font: 225% Georgia, Times New Roman, Arial, sans-serif;
+  margin: 10px 0;
+}
+
+/*
+  Secondary links
+*/
+
+#block-menu-secondary-links {
+  font-size: 80%;
+  line-height: 200%;
+}
+
+#block-menu-secondary-links a,
+#block-menu-secondary-links a:link,
+#block-menu-secondary-links a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+#block-menu-secondary-links a:hover,
+#block-menu-secondary-links a:active {
+  color: #989898;
 }
 
 /*
@@ -61,37 +86,52 @@ h1#page-title {
   margin: 0 15px;
 }
 
-#main-menu a, #main-menu a:link, #main-menu a:visited {
+#main-menu a,
+#main-menu a:link,
+#main-menu a:visited {
   color: #fff;
   text-decoration: none;
   text-shadow: 1px 1px 0 #000;
 }
 
-#main-menu a:hover, #main-menu a:active {
+#main-menu a:hover,
+#main-menu a:active {
   color: #ffdcb9;
 }
 
-#main-menu a.active, #main-menu a.active:hover {
+#main-menu a.active,
+#main-menu a.active:hover {
   color: #fff;
   font-weight: bold;
 }
 
 /*
-  Secondary links
+  Breadcrumb
 */
 
-#block-menu-secondary-links {
-  font-size: 80%;
-  line-height: 200%;
+.breadcrumb {
+  color: #999999;
+  font-size: 70%;
+  line-height: 250%;
 }
 
-#block-menu-secondary-links a, #block-menu-secondary-links a:link, #block-menu-secondary-links a:visited {
-  color: #000;
+.breadcrumb a,
+.breadcrumb a:link,
+.breadcrumb a:visited {
+  color: #f45000;
   text-decoration: none;
 }
 
-#block-menu-secondary-links a:hover, #block-menu-secondary-links a:active {
-  color: #989898;
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb a:hover {
+  color: #f45000;
+}
+
+.breadcrumb span {
+  color: #999999;
 }
 
 /*
@@ -107,6 +147,11 @@ h1#page-title {
   Front specific
 */
 
+.front h1#page-title {
+  border: 0;
+  margin: 0 0 10px;
+}
+
 .front .content p a.nodepicker-link {
   background: url('../gfx/sprites-icons.png') no-repeat 0 0;
   color: #f45000;
@@ -118,6 +163,38 @@ h1#page-title {
 
 .front .content p a.nodepicker-link:hover {
   color: #8d3205;
+}
+
+/*
+  Submenu
+*/
+
+#sidebar-left .menu {
+  font-size: 75%;
+}
+
+#sidebar-left .menu li {
+  line-height: 210%;
+  padding: 0;
+}
+
+#sidebar-left .menu a {
+  background: url('../gfx/sprites-icons.png') no-repeat 5px -238px;
+  color: #666666;
+  display: block;
+  padding: 3px 0 3px 20px;
+  text-decoration: none;
+}
+
+#sidebar-left .menu a,
+#sidebar-left .menu a:link,
+#sidebar-left .menu a:visited {
+  text-decoration: none;
+}
+
+#sidebar-left .menu a:hover {
+  text-decoration: underline;
+  color: #f45000;
 }
 
 /*
@@ -216,8 +293,14 @@ body {
   margin: 0;
 }
 
-.container-12 .grid-12, .container-16 .grid-16 {
+.container-12 .grid-12,
+.container-16 .grid-16 {
   width: 960px;
+}
+
+.container-12 .grid-9,
+.container-16 .grid-12 {
+  width:720px;
 }
 
 .container-16 .suffix-1,
@@ -225,8 +308,19 @@ body {
   padding: 0;
 }
 
-.container-12 .grid-3, .container-16 .grid-4 {
+.container-12 .grid-3,
+.container-16 .grid-4 {
   width: 220px;
+}
+
+.container-12 .push-3,
+.container-16 .push-4  {
+  left: 240px;
+}
+
+.container-12 .pull-9,
+.container-16 .pull-12 {
+  left:-700px;
 }
 
 /*
@@ -303,49 +397,16 @@ body.context-editing .region .context-block {
 }
 
 /*
-  Mainmenu
-*/
-
-#main-menu {
-  position: absolute;
-  top: 125px;
-}
-
-#main-menu ul.menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#main-menu ul.menu li {
-  display: inline;
-}
-
-/*
-  Main
-*/
-
-#main {
-  background-color: #fff;
-  margin: 0;
-  min-height: 500px;
-  padding: 10px;
-  position: absolute;
-  top: 165px;
-  width: 940px;
-}
-
-/*
   Search and secondary links
 */
 
-#context-block-search-0 {
+#block-search-0 {
   float: right;
   right: 15px;
   position: absolute;
 }
 
-#context-block-search-0 {
+#block-search-0 {
   top: 59px;
 }
 
@@ -425,11 +486,54 @@ body.context-editing .region .context-block {
 }
 
 /*
+  Mainmenu
+*/
+
+#main-menu {
+  position: absolute;
+  top: 125px;
+}
+
+#main-menu ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#main-menu ul.menu li {
+  display: inline;
+}
+
+/*
+  Main
+*/
+
+#main {
+  background-color: #fff;
+  margin: 0;
+  min-height: 500px;
+  padding: 10px;
+  position: absolute;
+  top: 165px;
+  width: 940px;
+}
+
+/*
+  Breadcrumb
+*/
+
+.breadcrumb {
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 0 20px;
+  padding: 0 10px 10px;
+}
+
+/*
   Content
 */
 
 #content {
-  width: 720px;
+  width: 700px;
 }
 
 #content.grid-16 {
@@ -443,10 +547,23 @@ body.context-editing .region .context-block {
 .front #main {
    background: #fff url('../gfx/content-shadow-background.gif') no-repeat;
 }
+
+.front #content {
+  width: 720px;
+}
+
 .front #content-inner {
   padding: 30px;
 }
 
+/*
+  Submenu
+*/
+
+#sidebar-left .menu li {
+  background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -599px;
+  list-style: none;
+}
 
 
 

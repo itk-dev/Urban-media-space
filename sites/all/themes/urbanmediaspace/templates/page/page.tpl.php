@@ -84,10 +84,11 @@
     <?php endif; ?>
 
     <div id="main">
-  	  <div id="content" class="column <?php print ns('grid-16', $left, 4, $right, 4) . ' ' . ns('push-4', !$left, 4); ?>">
-  	    <div id="content-inner">
 
-              <?php print $breadcrumb; ?>
+      <?php print $breadcrumb; ?>
+
+        <div id="content" class="column <?php print ns('grid-16', $left, 4, $right, 4) . ' ' . ns('push-4', !$left, 4); ?>">
+  	    <div id="content-inner">
 
               <?php print $messages; ?>
               <?php print $help; ?>
@@ -99,7 +100,7 @@
               <?php endif; ?>
 
               <?php if ($tabs): ?>
-                <div class="tabs"><?php print $tabs; ?></div>
+                <!-- <div class="tabs"><?php print $tabs; ?></div> -->
               <?php endif; ?>
 
               <div id="main-content" class="region clear-block">
@@ -118,7 +119,7 @@
           </div> <!-- //#content -->
 
           <?php if ($left): ?>
-          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-12', $right, 3); ?>">
+          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-15', $right, 3); ?>">
                   <div id="sidebar-left-inner">
               <?php print $left; ?>
             </div>
@@ -126,11 +127,11 @@
           <?php endif; ?>
 
           <?php if ($right): ?>
-          <div id="sidebar-right" class="column sidebar region grid-4">
-                  <div id="sidebar-right-inner">
-              <?php print $right; ?>
-            </div>
-          </div> <!--//end #sidebar-right-inner -->
+            <div id="sidebar-right" class="column sidebar region grid-4">
+              <div id="sidebar-right-inner">
+                <?php print $right; ?>
+              </div>
+            </div> <!--//end #sidebar-right-inner -->
           <?php endif; ?>
 
 	</div> <!-- //end #main -->

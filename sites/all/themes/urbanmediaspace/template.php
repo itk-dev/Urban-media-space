@@ -1,6 +1,44 @@
 <?php
 // $Id: 
 
+/**
+ * Return a themed breadcrumb trail.
+ *
+ * @param $breadcrumb
+ *   An array containing the breadcrumb links.
+ * @return
+ *   A string containing the breadcrumb output.
+ */
+function urbanmediaspace_breadcrumb($breadcrumb) {
+  // Determine if we are to display the breadcrumb.
+  $show_breadcrumb = theme_get_setting('zen_breadcrumb');
+  if ($show_breadcrumb == 'yes' || $show_breadcrumb == 'admin' && arg(0) == 'admin') {
+
+    // Optionally get rid of the homepage link.
+    $show_breadcrumb_home = theme_get_setting('zen_breadcrumb_home');
+    if (!$show_breadcrumb_home) {
+      array_shift($breadcrumb);
+    }
+
+    // Return the breadcrumb with separators.
+    if (!empty($breadcrumb)) {
+      $breadcrumb_separator = theme_get_setting('zen_breadcrumb_separator');
+      $trailing_separator = $title = '';
+      if (theme_get_setting('zen_breadcrumb_title')) {
+        if ($title = drupal_get_title()) {
+          $trailing_separator = $breadcrumb_separator;
+        }
+      }
+      elseif (theme_get_setting('zen_breadcrumb_trailing')) {
+        $trailing_separator = $breadcrumb_separator;
+      }
+      return '<div class="breadcrumb">' . implode($breadcrumb_separator, $breadcrumb) . "$trailing_separator<span>$title</span></div>";
+    }
+  }
+  // Otherwise, return an empty string.
+  return '';
+}
+
 function urbanmediaspace_preprocess_page(&$vars, $hook) {
   // If the user is silly and enables Zen as the theme, add some styles.
   if ($GLOBALS['theme'] == 'zen') {
