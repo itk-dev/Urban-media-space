@@ -77,6 +77,24 @@ h1#page-title {
 }
 
 /*
+  Secondary links
+*/
+
+#block-menu-secondary-links {
+  font-size: 80%;
+  line-height: 200%;
+}
+
+#block-menu-secondary-links a, #block-menu-secondary-links a:link, #block-menu-secondary-links a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+#block-menu-secondary-links a:hover, #block-menu-secondary-links a:active {
+  color: #989898;
+}
+
+/*
   Content
 */
 
@@ -318,14 +336,17 @@ body.context-editing .region .context-block {
 }
 
 /*
-  Search
+  Search and secondary links
 */
 
-#block-search-0 {
+#context-block-search-0 {
   float: right;
   right: 15px;
   position: absolute;
-  top: 0;
+}
+
+#context-block-search-0 {
+  top: 59px;
 }
 
 #search-block-form #edit-search-block-form-1-wrapper label {
@@ -347,22 +368,60 @@ body.context-editing .region .context-block {
   background: #fff url('../gfx/sprites-icons.png') no-repeat 5px -162px;
   border: 1px solid #c3c3c3;
   *border: 4px solid #d4d4d4;
+  color: #686868;
   padding: 5px 5px 5px 28px;
   *padding: 6px 5px 6px 28px;
-  width: 290px;
+  width: 225px;
 }
 
 #search-block-form #edit-submit {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -361px;
   border: 4px solid #d4d4d4;
+  color: #686868;
   cursor: pointer;
   line-height: 100%;
   height: 36px;
-  padding: 5px 15px;
+  padding: 4px 15px 6px;
+  text-transform: uppercase;
 }
 
 #search-block-form #edit-submit:hover {
   background: #ebebeb url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -487px;
+}
+
+/*
+  Secondary links
+*/
+
+#block-menu-secondary-links {
+  float: right;
+  right: 0;
+  position: absolute;
+}
+
+#block-menu-secondary-links li {
+  border-right: 1px solid #9f9f9f;
+  margin: 0 0 0 5px;
+  padding: 0 10px 1px 0;
+}
+
+#block-menu-secondary-links ul.menu li {
+  display: inline;
+}
+
+#block-menu-secondary-links ul.menu li.last {
+  border: 0;
+  padding: 0;
+}
+
+#block-menu-secondary-links {
+  top: 5px;
+}
+
+#block-menu-secondary-links ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /*
