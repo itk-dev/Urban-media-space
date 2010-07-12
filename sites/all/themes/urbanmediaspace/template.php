@@ -74,7 +74,7 @@ function urbanmediaspace_preprocess_page(&$vars, $hook) {
       $vars['classes_array'][] = 'page-panels';
       break;
   }
-
+  
   $vars['classes'] = implode(' ', $vars['classes_array']);
 
 }
