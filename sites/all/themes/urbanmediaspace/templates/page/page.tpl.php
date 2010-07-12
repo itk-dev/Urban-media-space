@@ -102,10 +102,6 @@
                 <div class="tabs"><?php print $tabs; ?></div>
               <?php endif; ?>
 
-              <?php if ($title): ?>
-                <h1 class="title" id="page-title"><?php print $title; ?></h1>
-              <?php endif; ?>
-
               <div id="main-content" class="region clear-block">
                 <?php print $content; ?>
               </div> <!-- /#main-content -->
