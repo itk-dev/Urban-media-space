@@ -29,10 +29,6 @@
  $number_of_items_per_row=6;  // number of items to show in a row
 ?>
 
-<!-- custom pager with text. -->
-<?php if ($settings['pager_position'] == 'bottom'): ?>
- <div class="spacer-horizontal"><b></b></div>
-<?php endif; ?>
 <div id="views-slideshow-ddblock-custom-pager-<?php print $settings['delta'] ?>" class="<?php print $settings['pager'] ?> clear-block border">
   <?php if ($views_slideshow_ddblock_pager_items): ?>
    <?php $item_counter=0; ?>
@@ -40,8 +36,11 @@
     <div class="<?php print $settings['pager'] ?>-item <?php print $settings['pager'] ?>-item-<?php print $item_counter ?>">
      <div class="<?php print $settings['pager'] ?>-item-inner">
       <a href="#" title="" class="pager-link"><?php print $pager_item['pager_image'];?>
-      <b class="<?php print $settings['pager'] ?>-item-inner-teaser-title"><?php print $pager_item['pager_teaser_title'];?></b>
-      <b class="<?php print $settings['pager'] ?>-item-inner-teaser"><?php print $pager_item['pager_teaser'];?></b></a>
+        <span class="<?php print $settings['pager'] ?>-item-inner-teaser-wrapper">
+          <b class="<?php print $settings['pager'] ?>-item-inner-teaser-title"><?php print $pager_item['pager_teaser_title'];?></b>
+          <span class="<?php print $settings['pager'] ?>-item-inner-teaser"><?php print $pager_item['pager_teaser'];?></span>
+        </span>
+      </a>
      </div>
     </div> <!-- /custom-pager-item -->
    <?php endforeach; ?>
