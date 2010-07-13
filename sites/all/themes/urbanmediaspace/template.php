@@ -157,3 +157,7 @@ function urbanmediaspace_blocks($region, $show_blocks = NULL) {
         return zen_blocks($region, $show_blocks);
     }
 }
+
+function urbanmediaspace_preprocess_node(&$vars) {
+  $vars['right'] = theme('blocks', 'right');
+}
