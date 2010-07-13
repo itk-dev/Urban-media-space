@@ -46,7 +46,7 @@ h1#page-title {
   border-bottom: 1px solid #e5e5e5;
   color: #3f3f3f;
   font: 225% Georgia, Times New Roman, Arial, sans-serif;
-  margin: 10px 0;
+  line-height: 150%;
 }
 
 /*

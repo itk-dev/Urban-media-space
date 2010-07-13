@@ -8,7 +8,10 @@
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.container{background-color:#fff;width:910px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.container-inner{height:358px;position:relative;z-index:0;}
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider{float:left;width:910px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider {
+  float:left;
+  width:646px;
+}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider-inner{background:transparent url(../images/transparent_bg.png) repeat scroll 0 0!important;height:303px;overflow:hidden;position:relative;visibility:hidden;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide{display:none;height:100%;left:0;position:absolute;top:0;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-inner img{height:303px;margin:0 !important;padding:0 !important;width:910px;}
@@ -43,10 +46,15 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-read-more-horizontal
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-read-more-vertical a:hover{right:5px;}
 
 /* custom pager */
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager{width:910px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager {
+  float: left;
+  width: 261px;
+}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager-inner{height:50px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item{float:left;}
-div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item-inner{width:75px;}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item-inner {
+
+}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a{background-color:#fff;color:#000;display:block;float:left;font-family:Tahoma,Arial,sans-serif;font-size:.9em;font-weight:bold;height:50px;line-height:46px;opacity:0.7;text-align:center;text-decoration:none !important;width:75px;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a.activeSlide{background-color:#000;color:#fff;opacity:1;}
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a:hover{background:#111 !important;color:#f00;opacity:1;}

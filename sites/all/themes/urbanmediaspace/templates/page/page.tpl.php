@@ -81,23 +81,23 @@
           <?php print $mainmenu; ?>
         </div>
       </div> <!--//end #aaktopbar -->
-    <?php endif; ?>
+    <?php endif; ?>    
 
     <div id="main">
+
+      <?php print $messages; ?>
+      <?php print $help; ?>
+
+      <?php if ($content_top): ?>
+        <div id="content-top" class="region region-content-top">
+      <?php print $content_top; ?>
+        </div> <!-- /#content-top -->
+      <?php endif; ?>
 
       <?php print $breadcrumb; ?>
 
         <div id="content" class="column <?php print ns('grid-16', $left, 4, $right, 4) . ' ' . ns('push-4', !$left, 4); ?>">
   	    <div id="content-inner">
-
-              <?php print $messages; ?>
-              <?php print $help; ?>
-
-              <?php if ($content_top): ?>
-                <div id="content-top" class="region region-content-top">
-                  <?php print $content_top; ?>
-                </div> <!-- /#content-top -->
-              <?php endif; ?>
 
               <?php if ($tabs): ?>
                 <!-- <div class="tabs"><?php print $tabs; ?></div> -->
