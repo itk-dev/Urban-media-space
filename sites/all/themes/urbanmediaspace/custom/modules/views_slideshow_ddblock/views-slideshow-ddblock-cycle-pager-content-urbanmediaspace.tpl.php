@@ -35,10 +35,10 @@
    <?php foreach ($views_slideshow_ddblock_pager_items as $pager_item): ?>
     <div class="<?php print $settings['pager'] ?>-item <?php print $settings['pager'] ?>-item-<?php print $item_counter ?>">
      <div class="<?php print $settings['pager'] ?>-item-inner">
-      <a href="#" title="" class="pager-link"><?php print $pager_item['pager_image'];?>
+      <a href="#" title="" class="pager-link"><?php print $pager_item['pager_image']; ?>
         <span class="<?php print $settings['pager'] ?>-item-inner-teaser-wrapper">
-          <b class="<?php print $settings['pager'] ?>-item-inner-teaser-title"><?php print $pager_item['pager_teaser_title'];?></b>
-          <span class="<?php print $settings['pager'] ?>-item-inner-teaser"><?php print $pager_item['pager_teaser'];?></span>
+          <b class="<?php print $settings['pager'] ?>-item-inner-teaser-title"><?php print $pager_item['pager_teaser_title']; ?></b>
+          <span class="<?php print $settings['pager'] ?>-item-inner-teaser"><?php print $pager_item['pager_teaser']; ?></span>
         </span>
       </a>
      </div>

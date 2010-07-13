@@ -57,13 +57,17 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner {
   background: url('../../../../gfx/sprites-icons.png') no-repeat 565px -265px;
   color: #d6d6d6;
   font-size: 75%;
-  padding: 10px 15px;
 }
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner h2 {
   color: #fff;
   font-weight: bold;
   margin: 0 0 10px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner h2 a {
+  display: block;
+  padding: 10px 15px;
 }
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-title-vertical{width:130px;}
@@ -74,7 +78,9 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-body-vertical{width:
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-body-inner{}
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-body-inner p {
-  margin: 0 8px 0 0;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-body-inner a {
   padding: 0 25px 0 0;
 }
 
