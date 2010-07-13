@@ -126,14 +126,6 @@
           </div> <!-- //end #sidebar-left-inner -->
           <?php endif; ?>
 
-          <?php if ($right): ?>
-            <div id="sidebar-right" class="column sidebar region grid-4">
-              <div id="sidebar-right-inner">
-                <?php print $right; ?>
-              </div>
-            </div> <!--//end #sidebar-right-inner -->
-          <?php endif; ?>
-
 	</div> <!-- //end #main -->
 
     <div id="footer" class="prefix-1 suffix-1">

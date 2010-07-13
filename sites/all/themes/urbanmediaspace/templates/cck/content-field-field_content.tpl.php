@@ -27,9 +27,7 @@
 ?>
 <?php if (!$field_empty) : ?>
 <div class="field field-type-<?php print $field_type_css ?> field-<?php print $field_name_css ?>">
-  <?php if ($label_display == 'above') : ?>
-    <div class="field-label"><?php print t($label) ?>:&nbsp;</div>
-  <?php endif;?>
+  <h1 class="title" id="page-title"><?php print $node->title; ?></h1>  
   <div class="field-items">
     <?php $count = 1;
     foreach ($items as $delta => $item) :

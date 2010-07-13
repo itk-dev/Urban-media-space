@@ -78,8 +78,16 @@
 
   <div class="content">
     <?php print $content; ?>
+    <?php if ($right): ?>
+    <div id="sidebar-right" class="column sidebar region grid-4">
+      <div id="sidebar-right-inner">
+        <?php print $right; ?>
+      </div>
+    </div> <!--//end #sidebar-right-inner -->
+    <?php endif; ?>
   </div>
 
+ 
   <?php print $links; ?>
 
 </div></div> <!-- /node-inner, /node -->
