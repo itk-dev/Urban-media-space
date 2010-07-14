@@ -566,7 +566,7 @@ body.context-editing .region .context-block {
 */
 
 .front #main {
-   background: #fff url('../gfx/content-shadow-background.gif') no-repeat;
+   background: #fff url('../gfx/content-shadow-background.gif') no-repeat 0 320px;
 }
 
 .front #content {
