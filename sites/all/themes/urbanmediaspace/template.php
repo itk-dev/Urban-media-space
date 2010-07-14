@@ -159,6 +159,8 @@ function urbanmediaspace_blocks($region, $show_blocks = NULL) {
 }
 
 function urbanmediaspace_preprocess_node(&$vars) {
-  $vars['right']          = theme('blocks', 'right');
-  $vars['content_bottom'] = theme('blocks', 'content_bottom');
+  if (!drupal_is_front_page()) {
+    $vars['right']          = theme('blocks', 'right');
+    $vars['content_bottom'] = theme('blocks', 'content_bottom');
+  }
 }

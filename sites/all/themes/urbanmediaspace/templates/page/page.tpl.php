@@ -109,6 +109,12 @@
 
               <?php print $feed_icons; ?>
 
+              <?php if ($content_bottom && $is_front): ?>
+                <div id="content-bottom" class="region region-content_bottom">
+                  <?php print $content_bottom; ?>
+                </div> <!-- /#content-bottom -->
+              <?php endif; ?>
+
             </div> <!-- // #content-inner -->
           </div> <!-- //#content -->
 
@@ -120,6 +126,13 @@
           </div> <!-- //end #sidebar-left-inner -->
           <?php endif; ?>
 
+          <?php if ($right && $is_front): ?>
+          <div id="sidebar-right" class="column sidebar region grid-4">
+            <div id="sidebar-right-inner">
+              <?php print $right; ?>
+            </div>
+          </div> <!--//end #sidebar-right-inner -->
+          <?php endif; ?>
 	</div> <!-- //end #main -->
 
     <div id="footer" class="prefix-1 suffix-1">
