@@ -43,9 +43,9 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-top {
 }
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner {
-  background: url('../../../../gfx/sprites-icons.png') no-repeat 565px -265px;
   color: #d6d6d6;
   font-size: 75%;
+  min-height: 95px;
 }
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner a {
@@ -53,6 +53,15 @@ div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner a {
   display: block;
   padding: 10px 15px;
   text-decoration: none;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner .slide-arrow {
+  background: url('../../../../gfx/sprites-icons.png') no-repeat 0 -319px;
+  bottom: 15px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  width: 30px;
 }
 
 div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner .slide-title {
