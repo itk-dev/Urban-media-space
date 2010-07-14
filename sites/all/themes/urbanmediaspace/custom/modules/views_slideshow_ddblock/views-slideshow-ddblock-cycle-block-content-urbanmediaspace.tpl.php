@@ -36,8 +36,6 @@ drupal_add_css($directory . '/custom/modules/views_slideshow_ddblock/' . $settin
 ?>
 <!-- dynamic display block slideshow -->
 <div id="views-slideshow-ddblock-<?php print $settings['delta'] ?>" class="views-slideshow-ddblock-cycle-<?php print $settings['template'] ?> clear-block">
- <div class="container clear-block border">
-  <div class="container-inner clear-block border">
     <!-- custom pager images --> 
     <?php print $views_slideshow_ddblock_pager_content ?>
     <?php if ($settings['pager2'] == 1 && $settings['pager2_position']['pager'] === 'pager'): ?>  
@@ -59,20 +57,16 @@ drupal_add_css($directory . '/custom/modules/views_slideshow_ddblock/' . $settin
          <?php if ($settings['slide_text'] == 1) :?>
           <div class="slide-text slide-text-<?php print $settings['slide_direction'] ?> slide-text-<?php print $settings['slide_text_position'] ?> clear-block border">
            <div class="slide-text-inner clear-block border">
-            <?php if (!empty($slider_item['slide_title'])) :?>
-             <div class="slide-title slide-title-<?php print $settings['slide_direction'] ?> clear-block border">
-              <div class="slide-title-inner clear-block border">
-               <h2><?php print $slider_item['slide_title'] ?></h2>
-              </div> <!-- slide-title-inner-->
-             </div>  <!-- slide-title-->
-            <?php endif; ?>
-            <?php if (!empty($slider_item['slide_text'])) :?>
-             <div class="slide-body-<?php print $settings['slide_direction'] ?> clear-block border">
-              <div class="slide-body-inner clear-block border">
-               <?php print $slider_item['slide_text'] ?>
-              </div> <!-- slide-body-inner-->
-             </div>  <!-- slide-body-->
-            <?php endif; ?>
+           <?php if (!empty($slider_item['slide_title']) || !empty($slider_item['slide_text'])) :?>
+              <a href="<?php print drupal_get_path_alias($slider_item['slide_link'],$language); ?>" title="<?php print $slider_item['slide_title']; ?>">
+                <span class="slide-title slide-title-<?php print $settings['slide_direction'] ?> clear-block border">
+                  <?php print $slider_item['slide_title'] ?>
+                </span>
+                <span class="slide-body slide-body-<?php print $settings['slide_direction'] ?> clear-block border">
+                  <?php print $slider_item['slide_text'] ?>
+                </span>
+              </a>
+           <?php endif; ?>
             <?php if (!empty($slider_item['slide_read_more'])) :?>
              <div class="slide-read-more slide-read-more-<?php print $settings['slide_direction'] ?> clear-block border">
               <?php print $slider_item['slide_read_more'] ?>
@@ -100,6 +94,4 @@ drupal_add_css($directory . '/custom/modules/views_slideshow_ddblock/' . $settin
      </div>
     <?php endif; ?>  
    <?php endif; ?> 
-  </div> <!-- container-inner-->
- </div> <!--container-->
 </div> <!--  template -->

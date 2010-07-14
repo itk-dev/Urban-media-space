@@ -9,5 +9,11 @@ $(document).ready(function() {
       $('#edit-search-block-form-1-wrapper label')
       // Get search label text
       .text()
-    );
+  );
+
+  // Hijack carousel pager link
+  $('.views-slideshow-ddblock-cycle-urbanmediaspace a.pager-link').click(function() {
+    location.href = $(this).attr('href');
+  })
+
 });

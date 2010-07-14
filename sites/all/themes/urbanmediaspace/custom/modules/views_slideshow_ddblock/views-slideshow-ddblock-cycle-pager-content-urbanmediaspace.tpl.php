@@ -11,7 +11,7 @@
 
 /**
  * @file
- * Dynamic display block module template: vsd-upright-40p - pager template
+ * Dynamic display block module template: urbanmediaspace - pager template
  * - Custom pager with images
  *
  * Available variables:
@@ -25,17 +25,17 @@
  */
  $settings = $views_slideshow_ddblock_pager_settings;
  
- $number_of_items = 6;        // total number of items to show 
+ $number_of_items = 4;        // total number of items to show
  $number_of_items_per_row=6;  // number of items to show in a row
 ?>
 
 <div id="views-slideshow-ddblock-custom-pager-<?php print $settings['delta'] ?>" class="<?php print $settings['pager'] ?> clear-block border">
   <?php if ($views_slideshow_ddblock_pager_items): ?>
-   <?php $item_counter=0; ?>
+   <?php $item_counter=1; ?>
    <?php foreach ($views_slideshow_ddblock_pager_items as $pager_item): ?>
-    <div class="<?php print $settings['pager'] ?>-item <?php print $settings['pager'] ?>-item-<?php print $item_counter ?>">
+    <div class="<?php print $settings['pager'] ?>-item <?php print $settings['pager'] ?>-item-<?php print $item_counter ?> <?php if ($item_counter == $number_of_items) print ' last' ?>">
      <div class="<?php print $settings['pager'] ?>-item-inner">
-      <a href="#" title="" class="pager-link"><?php print $pager_item['pager_image']; ?>
+       <a href="<?php print drupal_get_path_alias($pager_item['pager_link'],$language); ?>" title="<?php print $pager_item['pager_teaser_title']; ?>" class="pager-link"><?php print $pager_item['pager_image']; ?>
         <span class="<?php print $settings['pager'] ?>-item-inner-teaser-wrapper">
           <b class="<?php print $settings['pager'] ?>-item-inner-teaser-title"><?php print $pager_item['pager_teaser_title']; ?></b>
           <span class="<?php print $settings['pager'] ?>-item-inner-teaser"><?php print $pager_item['pager_teaser']; ?></span>
@@ -43,6 +43,7 @@
       </a>
      </div>
     </div> <!-- /custom-pager-item -->
+    <?php $item_counter++ ?>
    <?php endforeach; ?>
   <?php endif; ?>
 </div>  <!-- /pager-->
