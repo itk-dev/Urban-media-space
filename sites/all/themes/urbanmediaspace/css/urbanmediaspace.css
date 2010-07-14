@@ -633,6 +633,7 @@ body.context-editing .region .context-block {
 }
 
 .block-nodeasblock .spotbox {
+  background-color: #fff;
   border: 1px solid #d3d3d3;
   padding: 4px;
   min-height: 185px;
@@ -685,7 +686,7 @@ body.context-editing .region .context-block {
 }
 
 #main-content #sidebar-right .block-nodeasblock .content {
-  margin: 0 0 20px;
+  margin: 0;
 }
 
 #main-content #content-bottom {
