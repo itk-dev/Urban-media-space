@@ -202,12 +202,12 @@ h1#page-title {
 }
 
 #sidebar-left .menu li {
-  line-height: 160%;
+  line-height: 175%;
   padding: 0;
 }
 
 #sidebar-left .menu a {
-  background: url('../gfx/sprites-icons.png') no-repeat 5px -238px;
+  background: url('../gfx/sprites-icons.png') no-repeat 5px -237px;
   color: #666666;
   display: block;
   font-size: 75%;
@@ -610,13 +610,17 @@ body.context-editing .region .context-block {
 */
 
 #sidebar-left .menu li {
-  background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -599px;
+  background: #fff url('../gfx/submenu-bg.png') repeat-x bottom;
   list-style: none;
 }
 
 #sidebar-left .menu li.expanded {
-  background: #f4f4f4 url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -566px;
+  background: #f3f3f3 url('../gfx/submenu-bg.png') repeat-x bottom;
 }
+
+/*
+  Submenu level 1
+*/
 
 #sidebar-left .menu li li {
   background: none;
@@ -625,7 +629,29 @@ body.context-editing .region .context-block {
 }
 
 #sidebar-left .menu li li a {
-  margin: 0 0 0 20px;
+  background-position: 25px -237px;
+  margin: 0;
+  padding: 3px 0 3px 40px;
+}
+
+/*
+  Submenu level 2
+*/
+
+#sidebar-left .menu li li li a {
+  background-position: 45px -237px;
+  margin: 0;
+  padding: 3px 0 3px 60px;
+}
+
+/*
+  Submenu level 3
+*/
+
+#sidebar-left .menu li li li li a {
+  background-position: 65px -237px;
+  margin: 0;
+  padding: 3px 0 3px 80px;
 }
 
 /*
