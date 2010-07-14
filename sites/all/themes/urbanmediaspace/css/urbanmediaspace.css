@@ -672,11 +672,12 @@ body.context-editing .region .context-block {
 */
 
 #main-content #sidebar-right {
-  width: 240px;
+  float: right;
+  width: 220px;
 }
 
 #main-content #sidebar-right #sidebar-right-inner {
-  margin: 0 0 0 20px;
+  margin: 0;
 }
 
 #main-content #sidebar-right .block-nodeasblock {
@@ -685,4 +686,10 @@ body.context-editing .region .context-block {
 
 #main-content #sidebar-right .block-nodeasblock .content {
   margin: 0 0 20px;
+}
+
+#main-content #content-bottom {
+  float: left;
+  margin: 10px 0 0;
+  width: 480px;
 }
