@@ -636,6 +636,7 @@ body.context-editing .region .context-block {
   background-color: #fff;
   border: 1px solid #d3d3d3;
   padding: 4px;
+  margin: 0 0 20px;
   min-height: 185px;
   overflow: auto;
 }
