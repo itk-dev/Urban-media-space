@@ -222,9 +222,13 @@ h1#page-title {
   Spotboxes
 */
 
+.context-block-region .context-block {
+  float: left;
+}
+
 .block-nodeasblock .spotbox * {
   color: #fff;
-  font-size: 90%;
+  font-size: 100%;
   text-decoration: none;
 }
 
@@ -573,7 +577,7 @@ body.context-editing .region .context-block {
   width: 720px;
 }
 
-.front #content-inner {
+.front #main-content {
   padding: 30px;
 }
 
@@ -586,6 +590,18 @@ body.context-editing .region .context-block {
   list-style: none;
 }
 
+/*
+  Section frontpage
+*/
+
+#main-content .content .field-field-image {
+  margin: 0 0 15px;
+}
+
+#main-content .content .field-field-content {
+  float: left;
+  width: 460px;
+}
 
 
 
@@ -606,6 +622,15 @@ body.context-editing .region .context-block {
 /*
   Spotboxes
 */
+
+.block-nodeasblock {
+  float: left;
+  width: 240px;
+}
+
+.block-nodeasblock .content {
+  margin: 0 20px 0 0;
+}
 
 .block-nodeasblock .spotbox {
   border: 1px solid #d3d3d3;
@@ -631,6 +656,7 @@ body.context-editing .region .context-block {
 
 .block-nodeasblock .spotbox .content {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -190px;
+  margin: 0;
   padding: 7px;
 }
 
@@ -639,4 +665,24 @@ body.context-editing .region .context-block {
   float: right;
   margin: 1px 4px 0 0;
   padding: 1px 0 3px 20px;
+}
+
+/*
+  Spotboxes section frontpage
+*/
+
+#main-content #sidebar-right {
+  width: 240px;
+}
+
+#main-content #sidebar-right #sidebar-right-inner {
+  margin: 0 0 0 20px;
+}
+
+#main-content #sidebar-right .block-nodeasblock {
+  width: 220px;
+}
+
+#main-content #sidebar-right .block-nodeasblock .content {
+  margin: 0 0 20px;
 }
