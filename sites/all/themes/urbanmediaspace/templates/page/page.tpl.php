@@ -130,26 +130,27 @@
               <?php print $right; ?>
             </div>
           </div> <!--//end #sidebar-right-inner -->
-          <?php endif; ?>
+          <?php endif; ?>         
+
 	</div> <!-- //end #main -->
 
-    <div id="footer" class="prefix-1 suffix-1">
-      <?php if ($footer): ?>
-        <div id="footer-region" class="region grid-14 clear-block">
-    	    <div id="footer-inner">
-            <?php print $footer; ?>
-          </div>
-    	  </div> <!--//end #footer-inner -->
-      <?php endif; ?>
-
-      <?php if ($footer_message): ?>
-        <div id="footer-message" class="grid-14">
-          <?php print $footer_message; ?>
-        </div>
-      <?php endif; ?>
-    </div> <!-- /#footer -->
-
   </div> <!-- /#page -->
+
+  <div id="footer" class="container-16 clear-block">
+    <?php if ($footer): ?>
+      <div id="footer-region" class="region grid-14 clear-block">
+          <div id="footer-inner">
+          <?php print $footer; ?>
+        </div>
+        </div> <!--//end #footer-inner -->
+    <?php endif; ?>
+
+    <?php if ($footer_message): ?>
+      <div id="footer-message" class="grid-14">
+        <?php print $footer_message; ?>
+      </div>
+    <?php endif; ?>
+  </div> <!-- /#footer -->
 
   <?php print $closure; ?>
   </div>

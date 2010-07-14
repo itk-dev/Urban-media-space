@@ -759,3 +759,48 @@ body.context-editing .region .context-block {
   margin: 10px 0 0;
   width: 480px;
 }
+
+/*
+  Footer
+*/
+
+#footer {
+  background: #323030;
+  border-top: 5px solid #dddddd;
+  width: 100%;
+}
+
+/*
+  Footer menu
+*/
+
+#footer .menu {
+  line-height: 250%;
+}
+
+#footer .menu li.first {
+  margin: 0 15px 0 30px;
+}
+
+#footer .menu li {
+  margin: 0 15px;
+}
+
+#footer .menu a,
+#footer .menu a:link,
+#footer .menu a:visited {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#footer .menu a:hover,
+#footer .menu a:active {
+  color: #ffdcb9;
+}
+
+#footer .menu a.active,
+#footer .menu a.active:hover {
+  color: #fff;
+  font-weight: bold;
+}
