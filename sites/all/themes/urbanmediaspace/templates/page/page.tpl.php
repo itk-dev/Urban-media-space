@@ -33,14 +33,12 @@
             <span id="logo"><?php print $linked_logo_img; ?></span>
           <?php endif; ?>
           <?php if ($site_name): ?>
-		  <?php if ($title): ?>
-		  <div id="site-name" class="grid-3 omega">
-          	<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><?php print $site_name; ?></a>
-		  </div>
-			<?php else: /* Use h1 when the content title is empty */ ?>
-			<h1 id="site-name" class="grid-3 omega"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="nofollow"><?php print $site_name; ?></a></h1>
-          <?php endif; ?>
-		  <?php endif; ?>
+            <?php if ($title): ?>
+              <div id="site-name" class="grid-3 omega"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><?php print $site_name; ?></a></div>
+              <?php else: /* Use h1 when the content title is empty */ ?>
+                <h1 id="site-name" class="grid-3 omega"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="nofollow"><?php print $site_name; ?></a></h1>
+              <?php endif; ?>
+            <?php endif; ?>
           <?php if ($site_slogan): ?>
             <div id="site-slogan" class="grid-3 omega"><?php print $site_slogan; ?></div>
           <?php endif; ?>

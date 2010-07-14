@@ -10,6 +10,7 @@
  *   A string containing the breadcrumb output.
  */
 function urbanmediaspace_breadcrumb($breadcrumb) {
+
   // Determine if we are to display the breadcrumb.
   $show_breadcrumb = theme_get_setting('zen_breadcrumb');
   if ($show_breadcrumb == 'yes' || $show_breadcrumb == 'admin' && arg(0) == 'admin') {

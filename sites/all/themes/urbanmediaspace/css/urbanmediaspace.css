@@ -160,8 +160,12 @@ h1#page-title {
 */
 
 #content {
-  font-size: 75%;
+  font-size: 100%;
   color: #726557;
+}
+
+#content .node-inner {
+  font-size: 75%;
 }
 
 /*
@@ -191,11 +195,12 @@ h1#page-title {
 */
 
 #sidebar-left .menu {
-  font-size: 75%;
+  font-size: 100%;
+  margin: 0;
 }
 
 #sidebar-left .menu li {
-  line-height: 210%;
+  line-height: 160%;
   padding: 0;
 }
 
@@ -203,8 +208,13 @@ h1#page-title {
   background: url('../gfx/sprites-icons.png') no-repeat 5px -238px;
   color: #666666;
   display: block;
+  font-size: 75%;
   padding: 3px 0 3px 20px;
   text-decoration: none;
+}
+
+#sidebar-left .menu a.active {
+  color: #f45000;  
 }
 
 #sidebar-left .menu a,
@@ -218,6 +228,10 @@ h1#page-title {
   color: #f45000;
 }
 
+#sidebar-left .menu li li a {
+  font-size: 75%;
+}
+
 /*
   Spotboxes
 */
@@ -228,8 +242,12 @@ h1#page-title {
 
 .block-nodeasblock .spotbox * {
   color: #fff;
-  font-size: 100%;
+  font-size: 90%;
   text-decoration: none;
+}
+
+#content .node-inner .block-nodeasblock .spotbox * {
+  font-size: 100%;
 }
 
 .block-nodeasblock .spotbox .content {
@@ -578,7 +596,11 @@ body.context-editing .region .context-block {
 }
 
 .front #main-content {
-  padding: 30px;
+  padding: 30px 30px 20px;
+}
+
+.front #sidebar-right {
+  margin: 21px 0 0;
 }
 
 /*
@@ -588,6 +610,14 @@ body.context-editing .region .context-block {
 #sidebar-left .menu li {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -599px;
   list-style: none;
+}
+
+#sidebar-left .menu li.expanded {
+  background: #f4f4f4 url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -567px;
+}
+
+#sidebar-left .menu li li {
+  background: none;
 }
 
 /*
