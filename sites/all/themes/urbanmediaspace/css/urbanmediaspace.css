@@ -121,7 +121,9 @@ h1#page-title {
 }
 
 #main-menu a.active,
-#main-menu a.active:hover {
+#main-menu a.active:hover,
+#main-menu a.active-trail,
+#main-menu a.active-trail:hover {
   color: #fff;
   font-weight: bold;
 }
