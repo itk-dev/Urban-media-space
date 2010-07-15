@@ -817,6 +817,7 @@ body.context-editing .region .context-block {
 #footer-logos {
   background-color: #fff;
   padding: 50px 0;
+  text-align: center;
   width: 100%;
 }
 
@@ -826,8 +827,9 @@ body.context-editing .region .context-block {
 }
 
 #footer-logos div .content div {
-  float: left;
-  margin: 0 25px 0 0;
+  display: inline;
+  margin: auto;
+  padding: 0 25px;
 }
 
 #footer-logos div .content div a {
