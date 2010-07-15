@@ -1,5 +1,5 @@
 <?php
-// $Id: 
+// $Id:
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -80,7 +80,7 @@
           <?php print $mainmenu; ?>
         </div>
       </div> <!--//end #aaktopbar -->
-    <?php endif; ?>    
+    <?php endif; ?>
 
     <div id="main">
 
@@ -131,7 +131,7 @@
               <?php print $right; ?>
             </div>
           </div> <!--//end #sidebar-right-inner -->
-          <?php endif; ?>         
+          <?php endif; ?>
 
 	</div> <!-- //end #main -->
 
@@ -159,6 +159,8 @@
       <?php print $footer_logos; ?>
     </div>
   <?php endif; ?>
+
+  <?php print $closure; ?>
 
   </div>
 </body>
