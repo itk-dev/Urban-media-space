@@ -309,7 +309,7 @@ body {
 #wrapper {
   background: url('../gfx/body-background.png') no-repeat center 196px;
   left: 0;
-  height: 900px;
+  min-height: 900px;
   position: absolute;
   top: 0;
   width: 100%;
@@ -555,11 +555,9 @@ body.context-editing .region .context-block {
 
 #main {
   background-color: #fff;
-  margin: 0;
+  margin: 140px 0 0;
   min-height: 500px;
   padding: 10px;
-  position: absolute;
-  top: 165px;
   width: 940px;
 }
 
@@ -767,7 +765,13 @@ body.context-editing .region .context-block {
 #footer {
   background: #323030;
   border-top: 5px solid #dddddd;
+  clear: both;
+  height: 100px;
   width: 100%;
+}
+
+#footer-region {
+  width: 960px;
 }
 
 /*
@@ -776,20 +780,20 @@ body.context-editing .region .context-block {
 
 #footer .menu {
   line-height: 250%;
-}
-
-#footer .menu li.first {
-  margin: 0 15px 0 30px;
+  margin: 30px 0 0;
 }
 
 #footer .menu li {
-  margin: 0 15px;
+  display: inline;
+  list-style: none;
+  margin: 0 15px 0 0;
 }
 
 #footer .menu a,
 #footer .menu a:link,
 #footer .menu a:visited {
-  color: #fff;
+  color: #c4c6c7;
+  font-size: 85%;
   text-decoration: none;
   text-shadow: 1px 1px 0 #000;
 }
@@ -799,8 +803,11 @@ body.context-editing .region .context-block {
   color: #ffdcb9;
 }
 
-#footer .menu a.active,
-#footer .menu a.active:hover {
-  color: #fff;
-  font-weight: bold;
+#footer-logos {
+  padding: 50px 0;
+}
+
+#footer-logos div {
+  float: left;
+  margin: 0 25px 0 0;
 }
