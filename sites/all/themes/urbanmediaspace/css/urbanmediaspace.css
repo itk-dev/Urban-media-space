@@ -298,7 +298,7 @@ html {
 }
 
 body {
-  background: url('../gfx/backgrounds/urban-media-space-1.jpg') no-repeat center 80px;
+  background: url('/sites/default/files/background_images/urban-media-space-1.jpg') no-repeat center 80px;
   min-height: 100%;
 }
 

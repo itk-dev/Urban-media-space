@@ -1,5 +1,5 @@
 <?php
-// $Id:
+// $Id: 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -12,8 +12,13 @@
   <?php print $scripts; ?>
 </head>
 
-<body class="<?php print $classes; ?>">
-  <p><a name="top" id="top"></a></p>
+<?php
+  if (isset($node->field_body_background_image[0]['filepath'])) {
+    $background_image = ' style="background: url(\'' . $node->field_body_background_image[0]['filepath'] . '\') repeat-x center 80px;"';
+  }
+?>
+
+<body class="<?php print $classes; ?>"<?php print $background_image ?>>
   <div id="wrapper">
   <?php if ($aaktopbar): ?>
     <div id="aaktopbar" class="region clear-block">
@@ -80,7 +85,7 @@
           <?php print $mainmenu; ?>
         </div>
       </div> <!--//end #aaktopbar -->
-    <?php endif; ?>
+    <?php endif; ?>    
 
     <div id="main">
 
@@ -118,7 +123,7 @@
           </div> <!-- //#content -->
 
           <?php if ($left): ?>
-          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-12', $right); ?>">
+          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-15', $right, 3); ?>">
                   <div id="sidebar-left-inner">
               <?php print $left; ?>
             </div>
@@ -131,7 +136,7 @@
               <?php print $right; ?>
             </div>
           </div> <!--//end #sidebar-right-inner -->
-          <?php endif; ?>
+          <?php endif; ?>         
 
 	</div> <!-- //end #main -->
 
@@ -139,11 +144,10 @@
 
   <div id="footer" class="container-16 clear-block">
     <?php if ($footer): ?>
-      <div id="footer-region" class="container-16">
+      <div id="footer-region" class="region grid-14 clear-block">
           <div id="footer-inner">
           <?php print $footer; ?>
         </div>
-        <div id="to-top"><a href="#top"><?php print t('To top'); ?></a></div>
         </div> <!--//end #footer-inner -->
     <?php endif; ?>
 
@@ -154,14 +158,8 @@
     <?php endif; ?>
   </div> <!-- /#footer -->
 
-  <?php if ($footer_logos): ?>
-    <div id="footer-logos" class="container-16 clear-block">
-      <?php print $footer_logos; ?>
-    </div>
-  <?php endif; ?>
-
   <?php print $closure; ?>
-
+  
   </div>
 </body>
 </html>

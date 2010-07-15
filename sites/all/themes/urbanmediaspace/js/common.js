@@ -20,14 +20,6 @@ $(document).ready(function() {
   $('#footer-logos div a')
   .css('opacity',.25)
   .show()
-//  .hoverIntent(
-//    function() {
-//      $(this).fadeTo('fast',1);
-//    },
-//    function() {
-//      $(this).fadeTo('fast',.25);
-//    }
-//   );
   .mouseover(function() {
     $(this).css('opacity',1);
   })
