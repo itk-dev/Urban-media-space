@@ -815,10 +815,21 @@ body.context-editing .region .context-block {
 */
 
 #footer-logos {
+  background-color: #fff;
   padding: 50px 0;
+  width: 100%;
 }
 
-#footer-logos div {
+#footer-logos .block-inner {
+  margin: auto;
+  width: 960px;
+}
+
+#footer-logos div .content div {
   float: left;
   margin: 0 25px 0 0;
+}
+
+#footer-logos div .content div a {
+  display: none;
 }
