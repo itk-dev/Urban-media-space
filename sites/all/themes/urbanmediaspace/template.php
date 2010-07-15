@@ -33,7 +33,7 @@ function urbanmediaspace_breadcrumb($breadcrumb) {
       elseif (theme_get_setting('zen_breadcrumb_trailing')) {
         $trailing_separator = $breadcrumb_separator;
       }
-      return '<div class="breadcrumb">' . implode($breadcrumb_separator, $breadcrumb) . "$trailing_separator<span>$title</span></div>";
+      return '<div class="breadcrumb">' . implode($breadcrumb_separator, $breadcrumb) . "$trailing_separator$title</div>";
     }
   }
   // Otherwise, return an empty string.

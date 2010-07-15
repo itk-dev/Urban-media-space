@@ -13,6 +13,7 @@
 </head>
 
 <body class="<?php print $classes; ?>">
+  <p><a name="top" id="top"></a></p>
   <div id="wrapper">
   <?php if ($aaktopbar): ?>
     <div id="aaktopbar" class="region clear-block">
@@ -117,7 +118,7 @@
           </div> <!-- //#content -->
 
           <?php if ($left): ?>
-          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-15', $right, 3); ?>">
+          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-12', $right); ?>">
                   <div id="sidebar-left-inner">
               <?php print $left; ?>
             </div>
@@ -142,6 +143,7 @@
           <div id="footer-inner">
           <?php print $footer; ?>
         </div>
+        <div id="to-top"><a href="#top"><?php print t('To top'); ?></a></div>
         </div> <!--//end #footer-inner -->
     <?php endif; ?>
 

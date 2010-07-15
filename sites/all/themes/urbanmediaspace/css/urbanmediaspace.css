@@ -770,18 +770,39 @@ body.context-editing .region .context-block {
   width: 100%;
 }
 
+#footer a,
+#footer a:link,
+#footer a:visited {
+  color: #c4c6c7;
+  font-size: 85%;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#footer a:hover,
+#footer a:active {
+  color: #ffdcb9;
+}
+
 #footer-region {
+  line-height: 250%;
+  padding: 30px 0 0;
   width: 960px;
+}
+
+#footer-inner {
+  float: left;
+}
+
+#footer #to-top {
+  background: url('../gfx/sprites-icons.png') no-repeat 0 -302px;
+  float: right;
+  padding: 0 0 0 12px;
 }
 
 /*
   Footer menu
 */
-
-#footer .menu {
-  line-height: 250%;
-  margin: 30px 0 0;
-}
 
 #footer .menu li {
   display: inline;
@@ -789,19 +810,9 @@ body.context-editing .region .context-block {
   margin: 0 15px 0 0;
 }
 
-#footer .menu a,
-#footer .menu a:link,
-#footer .menu a:visited {
-  color: #c4c6c7;
-  font-size: 85%;
-  text-decoration: none;
-  text-shadow: 1px 1px 0 #000;
-}
-
-#footer .menu a:hover,
-#footer .menu a:active {
-  color: #ffdcb9;
-}
+/*
+  Footer logos
+*/
 
 #footer-logos {
   padding: 50px 0;
