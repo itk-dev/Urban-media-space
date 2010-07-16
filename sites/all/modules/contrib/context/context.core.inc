@@ -1,5 +1,5 @@
 <?php
-// $Id: context.core.inc,v 1.1.2.3.2.20.2.21 2010/06/14 18:25:46 yhahn Exp $
+// $Id: context.core.inc,v 1.1.2.3.2.20.2.18 2010/05/25 21:57:44 yhahn Exp $
 
 /**
  * Implementation of hook_context_registry().
@@ -26,11 +26,6 @@ function context_context_registry() {
       'title' => t('User role'),
       'description' => t('Set this context when the current user has one of the selected role(s).'),
       'plugin' => 'context_condition_user',
-    ),
-    'user_page' => array(
-      'title' => t('User page'),
-      'description' => t('Set this context when viewing a user page.'),
-      'plugin' => 'context_condition_user_page',
     ),
     'menu' => array(
       'title' => t('Menu'),
@@ -249,8 +244,6 @@ function context_node_condition(&$node, $op) {
       $plugin->execute($node, $op);
     }
   }
-  // Allow other plugins to easily be triggered on node-related events.
-  drupal_alter('context_node_condition', $node, $op);
 }
 
 /**
@@ -258,8 +251,8 @@ function context_node_condition(&$node, $op) {
  */
 function context_form_comment_form_alter(&$form, $form_state) {
   if ($nid = $form['nid']['#value']) {
-    $node = node_load($nid);
-    context_node_condition($node, 'comment');
+    $plugin = context_get_plugin('condition', 'node');
+    $plugin->execute($node = node_load($nid), 'comment');
   }
 }
 
@@ -269,17 +262,6 @@ function context_form_comment_form_alter(&$form, $form_state) {
 function context_views_pre_view($view, $args) {
   if ($plugin = context_get_plugin('condition', 'views')) {
     $plugin->execute($view);
-  }
-}
-
-/**
- * Implementation of hook_user().
- */
-function context_user($op, &$edit, &$account, $category = NULL) {
-  if (in_array($op, array('view', 'form', 'register'))) {
-    if ($plugin = context_get_plugin('condition', 'user_page')) {
-      $plugin->execute($account, $op);
-    }
   }
 }
 

@@ -236,3 +236,8 @@ how it wants to round. */
 #l10n-client #l10n-client-form #edit-clear {
   margin: 0 0 0 5px;
 }
+
+#l10n-client #l10n-client-form #edit-target  {
+  font-family: "Lucida","Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+  font-size: 110%;
+}

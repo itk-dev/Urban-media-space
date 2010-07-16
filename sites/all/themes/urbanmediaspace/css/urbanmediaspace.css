@@ -385,6 +385,7 @@ body.context-editing #content-bottom .ui-sortable {
   display: block !important;
   margin: 10px 0;
   opacity: 0.5;
+  overflow: auto;
   padding: 25px 0;
   width: 100%;
   z-index: 100;

@@ -1,5 +1,5 @@
 <?php
-// $Id: context_condition.inc,v 1.1.2.6 2010/06/14 17:53:08 yhahn Exp $
+// $Id: context_condition.inc,v 1.1.2.5 2010/05/25 16:06:07 yhahn Exp $
 
 /**
  * Base class for a context condition.
@@ -133,16 +133,6 @@ class context_condition {
       $this->values[$value][] = $context->name;
     }
     context_condition_met($context, $this->plugin);
-  }
-
-  /**
-   * Check whether this condition is used by any contexts. Can be used to
-   * prevent expensive condition checks from being triggered when no contexts
-   * use this condition.
-   */
-  function condition_used() {
-    $map = context_condition_map();
-    return !empty($map[$this->plugin]);
   }
 
   /**

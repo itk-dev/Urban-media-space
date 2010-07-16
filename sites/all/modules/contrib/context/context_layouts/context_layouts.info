@@ -5,9 +5,9 @@ dependencies[] = "context"
 package = "Context"
 core = "6.x"
 
-; Information added by drupal.org packaging script on 2010-06-23
-version = "6.x-3.x-dev"
+; Information added by drupal.org packaging script on 2010-05-25
+version = "6.x-3.0-beta5"
 core = "6.x"
 project = "context"
-datestamp = "1277251440"
+datestamp = "1274830805"
 

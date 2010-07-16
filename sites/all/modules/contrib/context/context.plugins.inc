@@ -1,5 +1,5 @@
 <?php
-// $Id: context.plugins.inc,v 1.1.2.5 2010/06/08 15:33:58 yhahn Exp $
+// $Id: context.plugins.inc,v 1.1.2.4 2010/02/09 17:05:22 yhahn Exp $
 
 /**
  * Context plugins.
@@ -46,14 +46,6 @@ function _context_context_plugins() {
       'path' => drupal_get_path('module', 'context') .'/plugins',
       'file' => 'context_condition_user.inc',
       'class' => 'context_condition_user',
-      'parent' => 'context_condition',
-    ),
-  );
-  $plugins['context_condition_user_page'] = array(
-    'handler' => array(
-      'path' => drupal_get_path('module', 'context') .'/plugins',
-      'file' => 'context_condition_user_page.inc',
-      'class' => 'context_condition_user_page',
       'parent' => 'context_condition',
     ),
   );

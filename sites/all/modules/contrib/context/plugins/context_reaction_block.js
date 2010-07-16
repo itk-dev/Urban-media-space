@@ -1,4 +1,4 @@
-// $Id: context_reaction_block.js,v 1.1.2.17 2010/06/01 20:02:24 yhahn Exp $
+// $Id: context_reaction_block.js,v 1.1.2.16 2010/04/26 14:45:02 yhahn Exp $
 
 Drupal.behaviors.contextReactionBlock = function(context) {
   $('form.context-editor:not(.context-block-processed)')
@@ -193,19 +193,19 @@ function DrupalContextBlockEditor(editor) {
 
     if (ui.item.is('.context-block-addable')) {
       var bid = ui.item.attr('id').split('context-block-addable-')[1];
-
-      // Construct query params for our AJAX block request.
-      var params = Drupal.settings.contextBlockEditor.params;
-      params.context_block = bid + ',' + context;
-
-      $.getJSON(Drupal.settings.contextBlockEditor.path, params, function(data) {
+      var params = {
+        'path': Drupal.settings.contextBlockEditor.path,
+        'bid': bid,
+        'context': context
+      };
+      $.getJSON(Drupal.settings.contextBlockEditor.ajax, params, function(data) {
         if (data.status) {
           var newBlock = $(data.block);
           newBlock.addClass('draggable');
           if ($('script', newBlock)) {
             $('script', newBlock).remove();
           }
-
+          
           newBlock = ui.item.replaceWith(newBlock);
 
           $.each(data.css, function(k, v){

@@ -1,5 +1,5 @@
 <?php
-// $Id: context.module,v 1.6.2.6.2.6.2.17 2010/06/14 18:18:02 yhahn Exp $
+// $Id: context.module,v 1.6.2.6.2.6.2.16 2010/05/25 15:40:50 yhahn Exp $
 
 require('context.core.inc');
 
@@ -163,14 +163,15 @@ function context_context_plugins() {
  * Implementation of hook_init().
  */
 function context_init() {
-  if ($plugin = context_get_plugin('condition', 'path')) {
+  $map = context_condition_map();
+  if (!empty($map['path']) && $plugin = context_get_plugin('condition', 'path')) {
     $plugin->execute();
   }
-  if ($plugin = context_get_plugin('condition', 'language')) {
+  if (!empty($map['language']) && $plugin = context_get_plugin('condition', 'language')) {
     global $language;
     $plugin->execute($language->language);
   }
-  if ($plugin = context_get_plugin('condition', 'user')) {
+  if (!empty($map['user']) && $plugin = context_get_plugin('condition', 'user')) {
     global $user;
     $plugin->execute($user);
   }

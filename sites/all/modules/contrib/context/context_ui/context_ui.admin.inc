@@ -1,5 +1,5 @@
 <?php
-// $Id: context_ui.admin.inc,v 1.1.2.7.2.12.2.7 2010/06/14 17:30:25 yhahn Exp $
+// $Id: context_ui.admin.inc,v 1.1.2.7.2.12.2.6 2010/04/26 17:52:58 yhahn Exp $
 
 /**
  * Context listing form. Allows for quick creation of new contexts.
@@ -311,7 +311,7 @@ function context_ui_import_submit($form, &$form_state) {
   $items = array();
   if ($import = $form_state['values']['import']) {
     ob_start();
-    eval($import);
+    $context = eval($import);
     ob_end_clean();
   }
   if (is_object($context)) {
@@ -327,7 +327,7 @@ function context_ui_import_submit($form, &$form_state) {
     }
   }
   else {
-    drupal_set_message(t('An error occurred while importing. Please check your context definition.'), 'error');
+    drupal_set_message(t('An error occurred while importing. Please check your context definition.', 'error'));
     $form_state['redirect'] = 'admin/build/context';
   }
 }

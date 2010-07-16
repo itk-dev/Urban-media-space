@@ -1,5 +1,5 @@
 <?php
-// $Id: context_condition_menu.inc,v 1.1.2.3 2010/06/14 17:53:08 yhahn Exp $
+// $Id: context_condition_menu.inc,v 1.1.2.2 2010/02/09 04:38:01 yhahn Exp $
 
 /**
  * Expose menu items as a context condition.
@@ -36,12 +36,11 @@ class context_condition_menu extends context_condition {
     // menu_get_active_trail() is written this will often not work for active
     // menu items outside the standard navigation tree. See menu_set_active_trail()
     // and menu_get_active_menu_name() for the details.
-    if ($this->condition_used() && $trail = menu_get_active_trail()) {
-      foreach ($trail as $item) {
-        if (!empty($item['href'])) {
-          foreach ($this->get_contexts($item['href']) as $context) {
-            $this->condition_met($context, $item['href']);
-          }
+    $trail = menu_get_active_trail();
+    foreach ($trail as $item) {
+      if (!empty($item['href'])) {
+        foreach ($this->get_contexts($item['href']) as $context) {
+          $this->condition_met($context, $item['href']);
         }
       }
     }
