@@ -27,6 +27,7 @@ base theme = zen_ninesixty
 stylesheets[all][]   = css/urbanmediaspace.css
 stylesheets[all][]   = css/custom-admin.css
 stylesheets[all][]   = css/developer.css
+stylesheets[all][]   = css/l10n_client.css
 
   ; To prevent stylesheets of a base theme or of a module from being included in
   ; our sub-theme, we specify it in our .info file (and we don't need to have a
