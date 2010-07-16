@@ -124,7 +124,7 @@
           </div> <!-- //#content -->
 
           <?php if ($left): ?>
-          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-15', $right, 3); ?>">
+          <div id="sidebar-left" class="column sidebar region grid-4 <?php print ns('pull-12'); ?>">
                   <div id="sidebar-left-inner">
               <?php print $left; ?>
             </div>
