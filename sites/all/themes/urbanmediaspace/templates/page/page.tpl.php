@@ -146,10 +146,10 @@
   <div id="footer" class="container-16 clear-block">
     <?php if ($footer): ?>
       <div id="footer-region" class="container-16">
-          <div id="footer-inner">
+        <div id="footer-inner">
           <?php print $footer; ?>
         </div>
-        <div id="to-top"><a href="#top"><?php print t('To top'); ?></a></div>
+        <div id="to-top"><a href="#top"><?php print t('Top'); ?></a></div>
         </div> <!--//end #footer-inner -->
     <?php endif; ?>
 

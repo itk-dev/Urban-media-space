@@ -5,10 +5,10 @@ $(document).ready(function() {
   $('#edit-search-block-form-1')
     // Add example function
     .example(
-      // Get label
-      $('#edit-search-block-form-1-wrapper label')
-      // Get search label text
-      .text()
+      // Get input field
+      $('#edit-search-block-form-1')
+      // Get the title of the input field
+      .attr('title')
   );
 
   // Hijack carousel pager link
