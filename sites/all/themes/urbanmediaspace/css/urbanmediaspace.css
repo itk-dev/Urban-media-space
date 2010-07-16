@@ -482,7 +482,7 @@ body.context-editing .region .context-block {
   width: 225px;
 }
 
-#search-block-form #edit-submit {
+#search-block-form .form-submit {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -361px;
   border: 4px solid #d4d4d4;
   color: #686868;
