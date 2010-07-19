@@ -1,0 +1,286 @@
+<?php
+// $Id: envts.module,v 1.2 2009/08/28 22:46:04 thebuckst0p Exp $
+
+/**
+ * Environments module
+ * Lightweight global handlers for 2-dimensional environment/site management
+ * 
+ * read readme.txt for help and usage examples
+ *
+ * Author: Ben Buckman (thebuckst0p), developer @ EchoDitto
+ * Contact: ben@benbuck.net
+ *
+ * TERMINOLOGY USED:
+ *  'envt': a code environment with multiple sites, such as 'dev', 'live', 'local'
+ *  'site': a site NAME, possibly used in multiple environments, e.g. 'primary', 'secondary'
+ *  'host': the domain of a site, e.g. www.site.com or site.dev.local, 
+ *			preferably matching the /sites/ folder and $base_root
+ */
+
+/*
+	@TODO:
+		*** allow envt bases to include sub-paths (e.g. /site)
+	
+		- how to make sure this runs even on cached pages?
+
+		- clarify usage of 'site', 'domain', 'host'	
+		
+		- [see other TODOs below in code]
+ */
+
+
+/**
+ * hook_init()
+ * invoke hook_define_envts(), built environment list, check current
+ *
+ * @todo make sure using hook_init() doesn't cause issues on cached sites (or if it does, what to use instead)
+ */
+function envts_init() {
+	global $envts_list;
+	$envts_list = array();
+	
+	// see readme.txt for hook_define_envts() usage
+
+	foreach (module_implements('define_envts') as $module) {
+		$_envts = module_invoke($module, 'define_envts');
+		//watson_debug($_envts, 'envts from '.$module);
+		
+		if (! is_array($_envts)) {	// single host
+			if (is_null($_envts)) $_envts = '';		// use blank string not null, so string functions work
+
+			$_envts = array( 'default'=>$_envts );	// maintain consistent array structure
+		}
+		
+		foreach($_envts as $name=>$sites) {
+			if (! is_array($sites)) {	// returned 1 dimension, use module name as envt key
+				$envts_list[$module][$name] = $sites;
+			}
+			else {	// 2 dimensions
+				$envts_list[$name] = $sites;
+			}
+		}
+	}
+
+
+	// figure out current site, host, and envt
+	global $envts_current_site, $envts_current_envt, $envts_current_host;
+	$envts_current_site = envts_which_site(null, $envts_current_envt, $envts_current_host);
+	
+} //init
+
+
+
+/**
+ * which SITE (name) is the current or specified domain?
+ * (simple search for $check_host within each defined site's host, should be expanded w/ regex)
+ *
+ * @TODO see if there's a way to check which /sites/ folder is called for settings.php,
+ * 	use that instead of $base_root
+ *  (that way this module could be combined more intelligently with settings.php files)
+ *
+ * @param $check_host hostname/domain to check, if NULL (default) uses current ($base_root)
+ * @param &$which_envt environment of $check_host, passed/returned as &ref
+ * @param &$which_host host of $check_host, passed/returned as &ref (as defined, not neces same as $check_host)
+ * @return site NAME not host
+ */
+function envts_which_site($check_host=null, &$which_envt=null, &$which_host=null) {
+	global $base_root;			// includes 'http://' prefix
+	global $envts_list;			// does not include prefix
+	
+		if (!$check_host) {
+			$check_host = $base_root;
+		}
+	
+		if (!is_array($envts_list) or empty($envts_list)) return NULL;		// no envts defined
+	
+		foreach($envts_list as $envt=>$sites) {
+			if (!is_array($sites)) continue;
+			
+			foreach($sites as $site_name=>$site_host) {
+				
+				if (empty($site_host)) continue;	// undefined/blank host, avoid 'needle is not a string' error
+				
+				if (stripos($check_host, $site_host)!==false) {		// @TODO this is crude, expand w/ regex?
+					$which_envt = $envt;		// pass by ref
+					$which_host = $site_host;
+					return $site_name;
+				}
+			}
+		}
+	return NULL;	// default/none matched
+}
+
+
+
+/**
+ * which ENVIRONMENT (site group) is this (or is specified host)?
+ *
+ * @param $check_host hostname/domain to check, if NULL (default) uses current ($base_root)
+ * @return envt name/key
+ */
+function envts_which_envt($check_host=null) {
+	$envt = null;
+	envts_which_site($check_host, $envt);	// $envt passed by ref
+	return $envt;
+}
+
+
+
+/**
+ * which HOST/domain is this?
+ * (or is specified host)
+ * (not sure how useful this is, since it's probably the same as $base_root, put put anyway)
+ *
+ * @param $check_host hostname/domain to check, if NULL (default) uses current ($base_root)
+ * @return site host (as defined)
+ */
+function envts_which_host($check_host=null) {
+	$host = null;
+	envts_which_site($check_host, $envt, $host);	// $host passed back as $ref
+	return $host;
+}
+
+
+
+/**
+ * hook_theme()
+ * define theme hook for block
+ */
+function envts_theme() {
+	$hooks = array();
+	$hooks['envts_table_block'] = array(
+		'path' => drupal_get_path('module', 'envts'),
+	  	'template' => 'envts-block',
+	  	'preprocess functions' => array('template_preprocess','template_preprocess_envts_table_block'),
+		'arguments' => array(
+		 	'envts_list'=>null,
+			'current_envt'=>null,
+			'current_site'=>null,
+			'current_path'=>null,
+		 	),
+	);
+	return $hooks;
+}
+
+
+/**
+ * hook_block()
+ * create a block of environments/sites,
+ * linking to all with current highlighted
+ */
+function envts_block($op = 'list', $delta = 0, $edit = array()) {
+	$block = array();
+	switch($op) {
+		case 'list':
+			$block['envts_table'] = array(
+				'info' => 'Environments Table',
+				'cache' => BLOCK_CACHE_PER_PAGE,
+				);
+			return $block;
+
+		case 'view':
+			switch($delta) {
+				case 'envts_table':
+					global $envts_list, $envts_current_envt, $envts_current_site;
+					$block['subject'] = 'Environments';
+					$block['content'] = theme('envts_table_block', 
+											$envts_list, $envts_current_envt, $envts_current_site,
+											implode('/',arg()) );
+					break;
+			}
+			return $block;
+	}
+}
+
+
+/**
+ * get the host for a specified site and environment
+ * default to current site and envt
+ *
+ * use cases: 
+ * 1) get host of same site in other envt
+ *   (e.g. 2 environments each with 'site1' and 'site2', use this to switch from envt1/site1 to envt2/site1)
+ *   by calling envts_get_host('other_envt')
+ * 2) get host of other site in same envt
+ *   by calling envts_get_host(null, 'other_site')
+ *
+ * @param $envt specified environment to look in
+ * @param $site specified site to look in
+ * @param $prefix whether returned host should have http:// prefix
+ * @param $slash if $prefix is true, whether returned host should have trailing slash
+ * @return host (domain)
+ */
+function envts_get_host($envt=null, $site=null, $prefix=false, $slash=false) {
+	global $envts_list, $envts_current_site, $envts_current_envt;
+	
+	// default to current
+	if (! $envt) $envt = $envts_current_envt;
+	if (! $site) $site = $envts_current_site;
+	
+	if (array_key_exists($envt, $envts_list)) {
+		if (array_key_exists($site, $envts_list[$envt])) {
+			$host = $envts_list[$envt][$site];
+			if ($prefix==true) $host = envts_full_url($host, $slash);
+			return $host;
+		}
+	}
+	
+	return null;	// none found
+}
+
+
+/**
+ * use to toggle to next site's host in same environment,
+ * excluding current or $exclude (site)
+ * probably only useful on 2-site setup
+ *
+ * @param $exclude_site site (name) to exclude / skip (defaults to current if null)
+ * @param $prefix whether returned host should have http:// prefix
+ * @param $slash if $prefix is true, whether returned host should have trailing slash
+ * @return URL/host of next site in same envt
+ */
+function envts_next_host($exclude_site=null, $prefix=false, $slash=false) {
+	global $envts_list, $envts_current_envt, $envts_current_site;
+		if (!array_key_exists($envts_current_envt, $envts_list)) return NULL;	// current environment not defined
+	$copy_envts = $envts_list[$envts_current_envt];
+		if (!is_array($copy_envts)) return NULL;	// this shouldn't happen but just in case
+	
+	// default exclusion to current
+	if (! $exclude_site) $exclude_site = $envts_current_site;
+	
+	// remove excluded site from list
+	if (isset($copy_envts[$exclude_site])) unset($copy_envts[$exclude_site]);
+	
+	if (empty($copy_envts)) return NULL;	// none left
+	
+	// pop off next (first)
+	$next = array_shift($copy_envts);
+
+	if ($prefix==true) $next = envts_full_url($next, $slash);	// add http:// prefix
+
+	return $next;
+}
+
+/////////////
+// @TODO IS A envts_next_envt() function (like envts_next_site) useful ...?
+////////////
+
+
+/**
+ * make sure a URL has a http:// prefix
+ * (b/c define_envts hook wants sites w/o the prefix)
+ * 
+ * @param $url URL to check/modify
+ * @param $slash whether to add trailing slash
+ * @return URL with prefix and optional slash
+ */
+function envts_full_url($url, $slash=false) {
+	if (!preg_match('/^(http|https):\/\//i', $url)) $url = 'http://'.$url;
+	if ($slash==true and !preg_match('/\/$/', $url)) $url .= '/';
+	return $url;
+}
+
+
+// [example hook_define_envts() moved to test-envts.php, uncomment here to invoke]
+// require_once 'test-envts.php';
+

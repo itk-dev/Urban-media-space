@@ -34,7 +34,6 @@ stylesheets[all][]   = css/l10n_client.css
   ; stylesheet in our sub-theme with that name.) For example, we prevent the
   ; zen.css file in the base theme from being included by specifying it here.
 stylesheets[all][]   = zen.css
-stylesheets[all][]   = ie.css
 
   ; Optionally add some jquery scripts to your theme.
 ; scripts[] = script.js

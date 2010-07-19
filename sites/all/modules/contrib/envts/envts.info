@@ -1,0 +1,20 @@
+; $Id: envts.info,v 1.2 2009/08/28 22:46:04 thebuckst0p Exp $
+
+name = Environments
+description = Defines 2-dimensional domain/environment structures
+package = Environments
+core = 6.x
+
+; Information added by drupal.org packaging script on 2009-07-20
+version = "6.x-1.0-alpha1"
+core = "6.x"
+project = "envts"
+datestamp = "1248113769"
+
+
+; Information added by drupal.org packaging script on 2009-08-28
+version = "6.x-1.0-alpha2"
+core = "6.x"
+project = "envts"
+datestamp = "1251500121"
+
