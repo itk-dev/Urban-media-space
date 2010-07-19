@@ -63,13 +63,18 @@
   <?php endif; ?>
 
   <div class="content">
-    <?php print $content; ?>
+    <?php if ($left): ?>
+      <?php print $content; ?>
+    <?php endif; ?>
     <?php if ($right): ?>
     <div id="sidebar-right" class="column sidebar region grid-4">
       <div id="sidebar-right-inner">
         <?php print $right; ?>
       </div>
     </div> <!--//end #sidebar-right-inner -->
+    <?php endif; ?>
+    <?php if (!$left): ?>
+      <?php print $content; ?>
     <?php endif; ?>
     <?php if ($content_bottom): ?>
       <div id="content-bottom" class="region region-content_bottom">

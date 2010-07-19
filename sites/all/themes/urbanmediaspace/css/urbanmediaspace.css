@@ -675,7 +675,13 @@ body.context-editing .region .context-block {
   width: 460px;
 }
 
-.one-sidebar #main-content .content .field-field-content {
+#main-content .content .field-field-section-image {
+  float: left;
+  margin: 0 0 15px;
+}
+
+.one-sidebar #main-content .content .field-field-content,
+.one-sidebar #main-content .content .field-field-section-image {
   width: 700px;
 }
 

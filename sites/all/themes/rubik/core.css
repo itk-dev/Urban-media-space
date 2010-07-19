@@ -581,10 +581,15 @@ div.compact-link a {
 .update table.version ul.links a { padding:0px 5px; }
 
 /*
-  Custom height and width on background image field
+  Custom height and width on image fields
 */
 
 #imceimagearea-0-field_body_background_image {
   height: 139px !important;
+  width: 700px !important;
+}
+
+#imceimagearea-0-field_section_image {
+  height: 180px !important;
   width: 700px !important;
 }

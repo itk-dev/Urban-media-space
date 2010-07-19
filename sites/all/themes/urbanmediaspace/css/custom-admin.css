@@ -3,5 +3,7 @@
 */
 
 .tabs ul.primary {
+  font-size: 75%;
   height: 24px;
+  margin: 20px 15px;
 }
