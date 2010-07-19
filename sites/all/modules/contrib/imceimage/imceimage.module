@@ -477,7 +477,7 @@ function imceimage_process($element, $edit, $form_state, $form) {
   $field = $form['#field_info'][$element['#field_name']];
   $delta = $element['#delta'];
 
-  $link = url('imce/browse');
+  $link = url('imce');
   $field_id = $field['field_name'];
 
   if (trim($element['#value']['imceimage_path']) != '') {
