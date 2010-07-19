@@ -579,3 +579,12 @@ div.compact-link a {
 /* This is to make up for very bad CSS in the update.module */
 .update table.version td { padding:5px; }
 .update table.version ul.links a { padding:0px 5px; }
+
+/*
+  Custom height and width on background image field
+*/
+
+#imceimagearea-0-field_body_background_image {
+  height: 139px !important;
+  width: 700px !important;
+}

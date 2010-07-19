@@ -13,8 +13,8 @@
 </head>
 
 <?php
-  if (isset($node->field_body_background_image[0]['filepath'])) {
-    $background_image = ' style="background: url(\'' . $node->field_body_background_image[0]['filepath'] . '\') repeat-x center 80px;"';
+  if ($node->field_body_background_image[0]['imceimage_path'] != '') {
+    $background_image = ' style="background: url(\'' . $node->field_body_background_image[0]['imceimage_path'] . '\') repeat-x center 80px;"';
   }
 ?>
 
@@ -101,11 +101,11 @@
 
       <?php print $breadcrumb; ?>
 
-        <div id="content" class="column <?php print ns('grid-16', $left, 4, $right, 4) . ' ' . ns('push-4', !$left, 4); ?>">
+        <div id="content" class="column <?php print ns('grid-16', $left, 4) . ' ' . ns('push-4', !$left, 4); ?>">
   	    <div id="content-inner">
 
               <?php if ($tabs): ?>
-                <!-- <div class="tabs"><?php print $tabs; ?></div> -->
+                <div class="tabs"><?php print $tabs; ?></div>
               <?php endif; ?>
 
               <div id="main-content" class="region clear-block">

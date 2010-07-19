@@ -444,6 +444,14 @@ body.context-editing .region .context-block {
 }
 
 /*
+  Site header
+*/
+
+#site-header {
+  height: 140px;
+}
+
+/*
   Search and secondary links
 */
 
@@ -557,7 +565,6 @@ body.context-editing .region .context-block {
 
 #main {
   background-color: #fff;
-  margin: 140px 0 0;
   min-height: 500px;
   padding: 10px;
   width: 940px;
@@ -612,6 +619,7 @@ body.context-editing .region .context-block {
 #sidebar-left .menu li {
   background: #fff url('../gfx/submenu-bg.png') repeat-x bottom;
   list-style: none;
+  list-style-image: none;
 }
 
 #sidebar-left .menu li.expanded {
@@ -667,6 +675,11 @@ body.context-editing .region .context-block {
   width: 460px;
 }
 
+.one-sidebar #main-content .content .field-field-content {
+  width: 700px;
+}
+
+
 
 
 
@@ -701,7 +714,7 @@ body.context-editing .region .context-block {
   border: 1px solid #d3d3d3;
   padding: 4px;
   margin: 0 0 20px;
-  min-height: 185px;
+  min-height: 200px;
   overflow: auto;
 }
 
@@ -758,6 +771,10 @@ body.context-editing .region .context-block {
   float: left;
   margin: 10px 0 0;
   width: 480px;
+}
+
+.one-sidebar #main-content #content-bottom {
+  width: 720px;
 }
 
 /*
