@@ -40,15 +40,14 @@
 <?php if ($rows): ?>
   <div class="view-content main-content grid-12">
     <?php print $rows; ?>
+    <?php if ($pager): ?>
+      <?php print $pager; ?>
+    <?php endif; ?>
   </div>
 <?php elseif ($empty): ?>
   <div class="view-empty">
     <?php print $empty; ?>
   </div>
-<?php endif; ?>
-
-<?php if ($pager): ?>
-  <?php print $pager; ?>
 <?php endif; ?>
 
 <?php if ($more): ?>
