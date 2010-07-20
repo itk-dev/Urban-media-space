@@ -166,3 +166,8 @@ function urbanmediaspace_preprocess_node(&$vars) {
     $vars['content_bottom'] = theme('blocks', 'content_bottom');
   }
 }
+
+function urbanmediaspace_preprocess_views_view(&$vars) {
+  $vars['right']          = theme('blocks', 'right');
+  $vars['content_bottom'] = theme('blocks', 'content_bottom');
+}

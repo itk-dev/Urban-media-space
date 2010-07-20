@@ -37,20 +37,8 @@
   </div>
 <?php endif; ?>
 
-<?php if ($exposed): ?>
-  <div class="view-filters">
-    <?php print $exposed; ?>
-  </div>
-<?php endif; ?>
-
-<?php if ($attachment_before): ?>
-  <div class="attachment attachment-before">
-    <?php print $attachment_before; ?>
-  </div>
-<?php endif; ?>
-
 <?php if ($rows): ?>
-  <div class="view-content">
+  <div class="view-content main-content grid-12">
     <?php print $rows; ?>
   </div>
 <?php elseif ($empty): ?>
@@ -63,20 +51,8 @@
   <?php print $pager; ?>
 <?php endif; ?>
 
-<?php if ($attachment_after): ?>
-  <div class="attachment attachment-after">
-    <?php print $attachment_after; ?>
-  </div>
-<?php endif; ?>
-
 <?php if ($more): ?>
   <?php print $more; ?>
-<?php endif; ?>
-
-<?php if ($footer): ?>
-  <div class="view-footer">
-    <?php print $footer; ?>
-  </div>
 <?php endif; ?>
 
 <?php if ($feed_icon): ?>
@@ -86,3 +62,17 @@
 <?php endif; ?>
 
 <!-- /.view -->
+
+<?php if ($right): ?>
+  <div id="sidebar-right" class="column sidebar region grid-4">
+    <div id="sidebar-right-inner">
+      <?php print $right; ?>
+    </div>
+  </div> <!--//end #sidebar-right-inner -->
+<?php endif; ?>
+
+<?php if ($content_bottom): ?>
+  <div id="content-bottom" class="region region-content_bottom">
+    <?php print $content_bottom; ?>
+  </div> <!-- /#content-bottom -->
+<?php endif; ?>
