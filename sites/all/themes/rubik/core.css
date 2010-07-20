@@ -593,3 +593,8 @@ div.compact-link a {
   height: 180px !important;
   width: 700px !important;
 }
+
+#imceimagearea-0-field_news_image {
+  height: 250px !important;
+  width: 200px !important;
+}
