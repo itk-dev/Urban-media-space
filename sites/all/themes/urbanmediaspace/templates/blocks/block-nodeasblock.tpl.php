@@ -29,7 +29,7 @@
  * @see template_preprocess_block()
  */
 ?>
-<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block-<?php print $block->module; ?>">
+<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block-<?php print $block->module; ?> block">
 
   <div class="content">
     <?php print $block->content; ?>

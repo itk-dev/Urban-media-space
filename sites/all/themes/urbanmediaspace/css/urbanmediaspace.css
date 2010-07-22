@@ -166,7 +166,7 @@ h1#page-title {
   color: #726557;
 }
 
-#content .content .field {
+#content #content-inner {
   font-size: 75%;
 }
 
@@ -235,6 +235,18 @@ h1#page-title {
 }
 
 /*
+  Block
+*/
+
+#sidebar-right .block {
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 150%;
+  margin: 0 0 20px;
+  overflow: auto;
+  padding: 0 0 20px;
+}
+
+/*
   Spotboxes
 */
 
@@ -243,7 +255,6 @@ h1#page-title {
 #sidebar-right .region .block-inner,
 #content-bottom .region .block-inner {
   float: left;
-  font-size: 75%;
 }
 
 .block-nodeasblock .spotbox * {
@@ -371,6 +382,7 @@ body {
 */
 
 body.context-editing div.context-block-region div.context-block {
+  float: left;
   opacity: 1;
 }
 
@@ -381,10 +393,10 @@ body.context-editing #content-bottom .ui-sortable {
   border-radius: 4px;
   color: #666666;
   display: block !important;
+  float: left;
   margin: 10px 0;
   opacity: 0.5;
-  overflow: auto;
-  padding: 25px 0;
+  padding: 25px 10px;
   width: 100%;
   z-index: 100;
 }
@@ -606,11 +618,8 @@ body.context-editing .region .context-block {
   padding: 30px 30px 20px;
 }
 
-.front #main-content .node-inner {
-  font-size: 75%;
-}
-
 .front #sidebar-right {
+  font-size: 75%;
   margin: 21px 0 0;
 }
 
@@ -716,15 +725,14 @@ body.context-editing .region .context-block {
 
 
 
+/*
+  Sidebar right
+*/
 
-
-
-
-
-
-
-
-
+#sidebar-right h2 {
+  color: #3f3f3f;
+  font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
+}
 
 /*
   Spotboxes
@@ -743,7 +751,6 @@ body.context-editing .region .context-block {
   background-color: #fff;
   border: 1px solid #d3d3d3;
   padding: 4px;
-  margin: 0 0 20px;
   min-height: 200px;
   overflow: auto;
 }
@@ -777,7 +784,7 @@ body.context-editing .region .context-block {
 }
 
 /*
-  Spotboxes section frontpage
+  Spotboxes main content
 */
 
 #main-content #sidebar-right {
@@ -790,6 +797,8 @@ body.context-editing .region .context-block {
 }
 
 #main-content #sidebar-right .block-nodeasblock {
+  border: 0;
+  padding: 0;
   width: 220px;
 }
 
@@ -805,6 +814,14 @@ body.context-editing .region .context-block {
 
 .one-sidebar #main-content #content-bottom {
   width: 720px;
+}
+
+/*
+  Poll
+*/
+
+.poll .option {
+  color: #f45000;
 }
 
 /*
@@ -876,26 +893,25 @@ body.context-editing .region .context-block {
   News block
 */
 
-#sidebar-right .news-block {
-  line-height: 110%;
-  margin: 0 0 15px;
-  width: 220px;
-}
-
 #sidebar-right .news-block h2 {
   border-bottom: 1px solid #e5e5e5;
-  color: #3f3f3f;
-  font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
+}
+
+#sidebar-right .news-block {
+  overflow: auto;
+  padding: 0 0 10px;
+  width: 220px;
 }
 
 #sidebar-right .news-block .views-row {
   border-bottom: 1px solid #e5e5e5;
   margin: 0 0 5px;
-  padding: 0 0 5px;
+  padding: 0 0 10px;
 }
 
 #sidebar-right .news-block .views-row-last {
-  padding: 0 0 10px;
+  border: 0;
+  padding: 0;
 }
 
 #sidebar-right .news-block .views-field-created {
