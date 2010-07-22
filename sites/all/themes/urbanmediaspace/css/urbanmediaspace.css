@@ -758,7 +758,7 @@ body.context-editing .region .context-block {
 
 .block-nodeasblock .spotbox .image {
   line-height: 100%;
-  margin: 4px 0;
+  margin: 4px 0 2px;
 }
 
 .block-nodeasblock .spotbox .content {
@@ -812,12 +812,31 @@ body.context-editing .region .context-block {
 #main-content .view-content.main-content .row {
   border-bottom: 1px solid #e5e5e5;
   margin: 0 0 20px;
+  overflow: auto;
   padding: 0 0 10px;
 }
 
+#main-content .view-content.main-content .news-image {
+  margin: 8px 0 0;
+}
+
+#main-content .view-content.main-content .news-image,
 #main-content .view-content.main-content .post-date {
+  float: left;
+}
+
+#main-content .view-content.main-content .post-date {
+  clear: both;
   font-size: 70%;
   display: block;
+  text-align: center;
+  width: 125px;
+}
+
+#main-content .view-content.main-content .title,
+#main-content .view-content.main-content .teaser,
+#main-content .view-content.main-content .link {
+  margin: 0 0 0 140px;
 }
 
 #main-content .view-content.main-content .teaser,
@@ -825,22 +844,17 @@ body.context-editing .region .context-block {
   font-size: 75%;
 }
 
-#main-content .view-content.main-content .news-image {
-  float: left;
-  margin: 5px 10px 0 0;
-}
-
 #main-content .view-content.main-content .title a,
 #main-content .view-content.main-content .title a:link,
 #main-content .view-content.main-content .title a:visited,
 #main-content .view-content.main-content .title a:hover,
 #main-content .view-content.main-content .title a:active {
-  border-bottom: 1px solid #e5e5e5;
   color: #3f3f3f;
   display: block;
   font: 125%/150% Georgia, Times New Roman, Arial, sans-serif;
   margin: 0 0 5px;
   text-decoration: none;
+  width: 99%;
 }
 
 #main-content .view-content.main-content a,
@@ -902,6 +916,54 @@ body.context-editing .region .context-block {
 #sidebar-right .news-block a:active {
   background-color: #e7e7e7;
   color: #4b4a4a;
+}
+
+/*
+  Pager
+*/
+
+.item-list .pager li {
+  font-size: 75%;
+  margin: 0;
+  padding: 0;
+}
+
+.pager .pager-item a,
+.pager .pager-item a:link,
+.pager .pager-item a:visited
+.pager .pager-first a,
+.pager .pager-first a:link,
+.pager .pager-first a:visited,
+.pager .pager-previous a,
+.pager .pager-previous a:link,
+.pager .pager-previous a:visited,
+.pager .pager-next a,
+.pager .pager-next a:link,
+.pager .pager-next a:visited,
+.pager .pager-last a,
+.pager .pager-last a:link,
+.pager .pager-last a:visited {
+  border: 1px solid #4d4d4d;
+  color: #4d4d4d !important;
+  padding: 3px 6px;
+  text-decoration: none !important;
+}
+
+.pager .pager-item a:hover,
+.pager .pager-first a:hover,
+.pager .pager-previous a:hover,
+.pager .pager-next a:hover,
+.pager .pager-last a:hover {
+  background-color: #4d4d4d;
+  color: #fff !important;
+}
+
+.item-list .pager .pager-current {
+  background-color: #4d4d4d;
+  color: #fff;
+  *margin: 0 4px 0 0;
+  padding: 4px 7px;
+  *padding: 4px 3px 4px 7px;
 }
 
 /*
