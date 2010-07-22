@@ -238,7 +238,10 @@ h1#page-title {
   Spotboxes
 */
 
-.context-block-region .context-block {
+#sidebar-right .region .block-nodeasblock,
+#content-bottom .region .block-nodeasblock,
+#sidebar-right .region .block-inner,
+#content-bottom .region .block-inner {
   float: left;
   font-size: 75%;
 }
@@ -874,7 +877,7 @@ body.context-editing .region .context-block {
 */
 
 #sidebar-right .news-block {
-  line-height: 135%;
+  line-height: 110%;
   margin: 0 0 15px;
   width: 220px;
 }
