@@ -913,6 +913,7 @@ body.context-editing .region .context-block {
   border-top: 5px solid #dddddd;
   clear: both;
   height: 100px;
+  margin: 20px 0 0;
   width: 100%;
 }
 
