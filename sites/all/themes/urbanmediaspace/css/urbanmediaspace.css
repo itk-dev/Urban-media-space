@@ -166,7 +166,7 @@ h1#page-title {
   color: #726557;
 }
 
-#content .node-inner {
+#content .content .field {
   font-size: 75%;
 }
 
@@ -240,21 +240,16 @@ h1#page-title {
 
 .context-block-region .context-block {
   float: left;
+  font-size: 75%;
 }
 
 .block-nodeasblock .spotbox * {
   color: #fff;
-  font-size: 90%;
   text-decoration: none;
-}
-
-#content .node-inner .block-nodeasblock .spotbox * {
-  font-size: 100%;
 }
 
 .block-nodeasblock .spotbox .content {
   color: #726557;
-  font-size: 90%;
   line-height: 135%;
 }
 
@@ -608,6 +603,10 @@ body.context-editing .region .context-block {
   padding: 30px 30px 20px;
 }
 
+.front #main-content .node-inner {
+  font-size: 75%;
+}
+
 .front #sidebar-right {
   margin: 21px 0 0;
 }
@@ -875,7 +874,7 @@ body.context-editing .region .context-block {
 */
 
 #sidebar-right .news-block {
-  line-height: 114%;
+  line-height: 135%;
   margin: 0 0 15px;
   width: 220px;
 }
@@ -883,7 +882,7 @@ body.context-editing .region .context-block {
 #sidebar-right .news-block h2 {
   border-bottom: 1px solid #e5e5e5;
   color: #3f3f3f;
-  font: 125%/150% Georgia, Times New Roman, Arial, sans-serif;
+  font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
 }
 
 #sidebar-right .news-block .views-row {
@@ -898,7 +897,8 @@ body.context-editing .region .context-block {
 
 #sidebar-right .news-block .views-field-created {
   color: #767676;
-  font-size: 70%;
+  font-size: 90%;
+  margin: 3px 0 0;
   padding: 0 2px;
 }
 
@@ -906,7 +906,7 @@ body.context-editing .region .context-block {
 #sidebar-right .news-block a:link,
 #sidebar-right .news-block a:visited {
   color: #f45000;
-  font-size: 75%;
+  display: block;
   font-weight: bold;
   padding: 2px;
   text-decoration: none;

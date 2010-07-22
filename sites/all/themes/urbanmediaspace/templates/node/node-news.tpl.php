@@ -52,10 +52,8 @@
 
   <?php print $picture; ?>
 
-  <?php if (!$page): ?>
-    <h2 class="title">
-      <a href="<?php print $node_url; ?>" title="<?php print $title ?>"><?php print $title; ?></a>
-    </h2>
+  <?php if ($title): ?>
+    <h1 id="page-title"><?php print $title; ?></h1>
   <?php endif; ?>
 
   <?php if ($unpublished): ?>
@@ -66,24 +64,23 @@
     <?php if ($left): ?>
       <?php print $content; ?>
     <?php endif; ?>
-    <?php if ($right): ?>
-    <div id="sidebar-right" class="column sidebar region grid-4">
-      <div id="sidebar-right-inner">
-        <?php print $right; ?>
-      </div>
-    </div> <!--//end #sidebar-right-inner -->
-    <?php endif; ?>
     <?php if (!$left): ?>
       <?php print $content; ?>
     <?php endif; ?>
-    <?php if ($content_bottom): ?>
-      <div id="content-bottom" class="region region-content_bottom">
-        <?php print $content_bottom; ?>
-      </div> <!-- /#content-bottom -->
-    <?php endif; ?>
   </div>
+  <?php if ($right): ?>
+  <div id="sidebar-right" class="column sidebar region grid-4">
+    <div id="sidebar-right-inner">
+      <?php print $right; ?>
+    </div>
+  </div> <!--//end #sidebar-right-inner -->
+  <?php endif; ?>
+  <?php if ($content_bottom): ?>
+    <div id="content-bottom" class="region region-content_bottom">
+      <?php print $content_bottom; ?>
+    </div> <!-- /#content-bottom -->
+  <?php endif; ?>
 
- 
   <?php print $links; ?>
 
 </div></div> <!-- /node-inner, /node -->
