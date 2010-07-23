@@ -99,6 +99,7 @@ h1#page-title {
 .form-text {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -372px;
   border: 2px solid #d4d4d4;
+  color: #726557;
   padding: 3px 3px 4px;
 }
 
