@@ -31,7 +31,7 @@
 ?>
 <div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block-<?php print $block->module; ?> block">
 
-  <div class="content">
+  <div class="content-wrapper">
     <?php print $block->content; ?>
   </div>
 

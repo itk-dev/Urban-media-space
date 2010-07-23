@@ -426,14 +426,18 @@ body {
 
 body.context-editing div.context-block-region div.context-block {
   float: left;
+  overflow: auto;
   opacity: 1;
+  margin: 0;
+  padding: 30px 0 0;
 }
 
-body.context-editing .region.region-right .ui-sortable,
+body.context-editing #sidebar-right .ui-sortable,
 body.context-editing #content-bottom .ui-sortable {
-  background-color: #cccccc;
-  border: 2px dashed #666666;
-  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px dashed #666666;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   color: #666666;
   display: block !important;
   float: left;
@@ -444,8 +448,31 @@ body.context-editing #content-bottom .ui-sortable {
   z-index: 100;
 }
 
+body.context-editing #sidebar-right .ui-sortable {
+  margin: 10px 0 0 40px;
+}
+
+body.context-editing div.context-block-region div.draggable-placeholder {
+  background-color: #99dc8a;
+  border: 1px dashed #388427;
+  float: left;
+  margin: -1px;
+  opacity: 1;
+  padding: 0;
+}
+
+body.context-editing #content-bottom div.context-block-region div.draggable-placeholder {
+  left: -10px;
+  position: relative;
+}
+
 body.context-editing .region .context-block {
-  z-index: 150px;
+  z-index: 150;
+}
+
+body.context-editing div.context-block-region div.draggable div.handle label,
+body.context-editing div.context-block-region div.draggable div.handle a.remove {
+  margin: 0;
 }
 
 /*
@@ -785,11 +812,11 @@ body.context-editing .region .context-block {
 
 .block-nodeasblock {
   float: left;
-  width: 240px;
+  margin: 0 20px 20px 0;
 }
 
-.block-nodeasblock .content {
-  margin: 0 20px 0 0;
+.block-nodeasblock .content-wrapper {
+  width: 220px;
 }
 
 .block-nodeasblock .spotbox {
