@@ -53,21 +53,13 @@
   <?php print $picture; ?>
 
   <?php if ($title): ?>
-    <h1 id="page-title"><?php print $title; ?></h1>
+    <h1 id="page-title" class="news-title"><?php print $title; ?></h1>
   <?php endif; ?>
 
   <?php if ($unpublished): ?>
     <div class="unpublished"><?php print t('Unpublished'); ?></div>
   <?php endif; ?>
 
-  <div class="content">
-    <?php if ($left): ?>
-      <?php print $content; ?>
-    <?php endif; ?>
-    <?php if (!$left): ?>
-      <?php print $content; ?>
-    <?php endif; ?>
-  </div>
   <?php if ($right): ?>
   <div id="sidebar-right" class="column sidebar region grid-4">
     <div id="sidebar-right-inner">
@@ -75,6 +67,9 @@
     </div>
   </div> <!--//end #sidebar-right-inner -->
   <?php endif; ?>
+  <div class="content news-content">
+    <?php print $content; ?>
+  </div>
   <?php if ($content_bottom): ?>
     <div id="content-bottom" class="region region-content_bottom">
       <?php print $content_bottom; ?>

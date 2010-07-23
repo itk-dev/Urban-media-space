@@ -846,7 +846,7 @@ body.context-editing .region .context-block {
 
 #main-content .view-content.main-content .post-date {
   clear: both;
-  font-size: 70%;
+  font-size: 90%;
   display: block;
   text-align: center;
   width: 125px;
@@ -860,7 +860,6 @@ body.context-editing .region .context-block {
 
 #main-content .view-content.main-content .teaser,
 #main-content .view-content.main-content .link {
-  font-size: 75%;
 }
 
 #main-content .view-content.main-content .title a,
@@ -870,7 +869,7 @@ body.context-editing .region .context-block {
 #main-content .view-content.main-content .title a:active {
   color: #3f3f3f;
   display: block;
-  font: 125%/150% Georgia, Times New Roman, Arial, sans-serif;
+  font: 150%/150% Georgia, Times New Roman, Arial, sans-serif;
   margin: 0 0 5px;
   text-decoration: none;
   width: 99%;
@@ -938,11 +937,26 @@ body.context-editing .region .context-block {
 }
 
 /*
+  News
+*/
+
+#main-content h1.news-title,
+#main-content .news-content {
+  float: left;
+  width: 700px;
+}
+
+#main-content .content .field-field-news-image {
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+
+/*
   Pager
 */
 
 .item-list .pager li {
-  font-size: 75%;
   margin: 0;
   padding: 0;
 }
