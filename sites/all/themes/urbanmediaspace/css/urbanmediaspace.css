@@ -824,6 +824,7 @@ body.context-editing .region .context-block {
 .block-nodeasblock .spotbox .link {
   background: url('../gfx/sprites-icons.png') no-repeat 0 -76px;
   float: right;
+  line-height: 200%;
   margin: 1px 4px 0 0;
   padding: 1px 0 3px 20px;
 }
