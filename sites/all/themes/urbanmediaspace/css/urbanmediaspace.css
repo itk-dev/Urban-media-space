@@ -79,6 +79,11 @@ h1#page-title {
   line-height: 150%;
 }
 
+#content-bottom h2, #sidebar-right h2 {
+  color: #3f3f3f;
+  font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
+}
+
 .form-submit {
   background: #ebebeb url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -487px;
   border-top: 1px solid #dedede;
@@ -295,9 +300,14 @@ h1#page-title {
 
 #sidebar-right .region .block-nodeasblock,
 #content-bottom .region .block-nodeasblock,
-#sidebar-right .region .block-inner,
-#content-bottom .region .block-inner {
+#sidebar-right .region .block,
+#content-bottom .region .block {
   float: left;
+}
+
+#sidebar-right .region .block,
+#content-bottom .region .block {
+  margin: 0 20px 20px 0;
 }
 
 .block-nodeasblock .spotbox * {
@@ -796,15 +806,6 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
 
 
 
-
-/*
-  Sidebar right
-*/
-
-#sidebar-right h2 {
-  color: #3f3f3f;
-  font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
-}
 
 /*
   Spotboxes
