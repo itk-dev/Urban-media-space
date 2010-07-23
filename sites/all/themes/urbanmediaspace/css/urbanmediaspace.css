@@ -240,6 +240,7 @@ h1#page-title {
 #sidebar-left .menu {
   font-size: 100%;
   margin: 0;
+  padding: 0;
 }
 
 #sidebar-left .menu li {
@@ -283,7 +284,7 @@ h1#page-title {
   border-bottom: 1px solid #e5e5e5;
   line-height: 150%;
   margin: 0 0 20px;
-  overflow: auto;
+  overflow: hidden;
   padding: 0 0 20px;
 }
 
@@ -993,7 +994,6 @@ body.context-editing .region .context-block {
 }
 
 #sidebar-right .news-block {
-  overflow: auto;
   padding: 0 0 10px;
   width: 220px;
 }
