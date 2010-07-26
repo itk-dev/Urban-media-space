@@ -593,21 +593,8 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
    display: none;
 }
 
-#fuzzysearch-box-form .form-item {
-  /* border: 4px solid #d4d4d4;
-  *border: 0;
-  display: block;
-  float: left;
-  line-height: 100%;
-  margin: 0 10px 0 0;
-  *margin: -1px 5px 0 0; */
-}
-
 #fuzzysearch-box-form .form-item input.form-text {
   background: #fff url('../gfx/sprites-icons.png') no-repeat 7px -159px;
-  /* border: 1px solid #c3c3c3;
-  *border: 4px solid #d4d4d4;
-  color: #686868; */
   padding: 7px 0 9px 28px;
   width: 225px;
 }
@@ -617,20 +604,11 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
 }
 
 #fuzzysearch-box-form .form-submit {
-  /* background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -361px;
-  border: 4px solid #d4d4d4;
-  color: #686868;
-  cursor: pointer;
-  font-size: 90%;
-  font-weight: normal;
-  line-height: 100%;
-  height: 36px; */
   border-width: 2px;
   margin: -1px 0 0;
   height: 36px;
   padding: 5px 15px 8px;
   *padding: 4px 15px 3px;
-  /* text-transform: uppercase; */
 }
 
 #fuzzysearch-box-form .form-submit:hover {
