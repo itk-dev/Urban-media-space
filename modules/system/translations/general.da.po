@@ -1,0 +1,1098 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2010-04-27 15:23+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Home"
+msgstr "Hjem"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Body"
+msgstr "Brødtekst"
+
+msgid "user"
+msgstr "bruger"
+
+msgid "Save configuration"
+msgstr "Gem indstillinger"
+
+msgid "Reset to defaults"
+msgstr "Gendan standarder"
+
+msgid "delete"
+msgstr "slet"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Delete"
+msgstr "Slet"
+
+msgid "Operations"
+msgstr "Handlinger"
+
+msgid "Content"
+msgstr "Indhold"
+
+msgid "Username"
+msgstr "Brugernavn"
+
+msgid "content"
+msgstr "indhold"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Author"
+msgstr "Forfatter"
+
+msgid "Replies"
+msgstr "Svar"
+
+msgid "List"
+msgstr "Vis"
+
+msgid "Subject"
+msgstr "Emne"
+
+msgid "disabled"
+msgstr "deaktiveret"
+
+msgid "Confirm"
+msgstr "Bekræft"
+
+msgid "Cancel"
+msgstr "Annullér"
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Language"
+msgstr "Sprog"
+
+msgid "RSS feed"
+msgstr "RSS-feed"
+
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+msgid "Enabled"
+msgstr "Aktiveret"
+
+msgid "Comments"
+msgstr "Kommentarer"
+
+msgid "new"
+msgstr "ny"
+
+msgid "error"
+msgstr "fejl"
+
+msgid "Taxonomy"
+msgstr "Taksonomi"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "Blue Lagoon (Default)"
+msgstr "Blue Lagoon (Standard)"
+
+msgid "Ash"
+msgstr "Aske"
+
+msgid "Aquamarine"
+msgstr "Havblå"
+
+msgid "Belgian Chocolate"
+msgstr "Belgisk chokolade"
+
+msgid "Bluemarine"
+msgstr "Blå"
+
+msgid "Citrus Blast"
+msgstr "Citron-storm"
+
+msgid "Cold Day"
+msgstr "Kold Dag"
+
+msgid "Greenbeam"
+msgstr "Grøn stråle"
+
+msgid "Mediterrano"
+msgstr "Middelhav"
+
+msgid "Mercury"
+msgstr "Kviksølv"
+
+msgid "Nocturnal"
+msgstr "Natlig"
+
+msgid "Olivia"
+msgstr "Olivia"
+
+msgid "Pink Plastic"
+msgstr "Pink plastik"
+
+msgid "Shiny Tomato"
+msgstr "Tomat"
+
+msgid "Teal Top"
+msgstr "Grønblå"
+
+msgid "Content types"
+msgstr "Indholdstyper"
+
+msgid "Categories"
+msgstr "Kategorier"
+
+msgid "view"
+msgstr "vis"
+
+msgid "Advanced options"
+msgstr "Avancerede indstillinger"
+
+msgid "Edit"
+msgstr "Redigér"
+
+msgid "Date"
+msgstr "Dato"
+
+msgid "Search"
+msgstr "Søg"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "This action cannot be undone."
+msgstr "Denne handling kan ikke fortrydes."
+
+msgid "Message"
+msgstr "Meddelelse"
+
+msgid "Password"
+msgstr "Adgangskode"
+
+msgid "Weight"
+msgstr "Vægt"
+
+msgid "The configuration options have been saved."
+msgstr "Indstillingerne er blevet gemt."
+
+msgid "Required"
+msgstr "Obligatorisk"
+
+msgid "root"
+msgstr "rod"
+
+msgid "Parent"
+msgstr "Overordnet element"
+
+msgid "none"
+msgstr "ingen"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Settings"
+msgstr "Indstillinger"
+
+msgid "Add category"
+msgstr "Tilføj kategori"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "edit"
+msgstr "redigér"
+
+msgid "Go to previous page"
+msgstr "Gå til forrige side"
+
+msgid "Go to next page"
+msgstr "Gå til næste side"
+
+msgid "Import"
+msgstr "Importér"
+
+msgid "Book"
+msgstr "Bog"
+
+msgid "Export"
+msgstr "Eksportér"
+
+msgid "Preview"
+msgstr "Gennemse"
+
+msgid "Save"
+msgstr "Gem"
+
+msgid "Help"
+msgstr "Hjælp"
+
+msgid "Default"
+msgstr "Standard"
+
+msgid "Update"
+msgstr "Opdatér"
+
+msgid "Sunday"
+msgstr "Søndag"
+
+msgid "Monday"
+msgstr "Mandag"
+
+msgid "Tuesday"
+msgstr "Tirsdag"
+
+msgid "Wednesday"
+msgstr "Onsdag"
+
+msgid "Thursday"
+msgstr "Torsdag"
+
+msgid "Friday"
+msgstr "Fredag"
+
+msgid "Saturday"
+msgstr "Lørdag"
+
+msgid "Time"
+msgstr "Tid"
+
+msgid "View"
+msgstr "Vis"
+
+msgid "The configuration options have been reset to their default values."
+msgstr "Indstillingernes standardværdier er blevet gendannet."
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Path"
+msgstr "Sti"
+
+msgid "Modules"
+msgstr "Moduler"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Core - optional"
+msgstr "Kerne - valgfri"
+
+msgid "never"
+msgstr "aldrig"
+
+msgid "mail"
+msgstr "mail"
+
+msgid "actions"
+msgstr "handlinger"
+
+msgid "aggregator"
+msgstr "indsamler"
+
+msgid "read more"
+msgstr "læs mere"
+
+msgid "Screenshot for %theme theme"
+msgstr "Skærmbillede af tema %theme"
+
+msgid "no screenshot"
+msgstr "intet screenshot"
+
+msgid "Timestamp"
+msgstr "Tidsstempel"
+
+msgid "Keywords"
+msgstr "Nøgleord"
+
+msgid "Access log settings"
+msgstr "Indstillinger for besøgslog"
+
+msgid "Unassign"
+msgstr "Fjern"
+
+msgid "Statistics"
+msgstr "Statistik"
+
+msgid "Settings for @role"
+msgstr "Indstillinger for @role"
+
+msgid "Permitted file extensions"
+msgstr "Tilladte filtyper"
+
+msgid ""
+"Extensions that users in this role can upload. Separate extensions with a "
+"space and do not include the leading dot."
+msgstr ""
+"Filtyper som brugerne i rollen kan overføre. Adskil filtyper med mellemrum "
+"og udelad punktummet."
+
+msgid "n/a"
+msgstr "n/a"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "User"
+msgstr "Bruger"
+
+msgid "action"
+msgstr "handling"
+
+msgid "Configure"
+msgstr "Indstil"
+
+msgid "status"
+msgstr "status"
+
+msgid "Error"
+msgstr "Fejl"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Node"
+msgstr "Indholdselement"
+
+msgid "Parent item"
+msgstr "Overordnet menupunkt"
+
+msgid ""
+"Optional. In the menu, the heavier items will sink and the lighter items "
+"will be positioned nearer the top."
+msgstr ""
+"Valgfri. I menuen vil tunge punkter synke til bunds og lette punkter vil "
+"blive placeret tættere på toppen."
+
+msgid "Add child page"
+msgstr "Tilføj underside"
+
+msgid "Update options"
+msgstr "Opdatering"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Block"
+msgstr "Blok"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "Site name"
+msgstr "Sitets navn"
+
+msgid "php"
+msgstr "php"
+
+msgid "Only site administrators can create new user accounts."
+msgstr "Kun administratorer kan oprette nye brugerkonti."
+
+msgid "PHP"
+msgstr "PHP"
+
+msgid "Up to date"
+msgstr "Seneste version installeret"
+
+msgid "Out of date"
+msgstr "Forældet"
+
+msgid "Update status"
+msgstr "Opdateringsstatus"
+
+msgid "Header"
+msgstr "Overskrift"
+
+msgid "Left sidebar"
+msgstr "Venstre sidepanel"
+
+msgid "Right sidebar"
+msgstr "Højre sidepanel"
+
+msgid "Selected"
+msgstr "Valgt"
+
+msgid "You must enter a category."
+msgstr "Du skal indtaste en kategori."
+
+msgid "Your name"
+msgstr "Dit navn"
+
+msgid "Send e-mail"
+msgstr "Send besked"
+
+msgid "Throttle"
+msgstr "Throttle"
+
+msgid "Roles"
+msgstr "Roller"
+
+msgid "Comment"
+msgstr "Kommentar"
+
+msgid "Hostname"
+msgstr "Værtsnavn"
+
+msgid "Published"
+msgstr "Udgivet"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Locale"
+msgstr "Lokalitet"
+
+msgid "Promoted to front page"
+msgstr "Forfremmet til forside"
+
+msgid "Sticky at top of lists"
+msgstr "Klæbrig"
+
+msgid "E-mail address"
+msgstr "E-mail-adresse"
+
+msgid "Vote"
+msgstr "Stem"
+
+msgid "blocked"
+msgstr "blokeret"
+
+msgid "active"
+msgstr "aktiv"
+
+msgid "OPML feed"
+msgstr "OPML-feed"
+
+msgid "configure"
+msgstr "indstil"
+
+msgid "Categorize"
+msgstr "Kategoriser"
+
+msgid "Authored by"
+msgstr "Skrevet af"
+
+msgid "Delete all"
+msgstr "Slet alle"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "System"
+msgstr "System"
+
+msgid "Unlimited"
+msgstr "Ubegrænset"
+
+msgid "No posts available."
+msgstr "Ingen indlæg til rådighed."
+
+msgid "security"
+msgstr "sikkerhed"
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Navigation"
+msgstr "Navigation"
+
+msgid "Color"
+msgstr "Farve"
+
+msgid "Log in"
+msgstr "Log ind"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Users"
+msgstr "Brugere"
+
+msgid "Referrer"
+msgstr "Henviser"
+
+msgid "1 vote"
+msgid_plural "@count votes"
+msgstr[0] "1 stemme"
+msgstr[1] "@count stemmer"
+
+msgid ""
+"@site is currently under maintenance. We should be back shortly. Thank you "
+"for your patience."
+msgstr ""
+"Vi er ved at opdatere @site. Vi er snart tilbage. Tak for din tålmodighed."
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Uninstall"
+msgstr "Afinstallér"
+
+msgid "Optional"
+msgstr "Valgfrit"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Save settings"
+msgstr "Gem indstillinger"
+
+msgid "Tracker"
+msgstr "Følg"
+
+msgid "You have to specify a valid date."
+msgstr "Du skal angive en gyldig dato."
+
+msgid "1 new"
+msgid_plural "@count new"
+msgstr[0] "1 ny"
+msgstr[1] "@count nye"
+
+msgid "Add rule"
+msgstr "Tilføj regel"
+
+msgid "Formatting guidelines"
+msgstr "Retningslinjer for formatering"
+
+msgid "Authored on"
+msgstr "Skrevet den"
+
+msgid "Syslog"
+msgstr "Syslog"
+
+msgid "Maximum file size per upload"
+msgstr "Maksimal filstørrelse"
+
+msgid "Total file size per user"
+msgstr "Samlet filstørrelse"
+
+msgid "Remove items"
+msgstr "Fjern elementer"
+
+msgid "Allowed HTML tags"
+msgstr "Tilladte HTML-tags"
+
+msgid "1 item"
+msgid_plural "@count items"
+msgstr[0] "1 overskrift"
+msgstr[1] "@count overskrifter"
+
+msgid "menu"
+msgstr "menu"
+
+msgid "The update has been performed."
+msgstr "Opdatering udført."
+
+msgid "View user profile."
+msgstr "Vis brugerprofil."
+
+msgid "The changes have been saved."
+msgstr "Ændringerne er blevet gemt."
+
+msgid "Refine"
+msgstr "Forfin"
+
+msgid "Undo"
+msgstr "Fortryd"
+
+msgid "Member for"
+msgstr "Medlem i"
+
+msgid "@time ago"
+msgstr "@time siden"
+
+msgid "Detected malicious attempt to alter protected user fields."
+msgstr "Opdaget forsøg på at ændre beskyttede felter."
+
+msgid "Languages"
+msgstr "Sprog"
+
+msgid "Create new revision"
+msgstr "Opret ny version"
+
+msgid "Locale settings"
+msgstr "Lokalitet"
+
+msgid "Create new account"
+msgstr "Opret konto"
+
+msgid "warning"
+msgstr "advarsel"
+
+msgid "No statistics available."
+msgstr "Ingen statistik til rådighed."
+
+msgid "Site information"
+msgstr "Generel information"
+
+msgid "critical"
+msgstr "kritisk"
+
+msgid "Default permitted file extensions"
+msgstr "Tilladte filtyper"
+
+msgid "Visitor"
+msgstr "Besøgende"
+
+msgid "Forums"
+msgstr "Forummer"
+
+msgid "Track"
+msgstr "Følg"
+
+msgid ""
+"Allows your site to capture votes on different topics in the form of "
+"multiple choice questions."
+msgstr "Opret afstemninger om forskellige emner."
+
+msgid "Not published"
+msgstr "Ikke udgivet"
+
+msgid ""
+"Default extensions that users can upload. Separate extensions with a space "
+"and do not include the leading dot."
+msgstr ""
+"Filtyper som brugerne i rollen kan overføre. Adskil filtyper med mellemrum "
+"og udelad punktummet."
+
+msgid "Default maximum file size per upload"
+msgstr "Maksimale filstørrelse pr. upload"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Default total file size per user"
+msgstr "Maksimal samlet filstørrelse pr. bruger"
+
+msgid "Your PHP settings limit the maximum file size per upload to %size."
+msgstr ""
+"Dine PHP-indstillinger begrænser størrelsen af uploadede filer til %size."
+
+msgid "Menu settings"
+msgstr "Menu"
+
+msgid "details"
+msgstr "detaljer"
+
+msgid "Themes"
+msgstr "Temaer"
+
+msgid "Processing"
+msgstr "Behandler"
+
+msgid "is"
+msgstr "er"
+
+msgid "Tableless, recolorable, multi-column, fluid width theme (default)."
+msgstr "Tabelløst, flerspaltet, flydende tema med frit farvevalg (standard)."
+
+msgid "Controls the boxes that are displayed around the main content."
+msgstr "Styrer kasserne der vises omkring hovedindholdet."
+
+msgid "Core - required"
+msgstr "Kerne - obligatorisk"
+
+msgid "Allows administrators to customize the site navigation menu."
+msgstr "Lader administratorer tilpasse sitets navigationsmenu."
+
+msgid "Default time zone"
+msgstr "Standardtidszone"
+
+msgid "@module module"
+msgstr "@module modul"
+
+msgid ""
+"The content of this field is kept private and will not be shown publicly."
+msgstr "Indholdet af dette felt er privat og bliver ikke vist offentligt."
+
+msgid "Date - newest first"
+msgstr "Dato - nyeste først"
+
+msgid "Date - oldest first"
+msgstr "Dato - ældste først"
+
+msgid "1 comment"
+msgid_plural "@count comments"
+msgstr[0] "1 kommentar"
+msgstr[1] "@count kommentarer"
+
+msgid "file system"
+msgstr "filsystem"
+
+msgid "Menu link title"
+msgstr "Titel"
+
+msgid ""
+"The maximum depth for an item and all its children is fixed at !maxdepth. "
+"Some menu items may not be available as parents if selecting them would "
+"exceed this limit."
+msgstr ""
+"Den maksimale dybde for et punkt og alle dets underliggende punkter er "
+"fastsat til !maxdepth. Nogle menupunkter kan ikke bruges som overordnede "
+"menupunkter fordi det vil overskride grænsen."
+
+msgid ""
+"The menu system stores system paths only, but will use the URL alias for "
+"display. %link_path has been stored as %normal_path"
+msgstr ""
+"Menusystemet gemmer kun systemstier, men bruger URL-aliaser ved visning. %"
+"link_path er gemt som %normal_path"
+
+msgid ""
+"The path '@link_path' is either invalid or you do not have access to it."
+msgstr "Stien '@link_path' er ugyldig eller du har ikke adgang til den."
+
+msgid "There was an error saving the menu link."
+msgstr "Der opstod en fejl i forsøget på at gemme menu-linket."
+
+msgid "Language neutral"
+msgstr "Sprogneutral"
+
+msgid "OpenID"
+msgstr "OpenID"
+
+msgid "The directory %directory does not exist."
+msgstr "Mappen %directory eksisterer ikke."
+
+msgid "1 user"
+msgid_plural "@count users"
+msgstr[0] "1 bruger"
+msgstr[1] "@count brugere"
+
+msgid "Primary links"
+msgstr "Primære links"
+
+msgid "Rebuild permissions"
+msgstr "Gendan tilladelser"
+
+msgid "Error saving user account."
+msgstr "Fejl ved opdatering af brugerkonto."
+
+msgid "- Please choose -"
+msgstr "- Vælg venligst -"
+
+msgid "Aggregator"
+msgstr "Indsamler"
+
+msgid "Aggregates syndicated content (RSS, RDF, and Atom feeds)."
+msgstr "Indsamler syndikeret indhold (RSS-, RDF- og Atom-feeds)."
+
+msgid "Clean URLs"
+msgstr "Rene URLer"
+
+msgid "Revoked!"
+msgstr "Tilbagekaldt!"
+
+msgid ""
+"Validation error, please try again. If this error persists, please contact "
+"the site administrator."
+msgstr ""
+"Valideringsfejl, prøv venligst igen. Hvis fejlen opstår igen, skal du "
+"kontakte sitets administrator."
+
+msgid "Error reporting"
+msgstr "Fejlrapportering"
+
+msgid "and"
+msgstr "og"
+
+msgid "where"
+msgstr "hvor"
+
+msgid "Choose an action"
+msgstr "Vælg en handling"
+
+msgid ""
+"Enables actions to be fired on certain system events, such as when new "
+"content is created."
+msgstr ""
+"Udfører handlinger ved bestemte systemhændelser, f.eks. når der oprettes nyt "
+"indhold."
+
+msgid "Enables the categorization of content."
+msgstr "Organisér indhold i kategorier."
+
+msgid "You can leave a message using the contact form below."
+msgstr "Du kan sende en besked vha. formularen herunder."
+
+msgid "Depends on: !dependencies"
+msgstr "Afhænger af: !dependencies"
+
+msgid "Required by: !required"
+msgstr "Kræves af: !required"
+
+msgid "Tableless, recolorable, multi-column, fixed width theme."
+msgstr "Tabelløst, flerspaltet tema i fast bredde med frit farvevalg."
+
+msgid "add content to books"
+msgstr "tilføj indhold til bøger"
+
+msgid "administer book outlines"
+msgstr "administrér indholdsfortegnelser"
+
+msgid "The default maximum size of all files a user can have on the site."
+msgstr "Standard maksimal størrelse af alle filer en bruger kan have på sitet."
+
+msgid "Table-based multi-column theme with a marine and ash color scheme."
+msgstr "Tabelbaseret, flerspaltet tema med blågrå farver."
+
+msgid "Enables tracking of recent posts for users."
+msgstr "Følg brugernes seneste indlæg."
+
+msgid "Administration theme"
+msgstr "Administrationstema"
+
+msgid ""
+"Spaces are allowed; punctuation is not allowed except for periods, hyphens, "
+"and underscores."
+msgstr ""
+"Mellemrum er tilladt. Eneste tilladte specialtegn er punktummer, "
+"bindestreger og understregninger."
+
+msgid "Secondary links"
+msgstr "Sekundære links"
+
+msgid ""
+"An illegal choice has been detected. Please contact the site administrator."
+msgstr "Ugyldigt valg opdaget. Kontakt venligst sitets administrator."
+
+msgid "Identification"
+msgstr "Identifikation"
+
+msgid "Comment: updated %subject."
+msgstr "Kommentar: %subject opdateret."
+
+msgid "File system"
+msgstr "Filsystem"
+
+msgid "!name's blog"
+msgstr "!name's blog"
+
+msgid "All languages"
+msgstr "Alle sprog"
+
+msgid "Add language"
+msgstr "Tilføj sprog"
+
+msgid "Currently using !item !version"
+msgstr "Bruger !item !version"
+
+msgid "Trigger"
+msgstr "Trigger"
+
+msgid "Blog API"
+msgstr "Blog API"
+
+msgid ""
+"Allows users to post content using applications that support XML-RPC blog "
+"APIs."
+msgstr "Opret indhold med programmer der understøtter XML-RPC blog APIer."
+
+msgid "form"
+msgstr "formular"
+
+msgid "alert"
+msgstr "advarsel"
+
+msgid "emergency"
+msgstr "krise"
+
+msgid "Poll"
+msgstr "Afstemning"
+
+msgid "PHP filter"
+msgstr "PHP filter"
+
+msgid "More information about formatting options"
+msgstr "Yderligere information om formateringsmuligheder"
+
+msgid "Your server has been successfully tested to support this feature."
+msgstr "Din server understøtter denne funktionalitet."
+
+msgid ""
+"Your system configuration does not currently support this feature. The <a "
+"href=\"http://drupal.org/node/15365\">handbook page on Clean URLs</a> has "
+"additional troubleshooting information."
+msgstr ""
+"Din systemopsætning understøtter ikke denne funktionalitet. <a href=\"http://"
+"drupal.org/node/15365\">Håndbogens side om rene URLer</a> har mere hjælp til "
+"fejlfinding."
+
+msgid "Testing clean URLs..."
+msgstr "Tester rene URLer…"
+
+msgid ""
+"The <em>From</em> address in automated e-mails sent during registration and "
+"new password requests, and other notifications. (Use an address ending in "
+"your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr ""
+"<em>Fra</em>-adressen i automatiske beskeder som sendes ved oprettelse af "
+"brugere samt udsendelse af nye adgangskoder og andre beskeder. (Brug en "
+"adresse på sitets domæne for at undgå at beskeder fra adressen bliver "
+"markeret som spam.)"
+
+msgid ""
+"This option makes Drupal emit \"clean\" URLs (i.e. without <code>?q=</code> "
+"in the URL)."
+msgstr ""
+"Får Drupal til at bruge \"rene\" URLer (dvs. uden <code>?q=</code> i URLen)."
+
+msgid "Update notifications"
+msgstr "Opdateringer"
+
+msgid "MySQL database"
+msgstr "MySQL-database"
+
+msgid "Your MySQL Server is too old. Drupal requires at least MySQL %version."
+msgstr "Din MySQL-server er for gammel. Drupal kræver minimum MySQL %version."
+
+msgid "Illegal choice %choice in %name element."
+msgstr "Ugyldigt valg %choice i elementet %name."
+
+msgid "Enables keeping easily and regularly updated user web pages or blogs."
+msgstr "Vedligehold jævnligt opdaterede websider eller blogs."
+
+msgid "Allows users to structure site pages in a hierarchy or outline."
+msgstr "Brugerne kan strukturere siderne i et hierarki."
+
+msgid "Allows the user to change the color scheme of certain themes."
+msgstr "Brugeren kan ændre farvevalget i udvalgte temaer."
+
+msgid "Allows users to comment on and discuss published content."
+msgstr ""
+"Brugerne kan skrive kommentarer til og diskutere offentliggjort indhold."
+
+msgid "Enables the use of both personal and site-wide contact forms."
+msgstr "Aktiverer brugen af personlige og globale kontaktformularer."
+
+msgid "Database logging"
+msgstr "Databaselogning"
+
+msgid "Logs and records system events to the database."
+msgstr "Logger og gemmer systemhændelser i databasen."
+
+msgid "Add input format"
+msgstr "Tilføj inputformat"
+
+msgid "Handles the filtering of content in preparation for display."
+msgstr "Håndterer filtrering af indhold før det vises."
+
+msgid "Enables threaded discussions about general topics."
+msgstr "Muliggør diskussioner om generelle emner."
+
+msgid "Manages the display of online help."
+msgstr "Viser online hjælp."
+
+msgid ""
+"Adds language handling functionality and enables the translation of the user "
+"interface to languages other than English."
+msgstr ""
+"Håndterer sprog og gør det muligt at oversætte brugergrænsefladen til andre "
+"sprog end Engelsk."
+
+msgid "Allows content to be submitted to the site and displayed on pages."
+msgstr "Gør det muligt at tilføje indhold til sitet og vise det på siderne."
+
+msgid "Allows users to log into your site using OpenID."
+msgstr "Brugere kan logge ind med OpenID."
+
+msgid "Allows users to rename URLs."
+msgstr "Gør det muligt at omdøbe URLer."
+
+msgid "Allows embedded PHP code/snippets to be evaluated."
+msgstr "Indlejret PHP-kode evalueres."
+
+msgid "Ping"
+msgstr "Ping"
+
+msgid "Alerts other sites when your site has been updated."
+msgstr "Giv besked til andre sites når dit site er blevet opdateret."
+
+msgid "Total votes: @votes"
+msgstr "Antal stemmer: @votes"
+
+msgid "User list"
+msgstr "Brugerliste"
+
+msgid "Supports configurable user profiles."
+msgstr "Understøtter tilpassede brugerprofiler."
+
+msgid "Enables site-wide keyword searching."
+msgstr "Aktiver søgning på tværs af sitet."
+
+msgid "Logs access statistics for your site."
+msgstr "Registrerer brugen af netstedet."
+
+msgid "Logs and records system events to syslog."
+msgstr "Logger og gemmer systemhændelser i syslog."
+
+msgid "Handles general site configuration for administrators."
+msgstr "Håndterer sitets grundlæggende indstillinger."
+
+msgid "Handles the auto-throttling mechanism, to control site congestion."
+msgstr "Håndterer auto-throttle mekanismen til forebyggelse af nedbrud."
+
+msgid "Content translation"
+msgstr "Oversættelse af indhold"
+
+msgid "Allows content to be translated into different languages."
+msgstr "Gør det muligt at oversætte indhold til forskellige sprog."
+
+msgid ""
+"Checks the status of available updates for Drupal and your installed modules "
+"and themes."
+msgstr ""
+"Undersøger om der er opdateringer til Drupal eller til de installerede "
+"moduler og temaer."
+
+msgid "Allows users to upload and attach files to content."
+msgstr "Brugerne kan overføre og vedhæfte filer til indholdselementer."
+
+msgid "Manages the user registration and login system."
+msgstr "Håndterer brugerregistrering og -login."
+
+msgid "Chameleon"
+msgstr "Chameleon"
+
+msgid "Minimalist tabled theme with light colors."
+msgstr "Minimalistisk tabelbaseret tema med lyse farver."
+
+msgid "Marvin"
+msgstr "Marvin"
+
+msgid "Boxy tabled theme in all grays."
+msgstr "Kantet tabelbaseret tema i grå nuancer."
+
+msgid "Garland"
+msgstr "Garland"
+
+msgid "Minnelli"
+msgstr "Minnelli"
+
+msgid "Pushbutton"
+msgstr "Pushbutton"
+
+msgid "Tabled, multi-column theme in blue and orange tones."
+msgstr "Tabelbaseret, flerspaltet tema i blå og orange toner."

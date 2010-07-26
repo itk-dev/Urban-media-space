@@ -1,0 +1,401 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 15:37+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Download"
+msgstr "Hent"
+
+msgid "Release notes"
+msgstr "Udgivelsesnoter"
+
+msgid "Daily"
+msgstr "Dagligt"
+
+msgid "Weekly"
+msgstr "Ugentligt"
+
+msgid "Unknown"
+msgstr "Ukendt"
+
+msgid "Available updates"
+msgstr "Opdateringer"
+
+msgid "Manual update check"
+msgstr "Manuel søgning efter opdateringer"
+
+msgid "Check manually"
+msgstr "Manuelt tjek"
+
+msgid "Update available"
+msgstr "Opdatering tilgængelig"
+
+msgid "Drupal core update status"
+msgstr "Opdateringsstatus for Drupal-kernen"
+
+msgid "update"
+msgstr "opdatér"
+
+msgid "ok"
+msgstr "ok"
+
+msgid "E-mail addresses to notify when updates are available"
+msgstr "E-mail-adresser der underrettes når opdateringer er tilgængelige"
+
+msgid ""
+"Whenever your site checks for available updates and finds new releases, it "
+"can notify a list of users via e-mail. Put each address on a separate line. "
+"If blank, no e-mails will be sent."
+msgstr ""
+"Når dit site leder efter opdateringer og finder nye udgivelser, kan det give "
+"besked pr. e-mail til en række brugere. Indtast hver adresse på en separat "
+"linje. Hvis feltet er tomt sendes der ingen e-mail."
+
+msgid "Check for updates"
+msgstr "Søg efter opdateringer"
+
+msgid "All newer versions"
+msgstr "Alle nyere versioner"
+
+msgid "Only security updates"
+msgstr "Kun sikkerhedsopdateringer"
+
+msgid "%email is not a valid e-mail address."
+msgstr "%email er ikke en gyldig e-mail-adresse."
+
+msgid "%emails are not valid e-mail addresses."
+msgstr "%emails er ikke gyldige e-mail-adresser."
+
+msgid "No update data available"
+msgstr "Ingen opdateringsdata tilgængelige."
+
+msgid "Not secure!"
+msgstr "Ikke sikker!"
+
+msgid "Unsupported release"
+msgstr "Udgivelse ikke understøttet"
+
+msgid "Can not determine status"
+msgstr "Kan ikke afgøre status."
+
+msgid "(version @version available)"
+msgstr "(version @version tilgængelig)"
+
+msgid "See the available updates page for more information:"
+msgstr "Se listen over opdateringer for yderligere information:"
+
+msgid "New release(s) available for !site_name"
+msgstr "Nye opdateringer tilgængelige for !site_name"
+
+msgid ""
+"There is a security update available for your version of Drupal. To ensure "
+"the security of your server, you should update immediately!"
+msgstr ""
+"Der findes en sikkerhedsopdatering til din version af Drupal. Du bør "
+"opgradere så hurtigt som muligt."
+
+msgid ""
+"Your version of Drupal has been revoked and is no longer available for "
+"download. Upgrading is strongly recommended!"
+msgstr ""
+"Din version af Drupal er blevet tilbagekald og kan ikke længere hentes. Det "
+"anbefales kraftigt at opgradere!"
+
+msgid ""
+"The installed version of at least one of your modules or themes has been "
+"revoked and is no longer available for download. Upgrading or disabling is "
+"strongly recommended!"
+msgstr ""
+"Den installerede version af mindst et af dine moduler eller temaer er blevet "
+"tilbagekaldt. Det anbefales kraftigt at opgradere eller deaktivere!"
+
+msgid ""
+"Your version of Drupal is no longer supported. Upgrading is strongly "
+"recommended!"
+msgstr ""
+"Din version af Drupal er ikke længere understøttet. Det anbefales kraftigt "
+"at opgradere!"
+
+msgid ""
+"The installed version of at least one of your modules or themes is no longer "
+"supported. Upgrading or disabling is strongly recommended! Please see the "
+"project homepage for more details."
+msgstr ""
+"Den installerede version af mindst et af dine moduler eller temaer er ikke "
+"længere understøttet. Det anbefales kraftigt at opgradere eller deaktivere! "
+"Se projektets hjemmeside for yderligere information."
+
+msgid ""
+"There are updates available for your version of Drupal. To ensure the proper "
+"functioning of your site, you should update as soon as possible."
+msgstr ""
+"Der findes opdateringer til din version af Drupal. For at sikre at dit site "
+"virker korrekt bør du opgradere så snart som muligt."
+
+msgid ""
+"There was a problem determining the status of available updates for your "
+"version of Drupal."
+msgstr ""
+"Det er ikke muligt at fastslå opdateringsstatus for din version af Drupal."
+
+msgid ""
+"There was a problem determining the status of available updates for one or "
+"more of your modules or themes."
+msgstr ""
+"Der var problemer med at fastslå status for tilgængelige opdateringer til et "
+"eller flere af dine moduler eller temaer."
+
+msgid ""
+"See the <a href=\"@available_updates\">available updates</a> page for more "
+"information."
+msgstr ""
+"Se siden med <a href=\"@available_updates\">tilgængelige opdateringer</a> "
+"for yderligere information."
+
+msgid "Project not secure"
+msgstr "Projekt ikke sikkert"
+
+msgid ""
+"This project has been labeled insecure by the Drupal security team, and is "
+"no longer available for download. Immediately disabling everything included "
+"by this project is strongly recommended!"
+msgstr ""
+"Projektet er markeret usikkert af Drupal sikkerhedsgruppe, og kan ikke "
+"længere hentes. Det anbefales at deaktivere alt der vedrører dette projekt."
+
+msgid "Project revoked"
+msgstr "Projekt tilbagekaldt"
+
+msgid ""
+"This project has been revoked, and is no longer available for download. "
+"Disabling everything included by this project is strongly recommended!"
+msgstr ""
+"Projektet er tilbagekaldt, og kan ikke længere hentes. Det anbefales at "
+"deaktivere alt der vedrører dette projekt."
+
+msgid "Project not supported"
+msgstr "Projekt ikke understøttet"
+
+msgid ""
+"This project is no longer supported, and is no longer available for "
+"download. Disabling everything included by this project is strongly "
+"recommended!"
+msgstr ""
+"Projektet er ikke længere understøttet, og kan ikke længere hentes. Det "
+"anbefales at deaktivere alt der vedrører dette projekt."
+
+msgid "No available releases found"
+msgstr "Ingen udgivelser til rådighed"
+
+msgid "Release revoked"
+msgstr "Udgivelse tilbagekaldt"
+
+msgid ""
+"Your currently installed release has been revoked, and is no longer "
+"available for download. Disabling everything included in this release or "
+"upgrading is strongly recommended!"
+msgstr ""
+"Den installerede udgivelse er blevet tilbagekaldt og kan ikke længere "
+"hentes. Det anbefales at deaktivere alt der vedrører dette projekt eller "
+"opgradere."
+
+msgid "Release not supported"
+msgstr "Udgivelse ikke understøttet"
+
+msgid ""
+"Your currently installed release is now unsupported, and is no longer "
+"available for download. Disabling everything included in this release or "
+"upgrading is strongly recommended!"
+msgstr ""
+"Den installerede udgivelse understøttes ikke og kan ikke længere hentes. Det "
+"anbefales at deaktivere alt der vedrører dette projekt eller opgradere."
+
+msgid "Invalid info"
+msgstr "Ugyldig information"
+
+msgid "Security update required!"
+msgstr "Sikkerhedsopdatering påkrævet!"
+
+msgid "Not supported!"
+msgstr "Ikke understøttet!"
+
+msgid "Recommended version:"
+msgstr "Anbefalet version:"
+
+msgid "Security update:"
+msgstr "Sikkerhedsopdatering:"
+
+msgid "Latest version:"
+msgstr "Seneste version:"
+
+msgid "Development version:"
+msgstr "Udviklingsversion:"
+
+msgid "Also available:"
+msgstr "Også tilgængelig:"
+
+msgid "Drupal core"
+msgstr "Drupal-kernen"
+
+msgid "Failed to fetch available update data"
+msgstr "Kunne ikke hente opdateringsdata."
+
+msgid "Unknown release date"
+msgstr "Ukendt udgivelsesdato"
+
+msgid ""
+"Attempted to fetch information about all available new releases and updates."
+msgstr "Forsøgte at hente information om alle nye udgivelser og opdateringer."
+
+msgid ""
+"Unable to fetch any information about available new releases and updates."
+msgstr ""
+"Kan ikke hente information om alle tilgængelige udgivelser og opdateringer."
+
+msgid "Last checked: @time ago"
+msgstr "Sidst kontrolleret: @time siden"
+
+msgid "Last checked: never"
+msgstr "Sidst kontrolleret: aldrig"
+
+msgid "Includes: %includes"
+msgstr "Indeholder: %includes"
+
+msgid "Disabled modules"
+msgstr "Deaktiverede moduler"
+
+msgid "Disabled themes"
+msgstr "Deaktiverede temaer"
+
+msgid ""
+"Select how frequently you want to automatically check for new releases of "
+"your currently installed modules and themes."
+msgstr ""
+"Vælg hvor hyppigt du ønsker at søge efter nye udgivelser af dine "
+"installerede moduler og temaer."
+
+msgid "E-mail notification threshold"
+msgstr "E-mail tærskel"
+
+msgid ""
+"You can choose to send e-mail only if a security update is available, or to "
+"be notified about all newer versions. If there are updates available of "
+"Drupal core or any of your installed modules and themes, your site will "
+"always print a message on the <a href=\"@status_report\">status report</a> "
+"page, and will also display an error message on administration pages if "
+"there is a security update."
+msgstr ""
+"Du kan vælge kun at sende e-mail når en sikkerhedsopdatering er tilgængelig "
+"eller at blive underrettet om alle nye versioner. Hvis der er opdateringer "
+"til Drupal-kernen eller et af dine installerede moduler eller temaer vil dit "
+"site altid skrive en besked i <a href=\"@status_report\">statusrapporten</"
+"a>, og det vil også vise en fejlmeddelelse hvis der er en "
+"sikkerhedsopdatering."
+
+msgid ""
+"Here you can find information about available updates for your installed "
+"modules and themes. Note that each module or theme is part of a \"project\", "
+"which may or may not have the same name, and might include multiple modules "
+"or themes within it."
+msgstr ""
+"Her findes information om opdateringer til dine installerede moduler og "
+"temaer. Bemærk at hvert modul eller tema er en del af et <em>projekt</em>, "
+"som ikke nødvendigvis har samme navn, og som kan indeholde flere moduler "
+"eller temaer."
+
+msgid ""
+"To extend the functionality or to change the look of your site, a number of "
+"contributed <a href=\"@modules\">modules</a> and <a href=\"@themes\">themes</"
+"a> are available."
+msgstr ""
+"Der findes et antal <a href=\"@modules\">moduler</a> og <a href=\"@themes"
+"\">temaer</a>, som du kan bruge til at ændre sitets funktionalitet og "
+"udseende."
+
+msgid ""
+"See the <a href=\"@available_updates\">available updates</a> page for "
+"information on installed modules and themes with new versions released."
+msgstr ""
+"Se siden med <a href=\"@available_updates\">tilgængelige opdateringer</a> "
+"for information om installerede moduler og temaer med nye udgivelser."
+
+msgid ""
+"The Update status module periodically checks for new versions of your site's "
+"software (including contributed modules and themes), and alerts you to "
+"available updates."
+msgstr ""
+"Update Status-modulet kontrollerer med jævne mellemrum om der findes nye "
+"versioner af sitets software (inklusiv moduler og temaer), og giver besked "
+"om tilgængelige opdateringer."
+
+msgid ""
+"The <a href=\"@update-report\">report of available updates</a> will alert "
+"you when new releases are available for download. You may configure options "
+"for update checking frequency and notifications at the <a href=\"@update-"
+"settings\">Update status module settings page</a>."
+msgstr ""
+"<a href=\"@update-report\">Opdateringsrapporten</a> giver dig besked når nye "
+"udgivelser er tilgængelige. Du kan indstille hvor tit der søges efter "
+"opdateringer og hvordan du får besked om dem på <a href=\"@update-settings"
+"\">indstillingssiden</a>."
+
+msgid ""
+"Please note that in order to provide this information, anonymous usage "
+"statistics are sent to drupal.org. If desired, you may disable the Update "
+"status module from the <a href=\"@modules\">module administration page</a>."
+msgstr ""
+"Bemærk at det er nødvendigt at sende anonym information til drupal.org for "
+"at bruge denne funktion. Hvis du ønsker det, kan du deaktivere Update status-"
+"modulet på <a href=\"@modules\">modulsiden</a>."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@update"
+"\">Update status module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@update\">opdateringsstatus</a> for "
+"yderligere information."
+
+msgid "Module and theme update status"
+msgstr "Opdateringsstatus for moduler og temaer"
+
+msgid ""
+"No information is available about potential new releases for currently "
+"installed modules and themes. To check for updates, you may need to <a href="
+"\"@run_cron\">run cron</a> or you can <a href=\"@check_manually\">check "
+"manually</a>. Please note that checking for available updates can take a "
+"long time, so please be patient."
+msgstr ""
+"Der findes ingen information om nye udgivelser af dine installerede moduler "
+"og temaer. For at søge efter opdateringer kan det være nødvendigt at <a href="
+"\"@run_cron\">køre cron</a> eller <a href=\"@check_manually\">søge manuelt</"
+"a>. Det kan tage lang tid at søge efter opdateringer, så vær tålmodig."
+
+msgid ""
+"There are security updates available for one or more of your modules or "
+"themes. To ensure the security of your server, you should update immediately!"
+msgstr ""
+"Der er en sikkerhedsopdatering til et eller flere af dine moduler eller "
+"temaer. For at sikre din server bør du opgradere med det samme!"
+
+msgid ""
+"There are updates available for one or more of your modules or themes. To "
+"ensure the proper functioning of your site, you should update as soon as "
+"possible."
+msgstr ""
+"Der findes opdateringer til et eller flere af dine moduler eller temaer. For "
+"at sikre at dit site virker korrekt bør du opgradere så snart som muligt."
+
+msgid ""
+"Get a status report about available updates for your installed modules and "
+"themes."
+msgstr ""
+"Få en statusrapport om opdateringer til installerede moduler og temaer."

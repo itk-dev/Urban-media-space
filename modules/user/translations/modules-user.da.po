@@ -1,0 +1,1252 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2010-03-31 09:54+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Create a new user account."
+msgstr "Opret en brugerkonto."
+
+msgid "Request new password via e-mail."
+msgstr "Bestil ny adgangskode via e-mail."
+
+msgid "deny"
+msgstr "afvis"
+
+msgid "Available variables are:"
+msgstr "Tilgængelige variable er:"
+
+msgid "Session opened for %name."
+msgstr "Session åbnet for %name."
+
+msgid "username"
+msgstr "brugernavn"
+
+msgid "High"
+msgstr "Høj"
+
+msgid "Low"
+msgstr "Lav"
+
+msgid "History"
+msgstr "Historik"
+
+msgid "Picture"
+msgstr "Billede"
+
+msgid "User settings"
+msgstr "Brugerindstillinger"
+
+msgid "Public registrations"
+msgstr "Offentlig registrering"
+
+msgid "Host"
+msgstr "Værtsnavn"
+
+msgid "Signature"
+msgstr "Signatur"
+
+msgid "Role name"
+msgstr "Navn"
+
+msgid "Last access"
+msgstr "Seneste tilgang"
+
+msgid "Add a role to the selected users"
+msgstr "Tilføj en rolle til de valgte brugere"
+
+msgid "Remove a role from the selected users"
+msgstr "Fjern en rolle fra de valgte brugere"
+
+msgid "Allow"
+msgstr "Tillad"
+
+msgid "Deny"
+msgstr "Afvis"
+
+msgid "Signatures"
+msgstr "Signaturer"
+
+msgid "User login"
+msgstr "Log ind"
+
+msgid "Session closed for %name."
+msgstr "Session lukket for %name."
+
+msgid "The name %name is a reserved username."
+msgstr "Navnet %name er reserveret."
+
+msgid "Delete rule"
+msgstr "Slet regel"
+
+msgid "Add user"
+msgstr "Tilføj bruger"
+
+msgid ""
+"A valid e-mail address. All e-mails from the system will be sent to this "
+"address. The e-mail address is not made public and will only be used if you "
+"wish to receive a new password or wish to receive certain news or "
+"notifications by e-mail."
+msgstr ""
+"Indtast en gyldig e-mail-adresse. Al e-mail fra sitet sendes til denne "
+"adresse. E-mail-adressen offentliggøres ikke, og bruges kun hvis du ønsker "
+"at modtage en ny adgangskode eller nyheder og opdateringer via e-mail."
+
+msgid ""
+"The e-mail address %email is already registered. <a href=\"@password\">Have "
+"you forgotten your password?</a>"
+msgstr ""
+"E-mail-adressen %email er allerede i brug. <a href=\"@password\">Har du "
+"glemt din adgangskode?</a>"
+
+msgid "The e-mail address %email has been denied access."
+msgstr "E-mail-adressen %email er nægtet adgang."
+
+msgid "locked"
+msgstr "låst"
+
+msgid "Upload picture"
+msgstr "Upload billede"
+
+msgid "Show only users where"
+msgstr "Vis kun brugere hvor"
+
+msgid "No users available."
+msgstr "Ingen brugere tilgængelige."
+
+msgid "No users selected."
+msgstr "Ingen brugere valgt."
+
+msgid "Request new password"
+msgstr "Bestil ny adgangskode"
+
+msgid "Visitors can create accounts and no administrator approval is required."
+msgstr "Besøgende kan oprette konti uden godkendelse"
+
+msgid "Log out"
+msgstr "Log ud"
+
+msgid "role"
+msgstr "rolle"
+
+msgid "Blocked"
+msgstr "Blokeret"
+
+msgid "User management"
+msgstr "Brugerhåndtering"
+
+msgid "Permissions"
+msgstr "Tilladelser"
+
+msgid "e-mail"
+msgstr "e-mail"
+
+msgid "permission"
+msgstr "tilladelse"
+
+msgid ""
+"Your password and further instructions have been sent to your e-mail address."
+msgstr ""
+"Din adgangskode og yderligere forklaring er blevet sendt til din e-mail-"
+"adresse."
+
+msgid "The username %name has not been activated or is blocked."
+msgstr "Brugernavnet %name er blokeret eller ikke aktiveret."
+
+msgid "Login attempt failed for %user."
+msgstr "Login-forsøg mislykkedes for %user."
+
+msgid "Reset password"
+msgstr "Nulstil adgangskode"
+
+msgid "Password strength:"
+msgstr "Adgangskodekvalitet:"
+
+msgid ""
+"It is recommended to choose a password that contains at least six "
+"characters. It should include numbers, punctuation, and both upper and "
+"lowercase letters."
+msgstr ""
+"Vi anbefaler, at du vælger en adgangskode på mindst seks tegn. Den bør "
+"indeholde tal, specialtegn og både store og små bogstaver."
+
+msgid "The password does not include enough variation to be secure. Try:"
+msgstr ""
+"Der er for lidt variation i adgangskoden til at den er sikker. Forslag:"
+
+msgid "Adding both upper and lowercase letters."
+msgstr "Tilføj både store og små bogstaver."
+
+msgid "Adding numbers."
+msgstr "Tilføj tal."
+
+msgid "Adding punctuation."
+msgstr "Tilføj specialtegn."
+
+msgid "It is recommended to choose a password different from the username."
+msgstr ""
+"Det anbefales at vælge en adgangskode der er forskellig fra brugernavnet."
+
+msgid "Passwords match:"
+msgstr "Adgangskoder er ens:"
+
+msgid "Delete role"
+msgstr "Slet rolle"
+
+msgid "Permission"
+msgstr "Tilladelse"
+
+msgid "Your signature will be publicly displayed at the end of your comments."
+msgstr "Din signatur vises under dine kommentarer."
+
+msgid "Save role"
+msgstr "Gem rolle"
+
+msgid "Number of users to display"
+msgstr "Antal brugere der vises"
+
+msgid "@user's picture"
+msgstr "@users billede"
+
+msgid "List, add, and edit users."
+msgstr "Vis, tilføj og redigér brugere."
+
+msgid "The name %name is already taken."
+msgstr "Navnet %name er allerede taget."
+
+msgid "Add role"
+msgstr "Tilføj rolle"
+
+msgid "You must specify a valid role name."
+msgstr "Du skal angive et gyldigt rollenavn."
+
+msgid "The role has been added."
+msgstr "Rolle tilføjet."
+
+msgid "Account settings"
+msgstr "Kontoindstillinger"
+
+msgid "My account"
+msgstr "Min konto"
+
+msgid "Pictures"
+msgstr "Billeder"
+
+msgid "User activity"
+msgstr "Brugeraktivitet"
+
+msgid ""
+"A user is considered online for this long after they have last viewed a page."
+msgstr ""
+"En bruger bliver opfattet som online i dette tidsrum efter hun sidst har set "
+"en side."
+
+msgid "Maximum number of currently online users to display."
+msgstr "Hvor mange brugere skal der maksimalt vises."
+
+msgid "There is currently %members and %visitors online."
+msgstr "Der er i øjeblikket %members og %visitors online."
+
+msgid "There are currently %members and %visitors online."
+msgstr "Der er i øjeblikket %members og %visitors online."
+
+msgid "1 guest"
+msgid_plural "@count guests"
+msgstr[0] "1 gæst"
+msgstr[1] "@count gæster"
+
+msgid "Edit rule"
+msgstr "Redigér regel"
+
+msgid "Password reset instructions mailed to %name at %email."
+msgstr "Instruktioner om nulstilling af adgangskode sendt til %name på %email."
+
+msgid "Account information"
+msgstr "Konto"
+
+msgid "The e-mail address %mail is not valid."
+msgstr "E-mail-adressen %mail er ugyldig."
+
+msgid "Account"
+msgstr "Konto"
+
+msgid "authenticated user"
+msgstr "godkendt bruger"
+
+msgid "Check e-mail"
+msgstr "Tjek adresse"
+
+msgid "Default picture"
+msgstr "Standardbillede"
+
+msgid ""
+"URL of picture to display for users with no custom picture selected. Leave "
+"blank for none."
+msgstr ""
+"URL for billede der vises for brugere der ikke har uploadet deres eget "
+"billede. Lad dette felt være tomt hvis du ikke ønsker et standard billede."
+
+msgid ""
+"Sorry, unrecognized username or password. <a href=\"@password\">Have you "
+"forgotten your password?</a>"
+msgstr ""
+"Ukendt brugernavn eller adgangskode. <a href=\"@password\">Har du glemt din "
+"adgangskode?</a>"
+
+msgid "Block current user"
+msgstr "Blokér aktuelle bruger"
+
+msgid "Ban IP address of current user"
+msgstr "Bandlys aktuelle brugers IP adresse"
+
+msgid "After a user account has been created"
+msgstr "Efter en konto er oprettet."
+
+msgid "After a user's profile has been updated"
+msgstr "Efter en brugerprofil er opdateret"
+
+msgid "After a user has been deleted"
+msgstr "Efter en bruger er slettet."
+
+msgid "After a user has logged in"
+msgstr "Efter en bruger er logget ind"
+
+msgid "After a user has logged out"
+msgstr "Efter en bruger er logget ud"
+
+msgid "When a user's profile is being viewed"
+msgstr "Når en brugerprofil vises"
+
+msgid "Blocked user %name."
+msgstr "Bruger %name blokeret."
+
+msgid "Banned IP address %ip"
+msgstr "IP adresse %ip blokeret"
+
+msgid "Save rule"
+msgstr "Gem regel"
+
+msgid "anonymous user"
+msgstr "anonym bruger"
+
+msgid "Save permissions"
+msgstr "Gem tilladelser"
+
+msgid "The name %name has been denied access."
+msgstr "Navnet %name er nægtet adgang."
+
+msgid "edit permissions"
+msgstr "redigér tilladelser"
+
+msgid "User account"
+msgstr "Brugerkonto"
+
+msgid ""
+"Failed to upload the picture image; the %directory directory doesn't exist "
+"or is not writable."
+msgstr ""
+"Kan ikke overføre billedet. Mappen %directory eksisterer ikke, eller der kan "
+"ikke skrives til den."
+
+msgid "List, edit, or add user roles."
+msgstr "Vis, tilføj og redigér brugerroller."
+
+msgid "edit role"
+msgstr "redigér rolle"
+
+msgid "Check username"
+msgstr "Tjek brugernavn"
+
+msgid ""
+"Thank you for applying for an account. Your account is currently pending "
+"approval by the site administrator.<br />In the meantime, a welcome message "
+"with further instructions has been sent to your e-mail address."
+msgstr ""
+"Tak for din ansøgning om en konto. Din konto afventer godkendelse af en "
+"administrator.<br />I mellemtiden er din adgangskode og yderligere "
+"instruktioner blevet sendt til din e-mail-adresse."
+
+msgid "host"
+msgstr "værtsnavn"
+
+msgid "Notify user of new account"
+msgstr "Påmind bruger om ny konto"
+
+msgid "Access type"
+msgstr "Adgangstype"
+
+msgid "Enter your @s username."
+msgstr "Indtast dit @s brugernavn."
+
+msgid ""
+"Your virtual face or picture. Maximum dimensions are %dimensions and the "
+"maximum size is %size kB."
+msgstr ""
+"Dit billede. Maksimal størrelse er %dimensions og den maksimale filstørrelse "
+"er %size kB."
+
+msgid "Picture image path"
+msgstr "Sti til billeder"
+
+msgid "Manage your site's users, groups and access to site features."
+msgstr "Håndtér brugere, grupper og adgangsbegrænsning."
+
+msgid ""
+"You have tried to use a one-time login for an account which has been blocked."
+msgstr ""
+"Du har forsøgt at bruge et engangs-login til en konto som er blevet blokeret."
+
+msgid "User %name used one-time login link at time %timestamp."
+msgstr "Brugeren %name brugte et engangslogind-link %timestamp."
+
+msgid ""
+"Created a new user account for <a href=\"@url\">%name</a>. No e-mail has "
+"been sent."
+msgstr "Ny konto oprettet for <a href=\"@url\">%name</a>. Ingen e-mail sendt."
+
+msgid "Registration successful. You are now logged in."
+msgstr "Registrering lykkedes. Du er nu logget ind."
+
+msgid ""
+"Password and further instructions have been e-mailed to the new user <a href="
+"\"@url\">%name</a>."
+msgstr ""
+"Adgangskode og yderligere instruktioner er blevet sendt til den nye bruger "
+"<a href=\"@url\">%name</a>."
+
+msgid "New user: %name (%email)."
+msgstr "Ny bruger: %name (%email)."
+
+msgid ""
+"You have just used your one-time login link. It is no longer necessary to "
+"use this link to login. Please change your password."
+msgstr ""
+"Du har netop brugt dit engangslogind-link. Det er ikke længere nødvendigt at "
+"bruge dette link til at logge ind. Skift venligst din adgangskode."
+
+msgid ""
+"!username has applied for an account.\n"
+"\n"
+"!edit_uri"
+msgstr ""
+"!username har ansøgt om en konto.\n"
+"\n"
+"!edit_uri"
+
+msgid "Username or e-mail address"
+msgstr "Brugernavn eller e-mail-adresse"
+
+msgid ""
+"<em>and</em> where <strong>%property</strong> is <strong>%value</strong>"
+msgstr "<em>og</em> hvor <strong>%property</strong> er <strong>%value</strong>"
+
+msgid "<strong>%property</strong> is <strong>%value</strong>"
+msgstr "<strong>%property</strong> er <strong>%value</strong>"
+
+msgid "User autocomplete"
+msgstr "Autofuldfør bruger"
+
+msgid ""
+"To change the current user password, enter the new password in both fields."
+msgstr ""
+"Indtast den  nye adgangskode i begge felter for at ændre din nuværende "
+"adgangskode."
+
+msgid ""
+"You have already used this one-time login link. It is not necessary to use "
+"this link to login anymore. You are already logged in."
+msgstr ""
+"Du har allerede brugt dette engangslogind-link. Det er ikke længere "
+"nødvendigt at bruge dette link for at logge ind. Du er allerede logget ind."
+
+msgid ""
+"You have tried to use a one-time login link that has expired. Please request "
+"a new one using the form below."
+msgstr ""
+"Du har forsøgt at bruge en engangslogind-URL, som er udløbet. Brug "
+"formularen herunder til at anmode om en ny."
+
+msgid ""
+"<p>This is a one-time login for %user_name and will expire on %"
+"expiration_date.</p><p>Click on this button to login to the site and change "
+"your password.</p>"
+msgstr ""
+"<p>Dette er et engangs-login for %user_name der udløber %expiration_date.</"
+"p><p>Klik på knappen for at logge ind på sitet og ændre din adgangskode.</p>"
+
+msgid "This login can be used only once."
+msgstr "Dette logind kan kun bruges én gang."
+
+msgid ""
+"You have tried to use a one-time login link which has either been used or is "
+"no longer valid. Please request a new one using the form below."
+msgstr ""
+"Du har forsøgt at bruge en engangslogind-URL, som er blevet brugt eller ikke "
+"ikke længere er gyldig. Brug formularen herunder til at anmode om en ny."
+
+msgid "Provide a password for the new account in both fields."
+msgstr "Vælg en adgangskode til den nye konto."
+
+msgid "Account details for !username at !site"
+msgstr "Kontoinformation for !username på !site"
+
+msgid ""
+"!username,\n"
+"\n"
+"Thank you for registering at !site. You may now log in to !login_uri using "
+"the following username and password:\n"
+"\n"
+"username: !username\n"
+"password: !password\n"
+"\n"
+"You may also log in by clicking on this link or copying and pasting it in "
+"your browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"This is a one-time login, so it can be used only once.\n"
+"\n"
+"After logging in, you will be redirected to !edit_uri so you can change your "
+"password.\n"
+"\n"
+"\n"
+"--  !site team"
+msgstr ""
+"!username,\n"
+"\n"
+"Tak fordi du har registreret dig som bruger på !site. Du kan logge ind på !"
+"login_uri med følgende brugernavn og adgangskode:\n"
+"\n"
+"Brugernavn: !username\n"
+"Adgangskode: !password\n"
+"\n"
+"Du kan også logge ind ved at klikke på følgende link eller ved at kopiere og "
+"indsætte det i din browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"Dette er et engangs-login, så det kan kun bruges én gang.\n"
+"\n"
+"Når du er logget ind, bliver du omdirigeret til !edit_uri, så du kan skifte "
+"din adgangskode.\n"
+"\n"
+"\n"
+"-- !site holdet"
+
+msgid "User e-mail settings"
+msgstr "E-mails til brugere"
+
+msgid "Who's new"
+msgstr "Nye brugere"
+
+msgid "Are you sure you want to delete these users?"
+msgstr "Ønsker du at slette disse brugere?"
+
+msgid "The users have been deleted."
+msgstr "Brugere slettet"
+
+msgid "allow"
+msgstr "tillad"
+
+msgid "Rule type"
+msgstr "Regeltype"
+
+msgid "Mask"
+msgstr "Maske"
+
+msgid "Are you sure you want to delete the @type rule for %rule?"
+msgstr "Ønsker du at slette reglen @type for %rule?"
+
+msgid "The access rule has been deleted."
+msgstr "Adgangsregel slettet."
+
+msgid "User registration settings"
+msgstr "Nye brugere"
+
+msgid "Visitors can create accounts but administrator approval is required."
+msgstr ""
+"Besøgende kan oprette konti, men nye konti skal godkendes af administratoren."
+
+msgid "Require e-mail verification when a visitor creates an account"
+msgstr "Kræv e-mail-bekræftelse når en besøgende opretter en konto"
+
+msgid ""
+"If this box is checked, new users will be required to validate their e-mail "
+"address prior to logging into the site, and will be assigned a system-"
+"generated password. With it unchecked, users will be logged in immediately "
+"upon registering, and may select their own passwords during registration."
+msgstr ""
+"Hvis feltet er markeret, skal nye brugere validere deres e-mail-adresse, før "
+"de kan logge ind på sitet, og de vil blive tildelt en adgangskode af "
+"systemet. Hvis ikke, kan brugeren logge ind med det samme, og de kan selv "
+"vælge deres adgangskode."
+
+msgid "User registration guidelines"
+msgstr "Retningslinjer for nye brugere"
+
+msgid ""
+"This text is displayed at the top of the user registration form and is "
+"useful for helping or instructing your users."
+msgstr ""
+"Tekst der vises når en ny bruger registrerer sig. Kan bruges til at hjælpe "
+"dine brugere."
+
+msgid ""
+"Drupal sends emails whenever new users register on your site, and "
+"optionally, may also notify users after other account actions. Using a "
+"simple set of content templates, notification e-mails can be customized to "
+"fit the specific needs of your site."
+msgstr ""
+"Drupal sender e-mails når nye brugere opretter en konto, og kan, hvis det "
+"ønskes, giver brugerne besked om ændringer i deres konto. Ved hjælp af en "
+"række skabeloner er det nemt at tilpasse de forskellige e-mails så de passer "
+"til dit sites behov."
+
+msgid "Welcome, new user created by administrator"
+msgstr "Velkommen, ny bruger oprettet af administrator"
+
+msgid ""
+"Customize welcome e-mail messages sent to new member accounts created by an "
+"administrator."
+msgstr ""
+"Tilpas indholdet af velkomstbeskeden, der sendes til nye medlemskonti "
+"oprettet af en administrator."
+
+msgid "Welcome, no approval required"
+msgstr "Velkomst, ingen godkendelse nødvendig"
+
+msgid ""
+"Customize welcome e-mail messages sent to new members upon registering, when "
+"no administrator approval is required."
+msgstr ""
+"Tilpas indholdet af velkomstbeskeden, der sendes til nye medlemskonti "
+"oprettet af en administrator uden krav om godkendelse."
+
+msgid "Welcome, awaiting administrator approval"
+msgstr "Velkomstbesked, afventer godkendelse af administrator"
+
+msgid ""
+"Customize welcome e-mail messages sent to new members upon registering, when "
+"administrative approval is required."
+msgstr ""
+"Tilpas indholdet af velkomstbeskeden, der sendes til nye medlemskonti "
+"oprettet af en administrator med krav om godkendelse."
+
+msgid "Password recovery email"
+msgstr "Besked om ny adgangskode"
+
+msgid "Customize e-mail messages sent to users who request a new password."
+msgstr ""
+"Tilpas indholdet af beskeden, der sendes til nye medlemmer der ønsker en ny "
+"adgangskode."
+
+msgid "Account activation email"
+msgstr "Besked om aktivering af konto"
+
+msgid ""
+"Enable and customize e-mail messages sent to users upon account activation "
+"(when an administrator activates an account of a user who has already "
+"registered, on a site where administrative approval is required)."
+msgstr ""
+"Aktiver og tilpas e-mail-beskeder som sendes til brugerne, når en konto "
+"aktiveres (når en administrator aktiverer kontoen for en bruger, som "
+"allerede er tilmeldt, på et site hvor administratorens godkendelse er "
+"påkrævet)."
+
+msgid "Notify user when account is activated."
+msgstr "Giv bruger besked når konto aktiveres."
+
+msgid "Account blocked email"
+msgstr "Besked om blokering af konto"
+
+msgid ""
+"Enable and customize e-mail messages sent to users when their accounts are "
+"blocked."
+msgstr ""
+"Aktiver og tilpas e-mail-beskeder som sendes til brugerne når en konto "
+"blokeres."
+
+msgid "Notify user when account is blocked."
+msgstr "Giv bruger besked når konto blokeres."
+
+msgid "Account deleted email"
+msgstr "Besked om slettet konto"
+
+msgid ""
+"Enable and customize e-mail messages sent to users when their accounts are "
+"deleted."
+msgstr ""
+"Aktiver og tilpas e-mail-beskeder som sendes til brugerne når en konto "
+"slettes."
+
+msgid "Notify user when account is deleted."
+msgstr "Giv bruger besked når konto slettes."
+
+msgid "Signature support"
+msgstr "Signaturunderstøttelse"
+
+msgid "Picture support"
+msgstr "Billedunderstøttelse"
+
+msgid "Subdirectory in the directory %dir where pictures will be stored."
+msgstr "Undermappe i mappen %dir hvor billeder gemmes."
+
+msgid "Picture maximum dimensions"
+msgstr "Dimensioner"
+
+msgid "Maximum dimensions for pictures, in pixels."
+msgstr "Maksimal filstørrelse for billeder, i pixels."
+
+msgid "Picture maximum file size"
+msgstr "Filstørrelse"
+
+msgid "Maximum file size for pictures, in kB."
+msgstr "Maksimal filstørrelse for billeder, i kB."
+
+msgid "Picture guidelines"
+msgstr "Retningslinjer"
+
+msgid ""
+"This text is displayed at the picture upload form in addition to the default "
+"guidelines. It's useful for helping or instructing your users."
+msgstr ""
+"Denne tekst vises når brugeren overfører et billede. Den kan bruges til at "
+"hjælpe brugerne."
+
+msgid ""
+"The name for this role. Example: \"moderator\", \"editorial board\", \"site "
+"architect\"."
+msgstr "Rollens navn. Eksempel: \"godkender\", \"redaktører\", \"udvikler\"."
+
+msgid "The role name %name already exists. Please choose another role name."
+msgstr "Rollen %name findes allerede. Vælg venligst et andet navn."
+
+msgid "The role has been renamed."
+msgstr "Rolle omdøbt."
+
+msgid "The role has been deleted."
+msgstr "Rolle slettet."
+
+msgid "Matches any number of characters, even zero characters"
+msgstr "Matcher ethvert antal tegn, også nul tegn"
+
+msgid "Matches exactly one character."
+msgstr "Matcher nøjagtigt ét tegn."
+
+msgid "The access rule has been saved."
+msgstr "Adgangsregel gemt."
+
+msgid "The access rule has been added."
+msgstr "Adgangsregel tilføjet."
+
+msgid "No value entered. Please enter a test string and try again."
+msgstr "Ingen værdi indtastet. Indtast venligst en teststreng og prøv igen."
+
+msgid "Enter a username to check if it will be denied or allowed."
+msgstr ""
+"Indtast et brugernavn for at undersøge om det bliver tilladt eller afvist."
+
+msgid "Enter an e-mail address to check if it will be denied or allowed."
+msgstr ""
+"Indtast en e-mail-adresse for at undersøge om den bliver tilladt eller "
+"afvist."
+
+msgid ""
+"Enter a hostname or IP address to check if it will be denied or allowed."
+msgstr ""
+"Indtast et værtsnavn eller en IP adresse for at undersøge om den bliver "
+"afvist eller tilladt."
+
+msgid "Check hostname"
+msgstr "Tjek værtsnavn"
+
+msgid "The username %name is not allowed."
+msgstr "Brugernavnet %name er ikke tilladt."
+
+msgid "The username %name is allowed."
+msgstr "Brugernavnet %name er tilladt."
+
+msgid "The e-mail address %mail is not allowed."
+msgstr "E-mail-adressen %mail er ikke tilladt."
+
+msgid "The e-mail address %mail is allowed."
+msgstr "E-mail-adressen %mail er tilladt."
+
+msgid "The hostname %host is not allowed."
+msgstr "Værtsnavnet %host er ikke tilladt."
+
+msgid "The hostname %host is allowed."
+msgstr "Værtsnavnet %host er tilladt."
+
+msgid "There are currently no access rules."
+msgstr "Der er i øjeblikket ingen regler."
+
+msgid "E-mail new password"
+msgstr "Send ny adgangskode"
+
+msgid "%name is not allowed to request a new password."
+msgstr "%name har ikke lov til at bestille en ny adgangskode."
+
+msgid "Sorry, %name is not recognized as a user name or an e-mail address."
+msgstr "%name findes ikke som brugernavn eller e-mail-adresse."
+
+msgid "Further instructions have been sent to your e-mail address."
+msgstr "Yderligere instruktioner er sendt til din e-mail-adresse."
+
+msgid "Are you sure you want to delete the account %name?"
+msgstr "Ønsker du at slette kontoen %name?"
+
+msgid ""
+"All submissions made by this user will be attributed to the anonymous "
+"account. This action cannot be undone."
+msgstr ""
+"Alle indlæg skrevet af denne bruger bliver tilskrevet den anonyme konto. "
+"Denne handling kan ikke fortrydes."
+
+msgid "%name has been deleted."
+msgstr "%name slettet."
+
+msgid "You must enter a username."
+msgstr "Du skal indtaste et brugernavn."
+
+msgid "The username cannot begin with a space."
+msgstr "Brugernavnet må ikke begynde med et mellemrum."
+
+msgid "The username cannot end with a space."
+msgstr "Brugernavnet må ikke slutte med et mellemrum."
+
+msgid "The username cannot contain multiple spaces in a row."
+msgstr "Brugernavnet må ikke indholde flere mellemrum i træk."
+
+msgid "The username contains an illegal character."
+msgstr "Brugernavnet indeholder et ugyldigt tegn."
+
+msgid "The username is not a valid authentication ID."
+msgstr "Brugernavnet er ikke en gyldig ID."
+
+msgid "The username %name is too long: it must be %max characters or less."
+msgstr ""
+"Brugernavnet %username er for langt. Det skal være kortere end %max tegn."
+
+msgid "You must enter an e-mail address."
+msgstr "Du skal indtaste en e-mail-adresse."
+
+msgid "Who's online"
+msgstr "Hvem er online"
+
+msgid "User list length"
+msgstr "Længde af brugerliste"
+
+msgid "Online users"
+msgstr "Brugere online"
+
+msgid "Enter the password that accompanies your username."
+msgstr "Indtast adgangskoden der hører til dit brugernavn."
+
+msgid ""
+"The name %name is registered using a reserved e-mail address and therefore "
+"could not be logged in."
+msgstr ""
+"Navnet %name er registreret med en reserveret e-mail-adresse og kan derfor "
+"ikke logge ind."
+
+msgid "Signature settings"
+msgstr "Indstillinger for signatur"
+
+msgid ""
+"The signature input format has been set to a format you don't have access "
+"to. It will be changed to a format you have access to when you save this "
+"page."
+msgstr ""
+"Signaturens inputformat er sat til et format, som du ikke har adgang til. "
+"Det vil blive ændret til et format, som du har adgang til, når du gemmer "
+"denne side."
+
+msgid "Delete picture"
+msgstr "Slet billede"
+
+msgid "Check this box to delete your current picture."
+msgstr "Marker dette felt for at slette dit nuværende billede."
+
+msgid "An administrator created an account for you at !site"
+msgstr "En administrator har oprettet en konto til dig på !site"
+
+msgid ""
+"!username,\n"
+"\n"
+"A site administrator at !site has created an account for you. You may now "
+"log in to !login_uri using the following username and password:\n"
+"\n"
+"username: !username\n"
+"password: !password\n"
+"\n"
+"You may also log in by clicking on this link or copying and pasting it in "
+"your browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"This is a one-time login, so it can be used only once.\n"
+"\n"
+"After logging in, you will be redirected to !edit_uri so you can change your "
+"password.\n"
+"\n"
+"\n"
+"--  !site team"
+msgstr ""
+"!username,\n"
+"\n"
+"En administrator på !site har oprettet en konto til dig. Du kan logge ind "
+"på !login_uri med følgende brugernavn og adgangskode:\n"
+"\n"
+"Brugernavn: !username\n"
+"Adgangskode: !password\n"
+"\n"
+"Du kan også logge ind ved at klikke på følgende link eller ved at kopiere og "
+"indsætte det i din browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"Dette er et engangs-login, så det kan kun bruges én gang.\n"
+"\n"
+"Når du er logget ind, bliver du omdirigeret til !edit_uri, så du kan skifte "
+"din adgangskode.\n"
+"\n"
+"\n"
+"-- !site holdet"
+
+msgid "Account details for !username at !site (pending admin approval)"
+msgstr ""
+"Konto detaljer for !username på !site (afventer godkendelse af administrator)"
+
+msgid ""
+"!username,\n"
+"\n"
+"Thank you for registering at !site. Your application for an account is "
+"currently pending approval. Once it has been approved, you will receive "
+"another e-mail containing information about how to log in, set your "
+"password, and other details.\n"
+"\n"
+"\n"
+"--  !site team"
+msgstr ""
+"!username,\n"
+"\n"
+"Tak fordi du har registreret dig som bruger på !site. Din konto afventer "
+"godkendelse af administratoren. Når den er givet, vil du modtage en e-mail "
+"med information om, hvordan du logger ind, vælger en adgangskode og andre "
+"detaljer.\n"
+"\n"
+"\n"
+"-- !site holdet"
+
+msgid "Replacement login information for !username at !site"
+msgstr "Ny login-information for !username på !site"
+
+msgid ""
+"!username,\n"
+"\n"
+"A request to reset the password for your account has been made at !site.\n"
+"\n"
+"You may now log in to !uri_brief by clicking on this link or copying and "
+"pasting it in your browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"This is a one-time login, so it can be used only once. It expires after one "
+"day and nothing will happen if it's not used.\n"
+"\n"
+"After logging in, you will be redirected to !edit_uri so you can change your "
+"password."
+msgstr ""
+"!username,\n"
+"\n"
+"Der er lavet en forespørgsel om at nulstille adgangskoden for din konto på !"
+"site.\n"
+"\n"
+"Du kan logge ind på !uri_brief ved at klikke på følgende link eller kopiere "
+"det til din browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"Dette er et engangs-login. Det udløber efter én dag. Der sker ikke noget "
+"hvis du ikke bruger det.\n"
+"\n"
+"Når du har logget ind vil du blive viderestillet til !edit_uri så du kan "
+"ændre din adgangskode."
+
+msgid "Account details for !username at !site (approved)"
+msgstr "Kontoinformation for !username på !site (godkendt)"
+
+msgid ""
+"!username,\n"
+"\n"
+"Your account at !site has been activated.\n"
+"\n"
+"You may now log in by clicking on this link or copying and pasting it in "
+"your browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"This is a one-time login, so it can be used only once.\n"
+"\n"
+"After logging in, you will be redirected to !edit_uri so you can change your "
+"password.\n"
+"\n"
+"Once you have set your own password, you will be able to log in to !"
+"login_uri in the future using:\n"
+"\n"
+"username: !username\n"
+msgstr ""
+"!username,\n"
+"\n"
+"Din konto på !site er blevet aktiveret.\n"
+"\n"
+"Du kan logge ind ved at klikke på følgende link eller ved at kopiere og "
+"indsætte det i din browser:\n"
+"\n"
+"!login_url\n"
+"\n"
+"Dette er et engangs-login, så den kan kun bruges én gang.\n"
+"\n"
+"Når du er logget ind, bliver du omdirigeret til !edit_uri, så du kan skifte "
+"din adgangskode.\n"
+"\n"
+"Du vil fremover kunne logge ind på !login_uri med:\n"
+"\n"
+"brugernavn: !username\n"
+
+msgid "Account details for !username at !site (blocked)"
+msgstr "Kontoinformation for !username på !site (blokeret)"
+
+msgid ""
+"!username,\n"
+"\n"
+"Your account on !site has been blocked."
+msgstr ""
+"!username,\n"
+"\n"
+"Din konto på !site er blevet blokeret."
+
+msgid "Account details for !username at !site (deleted)"
+msgstr "Kontoinformation for !username på !site (slettet)"
+
+msgid ""
+"!username,\n"
+"\n"
+"Your account on !site has been deleted."
+msgstr ""
+"!username,\n"
+"\n"
+"Din konto på !site er blevet slettet."
+
+msgid "Unblock the selected users"
+msgstr "Fjern blokering af valgte brugere"
+
+msgid "Block the selected users"
+msgstr "Bloker valgte brugere"
+
+msgid "Delete the selected users"
+msgstr "Slet valgte brugere"
+
+msgid ""
+"The user module allows users to register, login, and log out. Users benefit "
+"from being able to sign on because it associates content they create with "
+"their account and allows various permissions to be set for their roles. The "
+"user module supports user roles which establish fine grained permissions "
+"allowing each role to do only what the administrator wants them to. Each "
+"user is assigned to one or more roles. By default there are two roles "
+"<em>anonymous</em> - a user who has not logged in, and <em>authenticated</"
+"em> a user who has signed up and who has been authorized."
+msgstr ""
+"Brugermodulet lader brugere registrere sig, logge på og logge af. Brugere "
+"har fordel af at registrere sig fordi det knytter det indhold de opretter "
+"til deres konto og tillader forskellige tilladelser at blive tildelt deres "
+"roller. Brugermodulet understøtter brugerroller som kan opsætte findelte "
+"tilladelser der kun tillader hver rolle at gøre det som administratoren "
+"ønsker. Hver bruger knyttes til en eller flere roller. Som standard er der "
+"to roller: <em>anonym</em> - en bruger der ikke er logget på, og "
+"<em>godkendt</em> - en bruger der har oprettet en konto og som er logget på."
+
+msgid ""
+"Users can use their own name or handle and can specify personal "
+"configuration settings through their individual <em>My account</em> page. "
+"Users must authenticate by supplying a local username and password or "
+"through their OpenID, an optional and secure method for logging into many "
+"websites with a single username and password. In some configurations, users "
+"may authenticate using a username and password from another Drupal site, or "
+"through some other site-specific mechanism."
+msgstr ""
+"Brugere kan bruge deres eget navn eller kaldenavn og kan justere deres "
+"personlige indstillinger på deres individuelle <em>Min konto</em>-side. "
+"Registrerede bruger skal godkendes ved at indtaste et lokalt brugernavn og "
+"adgangskode eller ved at bruge deres OpenID, en valgfri og sikker metode til "
+"at logge på mange websites med ét brugernavn. Afhængig af de aktuelle "
+"indstillinger kan brugerne logge ind med brugernavn og adgangskode fra et "
+"andet Drupal-site eller via en anden site-specifik metode."
+
+msgid ""
+"A visitor accessing your website is assigned a unique ID, or session ID, "
+"which is stored in a cookie. The cookie does not contain personal "
+"information, but acts as a key to retrieve information from your site. Users "
+"should have cookies enabled in their web browser when using your site."
+msgstr ""
+"En besøgende på dit site tildeles en unik ID, en session ID, som gemmes i en "
+"cookie. Cookien indeholder ikke personlig information, men fungere som en "
+"nøgle til at hente information fra dit site. Brugeren skal have aktiveret "
+"cookies i deres browser når de besøger dit site."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@user"
+"\">User module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@user\">brugere</a> for yderligere "
+"information."
+
+msgid ""
+"Drupal allows users to register, login, log out, maintain user profiles, "
+"etc. Users of the site may not use their own names to post content until "
+"they have signed up for a user account."
+msgstr ""
+"Brugere kan registrere sig, logge ind, logge ud, vedligeholde brugerprofiler "
+"osv. En besøgende kan ikke skrive indlæg i eget navn før hun har oprettet en "
+"brugerkonto."
+
+msgid ""
+"This web page allows administrators to register new users. Users' e-mail "
+"addresses and usernames must be unique."
+msgstr ""
+"Administratorer kan oprette nye brugere manuelt. Brugeres e-mail-adresser og "
+"brugernavne skal være unikke."
+
+msgid ""
+"Set up username and e-mail address access rules for new <em>and</em> "
+"existing accounts (currently logged in accounts will not be logged out). If "
+"a username or e-mail address for an account matches any deny rule, but not "
+"an allow rule, then the account will not be allowed to be created or to log "
+"in. A host rule is effective for every page view, not just registrations."
+msgstr ""
+"Opret regler for brugernavne og e-mail-adresser for nye <em>og</em> "
+"eksisterende konti (brugere, der i øjeblikket er logget ind, bliver ikke "
+"logget ud). Hvis et brugernavn eller en e-mail-adresse svarer til en af "
+"afvis-reglerne men ikke en tillad-regel, vil en ny konto ikke kunne "
+"oprettes. En værtsregel gælder for alle sidevisninger, ikke kun oprettelse "
+"af en ny bruger."
+
+msgid ""
+"Permissions let you control what users can do on your site. Each user role "
+"(defined on the <a href=\"@role\">user roles page</a>) has its own set of "
+"permissions. For example, you could give users classified as \"Administrators"
+"\" permission to \"administer nodes\" but deny this power to ordinary, "
+"\"authenticated\" users. You can use permissions to reveal new features to "
+"privileged users (those with subscriptions, for example). Permissions also "
+"allow trusted users to share the administrative burden of running a busy "
+"site."
+msgstr ""
+"Tilladelser bestemmer hvad brugerne kan foretage sig på sitet. Hver "
+"brugerrolle (oprettet under <a href=\"@role\">brugerroller</a>) har sine "
+"egne tilladelser. Du kan f.eks. give brugerne med rollen \"administrator\" "
+"tilladelsen \"administrér indhold\" og fjerne denne mulighed for almindelige "
+"brugere. Du kan også bruge tilladelser til at give særlige muligheder til "
+"priviligerede brugere eller brugere som hjælper med at administrere sitet."
+
+msgid ""
+"<p>Roles allow you to fine tune the security and administration of Drupal. A "
+"role defines a group of users that have certain privileges as defined in <a "
+"href=\"@permissions\">user permissions</a>. Examples of roles include: "
+"anonymous user, authenticated user, moderator, administrator and so on. In "
+"this area you will define the <em>role names</em> of the various roles. To "
+"delete a role choose \"edit\".</p><p>By default, Drupal comes with two user "
+"roles:</p>\n"
+"      <ul>\n"
+"      <li>Anonymous user: this role is used for users that don't have a user "
+"account or that are not authenticated.</li>\n"
+"      <li>Authenticated user: this role is automatically granted to all "
+"logged in users.</li>\n"
+"      </ul>"
+msgstr ""
+"<p>Roller bruges til at justere sikkerheden og administrationen af Drupal. "
+"En rolle beskriver en gruppe af brugere med bestemte privilegier defineret "
+"under <a href=\"@permissions\">tilladelser</a>. Eksempler på roller er: "
+"anonym bruger, godkendt bruger, godkender, administrator osv. Her bestemmer "
+"du <em>navnene</em> på de forskellige roller. Klik på \"redigér rolle\" for "
+"at slette en rolle.</p><p>Som standard indeholder Drupal to roller:</p>\n"
+"<ul>\n"
+"<li>Anonym bruger: bruges til brugere, der ikke har en konto, eller som ikke "
+"er godkendt.</li>\n"
+"<li>Godkendt bruger: tildeles automatisk til godkendte brugere.</li>\n"
+"</ul>"
+
+msgid ""
+"Enter a simple pattern (\"*\" may be used as a wildcard match) to search for "
+"a username or e-mail address. For example, one may search for \"br\" and "
+"Drupal might return \"brian\", \"brad\", and \"brenda@example.com\"."
+msgstr ""
+"Indtast et simpelt mønster (\"*\" kan bruges som joker) for at søge efter et "
+"brugernavn. Søger du efter \"br\" kan Drupal f.eks. returnere \"brian\", "
+"\"brad\" og \"brenda@example.com\"."
+
+msgid ""
+"Welcome to Drupal. You are now logged in as user #1, which gives you full "
+"control over your website."
+msgstr ""
+"Velkommen til Drupal. Du er nu logget ind som bruger nummer 1, hvilket giver "
+"dig fuld kontrol over dit site."
+
+msgid ""
+"</p><p> Your password is <strong>%pass</strong>. You may change your "
+"password below.</p>"
+msgstr ""
+"</p><p> Din adgangskode er <strong>%pass</strong>. Du kan skifte din "
+"adgangskode herunder.</p>"
+
+msgid "New external user: %name using module %module."
+msgstr "Ny ekstern bruger: %user via modulet %module."
+
+msgid "Deleted user: %name %email."
+msgstr "Bruger slettet: %name %email."
+
+msgid "administer permissions"
+msgstr "administrér tilladelser"
+
+msgid "administer users"
+msgstr "administrér brugere"
+
+msgid "access user profiles"
+msgstr "tilgå brugerprofiler"
+
+msgid "change own username"
+msgstr "skift eget brugernavn"
+
+msgid ""
+"Configure default behavior of users, including registration requirements, e-"
+"mails, and user pictures."
+msgstr ""
+"Brugerindstillinger, som f.eks. krav til registrering, e-mails og billeder."
+
+msgid "Determine access to features by selecting permissions for roles."
+msgstr ""
+"Bestem adgang til forskellige funktioner ved at give tilladelser til roller."
+
+msgid "Edit role"
+msgstr "Redigér rolle"
+
+msgid "Access rules"
+msgstr "Kontoregler"
+
+msgid ""
+"List and create rules to disallow usernames, e-mail addresses, and IP "
+"addresses."
+msgstr ""
+"Vis og opret regler til at forbyde brugernavne, e-mail-adresser og IP-"
+"adresser."
+
+msgid "Check rules"
+msgstr "Tjek regler"

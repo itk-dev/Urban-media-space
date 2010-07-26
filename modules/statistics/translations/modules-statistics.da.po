@@ -1,0 +1,301 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2010-03-31 09:35+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Enable access log"
+msgstr "Aktivér besøgslog"
+
+msgid "Discard access logs older than"
+msgstr "Slet loglinjer ældre end"
+
+msgid "Url"
+msgstr "URL"
+
+msgid "Top pages"
+msgstr "Populære sider"
+
+msgid "Recent hits"
+msgstr "Seneste besøg"
+
+msgid "Average page generation time"
+msgstr "Gennemsnitlig tid til opbygning af side"
+
+msgid "How many content items to display in \"day\" list."
+msgstr "Hvor mange indlæg der vises i listen \"Dagens\"."
+
+msgid "Number of day's top views to display"
+msgstr "Populært i dag"
+
+msgid "Number of all time views to display"
+msgstr "Populært gennem tiden"
+
+msgid "Number of most recent views to display"
+msgstr "Seneste"
+
+msgid "Hits"
+msgstr "Besøg"
+
+msgid "Last visit"
+msgstr "Seneste besøg"
+
+msgid "1 read"
+msgid_plural "@count reads"
+msgstr[0] "1 visning"
+msgstr[1] "@count visninger"
+
+msgid "access statistics"
+msgstr "tilgå statistik"
+
+msgid "view post access counter"
+msgstr "vis tilgangstæller"
+
+msgid "Total page generation time"
+msgstr "Side bygget på"
+
+msgid "%time ms"
+msgstr "%time ms"
+
+msgid "Top pages in the past %interval"
+msgstr "Populære sider i de(n) seneste %interval"
+
+msgid "unban"
+msgstr "ophæv bandlysning"
+
+msgid "ban"
+msgstr "bandlys"
+
+msgid "Top visitors in the past %interval"
+msgstr "Populære brugere i de(n) seneste %interval"
+
+msgid "Top referrers in the past %interval"
+msgstr "Mest aktive henvisere i de(n) seneste %interval"
+
+msgid "Log each page access. Required for referrer statistics."
+msgstr ""
+"Registrerer hvem der besøger dine sider. Er nødvendig for at lave statistik "
+"over sider, der henviser til dit site."
+
+msgid ""
+"Older access log entries (including referrer statistics) will be "
+"automatically discarded. (Requires a correctly configured <a href=\"@cron"
+"\">cron maintenance task</a>.)"
+msgstr ""
+"Ældre registreringer i besøgsloggen (inklusiv statistik over henvisende "
+"sider) slettes automatisk. (Kræver at cron er <a href=\"@cron\">korrekt "
+"indstillet</a>.)"
+
+msgid "Content viewing counter settings"
+msgstr "Tællere"
+
+msgid "Count content views"
+msgstr "Tæl visninger"
+
+msgid "Increment a counter each time content is viewed."
+msgstr "Forøg en tæller hver gang indhold vises"
+
+msgid ""
+"The statistics module keeps track of numerous site usage statistics, "
+"including the number of times, and from where, each of your posts is viewed. "
+"These statistics are useful in determining how users are interacting with "
+"each other and with your site, and are required for the display of some "
+"Drupal blocks."
+msgstr ""
+"Statistikmodulet holder styr på talrige statistikker om brugen af sitet. Det "
+"tæller hvor mange gange, og hvorfra, hvert af dine indlæg læses. "
+"Statistikmodulet kan lære dig mange nyttige ting om hvordan brugerne "
+"interagerer med hinanden og med dit site, og er nødvendigt for at kunne vise "
+"nogle af Drupals blokke."
+
+msgid "The statistics module provides:"
+msgstr "Statistik-modulet tilbyder:"
+
+msgid ""
+"a counter for each post on your site that increments each time the post is "
+"viewed. (Enable <em>Count content views</em> on the <a href=\"@accesslog"
+"\">access log settings page</a>, and determine if the post access counters "
+"should be visible to any user roles on the <a href=\"@permissions"
+"\">permissions page</a>.)"
+msgstr ""
+"en tæller for hvert indlæg på sitet, som øges hver gang et indlæg vises. "
+"(Aktiver <em>Tæl visninger</em> under <a href=\"@accesslog\">indstillinger "
+"for tilgangslog</a>, og angiv om tælleren skal være synlig for brugerroller "
+"under <a href=\"@permissions\">tilladelser</a>.)"
+
+msgid ""
+"a <a href=\"@recent-hits\">recent hits</a> log that displays information "
+"about the latest activity on your site, including the URL and title of the "
+"page accessed, the user name (if available) and IP address of the accessing "
+"party."
+msgstr ""
+"en log af <a href=\"@recent-hits\">seneste besøg</a> som viser information "
+"om den seneste aktivitet på dit site, inklusiv URL og titel på den besøgte "
+"side, brugernavnet (hvis det er tilgængeligt) og den besøgendes IP adresse."
+
+msgid ""
+"a <a href=\"@top-referrers\">top referrers</a> log that displays the "
+"referring parties for your site visits (where your visitors came from)."
+msgstr ""
+"en log af <a href=\"@top-referrers\">aktive henvisere</a> som viser hvilke "
+"sites dine besøgende kommer fra."
+
+msgid ""
+"a <a href=\"@top-pages\">top pages</a> log that displays site content in "
+"descending order by number of views."
+msgstr ""
+"en log af <a href=\"@top-pages\">populære sider</a> som viser indholdet i "
+"faldende orden sorteret efter antal visninger."
+
+msgid ""
+"a <a href=\"@top-visitors\">top visitors</a> log that displays the most "
+"active users on your site."
+msgstr ""
+"en log af <a href=\"@top-visitors\">aktive besøgende</a> som viser de mest "
+"aktive bruger på dit site."
+
+msgid ""
+"a <em>Popular content</em> block that displays the day's most viewed "
+"content, the all-time most viewed content, and the last content viewed. "
+"(Enable the <em>Popular content</em> block on the <a href=\"@blocks\">blocks "
+"administration page</a>.)"
+msgstr ""
+"en blok med <em>Populært indhold</em> som viser dagens mest sete indhold, "
+"det mest sete indhold gennem tiden, og det senest sete indhold. (Aktiver "
+"blokken <em>Populært indhold</em> under <a href=\"@blocks"
+"\">blokadministrationen</a>.)"
+
+msgid "Configuring the statistics module"
+msgstr "Indstilling af statistikmodulet"
+
+msgid ""
+"When the <em>Enable access log</em> setting on the <a href=\"@accesslog"
+"\">access log settings page</a> is enabled, data about every page accessed "
+"(including the remote host's IP address, referrer, node accessed, and user "
+"name) is stored in the access log. The access log must be enabled for the <a "
+"href=\"@recent-hits\">recent hits</a>, <a href=\"@top-referrers\">top "
+"referrers</a>, <a href=\"@top-pages\">top pages</a>, and <a href=\"@top-"
+"visitors\">top visitors</a> log pages to function. Enabling the access log "
+"adds one additional database call per page displayed by Drupal."
+msgstr ""
+"Når indstillingen <em>Aktiver tilgangslog</em> er aktiveret under <a href="
+"\"@accesslog\">indstillinger for tilgangslog</a> gemmes data om hver enkelt "
+"sidevisning (inklusiv den besøgendes IP adresse, henviser, det viste "
+"indholdselement og brugernavn) i tilgangsloggen. Tilgangsloggen skal være "
+"aktiv for at siderne <a href=\"@recent-hits\">seneste besøg</a>, <a href="
+"\"@top-referrers\">aktive henvisere</a>, <a href=\"@top-pages\">populære "
+"sider</a> og <a href=\"@top-visitors\">aktive brugere</a> virker. "
+"Adgangsloggen tilføjer ét databasekald til hver side, der vises af Drupal."
+
+msgid ""
+"The <em>Discard access logs older than</em> setting on the <a href="
+"\"@accesslog\">access log settings page</a> specifies the length of time "
+"entries are retained in the access log before they are deleted. Automatic "
+"access log entry deletion requires a correctly configured <a href=\"@cron"
+"\">cron maintenance task</a>."
+msgstr ""
+"Indstillingen <em>Slet loglinjer ældre end</em> er under <a href=\"@accesslog"
+"\">indstillinger for tilgangslog</a> angiver hvor lang tid loglinjer gemmes "
+"før de slettes. Automatisk sletning af loglinjer kræver at cron er <a href="
+"\"@cron\">indstillet korrekt</a>."
+
+msgid ""
+"The <em>Count content views</em> setting on the <a href=\"@accesslog"
+"\">access log settings page</a> enables a counter for each post on your site "
+"that increments each time the post is viewed. This option must be enabled to "
+"provide post-specific access counts. Enabling this option adds one "
+"additional database call per each post displayed by Drupal."
+msgstr ""
+"Indstillingen <em>Tæl visninger</em> er under <a href=\"@accesslog"
+"\">indstillinger for tilgangslog</a> aktiverer en tæller på hvert indlæg, "
+"som øges hver gang indlægget vises. Funktionen tilføjer ét databasekald til "
+"hvert indlæg, der vises af Drupal."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@statistics"
+"\">Statistics module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@statistics\">statistik</a> for "
+"yderligere information."
+
+msgid ""
+"Settings for the statistical information that Drupal will keep about the "
+"site. See <a href=\"@statistics\">site statistics</a> for the actual "
+"information."
+msgstr ""
+"Bestem hvilken statistisk information Drupal indsamler. Se <a href="
+"\"@statistics\">statistik</a> for den egentlige information."
+
+msgid "This page displays the site's most recent hits."
+msgstr "Denne side viser sitets seneste besøg."
+
+msgid ""
+"This page displays all external referrers, or external references to your "
+"website."
+msgstr ""
+"Denne side viser statistik for eksterne links. Dette er links til dit site "
+"der stammer fra andre sites."
+
+msgid ""
+"When you ban a visitor, you prevent the visitor's IP address from accessing "
+"your site. Unlike blocking a user, banning a visitor works even for "
+"anonymous users. This is most commonly used to block resource-intensive bots "
+"or web crawlers."
+msgstr ""
+"Når du bandlyser en besøgende, forhindrer du en bestemt IP adresse i at "
+"besøge sitet. I modsætning til blokering af brugere virker bandlysning også "
+"for anonyme brugere. Det mest almindelige er at bandlyse robotter o.l. der "
+"bruger for mange ressourcer."
+
+msgid "Popular content"
+msgstr "Populært indhold"
+
+msgid "How many content items to display in \"all time\" list."
+msgstr "Hvor mange indlæg der vises i listen \"Gennem tiden\"."
+
+msgid "How many content items to display in \"recently viewed\" list."
+msgstr "Hvor mange indlæg der vises i listen \"Seneste\"."
+
+msgid "Today's:"
+msgstr "I dag:"
+
+msgid "All time:"
+msgstr "Gennem tiden:"
+
+msgid "Last viewed:"
+msgstr "Senest læst:"
+
+msgid "View pages that have recently been visited."
+msgstr "Vis senest besøgte sider."
+
+msgid "View pages that have been hit frequently."
+msgstr "Vis hyppigt besøgte sider."
+
+msgid "Top visitors"
+msgstr "Hyppige brugere"
+
+msgid "View visitors that hit many pages."
+msgstr "Vis brugere der har besøgt mange sider."
+
+msgid "Top referrers"
+msgstr "Hyppige henvisninger"
+
+msgid "View top referrers."
+msgstr "Vis seneste henvisere."
+
+msgid "View access log."
+msgstr "Vis besøgslog."
+
+msgid "Control details about what and how your site logs."
+msgstr "Bestem hvad der logføres og hvordan."
+
+msgid "Track page visits"
+msgstr "Følg sidebesøg"

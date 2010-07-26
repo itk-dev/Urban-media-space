@@ -1,0 +1,114 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2010-03-29 12:25+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "No log messages available."
+msgstr "Ingen logbeskeder til rådighed."
+
+msgid "Location"
+msgstr "Lokation"
+
+msgid "Severity"
+msgstr "Grad"
+
+msgid "Count"
+msgstr "Antal"
+
+msgid "Filter log messages"
+msgstr "Filtrér meddelelser"
+
+msgid "You must select something to filter by."
+msgstr "Du skal vælge, hvad du vil filtrere efter."
+
+msgid "Discard log entries above the following row limit"
+msgstr "Kassér meddelelser efter følgende tabelrække"
+
+msgid ""
+"The maximum number of rows to keep in the database log. Older entries will "
+"be automatically discarded. (Requires a correctly configured <a href=\"@cron"
+"\">cron maintenance task</a>.)"
+msgstr ""
+"Hvor mange rækker der gemmes i databaseloggen. Gamle meddelelser slettes "
+"automatisk. (Kræver at <a href=\"@cron\">cron er korrekt indstillet</a>.)"
+
+msgid ""
+"The dblog module monitors your system, capturing system events in a log to "
+"be reviewed by an authorized individual at a later time. This is useful for "
+"site administrators who want a quick overview of activities on their site. "
+"The logs also record the sequence of events, so it can be useful for "
+"debugging site errors."
+msgstr ""
+"Databaseloggen overvåger dit system og gemmer hændelser i en log som kan "
+"gennemses af betroede individer på et senere tidspunkt. Det er nyttigt for "
+"administratorer, som ønsker et hurtigt overblik over aktiviterne på deres "
+"site. Loggen registrerer rækkefølgen af hændelser, så den kan være nyttig "
+"ved fejlsøgning på sitet."
+
+msgid ""
+"The dblog log is simply a list of recorded events containing usage data, "
+"performance data, errors, warnings and operational information. "
+"Administrators should check the dblog report on a regular basis to ensure "
+"their site is working properly."
+msgstr ""
+"Databaseloggen er en liste over hændelser, der indeholder data om brug, "
+"ydelse, fejl, advarsler og driftsinformation. Administratorer bør gennemgå "
+"loggen med jævne mellemrum, for at sikre at sitet fungerer korrekt."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@dblog"
+"\">Dblog module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@blog\">databaseloggen</a> for yderligere "
+"information."
+
+msgid ""
+"The dblog module monitors your website, capturing system events in a log to "
+"be reviewed by an authorized individual at a later time. The dblog log is "
+"simply a list of recorded events containing usage data, performance data, "
+"errors, warnings and operational information. It is vital to check the dblog "
+"report on a regular basis as it is often the only way to tell what is going "
+"on."
+msgstr ""
+"Databaseloggen overvåger dit site og gemmer systemhændelser i en log, som "
+"kan gennemses af betroede brugere på et senere tidspunkt. Databaseloggen er "
+"en liste over hændelser, der viser brug, ydeevne, fejl, advarsler og "
+"driftsinformation. Det er vigtigt at gennemgå databaseloggen med jævne "
+"mellemrum, da den ofte er den eneste kilde til information om hvad der "
+"foregår."
+
+msgid ""
+"Settings for logging to the Drupal database logs. This is the most common "
+"method for small to medium sites on shared hosting. The logs are viewable "
+"from the admin pages."
+msgstr ""
+"Indstillinger for logføring til Drupals databaselog. Den mest anvendte "
+"metode på små og mellemstore sites på delt hosting. Logs kan ses på "
+"administrationssiderne."
+
+msgid "Recent log entries"
+msgstr "Seneste loglinjer"
+
+msgid "View events that have recently been logged."
+msgstr "Vis seneste hændelser."
+
+msgid "Top 'page not found' errors"
+msgstr "Hyppige 'side ikke fundet'-fejl"
+
+msgid "View 'page not found' errors (404s)."
+msgstr "Vis 'side ikke fundet'-fejl (404)."
+
+msgid "Top 'access denied' errors"
+msgstr "Hyppige 'adgang nægtet'-fejl"
+
+msgid "View 'access denied' errors (403s)."
+msgstr "Vis 'adgang nægtet'-fejl (403)."

@@ -1,0 +1,236 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 15:26+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Wrong username or password."
+msgstr "Forkert brugernavn eller adgangskode."
+
+msgid ""
+"The maximum size of all files a user can have on the site (in megabytes)."
+msgstr ""
+"Maksimal størrelse af alle filer en bruger kan have på sitet (i megabytes)."
+
+msgid "The maximum size of a file a user can upload (in megabytes)."
+msgstr "Maksimal størrelse af en fil som en bruger kan uploade (i megabytes)."
+
+msgid "File settings"
+msgstr "Fil-indstillinger"
+
+msgid "Returns information about an author in the system."
+msgstr "Returnerer information om en forfatter i systemet."
+
+msgid "Creates a new post, and optionally publishes it."
+msgstr "Opretter et nyt indlæg og udgiver det (valgfrit)."
+
+msgid "Updates the information about an existing post."
+msgstr "Opdaterer information om et eksisterende indlæg."
+
+msgid "Returns information about a specific post."
+msgstr "Returnerer information om et bestemt indlæg."
+
+msgid "Deletes a post."
+msgstr "Sletter et indlæg."
+
+msgid "Returns a list of the most recent posts in the system."
+msgstr "Returnerer en liste over systemets seneste indlæg."
+
+msgid "Updates information about an existing post."
+msgstr "Opdaterer information om et eksisterende indlæg."
+
+msgid "Uploads a file to your webserver."
+msgstr "Overfører en fil til webserveren."
+
+msgid "Returns a list of all categories to which the post is assigned."
+msgstr "Returnerer en liste over indlæggets tilknyttede kategorier."
+
+msgid ""
+"Returns a bandwidth-friendly list of the most recent posts in the system."
+msgstr "Returnerer en båndbreddevenlig liste af de seneste indlæg i systemet."
+
+msgid "Sets the categories for a post."
+msgstr "Vælger kategorier for et indlæg."
+
+msgid "Retrieve information about the XML-RPC methods supported by the server."
+msgstr "Hent information om hvilke XML-RPC metoder serveren understøtter."
+
+msgid ""
+"Retrieve information about the text formatting plugins supported by the "
+"server."
+msgstr ""
+"Hent information om hvilke plugins til tekstformatering serveren "
+"understøtter."
+
+msgid "Error storing post."
+msgstr "Kan ikke gemme indlæg."
+
+msgid "You do not have permission to update this post."
+msgstr "Du har ikke tilladelse til at opdatere dette indlæg."
+
+msgid ""
+"It is not possible to upload the file, because it exceeded the maximum "
+"filesize of @maxsize."
+msgstr ""
+"Det er ikke muligt at uploade filen, da den er større end den maksimale "
+"filstørrelse på @maxsize."
+
+msgid ""
+"The file can not be attached to this post, because the disk quota of @quota "
+"has been reached."
+msgstr ""
+"Filen kan ikke vedhæftes dette indlæg, da disk-kvoten på @quota er blevet "
+"nået."
+
+msgid ""
+"It is not possible to upload the file, because it is only possible to upload "
+"files with the following extensions: @extensions"
+msgstr ""
+"Det er ikke muligt at uploade filen, da det kun er muligt at uploade filer "
+"med disse endelser: @extensions"
+
+msgid "No file sent."
+msgstr "Ingen fil sendt."
+
+msgid "Error storing file."
+msgstr "Kan ikke gemme fil."
+
+msgid "Invalid post."
+msgstr "Ugyldigt indhold."
+
+msgid "The default maximum file size a user can upload."
+msgstr "Den maksimale filstørrelse en bruger kan uploade."
+
+msgid "RSD"
+msgstr "RSD"
+
+msgid "administer content with blog api"
+msgstr "administrér indhold med blog api"
+
+msgid ""
+"The Blog API module allows your site's users to access and post to their "
+"blogs from external blogging clients. External blogging clients are "
+"available for a wide range of desktop operating systems, and generally "
+"provide a feature-rich graphical environment for creating and editing posts."
+msgstr ""
+"Med Blog API-modulet kan brugerne oprette indlæg med eksterne blogværktøjer, "
+"der gør det nemt at oprette og redigere indlæg. Der findes blogværktøjer til "
+"en bred vifte af operativsystemer."
+
+msgid ""
+"<a href=\"@ecto-link\">Ecto</a>, a blogging client available for both Mac OS "
+"X and Microsoft Windows, can be used with Blog API. Blog API also supports "
+"<a href=\"@blogger-api\">Blogger API</a>, <a href=\"@metaweblog-api"
+"\">MetaWeblog API</a>, and most of the <a href=\"@movabletype-api\">Movable "
+"Type API</a>. Blogging clients and other services (e.g. <a href=\"@flickr"
+"\">Flickr's</a> \"post to blog\") that support these APIs may also be "
+"compatible."
+msgstr ""
+"<a href=\"@ecto-link\">Ecto</a>, et blogværktøj der findes til både Mac OS X "
+"og Microsoft Windows, kan bruges med  Blog API. Blog API understøtter også "
+"<a href=\"@blogger-api\">Blogger API</a>, <a href=\"@metaweblog-api"
+"\">MetaWeblog API</a> og det meste af <a href=\"@movabletype-api\">Movable "
+"Type API</a>. Blogværktøjer og andre tjenester (f.eks. <a href=\"@flickr"
+"\">Flickrs</a> \"post to blog\") der understøtter disse APIer er muligvis "
+"også understøttet."
+
+msgid ""
+"Select the content types available to external clients on the <a href="
+"\"@blogapi-settings\">Blog API settings page</a>. If supported and "
+"available, each content type will be displayed as a separate \"blog\" by the "
+"external client."
+msgstr ""
+"På <a href=\"@blogapi-settings\">Blog API-siden</a> kan du vælge hvilke "
+"indholdstyper, der skal gøres tilgængelige for eksterne værktøjer. Afhængigt "
+"af klienten vil hver indholdstype optræde som en separat \"blog\"."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@blogapi"
+"\">Blog API module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@blogapi\">Blog API</a> for yderligere "
+"information."
+
+msgid "Returns a list of blogs to which an author has posting privileges."
+msgstr ""
+"Returnerer en liste over weblogs som forfatteren har tilladelse til at "
+"oprette indhold i."
+
+msgid "Returns a list of all categories defined in the blog."
+msgstr "Returnerer en liste over alle webloggens kategorier."
+
+msgid ""
+"Publish (rebuild) all of the static files related to an entry from your "
+"blog. Equivalent to saving an entry in the system (but without the ping)."
+msgstr ""
+"Udgiv (genopbyg) alle statiske filer knyttet til et indlæg i din weblog. "
+"Svarer til at gemme et indlæg i systemet (men uden pinget)."
+
+msgid "You do not have permission to create this type of post."
+msgstr "Du har ikke tilladelse til at oprette indlæg af denne type."
+
+msgid ""
+"You do not have permission to publish this type of post. Please save it as a "
+"draft instead."
+msgstr ""
+"Du har ikke adgang til at udgive indhold af denne type. Gem det venligst som "
+"en kladde i stedet."
+
+msgid ""
+"You do not have permission to save this post as a draft. Please publish it "
+"instead."
+msgstr ""
+"Du har ikke adgang til at gemme indhold af denne type som en kladde. Udgiv "
+"det venligst i stedet."
+
+msgid "Invalid categories submitted."
+msgstr "Ugyldige kategorier indsendt."
+
+msgid "A category from the @vocabulary_name vocabulary is required."
+msgstr "En kategori fra ordforrådet @vocabulary_name er påkrævet."
+
+msgid "You may only choose one category from the @vocabulary_name vocabulary."
+msgstr "Du kan kun vælge én kategori fra ordforrådet @vocabulary_name."
+
+msgid "Error saving categories. This feature is not available."
+msgstr ""
+"Fejl ved forsøg på at gemme kategorier. Denne funktion er ikke tilgængelig."
+
+msgid "You do not have permission to edit this blog."
+msgstr "Du har ikke tilladelse til at redigere indlægget."
+
+msgid "Enable for external blogging clients"
+msgstr "Aktivér for eksterne blogværktøjer"
+
+msgid ""
+"Select the content types available to external blogging clients via Blog "
+"API. If supported, each enabled content type will be displayed as a separate "
+"\"blog\" by the external client."
+msgstr ""
+"Vælg de indholdstyper som skal gøres tilgængelige for eksterne blogværktøjer "
+"via Blog API. Afhængigt af klienten vil hver indholdstype optræde som en "
+"separat \"blog\"."
+
+msgid ""
+"Blog API module is not configured to support the %type content type, or you "
+"don't have sufficient permissions to post this type of content."
+msgstr ""
+"Enten er Blog API-modulet ikke indstillet til at understøtte indholdstypen %"
+"type, eller også har du ikke tilladelse til at oprette indhold af denne type."
+
+msgid "@type: added %title using blog API."
+msgstr "@type: %title tilføjet via blog API."
+
+msgid "@type: updated %title using Blog API."
+msgstr "@type: %title opdateret via blog API."
+
+msgid "Configure the content types available to external blogging clients."
+msgstr "Vælg hvilke indholdstyper der kan bruges af eksterne blog-klienter."

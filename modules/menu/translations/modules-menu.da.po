@@ -1,0 +1,312 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 14:39+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Add item"
+msgstr "Tilføj menupunkt"
+
+msgid "Menu item"
+msgstr "Menupunkt"
+
+msgid "Expanded"
+msgstr "Udvidet"
+
+msgid ""
+"The path this menu item links to. This can be an internal Drupal path such "
+"as %add-node or an external URL such as %drupal. Enter %front to link to the "
+"front page."
+msgstr ""
+"Stien dette menupunkt henviser til. Kan være en intern Drupal-sti som %add-"
+"node eller en ekstern URL som %drupal. Indtast %front for at henvise til "
+"forsiden."
+
+msgid ""
+"If selected and this menu item has children, the menu will always appear "
+"expanded."
+msgstr "Hvis menuen har underpunkter vil de altid blive vist."
+
+msgid "reset"
+msgstr "gendan"
+
+msgid "Add menu"
+msgstr "Tilføj menu"
+
+msgid "Are you sure you want to delete the custom menu item %item?"
+msgstr "Ønsker du at slette den tilpassede menu %item?"
+
+msgid "The menu item %title has been deleted."
+msgstr "Menupunktet %title slettet."
+
+msgid "Deleted menu item %title."
+msgstr "Menupunktet %title slettet."
+
+msgid "Edit menu"
+msgstr "Redigér menu"
+
+msgid "Delete menu"
+msgstr "Slet menu"
+
+msgid "Edit menu item"
+msgstr "Redigér menupunkt"
+
+msgid "Reset menu item"
+msgstr "Gendan menupunkt"
+
+msgid "Delete menu item"
+msgstr "Slet menupunkt"
+
+msgid "The description displayed when hovering over a menu item."
+msgstr "Beskrivelsen der vises når musen holdes over et menupunkt."
+
+msgid "No primary links"
+msgstr "Ingen primære links"
+
+msgid "Source for the primary links"
+msgstr "Primær linkkilde"
+
+msgid "Select what should be displayed as the primary links."
+msgstr "Vælg hvad der skal vises som primære links."
+
+msgid "No secondary links"
+msgstr "Ingen sekundære links"
+
+msgid "Source for the secondary links"
+msgstr "Sekundær linkkilde"
+
+msgid "Menu items that are not enabled will not be listed in any menu."
+msgstr "Menupunkter, der ikke er aktiveret, vises ikke i nogen menuer."
+
+msgid ""
+"Enter the name for your new menu. Remember to enable the newly created block "
+"in the <a href=\"@blocks\">blocks administration page</a>."
+msgstr ""
+"Indtast navnet på den nye menu. Husk at aktivere den nye blok på <a href="
+"\"@blocks\">administrationssiden</a> for blokke."
+
+msgid ""
+"To rearrange menu items, grab a drag-and-drop handle under the <em>Menu "
+"item</em> column and drag the items (or group of items) to a new location in "
+"the list. (Grab a handle by clicking and holding the mouse while hovering "
+"over a handle icon.) Remember that your changes will not be saved until you "
+"click the <em>Save configuration</em> button at the bottom of the page."
+msgstr ""
+"Tag fat i træk-og-slip håndtaget under <em>Menupunkt</em>-kolonnen og træk "
+"punkter (eller grupper af punkter) til en ny placering på listen. (Tag fat i "
+"et håndtag ved at klikke på det mens du holder musen over håndtagets ikon.) "
+"Husk at dine ændringer ikke gemmes før du klikker på knappen <em>Gem "
+"indstillinger</em> nederst på siden."
+
+msgid "List menus"
+msgstr "Vis menuer"
+
+msgid "Customize menu"
+msgstr "Tilpas menu"
+
+msgid "List items"
+msgstr "Vis menupunkter"
+
+msgid "Menus"
+msgstr "Menuer"
+
+msgid ""
+"Control your site's navigation menu, primary links and secondary links. as "
+"well as rename and reorganize menu items."
+msgstr ""
+"Tilpas sitets navigationsmenu, primære og sekundære links, organiser "
+"menupunkter."
+
+msgid "Are you sure you want to reset the item %item to its default values?"
+msgstr "Ønsker du at gendanne menupunktet %items standardværdi?"
+
+msgid "Any customizations will be lost. This action cannot be undone."
+msgstr "Alle tilpasninger vil gå tabt. Denne handling kan ikke fortrydes."
+
+msgid "The menu item was reset to its default settings."
+msgstr "Menupunktets standardindstillinger gendannet."
+
+msgid "administer menu"
+msgstr "administrér menu"
+
+msgid "There are no menu items yet."
+msgstr "Der er ingen menupunkter."
+
+msgid ""
+"The link text corresponding to this item that should appear in the menu."
+msgstr ""
+"Linkteksten, som svarer til dette menupunkt, der skal optræde i menuen."
+
+msgid "Menu name"
+msgstr "Navn"
+
+msgid ""
+"The machine-readable name of this menu. This text will be used for "
+"constructing the URL of the <em>menu overview</em> page for this menu. This "
+"name must contain only lowercase letters, numbers, and hyphens, and must be "
+"unique."
+msgstr ""
+"Menuens interne navn. Navnet bruges til at bygge URLen til "
+"<em>menuoversigten</em>. Navnet må kun indeholde små bogstaver, tal, "
+"understregninger og bindestreger, og skal være unikt."
+
+msgid "Are you sure you want to delete the custom menu %title?"
+msgstr "Ønsker du at slette menuen %title?"
+
+msgid ""
+"The menu name may only consist of lowercase letters, numbers, and hyphens."
+msgstr "Navnet må kun indeholde små bogstaver, tal og bindestreger."
+
+msgid "The menu already exists."
+msgstr "Menuen findes allerede."
+
+msgid ""
+"<strong>Warning:</strong> There is currently 1 menu item in %title. It will "
+"be deleted (system-defined items will be reset)."
+msgid_plural ""
+"<strong>Warning:</strong> There are currently @count menu items in %title. "
+"They will be deleted (system-defined items will be reset)."
+msgstr[0] ""
+"<strong>Advarsel:</strong> Der er 1 menupunkt i %title. Det bliver slettet "
+"(system-menupunkter gendannes)."
+msgstr[1] ""
+"<strong>Advarsel:</strong> Der er @count menupunkter i %title. Det bliver "
+"slettet (system-menupunkter gendannes)."
+
+msgid "The menu name can't be longer than 1 character."
+msgid_plural "The menu name can't be longer than @count characters."
+msgstr[0] "Navnet kan ikke være længere end 1 tegn."
+msgstr[1] "Navnet kan ikke være længere end @count tegn."
+
+msgid "Enter the title and path for your new menu item."
+msgstr "Indtast menupunktets titel og sti."
+
+msgid "The custom menu %title has been deleted."
+msgstr "Menuen %title slettet."
+
+msgid "Deleted custom menu %title and all its menu items."
+msgstr "Menuen %titel og alle menupunkter slettet."
+
+msgid "Default menu for content"
+msgstr "Standardmenu"
+
+msgid ""
+"Choose the menu to be the default in the menu options in the content "
+"authoring form."
+msgstr "Vælg hvilken menu der er valgt som standard på redigeringsformularen."
+
+msgid "Delete this menu item."
+msgstr "Slet menupunkt."
+
+msgid ""
+"The link text corresponding to this item that should appear in the menu. "
+"Leave blank if you do not wish to add this post to the menu."
+msgstr ""
+"Linkteksten som optræder i menuen. Lad feltet stå tomt hvis du ikke ønsker "
+"at tilføje indlægget til menuen."
+
+msgid ""
+"The menu module allows on-the-fly creation of menu links in the content "
+"authoring forms. The following option sets the default menu in which a new "
+"link will be added."
+msgstr ""
+"Menumodulet gør det muligt at oprette menu-links samtidig med at nyt indhold "
+"tilføjes. Det følgende valg angiver hvilken menu linket tilføjes til."
+
+msgid ""
+"Select what should be displayed as the secondary links. You can choose the "
+"same menu for secondary links as for primary links (currently %primary). If "
+"you do this, the children of the active primary menu link will be displayed "
+"as secondary links."
+msgstr ""
+"Vælg hvad der skal vises som sekundære links. Du kan vælge den samme menu "
+"til sekundære og primære links (pt. %primary). Hvis du gør det, vil "
+"underpunkter til det aktive primære link blive vist som sekundære links."
+
+msgid ""
+"The menu module provides an interface to control and customize Drupal's "
+"powerful menu system. Menus are a hierarchical collection of links, or menu "
+"items, used to navigate a website, and are positioned and displayed using "
+"Drupal's flexible block system. By default, three menus are created during "
+"installation: <em>Navigation</em>, <em>Primary links</em>, and <em>Secondary "
+"links</em>. The <em>Navigation</em> menu contains most links necessary for "
+"working with and navigating your site, and is often displayed in either the "
+"left or right sidebar. Most Drupal themes also provide support for "
+"<em>Primary links</em> and <em>Secondary links</em>, by displaying them in "
+"either the header or footer of each page. By default, <em>Primary links</em> "
+"and <em>Secondary links</em> contain no menu items but may be configured to "
+"contain custom menu items specific to your site."
+msgstr ""
+"Menumodulet fungerer som grænseflade til Drupals menusystem. Menuer er "
+"hierarkiske samlinger af links, eller menupunkter, som bruges til at "
+"navigere et site. De placeres og vises vha. Durpals fleksible blok-system. "
+"Som standard oprettes tre menuer under installationen: <em>Navigation</em>, "
+"<em>Primære links</em> og <em>Sekundære links</em>. <em>Navigationsmenuen</"
+"em> indeholder størstedelen af de links, der er nødvendig for at arbejde med "
+"og navigere på sitet, og den vises ofte i venstre eller højre spalte. De "
+"fleste Drupal temaer understøtter primære og sekundære links ved at vise dem "
+"i toppen eller bunden af siden. Som standard indeholder <em>Primære links</"
+"em> og <em>Sekundære links</em> ingen menupunkter, men de kan tilpasses med "
+"menupunkter der passer til dit site."
+
+msgid ""
+"The <a href=\"@menu\">menus page</a> displays all menus currently available "
+"on your site. Select a menu from this list to add or edit a menu item, or to "
+"rearrange items within the menu. Create new menus using the <a href=\"@add-"
+"menu\">add menu page</a> (the block containing a new menu must also be "
+"enabled on the <a href=\"@blocks\">blocks administration page</a>)."
+msgstr ""
+"<a href=\"@menu\">Menusiden</a> viser alle sitets menuer.Vælg en menu fra "
+"listen for at tilføje eller redigere menupunkter, eller for at ændre på "
+"rækkefølgen af menupunkter. Brug siden <a href=\"@add-menu\">tilføj menu</a> "
+"til at oprette nye menuer (blokken, der indholder den nye menu, skal "
+"aktivers under <a href=\"@blocks\">blokke</a>)."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@menu"
+"\">Menu module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@menu\">menuer</a> yderligere information."
+
+msgid ""
+"Menus are a collection of links (menu items) used to navigate a website. The "
+"menus currently available on your site are displayed below. Select a menu "
+"from this list to manage its menu items."
+msgstr ""
+"Menuer er samlinger af links (menupunkter), der bruges til at navigere på et "
+"site. Dit sites menuer vises herunder. Vælg en menu på listen for at "
+"håndtere dens menupunkter."
+
+msgid ""
+"The navigation menu is provided by Drupal and is the main interactive menu "
+"for any site. It is usually the only menu that contains personalized links "
+"for authenticated users, and is often not even visible to anonymous users."
+msgstr ""
+"Navigationsmenuen håndteres af Drupal og er sitets gennemgående interaktive "
+"menu. Det er normalt den eneste menu, der indholder tilpassede links for "
+"godkendte brugere, og den er ofte ikke synlig for anonyme brugere."
+
+msgid ""
+"Primary links are often used at the theme layer to show the major sections "
+"of a site. A typical representation for primary links would be tabs along "
+"the top."
+msgstr ""
+"Primære links bruges i temalaget til at vise sitets sektioner. De "
+"præsenteres typisk som faneblade øverst på siden."
+
+msgid ""
+"Secondary links are often used for pages like legal notices, contact "
+"details, and other secondary navigation items that play a lesser role than "
+"primary links"
+msgstr ""
+"Sekundære links bruges ofte til sider med juridisk information, "
+"kontaktinformation og andre sekundære elementer, som spiller en mindre rolle "
+"end de primære links."

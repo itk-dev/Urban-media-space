@@ -1,0 +1,180 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2010-03-31 09:35+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Closed"
+msgstr "Lukket"
+
+msgid "closed"
+msgstr "lukket"
+
+msgid "Question"
+msgstr "Spørgsmål"
+
+msgid "Poll duration"
+msgstr "Varighed"
+
+msgid "Votes"
+msgstr "Stemmer"
+
+msgid "Choice"
+msgstr "Valgmulighed"
+
+msgid "Results"
+msgstr "Resultater"
+
+msgid "Older polls"
+msgstr "Tidligere afstemninger"
+
+msgid "View the list of polls on this site."
+msgstr "Vis afstemningerne på dette site."
+
+msgid "Poll settings"
+msgstr "Indstillinger for afstemning"
+
+msgid "You must fill in at least two choices."
+msgstr "Du skal indtaste mindst to valgmuligheder."
+
+msgid "open"
+msgstr "åben"
+
+msgid ""
+"This table lists all the recorded votes for this poll. If anonymous users "
+"are allowed to vote, they will be identified by the IP address of the "
+"computer they used when they voted."
+msgstr ""
+"Tabellen viser alle stemmer i denne afstemning. Hvis anonyme brugere kan "
+"stemme, er de registreret med den IP-adresse, som stemmen blev afgivet fra."
+
+msgid "Cancel your vote"
+msgstr "Fortryd din stemme"
+
+msgid "View the current poll results."
+msgstr "Vis nuværende afstemningsresultat."
+
+msgid "vote on polls"
+msgstr "deltag i afstemning"
+
+msgid "cancel own vote"
+msgstr "fortryd egen stemme"
+
+msgid "inspect all votes"
+msgstr "se alle stemmer"
+
+msgid "Your vote was recorded."
+msgstr "Stemme registreret."
+
+msgid "Choice @n"
+msgstr "Valg @n"
+
+msgid ""
+"If the amount of boxes above isn't enough, click here to add more choices."
+msgstr ""
+"Hvis der ikke er nok felter, kan du klikke her for at tilføje flere "
+"valgmuligheder."
+
+msgid "More choices"
+msgstr "Flere valgmuligheder"
+
+msgid "Javascript Choice Form"
+msgstr "JavaScript valgformular"
+
+msgid ""
+"The poll module can be used to create simple polls for site users. A poll is "
+"a simple, multiple choice questionnaire which displays the cumulative "
+"results of the answers to the poll. Having polls on the site is a good way "
+"to receive feedback from community members."
+msgstr ""
+"Afstemningsmodulet kan bruges til at lave simple afstemninger for sitets "
+"brugere. En afstemning er et simpelt spørgsmål med flere svarmuligheder, der "
+"viser det samlede antal svar. At have en afstemning på sitet er en god måde "
+"at få respons fra brugerne."
+
+msgid ""
+"When creating a poll, enter the question being posed, as well as the "
+"potential choices (and beginning vote counts for each choice). The status "
+"and duration (length of time the poll remains active for new votes) can also "
+"be specified. Use the <a href=\"@poll\">poll</a> menu item to view all "
+"current polls. To vote in or view the results of a specific poll, click on "
+"the poll itself."
+msgstr ""
+"Når du opretter en afstemning skal du indtaste spørgsmålet, som du vil "
+"stille, og en liste over mulige svar (og indledende stemmetal for hvert "
+"valg). Status og varighed (hvor lang tid det er muligt at afgive sin stemme) "
+"kan også angives. Brug menupunktet <a href=\"@poll\">afstemning</a> til at "
+"se alle aktuelle afstemninger. Klik på en specifik afstemning for at se den "
+"resultat eller for at afgive din stemme."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@poll"
+"\">Poll module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@poll\">afstemninger</a> for yderligere "
+"information."
+
+msgid "Most recent poll"
+msgstr "Seneste afstemning"
+
+msgid ""
+"A <em>poll</em> is a question with a set of possible responses. A <em>poll</"
+"em>, once created, automatically provides a simple running count of the "
+"number of votes received for each response."
+msgstr ""
+"En <em>afstemning</em> er et spørgsmål med en række mulige svar. Når en "
+"<em>afstemning</em> er oprettet, foretages løbende optælling af stemmerne på "
+"de enkelte svarmuligheder."
+
+msgid "Poll status"
+msgstr "Status"
+
+msgid "When a poll is closed, visitors can no longer vote for it."
+msgstr "Når en afstemning er lukket, kan brugerne ikke længere afgive stemmer."
+
+msgid "After this period, the poll will be closed automatically."
+msgstr "Efter denne periode lukkes afstemningen automatisk."
+
+msgid "Votes for choice @n"
+msgstr "Stemmer for valg @n"
+
+msgid "Negative values are not allowed."
+msgstr "Negative værdier er ikke tilladt."
+
+msgid ""
+"Your vote could not be recorded because you did not select any of the "
+"choices."
+msgstr ""
+"Du havde ikke markeret en valgmulighed, så din stemme blev ikke registreret."
+
+msgid "Add another choice"
+msgstr "Tilføj valgmulighed"
+
+msgid "Vote count"
+msgstr "Stemmer"
+
+msgid "create poll content"
+msgstr "opret afstemninger"
+
+msgid "delete own poll content"
+msgstr "slet egne afstemninger"
+
+msgid "delete any poll content"
+msgstr "slet alle afstemninger"
+
+msgid "edit any poll content"
+msgstr "redigér alle afstemninger"
+
+msgid "edit own poll content"
+msgstr "redigér egne afstemninger"
+
+msgid "Polls"
+msgstr "Afstemninger"

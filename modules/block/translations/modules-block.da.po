@@ -1,0 +1,319 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 14:06+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Show on every page except the listed pages."
+msgstr "Vis på alle sider undtagen de nævnte."
+
+msgid "Show on only the listed pages."
+msgstr "Vis kun på de nævnte sider."
+
+msgid "Pages"
+msgstr "Sider"
+
+msgid "Block title"
+msgstr "Titel"
+
+msgid "The title of the block as shown to the user."
+msgstr "Blokkens titel. Vises til brugerne."
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Add block"
+msgstr "Tilføj blok"
+
+msgid ""
+"Show if the following PHP code returns <code>TRUE</code> (PHP-mode, experts "
+"only)."
+msgstr ""
+"Vis hvis følgende PHP-kode returnerer <code>SAND</code> (PHP-tilstand, kun "
+"for eksperter)."
+
+msgid ""
+"Enter one page per line as Drupal paths. The '*' character is a wildcard. "
+"Example paths are %blog for the blog page and %blog-wildcard for every "
+"personal blog. %front is the front page."
+msgstr ""
+"Indtast én sti pr. linje som Drupal-stier. Brug '*'-tegnet som joker. "
+"Indtast f.eks. %blog for blogsiden og %blog-wildcard for alle personlige "
+"blogs. %front er forsiden."
+
+msgid "Configure block"
+msgstr "Indstil blok"
+
+msgid "Are you sure you want to delete the block %name?"
+msgstr "Ønsker du at slette blokken %name?"
+
+msgid "The block %name has been removed."
+msgstr "Blokken %name fjernet."
+
+msgid "Role specific visibility settings"
+msgstr "Rollespecifikke synlighedsindstillinger"
+
+msgid "Block description"
+msgstr "Beskrivelse"
+
+msgid "Blocks"
+msgstr "Blokke"
+
+msgid ""
+"Configure what block content appears in your site's sidebars and other "
+"regions."
+msgstr "Bestem hvilke blokke der vises i sitets sidepaneler og andre regioner."
+
+msgid "Delete block"
+msgstr "Slet blok"
+
+msgid "Save blocks"
+msgstr "Gem blokke"
+
+msgid "The block settings have been updated."
+msgstr "Blokindstillinger opdateret."
+
+msgid "Block specific settings"
+msgstr "Blokindstillinger"
+
+msgid ""
+"Override the default title for the block. Use <em>&lt;none&gt;</em> to "
+"display no title, or leave blank to use the default block title."
+msgstr ""
+"Vælg en anden titel til blokken. Brug <em>&lt;none&gt;</em> hvis du ikke "
+"ønsker en titel, eller lad feltet stå tomt for at bruge standardtitlen."
+
+msgid "'%name' block"
+msgstr "Blokken '%name'"
+
+msgid "User specific visibility settings"
+msgstr "Brugerspecifikke synlighedsindstillinger"
+
+msgid "Custom visibility settings"
+msgstr "Tilpasset synlighed"
+
+msgid "Users cannot control whether or not they see this block."
+msgstr "Brugerne kan ikke bestemme om blokken er synlig."
+
+msgid "Show this block by default, but let individual users hide it."
+msgstr "Vis blokken, men lad brugerne skjule den."
+
+msgid "Hide this block by default but let individual users show it."
+msgstr "Skjul blokken, men lad brugerne vise den."
+
+msgid ""
+"Allow individual users to customize the visibility of this block in their "
+"account settings."
+msgstr "Brugerne kan bestemme om blokken er synlig."
+
+msgid "Show block for specific roles"
+msgstr "Vis blok til bestemte roller"
+
+msgid ""
+"Show this block only for the selected role(s). If you select no roles, the "
+"block will be visible to all users."
+msgstr ""
+"Vis kun denne blok til udvalgte roller. Hvis du ikke vælger mindst én rolle "
+"vil alle brugere kunne se blokken."
+
+msgid "Page specific visibility settings"
+msgstr "Sidespecifikke synlighedsindstillinger"
+
+msgid ""
+"If the PHP-mode is chosen, enter PHP code between %php. Note that executing "
+"incorrect PHP-code can break your Drupal site."
+msgstr ""
+"Hvis PHP-tilstanden er valgt, kan du indtaste PHP-kode mellem %php. Bemærk "
+"at ugyldig PHP-kode kan få dit Drupal-site til at holde op med at virke."
+
+msgid "Show block on specific pages"
+msgstr "Vis blok på bestemte sider"
+
+msgid "Save block"
+msgstr "Gem blok"
+
+msgid "Please ensure that each block description is unique."
+msgstr "Blokbeskrivelse skal være unik."
+
+msgid "The block configuration has been saved."
+msgstr "Blokindstillinger gemt."
+
+msgid "The block has been created."
+msgstr "Blok oprettet."
+
+msgid ""
+"A brief description of your block. Used on the <a href=\"@overview\">block "
+"overview page</a>."
+msgstr ""
+"Kort beskrivelse af blokken. Vises i <a href=\"@overview\">oversigten</a>."
+
+msgid "Block body"
+msgstr "Indhold"
+
+msgid "The content of the block as shown to the user."
+msgstr "Blokkens indhold. Vises til brugerne."
+
+msgid "Block configuration"
+msgstr "Blokindstillinger"
+
+msgid "administer blocks"
+msgstr "administrér blokke"
+
+msgid "use PHP for block visibility"
+msgstr "angiv bloksynlighed med PHP"
+
+msgid "No blocks in this region"
+msgstr "Ingen blokke i regionen"
+
+msgid ""
+"Blocks are boxes of content rendered into an area, or region, of a web page. "
+"The default theme Garland, for example, implements the regions \"left sidebar"
+"\", \"right sidebar\", \"content\", \"header\", and \"footer\", and a block "
+"may appear in any one of these areas. The <a href=\"@blocks\">blocks "
+"administration page</a> provides a drag-and-drop interface for assigning a "
+"block to a region, and for controlling the order of blocks within regions."
+msgstr ""
+"Blokke er kasser med indhold, der vises i en region på en side. "
+"Standardtemaet Garland indeholder regionerne \"venstre spalte\", \"højre "
+"spalte\", \"indhold\", \"sidehoved\" og \"sidefod\", og en blok kan optræde "
+"i enhver af disse regioner. <a href=\"@blocks\">Blok-siden</a> har en træk-"
+"og-slip grænseflade til placering og sortering af blokke i regioner."
+
+msgid ""
+"Although blocks are usually generated automatically by modules (like the "
+"<em>User login</em> block, for example), administrators can also define "
+"custom blocks. Custom blocks have a title, description, and body. The body "
+"of the block can be as long as necessary, and can contain content supported "
+"by any available <a href=\"@input-format\">input format</a>."
+msgstr ""
+"Selvom blokke normalt genereres automatisk af moduler (som f.eks. <em>Log "
+"ind</em>-blokken) kan administratorer også definere tilpassede blokke. "
+"Tilpassede blokke består af titel, beskrivelse og indhold. Indholdet af "
+"blokken kan være så langt som nødvendigt og kan bruge alle tilgængelige <a "
+"href=\"@input-format\">inputformater</a>."
+
+msgid "When working with blocks, remember that:"
+msgstr "Når du arbejder med blokke skal du huske at:"
+
+msgid ""
+"since not all themes implement the same regions, or display regions in the "
+"same way, blocks are positioned on a per-theme basis."
+msgstr ""
+"siden alle temaer ikke indeholder de samme regioner, eller ikke viser "
+"regioner på samme måde, bliver placeringen af blokke specifik for hvert tema."
+
+msgid "disabled blocks, or blocks not in a region, are never shown."
+msgstr ""
+"deaktiverede blokke og blokke der ikke er placeret i en region vises aldrig."
+
+msgid ""
+"when throttle module is enabled, throttled blocks (blocks with the "
+"<em>Throttle</em> checkbox selected) are hidden during high server loads."
+msgstr ""
+"når Throttle-modulet er aktiveret, skjules begrænsede blokke (blokke hvor "
+"afkrydsningsfeltet <em>Begræns</em> er markeret) ved høj serverbelastning."
+
+msgid "blocks can be configured to be visible only on certain pages."
+msgstr "blokke kan indstilles til kun at være synlige på bestemte sider."
+
+msgid ""
+"blocks can be configured to be visible only when specific conditions are "
+"true."
+msgstr ""
+"blokke kan indstilles til kun at være synlige når bestemte betingelser er "
+"opfyldt."
+
+msgid "blocks can be configured to be visible only for certain user roles."
+msgstr ""
+"blokke kan indstilles til kun at være synlige for bestemte brugerroller."
+
+msgid ""
+"when allowed by an administrator, specific blocks may be enabled or disabled "
+"on a per-user basis using the <em>My account</em> page."
+msgstr ""
+"hvis administratoren tillader det kan synligheden af bestemte blokke vælges "
+"af brugeren på <em>Min konto</em>-siden."
+
+msgid ""
+"some dynamic blocks, such as those generated by modules, will be displayed "
+"only on certain pages."
+msgstr ""
+"dynamiske blokke, der oprettes af moduler, vises kun på bestemte sider."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@block"
+"\">Block module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@block\">blokke</a> for yderligere "
+"information."
+
+msgid ""
+"This page provides a drag-and-drop interface for assigning a block to a "
+"region, and for controlling the order of blocks within regions. To change "
+"the region or order of a block, grab a drag-and-drop handle under the "
+"<em>Block</em> column and drag the block to a new location in the list. "
+"(Grab a handle by clicking and holding the mouse while hovering over a "
+"handle icon.) Since not all themes implement the same regions, or display "
+"regions in the same way, blocks are positioned on a per-theme basis. "
+"Remember that your changes will not be saved until you click the <em>Save "
+"blocks</em> button at the bottom of the page."
+msgstr ""
+"Her kan du bruge træk og slip til at placere og sortere blokke i regioner. "
+"For at flytte en blok skal du tage fat i håndtaget under <em>Blok</em>-"
+"kolonnen og trække blokken til dens nye placering. Da ikke alle temaer "
+"implementerer de samme regioner, eller viser regioner på samme måde, er "
+"placeringen af blokke tema-specifik. Husk at dine ændringer ikke gemmes før "
+"du har klikket på knappen <em>Gem blokke</em> nederst på siden."
+
+msgid ""
+"To reduce CPU usage, database traffic or bandwidth, blocks may be "
+"automatically disabled during high server loads by selecting their "
+"<em>Throttle</em> checkbox. Adjust throttle thresholds on the <a href="
+"\"@throttleconfig\">throttle configuration page</a>."
+msgstr ""
+"For at reducere CPU-brug, databasetrafik eller båndbredde kan blokke "
+"automatisk deaktiveres under høj belastning ved at markere "
+"afkrydsningsfeltet <em>Begræns</em>. Indstil grænserne for begrænsningen på "
+"<a href=\"@throttleconfig\">throttle-konfigurationssiden</a>."
+
+msgid ""
+"Click the <em>configure</em> link next to each block to configure its "
+"specific title and visibility settings. Use the <a href=\"@add-block\">add "
+"block page</a> to create a custom block."
+msgstr ""
+"Klik på <em>indstil</em> ud for hver blok for at indstille dens titel og "
+"synlighed. Brug siden <a href=\"@add-block\">tilføj blok</a> til at oprette "
+"nye blokke."
+
+msgid ""
+"Use this page to create a new custom block. New blocks are disabled by "
+"default, and must be moved to a region on the <a href=\"@blocks\">blocks "
+"administration page</a> to be visible."
+msgstr ""
+"Brug denne side til at oprette en ny blok. Nye blokke er slået fra som "
+"standard og skal flyttes til en region på <a href=\"@blocks"
+"\">administrationssiden</a> før de er synlige."
+
+msgid ""
+"The block %info was assigned to the invalid region %region and has been "
+"disabled."
+msgstr ""
+"Blokken %info blev knyttet til den ugyldig region %region og er blevet "
+"deaktiveret."
+
+msgid "JavaScript List Form"
+msgstr "JavaScript List Form"
+
+msgid ""
+"The changes to these blocks will not be saved until the <em>Save blocks</em> "
+"button is clicked."
+msgstr ""
+"Ændringerne bliver ikke gemt før du trykker på knappen <em>Gem blokke</em>."

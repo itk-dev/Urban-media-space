@@ -1,0 +1,361 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 14:02+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "More"
+msgstr "Mere"
+
+msgid "Update interval"
+msgstr "Opdateringsinterval"
+
+msgid "The fully-qualified URL of the feed."
+msgstr "Feedets fuldt kvalificerede URL."
+
+msgid "Save categories"
+msgstr "Gem kategorier"
+
+msgid "Number of news items in block"
+msgstr "Antal nyheder i blokken"
+
+msgid "View this feed's recent news."
+msgstr "Vis de seneste nyheder fra feedet."
+
+msgid "View this category's recent news."
+msgstr "Vis de seneste nyheder i kategorien."
+
+msgid "Feed overview"
+msgstr "Feed-oversigt"
+
+msgid "Items"
+msgstr "Overskrifter"
+
+msgid "Last update"
+msgstr "Seneste opdatering"
+
+msgid "Next update"
+msgstr "Næste opdatering"
+
+msgid "%time left"
+msgstr "Om %time"
+
+msgid "remove items"
+msgstr "fjern nyheder"
+
+msgid "update items"
+msgstr "opdatér nyheder"
+
+msgid "Category overview"
+msgstr "Kategorioversigt"
+
+msgid "You are not allowed to categorize this feed item."
+msgstr "Du har ikke tilladelse til at kategorisere elementet."
+
+msgid "The categories have been saved."
+msgstr "Kategorier gemt."
+
+msgid "URL:"
+msgstr "URL:"
+
+msgid "Updated:"
+msgstr "Opdateret:"
+
+msgid "blog it"
+msgstr "blog det"
+
+msgid "Comment on this news item in your personal blog."
+msgstr "Kommenter nyheden i din blog."
+
+msgid "%age old"
+msgstr "%age gammel"
+
+msgid "%ago ago"
+msgstr "%ago siden"
+
+msgid "Items shown in sources and categories pages"
+msgstr "Antal nyheder på feed- og kategorisider"
+
+msgid "A feed with this URL %url already exists. Please enter a unique URL."
+msgstr ""
+"Der findes allerede et feed med denne URL: %url. Indtast venligst en unik "
+"URL."
+
+msgid "The feed %feed has been updated."
+msgstr "Feed %feed opdateret."
+
+msgid "Feed %feed deleted."
+msgstr "Feed %feed slettet."
+
+msgid "The feed %feed has been deleted."
+msgstr "Feed %feed slettet."
+
+msgid "Feed %feed added."
+msgstr "Feed %feed tilføjet."
+
+msgid "The feed %feed has been added."
+msgstr "Feed %feed tilføjet."
+
+msgid "The news items from %site have been removed."
+msgstr "Nyheder fra %site fjernet."
+
+msgid "administer news feeds"
+msgstr "administrér feeds"
+
+msgid "access news feeds"
+msgstr "tilgå feeds"
+
+msgid "Updated URL for feed %title to %url."
+msgstr "URL for feedet %title ændret til %url."
+
+msgid "Sources"
+msgstr "Kilder"
+
+msgid "!title category latest items"
+msgstr "Seneste nyheder i kategorien !title"
+
+msgid "!title feed latest items"
+msgstr "Seneste nyheder fra !title"
+
+msgid "A category named %category already exists. Please enter a unique title."
+msgstr ""
+"Der findes allerede en kategori med navnet %category. Indtast venligst en "
+"unik titel."
+
+msgid "The category %category has been updated."
+msgstr "Kategorien %category opdateret."
+
+msgid "Category %category deleted."
+msgstr "Kategorien %category slettet."
+
+msgid "The category %category has been deleted."
+msgstr "Kategorien %category slettet."
+
+msgid "Category %category added."
+msgstr "Kategori %category tilføjet."
+
+msgid "The category %category has been added."
+msgstr "Kategorien %category opdateret."
+
+msgid "aggregator - @title"
+msgstr "indsamler - @title"
+
+msgid ""
+"The feed from %site seems to be broken, due to an error \"%error\" on line %"
+"line."
+msgstr ""
+"Feedet fra %site virker ikke. Det skyldes fejlen \"%error\" på linje %line."
+
+msgid ""
+"The feed from %site seems to be broken, because of error \"%error\" on line %"
+"line."
+msgstr ""
+"Feedet fra %site virker ikke. Det skyldes fejlen \"%error\" på linje %line."
+
+msgid "Discard items older than"
+msgstr "Fjern elementer ældre end"
+
+msgid ""
+"The length of time to retain feed items before discarding. (Requires a "
+"correctly configured <a href=\"@cron\">cron maintenance task</a>.)"
+msgstr ""
+"Hvor lang tid der skal gå før feed-elementer slettes. (Kræver at <a href="
+"\"@cron\">cron er indstillet korrekt</a>.)"
+
+msgid "Number of feed items displayed in feed and category summary pages."
+msgstr "Antallet af feed-elementer der vises på feed- og kategorisiderne."
+
+msgid "@site_name - aggregated feeds in category @title"
+msgstr "@site_name - feeds i kategorien @title"
+
+msgid "@site_name - aggregated feeds"
+msgstr "@site_name - indsamlede feeds"
+
+msgid "@site_name aggregator"
+msgstr "@site_name indsamler"
+
+msgid "!title feed"
+msgstr "!title feed"
+
+msgid ""
+"The aggregator is a powerful on-site syndicator and news reader that gathers "
+"fresh content from RSS-, RDF-, and Atom-based feeds made available across "
+"the web. Thousands of sites (particularly news sites and blogs) publish "
+"their latest headlines and posts in feeds, using a number of standardized "
+"XML-based formats. Formats supported by the aggregator include <a href=\"@rss"
+"\">RSS</a>, <a href=\"@rdf\">RDF</a>, and <a href=\"@atom\">Atom</a>."
+msgstr ""
+"Indsamleren er en nyhedslæser der henter indhold fra RSS-, RDF- og Atom-"
+"baserede feeds. Tusindvis af websites (især nyhedssites og blogs) udgiver "
+"deres seneste overskrifter og indlæg i feeds vha. en række standardiserede "
+"XML-baserede formater. Indsamleren understøtter formaterne <a href=\"@rss"
+"\">RSS</a>, <a href=\"@rdf\">RDF</a> og <a href=\"@atom\">Atom</a>."
+
+msgid ""
+"Feeds contain feed items, or individual posts published by the site "
+"providing the feed. Feeds may be grouped in categories, generally by topic. "
+"Users view feed items in the <a href=\"@aggregator\">main aggregator "
+"display</a> or by <a href=\"@aggregator-sources\">their source</a>. "
+"Administrators can <a href=\"@feededit\">add, edit and delete feeds</a> and "
+"choose how often to check each feed for newly updated items. The most recent "
+"items in either a feed or category can be displayed as a block through the "
+"<a href=\"@admin-block\">blocks administration page</a>. A <a href="
+"\"@aggregator-opml\">machine-readable OPML file</a> of all feeds is "
+"available. A correctly configured <a href=\"@cron\">cron maintenance task</"
+"a> is required to update feeds automatically."
+msgstr ""
+"Feeds indeholder feed-elementer eller individueller indlæg udgivet af sitet, "
+"som tilbyder feedet. Feeds kan inddeles i kategorier, typisk efter emne. "
+"Brugerne ser feed-elementer <a href=\"@aggregator\">i den samlede feed-"
+"visning</a> eller <a href=\"@aggregator-sources\">sorteret efter kilde</a>. "
+"Administratorer kan <a href=\"@feededit\">tilføje, redigere og slette feeds</"
+"a> samt bestemme hvor ofte der skal hentes nyt indhold. De seneste elementer "
+"fra et feed eller en kategori kan vises i <a href=\"@admin-block\">en blok</"
+"a>. Der findes en <a href=\"@aggregator-opml\">computervenlig OPML-fil</a> "
+"med information om alle feeds. For at kunne opdatere feeds automatisk skal "
+"<a href=\"@cron\">cron være indstillet korrekt</a>."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@aggregator"
+"\">Aggregator module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@aggregator\">nyhedsindsamleren</a> for "
+"yderligere information."
+
+msgid "The feed from %site seems to be broken, because of error \"%error\"."
+msgstr "Feedet fra %site virker ikke. Det skyldes fejlen \"%error\"."
+
+msgid "There is no new syndicated content from %site."
+msgstr "Der er intet nyt indhold fra %site."
+
+msgid "There is new syndicated content from %site."
+msgstr "Der er hentet nyt indhold fra %site."
+
+msgid "The feed from %site seems to be broken, due to \"%error\"."
+msgstr "Feedet fra %site virker ikke. Det skyldes \"%error\"."
+
+msgid "Feed aggregator"
+msgstr "Feed-læser"
+
+msgid ""
+"The length of time between feed updates. (Requires a correctly configured <a "
+"href=\"@cron\">cron maintenance task</a>.)"
+msgstr ""
+"Hvor lang tid der skal gå mellem feed-opdateringer. (Kræver at <a href="
+"\"@cron\">cron er indstillet korrekt</a>.)"
+
+msgid "New feed items are automatically filed in the checked categories."
+msgstr "Nye feed-elementer gemmes automatisk i de markerede kategorier."
+
+msgid ""
+"The URL %url is invalid. Please enter a fully-qualified URL, such as http://"
+"www.example.com/feed.xml."
+msgstr ""
+"URLen %url er ugyldig. Indtast en fuldt kvalificeret URL, som f.eks. http://"
+"www.example.com/feed.xml."
+
+msgid "Add feed"
+msgstr "Tilføj feed"
+
+msgid "Edit category"
+msgstr "Redigér kategori"
+
+msgid "The name of the feed (or the name of the website providing the feed)."
+msgstr "Feedets navn (eller navnet på sitet som tilbyder feedet)."
+
+msgid "Categorize news items"
+msgstr "Kategoriser nyheder"
+
+msgid "A feed named %feed already exists. Please enter a unique title."
+msgstr ""
+"Der findes allerede et feed med navnet %feed. Indtast venligst en unik titel."
+
+msgid "Are you sure you want to remove all items from the feed %feed?"
+msgstr "Ønsker du at fjerne alle elementer fra feedet %feed?"
+
+msgid ""
+"A space-separated list of HTML tags allowed in the content of feed items. "
+"(Tags in this list are not removed by Drupal.)"
+msgstr ""
+"En liste over tilladte HTML-tags adskilt af mellemrum. (Tags på listen "
+"fjernes ikke af Drupal.)"
+
+msgid "Category selection type"
+msgstr "Valg af kategori"
+
+msgid "checkboxes"
+msgstr "afkrydsningsfelter"
+
+msgid "multiple selector"
+msgstr "rulleliste"
+
+msgid ""
+"The type of category selection widget displayed on categorization pages. "
+"(For a small number of categories, checkboxes are easier to use, while a "
+"multiple selector work well with large numbers of categories.)"
+msgstr ""
+"Kontrolelementet der vises på kategorisiderne. (Hvis du har få kategorier, "
+"er  afkrydsningsfelter nemmere at bruge, mens rullelister gør det nemmere at "
+"håndtere et stort antal kategorier.)"
+
+msgid ""
+"Thousands of sites (particularly news sites and blogs) publish their latest "
+"headlines and posts in feeds, using a number of standardized XML-based "
+"formats. Formats supported by the aggregator include <a href=\"@rss\">RSS</"
+"a>, <a href=\"@rdf\">RDF</a>, and <a href=\"@atom\">Atom</a>."
+msgstr ""
+"Tusinder af sites (især nyhedssites og blogs) udgiver deres seneste "
+"overskrifter og indlæg i feeds vha. en række standardiserede XML-baserede "
+"formater. Indsamleren understøtter formaterne <a href=\"@rss\">RSS</a>, <a "
+"href=\"@rdf\">RDF</a> og <a href=\"@atom\">Atom</a>."
+
+msgid ""
+"Current feeds are listed below, and <a href=\"@addfeed\">new feeds may be "
+"added</a>. For each feed or feed category, the <em>latest items</em> block "
+"may be enabled at the <a href=\"@block\">blocks administration page</a>."
+msgstr ""
+"Aktuelle feeds vises herunder og <a href=\"@addfeed\">nye feeds kan "
+"tilføjes</a>. For hvert feed eller feed-kategori kan blokken <em>seneste "
+"elementer</em> <a href=\"@block\">aktiveres</a>."
+
+msgid "Add a feed in RSS, RDF or Atom format. A feed may only have one entry."
+msgstr ""
+"Tilføj et feed i RSS-, RDF- eller Atom-format. Et feed kan kun optræde én "
+"gang."
+
+msgid ""
+"Categories allow feed items from different feeds to be grouped together. For "
+"example, several sport-related feeds may belong to a category named "
+"<em>Sports</em>. Feed items may be grouped automatically (by selecting a "
+"category when creating or editing a feed) or manually (via the "
+"<em>Categorize</em> page available from feed item listings). Each category "
+"provides its own feed page and block."
+msgstr ""
+"Kategorier bruges til at samle indhold fra forskellige feeds. Du kan f.eks. "
+"samle indhold fra en række sports-relaterede feeds i kategorien <em>Sport</"
+"em>. Feed-elementer kan kategoriseres automatisk (ved at vælge en kategori "
+"når du tilføjer et feed) eller manuelt (via siden <em>Kategorisér</em> som "
+"er tilgængelig fra feed-oversigterne). Hver kategori har sin egen "
+"sidevisning og blok."
+
+msgid "feed not parseable"
+msgstr "feed kan ikke fortolkes"
+
+msgid ""
+"Configure which content your site aggregates from other sites, how often it "
+"polls them, and how they're categorized."
+msgstr "Bestemmer hvordan indhold fra andres sites hentes og kategoriseres."
+
+msgid "Update items"
+msgstr "Opdatér elementer"
+
+msgid "Edit feed"
+msgstr "Redigér feed"

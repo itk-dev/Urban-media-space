@@ -1,0 +1,227 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 14:58+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Clear index"
+msgstr "Ryd indeks"
+
+msgid "results"
+msgstr "resultater"
+
+msgid "search"
+msgstr "søg"
+
+msgid "Search settings"
+msgstr "Søgeindstillinger"
+
+msgid "Search results"
+msgstr "Søgeresultater"
+
+msgid "Your search yielded no results"
+msgstr "Din søgning gav ingen resultater."
+
+msgid "Please enter some keywords."
+msgstr "Indtast venligst nogle søgeord."
+
+msgid "Enter the terms you wish to search for."
+msgstr "Indtast de ord du ønsker at søge efter."
+
+msgid ""
+"You must include at least one positive keyword with @count characters or "
+"more."
+msgstr ""
+"Du skal indtaste mindst ét positivt søgeord med @count eller flere tegn."
+
+msgid "Enter your keywords"
+msgstr "Indtast søgeord."
+
+msgid "%keys (@type)."
+msgstr "%keys (@type)."
+
+msgid ""
+"<ul>\n"
+"<li>Check if your spelling is correct.</li>\n"
+"<li>Remove quotes around phrases to match each word individually: <em>\"blue "
+"smurf\"</em> will match less than <em>blue smurf</em>.</li>\n"
+"<li>Consider loosening your query with <em>OR</em>: <em>blue smurf</em> will "
+"match less than <em>blue OR smurf</em>.</li>\n"
+"</ul>"
+msgstr ""
+"<ul>\n"
+"<li>Undersøg om stavemåden er korrekt.</li>\n"
+"<li>Fjern anførselstegn omkring udtryk for at søge efter de enkelte ord: <em>"
+"\"blå smølf\"</em> vil give færre resultater end <em>blå smølf</em>.</li>\n"
+"<li>Overvej at udvide din søging med <em>OR</em>: <em>blå smølf</em> vil "
+"give færre resultater end <em>blå OR smølf</em>.</li>\n"
+"</ul>"
+
+msgid "%percentage of the site has been indexed."
+msgstr "%percentage af sitet indekseret."
+
+msgid "There is 1 item left to index."
+msgid_plural "There are @count items left to index."
+msgstr[0] "1 element mangler at blive indekseret."
+msgstr[1] "@count elementer mangler at blive indekseret."
+
+msgid "Search this site"
+msgstr "Søg på sitet"
+
+msgid "Re-index site"
+msgstr "Indeksér sitet påny"
+
+msgid "Are you sure you want to re-index the site?"
+msgstr "Ønsker du at indeksere sitet igen?"
+
+msgid ""
+"Search for either of the two terms with uppercase <strong>OR</strong>. For "
+"example, <strong>cats OR dogs</strong>."
+msgstr ""
+"Søg efter begge de to ord med <strong>OR</strong>. F.eks. <strong>katte OR "
+"hunde</strong>."
+
+msgid ""
+" The search index is not cleared but systematically updated to reflect the "
+"new settings. Searching will continue to work but new content won't be "
+"indexed until all existing content has been re-indexed. This action cannot "
+"be undone."
+msgstr ""
+" Søgeindekset slettes ikke men bliver systematisk opdateret for at afspejle "
+"nye indstillinger. Søgning vil fortsat virke, men nyt indhold bliver ikke "
+"indekseret før alt eksisterende indhold er blevet indekseret påny. Denne "
+"handling kan ikke fortrydes."
+
+msgid "The index will be rebuilt."
+msgstr "Indeks genopbygges."
+
+msgid "Indexing status"
+msgstr "Indekseringsstatus"
+
+msgid "Indexing throttle"
+msgstr "Begræns indeksering"
+
+msgid "Number of items to index per cron run"
+msgstr "Antal elementer der indekseres hver gang cron køres"
+
+msgid ""
+"The maximum number of items indexed in each pass of a <a href=\"@cron\">cron "
+"maintenance task</a>. If necessary, reduce the number of items to prevent "
+"timeouts and memory errors while indexing."
+msgstr ""
+"Det maksimale antal ord som indekseres under hver <a href=\"@cron\">cron-"
+"kørsel</a>. Om nødvendigt kan antallet af elementer reduceres for at undgå "
+"timeouts og hukommelsesfejl under indekseringen."
+
+msgid "Indexing settings"
+msgstr "Indeksering"
+
+msgid ""
+"<p><em>Changing the settings below will cause the site index to be rebuilt. "
+"The search index is not cleared but systematically updated to reflect the "
+"new settings. Searching will continue to work but new content won't be "
+"indexed until all existing content has been re-indexed.</em></p><p><em>The "
+"default settings should be appropriate for the majority of sites.</em></p>"
+msgstr ""
+"<p><em>Ændres denne indstilling bliver sitets indeks genopbygget. Indekset "
+"bliver ikke slettet, men bliver systematisk opdateret for at afspejle de nye "
+"indstillinger. Søgning vil fortsat virke, men nyt indhold vil ikke blive "
+"indekseret før alt eksisterende indhold er blevet indekseret påny.</em></"
+"p><p>Standardindstillingerne egner sig til langt de fleste sites.</p>"
+
+msgid "Minimum word length to index"
+msgstr "Mindste ordlængde, indeksering"
+
+msgid ""
+"The number of characters a word has to be to be indexed. A lower setting "
+"means better search result ranking, but also a larger database. Each search "
+"query must contain at least one keyword that is this size (or longer)."
+msgstr ""
+"Antal tegn et ord skal indeholde for at blive indekseret. Et lille antal "
+"betyder bedre søgeresultater, men også en større database. Hver forespørgsel "
+"skal indeholde mindst ét ord af denne længde (eller længere)."
+
+msgid "Simple CJK handling"
+msgstr "Simpel håndtering af CJK"
+
+msgid ""
+"Whether to apply a simple Chinese/Japanese/Korean tokenizer based on "
+"overlapping sequences. Turn this off if you want to use an external "
+"preprocessor for this instead. Does not affect other languages."
+msgstr ""
+"Angiver om du ønsker at anvende en simpel Kinesisk/Japansk/Koreansk tokenize "
+"baseret på overlappende sekvenser. Slå dette fra hvis du bruger en ekstern "
+"præprocessor i stedet. Påvirker ikke andre sprog."
+
+msgid ""
+"The search module adds the ability to search for content by keywords. Search "
+"is often the only practical way to find content on a large site, and is "
+"useful for finding both users and posts."
+msgstr ""
+"Søgemodulet gør det muligt at bruge nøgleord til at lede efter indhold. En "
+"søgning er ofte den eneste praktiske måde at finde indhold på et stort site, "
+"og er er nyttig til at finde brugere eller indlæg."
+
+msgid ""
+"To provide keyword searching, the search engine maintains an index of words "
+"found in your site's content. To build and maintain this index, a correctly "
+"configured <a href=\"@cron\">cron maintenance task</a> is required. Indexing "
+"behavior can be adjusted using the <a href=\"@searchsettings\">search "
+"settings page</a>; for example, the <em>Number of items to index per cron "
+"run</em> sets the maximum number of items indexed in each pass of a <a href="
+"\"@cron\">cron maintenance task</a>. If necessary, reduce this number to "
+"prevent timeouts and memory errors when indexing."
+msgstr ""
+"For at tilbyde søgning efter nøgleord vedligeholder søgemaskinen et indeks "
+"af ord fundet i sitets indhold. For at bygge og vedligeholde indekset skal "
+"cron være <a href=\"@cron\">indstillet korrekt</a>. Du kan justere "
+"indekseringen under <a href=\"@searchsettings\">søgeindstillinger</a>. Du "
+"kan bl.a. bestemme hvor mange elementer der skal indekseres under hver cron-"
+"kørsel. Om nødvendigt kan antallet af elementer reduceres for at undgå "
+"timeouts og hukommelsesfejl under indekseringen."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@search"
+"\">Search module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@search\">søgning</a> for yderligere "
+"information."
+
+msgid ""
+"The search engine maintains an index of words found in your site's content. "
+"To build and maintain this index, a correctly configured <a href=\"@cron"
+"\">cron maintenance task</a> is required. Indexing behavior can be adjusted "
+"using the settings below."
+msgstr ""
+"Søgemaskinen vedligeholder et indeks af ord fundet i sitets indhold. For at "
+"bygge og vedligeholde indekset skal cron være <a href=\"@cron\">indstillet "
+"korrekt</a>. Du kan justere indekseringen nedenfor."
+
+msgid "Search form"
+msgstr "Søgefelt"
+
+msgid "search content"
+msgstr "søg indhold"
+
+msgid "use advanced search"
+msgstr "brug avanceret søgning"
+
+msgid "administer search"
+msgstr "administrér søgning"
+
+msgid "Configure relevance settings for search and other indexing options"
+msgstr "Indstil søgning og indeksering"
+
+msgid "Top search phrases"
+msgstr "Populære søgeord"
+
+msgid "View most popular search phrases."
+msgstr "Vis populære søgeord."

@@ -1,0 +1,205 @@
+# Danish translation of Drupal (6.16)
+# Copyright (c) 2010 by the Danish translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal (6.16)\n"
+"POT-Creation-Date: 2010-05-04 09:15+0000\n"
+"PO-Revision-Date: 2009-08-29 15:29+0000\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Size"
+msgstr "Størrelse"
+
+msgid "default"
+msgstr "standard"
+
+msgid "General settings"
+msgstr "Generelle indstillinger"
+
+msgid "Please contact the site administrator."
+msgstr "Kontakt venligst sitets administrator."
+
+msgid "Attachment"
+msgstr "Bilag"
+
+msgid "Read full article to view attachments."
+msgstr "Læs hele artiklen for at se vedhæftede filer."
+
+msgid "1 attachment"
+msgid_plural "@count attachments"
+msgstr[0] "1 bilag"
+msgstr[1] "@count bilag"
+
+msgid "Attachments"
+msgstr "Bilag"
+
+msgid "File attachments"
+msgstr "Vedhæftede filer"
+
+msgid ""
+"Changes made to the attachments are not permanent until you save this post. "
+"The first \"listed\" file will be included in RSS feeds."
+msgstr ""
+"Ændringer i vedhæftede filer er ikke permanente før indlægget gemmes. Den "
+"første fil på listen inkluderes i RSS-feeds."
+
+msgid ""
+"File attachments are disabled. The file directories have not been properly "
+"configured."
+msgstr "Vedhæftede filer deaktiveret. Mapperne er ikke indstillet korrekt."
+
+msgid ""
+"Please visit the <a href=\"@admin-file-system\">file system configuration "
+"page</a>."
+msgstr ""
+"Se venligst <a href=\"@admin-file-system\">filsystem-indstillingerne</a>."
+
+msgid ""
+"The maximum allowed image size expressed as WIDTHxHEIGHT (e.g. 640x480). Set "
+"to 0 for no restriction."
+msgstr ""
+"Den maksimale størrelse udtrykt som BREDDExHØJDE (f.eks. 640x480). Vælg 0 "
+"hvis du ikke ønsker nogen begrænsning."
+
+msgid "The %role file size limit must be a number and greater than zero."
+msgstr ""
+"Den maksimale filstørrelse pr. overførsel for %role skal være et tal større "
+"end nul."
+
+msgid ""
+"The %role maximum file size per upload is greater than the total file size "
+"allowed per user"
+msgstr ""
+"Den maksimale filstørrelse pr. overførsel for %role er større end den "
+"samlede størrelse pr. bruger."
+
+msgid "Maximum resolution for uploaded images"
+msgstr "Maksimal opløsning af uploadede billeder"
+
+msgid "WIDTHxHEIGHT"
+msgstr "BREDDExHØJDE"
+
+msgid ""
+"Depending on your server environment, these settings may be changed in the "
+"system-wide php.ini file, a php.ini file in your Drupal root directory, in "
+"your Drupal site's settings.php file, or in the .htaccess file in your "
+"Drupal root directory."
+msgstr ""
+"Afhængigt af dit servermiljø kan indstillingerne ændres i den globale php."
+"ini, en php.ini i roden af din Drupal-mappe, i sitets settings.php eller i ."
+"htaccess-filen i roden af din Drupal-mappe."
+
+msgid "Attach new file"
+msgstr "Vedhæft fil"
+
+msgid "Attach"
+msgstr "Vedhæft"
+
+msgid "List files by default"
+msgstr "Vis filer som standard"
+
+msgid "upload files"
+msgstr "upload filer"
+
+msgid "Please wait..."
+msgstr "Vent venligst…"
+
+msgid ""
+"The maximum allowed image size (e.g. 640x480). Set to 0 for no restriction. "
+"If an <a href=\"!image-toolkit-link\">image toolkit</a> is installed, files "
+"exceeding this value will be scaled down to fit."
+msgstr ""
+"Den maksimale tilladte billedstørrelse (f.eks. 640x480). Vælg 0 for ingen "
+"begrænsning. Hvis et <a href=\"!image-toolkit-link\">billedværktøj</a> er "
+"installeret nedskaleres billeder, der er større end den angivne grænse, så "
+"de passer."
+
+msgid ""
+"The default maximum file size a user can upload. If an image is uploaded and "
+"a maximum resolution is set, the size will be checked after the file has "
+"been resized."
+msgstr ""
+"Den maksimale filstørrelse en bruger som standard kan uploade. Hvis et "
+"billede uploades, og der er sat en maksimal opløsning, bliver størrelsen "
+"undersøgt efter billedet er blevet skaleret."
+
+msgid ""
+"The maximum size of a file a user can upload. If an image is uploaded and a "
+"maximum resolution is set, the size will be checked after the file has been "
+"resized."
+msgstr ""
+"Den maksimale filstørrelse en bruger kan uploade. Hvis et billede uploades, "
+"og der er sat en maksimal opløsning, bliver størrelsen undersøgt efter "
+"billedet er blevet skaleret."
+
+msgid "The maximum size of all files a user can have on the site."
+msgstr "Maksimal størrelse af alle filer en bruger kan have på sitet."
+
+msgid "Images are larger than %resolution will be resized. "
+msgstr "Billeder end %resolution bliver skaleret. "
+
+msgid ""
+"The maximum upload size is %filesize. Only files with the following "
+"extensions may be uploaded: %extensions. "
+msgstr ""
+"Den maksimale størrelse af vedhæftninger er %filesize. Kun filer med "
+"følgende endelser kan vedhæftes: %extensions. "
+
+msgid "view uploaded files"
+msgstr "vis filer"
+
+msgid "Display attached files when viewing a post."
+msgstr "Vis vedhæftede filer når et indlæg vises."
+
+msgid ""
+"The upload module allows users to upload files to the site. The ability to "
+"upload files is important for members of a community who want to share work. "
+"It is also useful to administrators who want to keep uploaded files "
+"connected to posts."
+msgstr ""
+"Med upload-modulet kan brugerne overføre filer til sitet. Funktionen er "
+"vigtig for medlemmer af et fællesskab der ønsker at dele deres arbejde. Den "
+"er også nyttig for administratorer der ønsker at tilføje bilag til "
+"indholdselementer."
+
+msgid ""
+"Users with the upload files permission can upload attachments to posts. "
+"Uploads may be enabled for specific content types on the content types "
+"settings page. Each user role can be customized to limit or control the file "
+"size of uploads, or the maximum dimension of image files."
+msgstr ""
+"Brugerne med tilladelsen <em>upload filer</em> kan uploade vedhæftede filer. "
+"Uploads kan aktiveres for specifikke indholdstyper under indstillingerne for "
+"indholdstyper. For hver brugerrolle kan du angive størrelsen af uploadede "
+"filer og billeder."
+
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@upload"
+"\">Upload module</a>."
+msgstr ""
+"Læs håndbogens afsnit om <a href=\"@upload\">overførsler</a> for yderligere "
+"information."
+
+msgid ""
+"Users with the <a href=\"@permissions\">upload files permission</a> can "
+"upload attachments. Users with the <a href=\"@permissions\">view uploaded "
+"files permission</a> can view uploaded attachments. You can choose which "
+"post types can take attachments on the <a href=\"@types\">content types "
+"settings</a> page."
+msgstr ""
+"Brugere med tilladelsen <a href=\"@permissions\">upload filer</a> kan "
+"uploade vedhæftede filer. Brugere med tilladelsen <a href=\"@permissions"
+"\">se uploadede filer</a> kan se vedhæftede filer. Under <a href=\"@types"
+"\">indholdstyper</a> kan du vælge hvilke indholdstyper der skal kunne "
+"vedhæftes filer."
+
+msgid "File uploads"
+msgstr "Filoverførsler"
+
+msgid "Control how files may be attached to content."
+msgstr "Bestem hvordan filer kan vedhæftes til indhold."
