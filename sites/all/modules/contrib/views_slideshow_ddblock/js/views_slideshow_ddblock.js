@@ -1,4 +1,4 @@
-// $Id: views_slideshow_ddblock.js,v 1.3.2.1 2010/04/17 04:38:58 ppblaauw Exp $
+// $Id: views_slideshow_ddblock.js,v 1.3.2.2 2010/07/16 11:59:53 ppblaauw Exp $
 
 /**
  *  @file
@@ -209,7 +209,7 @@ Drupal.behaviors.viewsSlideshowDdblockCycle = function (context) {
         var custom1 = custom.replace(/\r\n/gi,"");
 
         // parse into JSON object
-        var custom2 = JSON.parse(custom1);
+        var custom2 = JSON.parse(JSON.stringify(custom1));
 
         // merge custom2 with options object
         jQuery.extend(true, options, custom2);

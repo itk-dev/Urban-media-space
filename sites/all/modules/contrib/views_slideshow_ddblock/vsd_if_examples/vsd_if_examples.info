@@ -9,9 +9,9 @@ dependencies[] = imagefield
 
 package = Views
 core = 6.x
-; Information added by drupal.org packaging script on 2010-07-11
+; Information added by drupal.org packaging script on 2010-07-21
 version = "6.x-2.x-dev"
 core = "6.x"
 project = "views_slideshow_ddblock"
-datestamp = "1278836301"
+datestamp = "1279715145"
 

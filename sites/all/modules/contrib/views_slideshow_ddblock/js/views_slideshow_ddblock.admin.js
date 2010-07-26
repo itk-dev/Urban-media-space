@@ -1,4 +1,4 @@
-// $Id: views_slideshow_ddblock.admin.js,v 1.2.2.1 2010/04/17 04:38:58 ppblaauw Exp $
+// $Id: views_slideshow_ddblock.admin.js,v 1.2.2.3 2010/07/21 11:08:37 ppblaauw Exp $
 
 /**
  *  @file
@@ -12,6 +12,7 @@ function initPagerPositionOptions(key, value) {
 }
 
 function setPagerPositionOptions(pagerPositionOptions) {
+  var oldPagerPosition = $('#edit-style-options-views-slideshow-ddblock-settings-pager-settings-pager-position').val();
   $('#edit-style-options-views-slideshow-ddblock-settings-pager-settings-pager-position').find('option').remove();
   var options = '' ;
   for (var i = 0; i < pagerPositionOptions.length; i++) {
@@ -23,7 +24,8 @@ function setPagerPositionOptions(pagerPositionOptions) {
     }
   }
   // populate select box with array
-  $('#edit-style-options-views-slideshow-ddblock-settings-pager-settings-pager-position').html(options);   
+  $('#edit-style-options-views-slideshow-ddblock-settings-pager-settings-pager-position').html(options);  
+  $('#edit-style-options-views-slideshow-ddblock-settings-pager-settings-pager-position').val(oldPagerPosition);  
 }
 
 /**
@@ -171,9 +173,6 @@ Drupal.behaviors.ddblockChangePagerContainerOptions = function(context) {
  */
 Drupal.behaviors.ddblockShowHideCustomTemplateOptions = function(context) {
 
-  // get variables
-  var ddblockSettings = Drupal.settings.ddblockCustomTemplate;
-
   // Show/hide imagefolder/contenttype options depending on the select.
   $('#edit-style-options-views-slideshow-ddblock-template:not(.ddblock-show-hide-custom-template-options-processed)', context)
   .addClass('ddblock-show-hide-custom-template-options-processed')
@@ -248,7 +247,6 @@ Drupal.behaviors.ddblockShowHideCustomTemplateOptions = function(context) {
     else {
       $('#ddblock-custom-template-settings-wrapper').hide();
     }     
-    $('#edit-style-options-views-slideshow-ddblock-settings-pager-settings-pager-position').val(ddblockSettings.pagerPosition);
     return false;
   }).trigger('change').trigger('change')
 };

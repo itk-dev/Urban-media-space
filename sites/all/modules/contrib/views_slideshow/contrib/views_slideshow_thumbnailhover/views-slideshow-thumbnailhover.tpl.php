@@ -1,5 +1,5 @@
 <?php
-// $Id: views-slideshow-thumbnailhover.tpl.php,v 1.1.2.1.2.10 2010/04/18 04:45:05 redndahead Exp $
+// $Id: views-slideshow-thumbnailhover.tpl.php,v 1.1.2.1.2.11 2010/07/10 06:33:26 redndahead Exp $
 
 /**
  * @file
@@ -10,8 +10,8 @@
 <?php if ($controls_top || $image_count_top || $breakout_top): ?>
   <div class="views-slideshow-controls-top clear-block">
     <?php print $controls_top; ?>
-    <?php print $pager_top; ?>
     <?php print $breakout_top; ?>
+    <?php print $image_count_top; ?>
   </div>
 <?php endif; ?>
 

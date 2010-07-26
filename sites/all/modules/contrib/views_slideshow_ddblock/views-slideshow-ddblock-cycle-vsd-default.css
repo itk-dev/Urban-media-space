@@ -2,7 +2,7 @@
  * Dynamic display block module template: vsd-default - Cascading Style Sheet 
  */ 
 div.views-slideshow-ddblock-cycle-vsd-default div.container{background-color:#fff;width:478px;}
-div.views-slideshow-ddblock-cycle-vsd-default div.container-inner{height:318px;position:relative;}
+div.views-slideshow-ddblock-cycle-vsd-default div.container-inner{height:318px;position:relative;z-index:0;}
 div.views-slideshow-ddblock-cycle-vsd-default div.slider{float:left;width:478px;}
 div.views-slideshow-ddblock-cycle-vsd-default div.slider-inner{background:transparent url(images/transparent_bg.png) repeat scroll 0 0!important;height:303px;overflow:hidden;position:relative;visibility:hidden;}
 div.views-slideshow-ddblock-cycle-vsd-default div.slide{display:none;height:100%;left:0;position:absolute;top:0;}

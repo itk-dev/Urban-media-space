@@ -1,5 +1,5 @@
 <?php
-// $Id: views_slideshow_ddblock.views_slideshow.inc,v 1.3.2.2 2010/04/24 04:01:38 ppblaauw Exp $
+// $Id: views_slideshow_ddblock.views_slideshow.inc,v 1.3.2.3 2010/07/21 11:08:37 ppblaauw Exp $
 
 /**
  *  @file
@@ -140,14 +140,6 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
 
   // add views_slideshow_ddblock.admin. js file
   drupal_add_js(drupal_get_path('module', 'views_slideshow_ddblock') . '/js/views_slideshow_ddblock.admin.js');
-
-  // set pager variable for javascript
-  $settings['ddblockCustomTemplate'] = array(
-    'pager' => $view->options['views_slideshow_ddblock']['settings']['pager_settings']['pager'],
-    'pagerPosition' => $view->options['views_slideshow_ddblock']['settings']['pager_settings']['pager_position'],
-  );
-
-  drupal_add_js($settings, 'setting');
 
   // hide the unordered list/ordered list type
   $form['type'] = NULL;
