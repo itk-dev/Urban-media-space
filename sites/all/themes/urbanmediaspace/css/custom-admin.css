@@ -11,3 +11,11 @@
 .front .tabs ul.primary {
   margin: 20px 25px 0 0;
 }
+
+/*
+  Blocks
+*/
+
+.page-admin-build-block #blocks {
+  clear: both;
+}

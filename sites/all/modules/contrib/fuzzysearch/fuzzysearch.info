@@ -1,0 +1,14 @@
+; Id:
+name = Fuzzy Search
+description = Enables site-wide fuzzy keyword searching.
+package = Search Engine
+version = VERSION
+core = 6.x
+
+
+; Information added by drupal.org packaging script on 2010-07-25
+version = "6.x-1.4"
+core = "6.x"
+project = "fuzzysearch"
+datestamp = "1280085309"
+

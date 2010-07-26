@@ -1,14 +1,16 @@
-// Add example to top search form
-
 $(document).ready(function() {  
+
+  console.log();
+
+  // Add example to top search form
   // Get search form input
-  $('#edit-search-block-form-1')
+  $('#fuzzysearch-box-form .form-item input.form-text')
     // Add example function
     .example(
       // Get input field
-      $('#edit-search-block-form-1')
+      $('#block-fuzzysearch-0 h2.title')
       // Get the title of the input field
-      .attr('title')
+      .text()
   );
 
   // Hijack carousel pager link
