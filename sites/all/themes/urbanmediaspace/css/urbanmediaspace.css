@@ -294,6 +294,17 @@ h1#page-title {
   padding: 0 0 20px;
 }
 
+.block-nodeasblock,
+.block-campaignmonitor,
+.news-block,
+.block-poll {
+  width: 220px;
+}
+
+#sidebar-right .block-nodeasblock {
+  border: 0;
+}
+
 /*
   Spotboxes
 */
