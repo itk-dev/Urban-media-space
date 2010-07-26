@@ -918,6 +918,11 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
   float: right;
 }
 
+#cm-signup-block-form .cm-signup-message {
+ color: #73ab22;
+ font-weight: bold;
+}
+
 /*
   Poll
 */
