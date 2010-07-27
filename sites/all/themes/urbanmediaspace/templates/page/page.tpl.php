@@ -14,7 +14,7 @@
 
 <?php
   if ($node->field_body_background_image[0]['imceimage_path'] != '') {
-    $background_image = ' style="background: url(\'' . $node->field_body_background_image[0]['imceimage_path'] . '\') repeat-x center 80px;"';
+    $background_image = ' style="background: url(\'' . $node->field_body_background_image[0]['imceimage_path'] . '\') no-repeat center 80px;"';
   }
 ?>
 
