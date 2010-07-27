@@ -118,7 +118,6 @@ function urbanmediaspace_preprocess_page(&$vars, $hook) {
 
 }
 
-
 /* testing for compatibility with context */
 function urbanmediaspace_blocks($region, $show_blocks = NULL) {
 
@@ -132,24 +131,37 @@ function urbanmediaspace_blocks($region, $show_blocks = NULL) {
         $render_sidebars = $show_blocks;
       }
 
-      // Bail if this region is disabled.
-      //$disabled_regions = context_active_values('theme_regiontoggle');
-      //if (!empty($disabled_regions) && in_array($region, $disabled_regions)) {
-        //return '';
-      //}
+	  // Is the Context module enabled? If so make sure that the blocks Context wants to display get displayed
+	   if ($region) {
+		 $output = '';
 
-      // If zen_blocks was called with a NULL region, its likely we were just
-      // setting the $render_sidebars static variable.
-      if ($region) {
-        $output = '';
+              if (module_exists("context")) {
+                // Get the Context plugin needed to get the blocks that needs to be displayed for this region
+                $plugin = context_get_plugin('reaction', 'block');
 
-        $plugin = context_get_plugin('reaction', 'block');
+                // Let's get the blocks that should be displayed from Context.
+                if (is_object($plugin)) {
+                      $output .= $plugin->execute($region);
+                 }
+               }
+              // If zen_blocks was called with a NULL region, its likely we were just
+              // setting the $render_sidebars static variable.
+              else {
+                // If $renders_sidebars is FALSE, don't render any region whose name begins
+                // with "sidebar_".
+                if (($render_sidebars || (strpos($region, 'sidebar_') !== 0)) && ($list = block_list($region))) {
+                      foreach ($list as $key => $block) {
+                        // $key == module_delta
+                        $output .= theme('block', $block);
+                      }
+                }
 
-        // Add any content assigned to this region through drupal_set_content() calls.
-        $output .= $plugin->execute($region);
+                // Add any content assigned to this region through drupal_set_content() calls.
+                $output .= drupal_get_content($region);
+              }
 
-        $elements['#children'] = $output;
-        $elements['#region'] = $region;
+               $elements['#children'] = $output;
+               $elements['#region'] = $region;
 
         return $output ? theme('region', $elements) : '';
       }
