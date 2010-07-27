@@ -298,14 +298,14 @@ h1#page-title {
   padding: 0 0 20px;
 }
 
-.block-nodeasblock,
+.block-nodeblock,
 .block-campaignmonitor,
 .news-block,
 .block-poll {
   width: 220px;
 }
 
-#sidebar-right .block-nodeasblock {
+#sidebar-right .block-nodeblock {
   border: 0;
 }
 
@@ -313,8 +313,8 @@ h1#page-title {
   Spotboxes
 */
 
-#sidebar-right .region .block-nodeasblock,
-#content-bottom .region .block-nodeasblock,
+#sidebar-right .region .block-nodeblock,
+#content-bottom .region .block-nodeblock,
 #sidebar-right .region .block,
 #content-bottom .region .block {
   float: left;
@@ -325,22 +325,22 @@ h1#page-title {
   margin: 0 20px 20px 0;
 }
 
-.block-nodeasblock .spotbox * {
+.block-nodeblock .spotbox * {
   color: #fff;
   text-decoration: none;
 }
 
-.block-nodeasblock .spotbox .content {
+.block-nodeblock .spotbox .content {
   color: #726557;
   line-height: 135%;
 }
 
-.block-nodeasblock .spotbox .link a {
+.block-nodeblock .spotbox .link a {
   color: #f45000;
   font-weight: bold;
 }
 
-.block-nodeasblock .spotbox .link a:hover {
+.block-nodeblock .spotbox .link a:hover {
   color: #8d3205;
 }
 
@@ -879,16 +879,16 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
   Spotboxes
 */
 
-.block-nodeasblock {
+.block-nodeblock {
   float: left;
   margin: 0 20px 20px 0;
 }
 
-.block-nodeasblock .content-wrapper {
+.block-nodeblock .content-wrapper {
   width: 220px;
 }
 
-.block-nodeasblock .spotbox {
+.block-nodeblock .spotbox {
   background-color: #fff;
   border: 1px solid #d3d3d3;
   padding: 4px;
@@ -896,28 +896,29 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
   overflow: auto;
 }
 
-.block-nodeasblock .spotbox .title {
+.block-nodeblock .spotbox .title {
   background: #4f4e4e url('../gfx/sprites-gradient-bgs.png') repeat-x 0 0;
   line-height: 245%;
 }
 
-.block-nodeasblock .spotbox .title a {
+.block-nodeblock .spotbox .title a {
   display: block;
   padding: 0 0 0 10px;
 }
 
-.block-nodeasblock .spotbox .image {
+.block-nodeblock .spotbox .image {
   line-height: 100%;
   margin: 4px 0 2px;
 }
 
-.block-nodeasblock .spotbox .content {
+.block-nodeblock .spotbox .content {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -190px;
   margin: 0;
+  min-height: 25px;
   padding: 7px;
 }
 
-.block-nodeasblock .spotbox .link {
+.block-nodeblock .spotbox .link {
   background: url('../gfx/sprites-icons.png') no-repeat 0 -76px;
   float: right;
   line-height: 200%;
@@ -938,13 +939,13 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
   margin: 0;
 }
 
-#main-content #sidebar-right .block-nodeasblock {
+#main-content #sidebar-right .block-nodeblock {
   border: 0;
   padding: 0;
   width: 220px;
 }
 
-#main-content #sidebar-right .block-nodeasblock .content {
+#main-content #sidebar-right .block-nodeblock .content {
   margin: 0;
 }
 
