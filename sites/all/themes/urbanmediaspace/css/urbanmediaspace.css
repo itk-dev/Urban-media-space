@@ -569,7 +569,8 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
 
 #fuzzysearch-form #edit-submit {
   float: left;
-  margin: 1px 0 0 5px;
+  margin: 0 0 0 5px;
+  *margin: 1px 0 0 5px;
   padding: 8px 10px;
   *padding: 7px 10px 7px;
 }
