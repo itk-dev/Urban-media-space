@@ -78,6 +78,4 @@
     <?php print $content; ?>
   </div>
 
-  <?php print $links; ?>
-
 </div></div> <!-- /node-inner, /node -->

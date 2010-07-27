@@ -96,10 +96,7 @@
         </div> <!-- /#content-top -->
       <?php endif; ?>
 
-      <?php print $messages; ?>
-      <?php print $help; ?>
-
-      <?php print $breadcrumb; ?>
+       <?php print $breadcrumb; ?>
 
         <div id="content" class="column <?php print ns('grid-16', $left, 4) . ' ' . ns('push-4', !$left, 4); ?>">
   	    <div id="content-inner">
@@ -107,6 +104,9 @@
               <?php if ($tabs): ?>
                 <div class="tabs"><?php print $tabs; ?></div>
               <?php endif; ?>
+
+              <?php print $messages; ?>
+              <?php print $help; ?>
 
               <div id="main-content" class="region clear-block">
                 <?php print $content; ?>

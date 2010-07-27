@@ -1200,6 +1200,14 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
 }
 
 /*
+  Messages
+*/
+
+.messages.status ul {
+  list-style: none;
+}
+
+/*
   Footer
 */
 
