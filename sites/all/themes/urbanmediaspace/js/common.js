@@ -1,7 +1,5 @@
 $(document).ready(function() {  
 
-  console.log();
-
   // Add example to top search form
   // Get search form input
   $('#fuzzysearch-box-form .form-item input.form-text')
