@@ -1,0 +1,142 @@
+/*!
+ * Dynamic display block module template: urbanmediaspace - Cascading Style Sheet
+ * (c) Copyright Phelsa Information Technology, 2009 - 2010. All rights reserved.
+ * Version 1.2 (21-JUN-2010)
+ * Licenced under GPL license 
+ * http://www.gnu.org/licenses/gpl.html 
+ */
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace {
+  padding: 15px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.container{
+  background-color: #fff;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.container-inner {
+  position: relative;
+  z-index: 0;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slider-inner {
+  background: transparent url(../images/transparent_bg.png) repeat scroll 0 0 !important;
+  border: 2px solid #ff8c17;
+  height: 266px;
+  overflow: hidden;
+  position: relative;
+  visibility: hidden;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text {
+  background: url('../../../../gfx/carousel-transparent-bg.png');
+  position: absolute;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-horizontal {
+  left: 18px;
+  width: 612px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-top {
+  bottom: 24px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner {
+  color: #d6d6d6;
+  font-size: 75%;
+  min-height: 95px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner a {
+  color: #fff;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner .slide-arrow {
+  background: url('../../../../gfx/sprites-icons.png') no-repeat 0 -377px;
+  bottom: 15px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  width: 30px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner .slide-title {
+  font-size: 175%;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-text-inner .slide-body {
+  font-size: 100%;
+  font-weight: normal;
+  padding: 0 35px 0 0;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.slide-body-inner a {
+  padding: 0 25px 0 0;
+}
+
+/* custom pager */
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager {
+  float: left;
+  width: 261px;
+}
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager-inner {
+  height: 50px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item {
+  display: block;
+  border: 2px solid #3e3e3e;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager .custom-pager-item.active-pager-item {
+  border: 2px solid #ff8c17;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a {
+  background-color: #3e3e3e;
+  border: 1px solid #3e3e3e;
+  border-bottom: 1px solid #7b7d7d;
+  color: #dddddd;
+  display: block;
+  font-size: 75%;
+  line-height: 100%;
+  height: 62px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager-item.last a {
+  height: 60px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a.activeSlide {
+  background: #ff9933 url('../../../../gfx/sprites-gradient-bgs.png') repeat-x 0 -725px;
+  border: 1px solid #ff7a00;
+  color: #fff;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a img {
+  float: left;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a span.custom-pager-item-inner-teaser-wrapper {
+  display: block;
+  float: left;
+  margin: 7px 0 7px 10px;
+  width: 155px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a b {
+  display: block;
+  margin: 0 0 5px;
+}
+
+div.views-slideshow-ddblock-cycle-urbanmediaspace div.custom-pager a span {
+  font-size: 95%;
+}
