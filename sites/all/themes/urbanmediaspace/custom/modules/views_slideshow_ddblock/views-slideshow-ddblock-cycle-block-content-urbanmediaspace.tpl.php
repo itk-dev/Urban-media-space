@@ -59,7 +59,6 @@ drupal_add_css($directory . '/custom/modules/views_slideshow_ddblock/' . $settin
            <div class="slide-text-inner clear-block border">
            <?php if (!empty($slider_item['slide_title']) || !empty($slider_item['slide_text'])) :?>
               <a href="<?php print drupal_get_path_alias($slider_item['slide_link'],$language); ?>" title="<?php print $slider_item['slide_title']; ?>">
-                <span class="slide-arrow slide-arrow-<?php print $settings['slide_direction'] ?> clear-block border"></span>
                 <span class="slide-title slide-title-<?php print $settings['slide_direction'] ?> clear-block border">
                   <?php print $slider_item['slide_title'] ?>
                 </span>
