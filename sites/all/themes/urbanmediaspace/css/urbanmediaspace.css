@@ -989,6 +989,10 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
   Poll
 */
 
+.poll .vote-form .choices {
+  display: block;
+}
+
 .poll .title {
   font-weight: bold;
   margin: 0 0 20px;
