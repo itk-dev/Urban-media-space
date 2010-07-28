@@ -18,8 +18,10 @@ $(document).ready(function() {
 
   // Add opacity hover effect on footer logos
   $('#footer-logos div a')
-  .css('opacity',.25)
-  .show()
+  .css({
+    'opacity': .25,
+    'display': 'inline-block'
+  })
   .mouseover(function() {
     $(this).css('opacity',1);
   })
