@@ -1,0 +1,52 @@
+* {
+  height: auto !important;
+  left: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+}
+
+body,
+#wrapper {
+  background: none;
+}
+
+#site-header {
+  display: block;
+  height: 100px !important;
+}
+
+#main {
+  clear: both;
+}
+
+#content,
+#content-bottom {
+  padding: 10px !important;
+}
+
+#main-content .content .field-field-content,
+#main-content .content .field-field-content .field-item {
+  width: 95% !important;
+}
+
+.block-nodeblock .spotbox {
+  margin: 10px !important;
+}
+
+#aaktopbar,
+#main-menu,
+.views-slideshow-ddblock-cycle-urbanmediaspace,
+#fuzzysearch-box-form,
+#block-menu-secondary-links,
+#sidebar-left,
+#sidebar-right,
+.logged-in .tabs,
+.breadcrumb,
+#footer,
+#footer-logos,
+#admin-toolbar,
+#l10n-client,
+#block-block-4 {
+  display: none;
+}
