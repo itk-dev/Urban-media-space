@@ -87,6 +87,13 @@ h1#page-title {
   line-height: 150%;
 }
 
+#main-content h2 {
+  border-bottom: 1px solid #e5e5e5;
+  color: #3f3f3f;
+  font: 225% Georgia, Times New Roman, Arial, sans-serif;
+  line-height: 150%;
+}
+
 #content-bottom h2, #sidebar-right h2 {
   color: #3f3f3f;
   font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
