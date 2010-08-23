@@ -94,6 +94,12 @@ h1#page-title {
   line-height: 150%;
 }
 
+#main-content .content h2 {
+  border: 0;
+  font: 125% Arial, Verdana, sans-serif;
+  font-weight: bold;
+}
+
 #content-bottom h2, #sidebar-right h2 {
   color: #3f3f3f;
   font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
