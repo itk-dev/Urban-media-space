@@ -232,6 +232,10 @@ h1#page-title {
   font-size: 75%;
 }
 
+#content .content ul {
+  margin: 15px;
+}
+
 /*
   Front specific
 */
