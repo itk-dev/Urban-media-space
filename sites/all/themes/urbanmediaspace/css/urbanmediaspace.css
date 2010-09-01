@@ -152,20 +152,20 @@ h1#page-title {
   Secondary links
 */
 
-#block-menu-secondary-links {
+.region-header .content ul.menu {
   font-size: 80%;
   line-height: 200%;
 }
 
-#block-menu-secondary-links a,
-#block-menu-secondary-links a:link,
-#block-menu-secondary-links a:visited {
+.region-header .content ul.menu a,
+.region-header .content ul.menu a:link,
+.region-header .content ul.menu a:visited {
   color: #000;
   text-decoration: none;
 }
 
-#block-menu-secondary-links a:hover,
-#block-menu-secondary-links a:active {
+.region-header .content ul.menu a:hover,
+.region-header .content ul.menu a:active {
   color: #989898;
 }
 
@@ -700,32 +700,32 @@ body.context-editing div.context-block-region div.draggable div.handle a.remove 
   Secondary links
 */
 
-#block-menu-secondary-links {
+.region-header .content ul.menu {
   float: right;
   right: 0;
   position: absolute;
 }
 
-#block-menu-secondary-links li {
+.region-header .content ul.menu li {
   border-right: 1px solid #9f9f9f;
   margin: 0 0 0 5px;
   padding: 0 10px 1px 0;
 }
 
-#block-menu-secondary-links ul.menu li {
+.region-header .content ul.menu li {
   display: inline;
 }
 
-#block-menu-secondary-links ul.menu li.last {
+.region-header .content ul.menu li.last {
   border: 0;
   padding: 0;
 }
 
-#block-menu-secondary-links {
+.region-header .content ul.menu {
   top: 5px;
 }
 
-#block-menu-secondary-links ul.menu {
+.region-header .content ul.menu {
   list-style: none;
   margin: 0;
   padding: 0;
