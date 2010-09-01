@@ -44,6 +44,10 @@ p {
   margin: 0;
 }
 
+td {
+  vertical-align: top;
+}
+
 #content .content p {
   margin: 0 0 16px;
 }
