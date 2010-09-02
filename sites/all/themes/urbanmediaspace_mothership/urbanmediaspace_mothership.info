@@ -1,0 +1,52 @@
+name        = Urban Mediaspace (basetheme = mothership)
+description = Theme for the Urban Mediaspace website based on the mothership theme.
+screenshot  = images/screenshot.png
+core        = 6.x
+engine      = phptemplate
+base theme  = mothership_ninesixty
+
+;--------------------- regions -----------------------------
+regions[aaktopbar]      = Aarhus Kommune topbar
+regions[left]           = left sidebar
+regions[right]          = right sidebar
+regions[navbar]         = navigation bar
+regions[mainmenu]       = Mainmenu
+regions[content_top]    = content top
+regions[content_bottom] = content bottom
+regions[header]         = header
+regions[footer]         = footer
+regions[footer_logos]   = footer logos
+regions[closure_region] = closure
+
+;--------------------- styles ------------------------------
+stylesheets[all][]   = styles/styles.css
+stylesheets[all][]   = styles/urbanmediaspace.css
+stylesheets[all][]   = styles/custom-admin.css
+stylesheets[all][]   = styles/developer.css
+stylesheets[all][]   = styles/l10n_client.css
+stylesheets[print][] = styles/print.css
+
+  ; Optionally add some jquery scripts to your theme.
+; scripts[] = script.js
+  scripts[] = scripts/jquery.example.min.js
+  scripts[] = scripts/jquery.hoverintent.minified.js
+  scripts[] = scripts/common.js
+
+;--------------------- features ----------------------------
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = mission
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = search
+features[] = favicon
+features[] = primary_links
+features[] = secondary_links
+
+;--------------------- drupal.org packaging  ----------------------------
+; Information added by drupal.org packaging script on 2010-01-18
+version = "6.x-1.2"
+core = "6.x"
+project = "urbanmediaspace_mothership"
+datestamp = "1263846306"

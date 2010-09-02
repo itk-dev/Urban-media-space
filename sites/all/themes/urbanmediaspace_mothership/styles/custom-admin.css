@@ -1,0 +1,52 @@
+/*
+  Admin toolbar
+*/
+
+div#admin-toolbar .form-button {
+  display: inline;
+}
+
+/*
+  Tabs
+*/
+
+.tabs ul.primary {
+  font-size: 75%;
+  height: 24px;
+  margin: 20px 15px;
+}
+
+#imce-content ul.secondary {
+  background-color: transparent;
+  background-image: none;
+}
+
+#imce-content ul.secondary li {
+  float: none;
+}
+
+#imce-content ul.secondary a {
+  border-color: #DDDDDD #DDDDDD #CCCCCC;
+  border-style: solid;
+  border-width: 1px;
+  color: #333333;
+  cursor: pointer;
+  display: inline;
+  font-weight: normal;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -moz-box-shadow:0 1px 1px #DDDDDD;
+  padding: 2px 10px;
+  text-align: center;
+}
+
+.front .tabs ul.primary {
+  margin: 20px 25px 0 0;
+}
+
+/*
+  Blocks
+*/
+
+.page-admin-build-block #blocks {
+  clear: both;
+}

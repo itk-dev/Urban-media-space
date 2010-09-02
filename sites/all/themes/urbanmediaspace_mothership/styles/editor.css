@@ -1,0 +1,32 @@
+body {
+  color: #000;
+  font: 100%/150% Verdana, Arial, sans-serif;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #f45000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+  margin-bottom: 10px;
+}
+
+h2 {
+  border: 0;
+  font: 125% Arial, Verdana, sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 0 5px;
+}
