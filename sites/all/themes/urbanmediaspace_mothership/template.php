@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Add current page to breadcrumb
+ */
+function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
+  if (!empty($breadcrumb)) {
+    $title = drupal_get_title();
+    if (!empty($title)) {
+      $breadcrumb[]=$title;
+    }
+    return '<div class="breadcrumb">'. implode(' > ', $breadcrumb) .'</div>';
+  }
+}
+
+/**
  * Implements theme_menu_item_link()
  */
 function urbanmediaspace_mothership_menu_item_link($link) {
