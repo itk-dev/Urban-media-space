@@ -3,7 +3,7 @@ description = Theme for the Urban Mediaspace website based on the mothership the
 screenshot  = images/screenshot.png
 core        = 6.x
 engine      = phptemplate
-base theme  = mothership_ninesixty
+base theme  = mothership
 
 ;--------------------- regions -----------------------------
 regions[aaktopbar]      = Aarhus Kommune topbar
@@ -19,18 +19,20 @@ regions[footer_logos]   = footer logos
 regions[closure_region] = closure
 
 ;--------------------- styles ------------------------------
-stylesheets[all][]   = styles/styles.css
+stylesheets[all][]   = styles/tabs.css
+stylesheets[all][]   = styles/framework/reset.css
+stylesheets[all][]   = styles/framework/960-rtl.css
+stylesheets[all][]   = styles/framework/960.css
 stylesheets[all][]   = styles/urbanmediaspace.css
 stylesheets[all][]   = styles/custom-admin.css
 stylesheets[all][]   = styles/developer.css
 stylesheets[all][]   = styles/l10n_client.css
 stylesheets[print][] = styles/print.css
 
-  ; Optionally add some jquery scripts to your theme.
-; scripts[] = script.js
-  scripts[] = scripts/jquery.example.min.js
-  scripts[] = scripts/jquery.hoverintent.minified.js
-  scripts[] = scripts/common.js
+;--------------------- scripts ------------------------------
+scripts[] = scripts/jquery.example.min.js
+scripts[] = scripts/jquery.hoverintent.minified.js
+scripts[] = scripts/common.js
 
 ;--------------------- features ----------------------------
 features[] = logo

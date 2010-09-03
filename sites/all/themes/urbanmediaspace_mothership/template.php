@@ -42,3 +42,31 @@ function urbanmediaspace_mothership_preprocess_views_view(&$vars) {
   $vars['right']          = theme('blocks', 'right');
   $vars['content_bottom'] = theme('blocks', 'content_bottom');
 }
+
+function ns() {
+  $args = func_get_args();
+  $default = array_shift($args);
+  // Get the type of class, i.e., 'grid', 'pull', 'push', etc.
+  // Also get the default unit for the type to be procesed and returned.
+  list($type, $return_unit) = explode('-', $default);
+
+  // Process the conditions.
+  $flip_states = array('var' => 'int', 'int' => 'var');
+  $state = 'var';
+  foreach ($args as $arg) {
+    if ($state == 'var') {
+      $var_state = !empty($arg);
+    }
+    elseif ($var_state) {
+      $return_unit = $return_unit - $arg;
+    }
+    $state = $flip_states[$state];
+  }
+
+  $output = '';
+  // Anything below a value of 1 is not needed.
+  if ($return_unit > 0) {
+    $output = $type . '-' . $return_unit;
+  }
+  return $output;
+}
