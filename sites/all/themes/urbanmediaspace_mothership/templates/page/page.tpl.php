@@ -36,8 +36,8 @@
     <div id="site-header" class="clear-block">
 	    <div id="header-inner">
         <div id="branding" class="clear-block">
-          <?php if ($linked_logo_img): ?>
-            <span id="logo"><?php print $linked_logo_img; ?></span>
+          <?php if ($site_logo): ?>
+            <span id="logo"><?php print $site_logo; ?></span>
           <?php endif; ?>
           <?php if ($site_name): ?>
             <?php if ($title): ?>
