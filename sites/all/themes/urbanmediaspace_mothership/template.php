@@ -43,6 +43,7 @@ function urbanmediaspace_mothership_preprocess_views_view(&$vars) {
   $vars['content_bottom'] = theme('blocks', 'content_bottom');
 }
 
+// 960 ns function
 function ns() {
   $args = func_get_args();
   $default = array_shift($args);

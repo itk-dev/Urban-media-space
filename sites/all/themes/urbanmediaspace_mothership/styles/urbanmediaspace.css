@@ -505,8 +505,16 @@ body.context-editing #sidebar-right .ui-sortable {
   margin: 10px 0 0 40px;
 }
 
-body.context-editing #content-bottom div.draggable-placeholder {
+body.context-editing div.draggable-placeholder {
+  background-color: #99dc8a;
+  border: 1px dashed #388427;
   float: left;
+  margin: -1px;
+  opacity: 1;
+  padding: 0;
+}
+
+body.context-editing #content-bottom div.draggable-placeholder {
   left: -10px;
   position: relative;
 }
