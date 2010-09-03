@@ -44,6 +44,10 @@ p {
   margin: 0;
 }
 
+ul {
+  list-style: square;
+}
+
 td {
   vertical-align: top;
 }
