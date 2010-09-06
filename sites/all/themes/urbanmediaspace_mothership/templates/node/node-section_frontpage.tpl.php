@@ -2,7 +2,7 @@
 // $Id: node.tpl.php,v 1.1 2009/06/26 00:33:39 duvien Exp $
 
 /**
- * @file node-section_frontpage.tpl
+ * @file node.tpl.php
  *
  * Theme implementation to display a node.
  *
@@ -49,9 +49,7 @@
  */
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"><div class="node-inner">
-
-  <?php print $picture; ?>
-
+  
   <?php if (!$page): ?>
     <h2 class="title">
       <a href="<?php print $node_url; ?>" title="<?php print $title ?>"><?php print $title; ?></a>
@@ -62,28 +60,16 @@
     <div class="unpublished"><?php print t('Unpublished'); ?></div>
   <?php endif; ?>
 
-  <div class="content">
-    <?php if ($left): ?>
-      <?php print $content; ?>
-    <?php endif; ?>
-    <?php if ($right): ?>
-    <div id="sidebar-right" class="column sidebar region grid-4">
-      <div id="sidebar-right-inner">
-        <?php print $right; ?>
-      </div>
-    </div> <!--//end #sidebar-right-inner -->
-    <?php endif; ?>
-    <?php if (!$left): ?>
-      <?php print $content; ?>
-    <?php endif; ?>
-    <?php if ($content_bottom): ?>
-      <div id="content-bottom" class="region region-content_bottom">
-        <?php print $content_bottom; ?>
-      </div> <!-- /#content-bottom -->
-    <?php endif; ?>
-  </div>
+  <?php if ($submitted or $terms): ?>
+    <div class="meta">
+      <?php if ($terms): ?>
+        <div class="terms terms-inline"><?php print t(' in ') . $terms; ?></div>
+      <?php endif; ?>
+    </div>
+  <?php endif; ?>
 
- 
-  <?php print $links; ?>
+  <div class="content">
+    <?php print $content; ?>
+  </div>
 
 </div></div> <!-- /node-inner, /node -->

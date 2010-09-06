@@ -39,19 +39,6 @@ function urbanmediaspace_mothership_menu_item_link($link) {
   return l($link['title'], $link['href'], $link['localized_options']);
 }
 
-function urbanmediaspace_mothership_preprocess_node(&$vars) {
-  if (!drupal_is_front_page()) {
-    $vars['left']           = theme('blocks', 'left');
-    $vars['right']          = theme('blocks', 'right');
-    $vars['content_bottom'] = theme('blocks', 'content_bottom');
-  }
-}
-
-function urbanmediaspace_mothership_preprocess_views_view(&$vars) {
-  $vars['right']          = theme('blocks', 'right');
-  $vars['content_bottom'] = theme('blocks', 'content_bottom');
-}
-
 // 960 ns function
 function ns() {
   $args = func_get_args();

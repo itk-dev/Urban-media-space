@@ -43,7 +43,7 @@
             <?php if ($title): ?>
               <div id="site-name" class="grid-3 omega"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><?php print $site_name; ?></a></div>
               <?php else: /* Use h1 when the content title is empty */ ?>
-                <h1 id="site-name" class="grid-3 omega"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="nofollow"><?php print $site_name; ?></a></h1>
+                ¤page¤<h1 id="site-name" class="grid-3 omega"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="nofollow"><?php print $site_name; ?></a></h1>
               <?php endif; ?>
             <?php endif; ?>
           <?php if ($site_slogan): ?>
@@ -110,11 +110,19 @@
 
               <div id="main-content" class="region clear-block">
                 <?php print $content; ?>
+                <?php if ($right && !$is_front): ?>
+                <div id="sidebar-right" class="column sidebar region grid-4">
+                  <div id="sidebar-right-inner">
+                    <?php print $right; ?>
+                  </div>
+                </div> <!--//end #sidebar-right-inner -->
+                <?php endif; ?>
+
               </div> <!-- /#main-content -->
 
               <?php print $feed_icons; ?>
 
-              <?php if ($content_bottom && $is_front): ?>
+              <?php if ($content_bottom): ?>
                 <div id="content-bottom" class="region region-content_bottom">
                   <?php print $content_bottom; ?>
                 </div> <!-- /#content-bottom -->
