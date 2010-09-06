@@ -265,6 +265,10 @@ h1#page-title {
   margin: 0 0 10px;
 }
 
+.front .node-inner {
+  padding: 0 30px;
+}
+
 .front .content p a.nodepicker-link {
   background: url('../gfx/sprites-icons.png') no-repeat 0 0;
   color: #f45000;
@@ -803,7 +807,11 @@ body.context-editing div.draggable:hover a.context-block-handle {
 }
 
 .front #main-content {
-  padding: 30px 30px 20px;
+  padding: 30px 0 20px;
+}
+
+.front #main-content #content-bottom {
+  width: auto;
 }
 
 .front #sidebar-right {
