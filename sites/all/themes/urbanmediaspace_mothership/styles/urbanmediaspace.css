@@ -1249,6 +1249,22 @@ body.context-editing div.draggable:hover a.context-block-handle {
   list-style: none;
 }
 
+div.messages, /* Important messages (status, warning, and error) for the user */
+div.status,
+div.warning,
+div.error {
+  clear: both;
+  min-height: 21px;
+  margin: 0 1em 5px 1em;
+  border: 2px solid #ff7;
+  padding: 5px 5px 5px 35px;
+  color: #000;
+  background-color: #ffc;
+  background-image: url(../images/messages-status.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+}
+
 /*
   Footer
 */
