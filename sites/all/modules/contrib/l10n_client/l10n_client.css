@@ -1,4 +1,4 @@
-/* $Id: l10n_client.css,v 1.6 2008/09/09 10:48:20 goba Exp $ */
+/* $Id: l10n_client.css,v 1.6.2.2 2010/04/20 22:16:00 goba Exp $ */
 
 /* width percentages add to 99% rather than 100% to prevent float
 overflows from occurring in an unnamed browser that can't decide
@@ -7,7 +7,7 @@ how it wants to round. */
 /* l10n_client container */
 #l10n-client {
   text-align:left;
-  z-index:99;
+  z-index:9999;
   line-height:1em;
   color:#000; background:#fff;
   position:fixed;
@@ -121,8 +121,7 @@ how it wants to round. */
 
   #l10n-client #l10n-client-search-form .form-item,
   #l10n-client #l10n-client-search-form input.form-text,
-  #l10n-client #l10n-client-search-form #search-filter-go,
-  #l10n-client #l10n-client-search-form #search-filter-clear {
+  #l10n-client #l10n-client-search-form #l10n-client-search-filter-clear {
     display:inline;
     vertical-align:middle;
   }
@@ -136,7 +135,7 @@ how it wants to round. */
       width:80%;
     }
   
-    #l10n-client #l10n-client-search-form #search-filter-clear {
+    #l10n-client #l10n-client-search-form #l10n-client-search-filter-clear {
       width:10%;
       margin:0em;
     }
