@@ -1,5 +1,5 @@
 <?php
-// $Id: insert.module,v 1.4.2.4 2010/07/27 04:01:13 quicksketch Exp $
+// $Id: insert.module,v 1.4.2.5 2010/08/07 18:45:25 quicksketch Exp $
 
 /**
  * @file
@@ -64,7 +64,7 @@ function insert_theme() {
     'insert_link' => array(
       'arguments' => array('item' => NULL, 'widget' => NULL),
       'template' => 'templates/insert-link',
-      'includes/insert.inc',
+      'file' => 'includes/insert.inc',
     ),
 
     // Theme functions in includes/imagecache.inc.
@@ -72,7 +72,7 @@ function insert_theme() {
       'arguments' => array('item' => NULL, 'widget' => NULL, 'preset_name' => NULL),
       'template' => 'templates/imagecache-insert-image',
       'pattern' => 'imagecache_insert_image__[a-z0-9_]+',
-      'includes/imagecache.inc',
+      'file' => 'includes/imagecache.inc',
     ),
   );
 }
