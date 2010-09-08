@@ -203,6 +203,7 @@ a:active, a.active {
 }
 
 #browse .browse ul.pager li {
+  float: left; /* Fix error with nodepicker module and tao theme (<li> not displayed correct) */
   padding: 0;
   margin: 0 3px;
 }
