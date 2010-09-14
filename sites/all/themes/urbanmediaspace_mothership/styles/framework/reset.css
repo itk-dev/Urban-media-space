@@ -28,6 +28,10 @@ caption, tbody, tfoot, thead, tr, th, td {
   background: transparent;
 }
 
+table {
+  border-collapse: separate;
+}
+
 /* Warning: this may add 1-2 pixels to bottom of page */
 /* See http://drupal.org/node/422006 */
 body {
