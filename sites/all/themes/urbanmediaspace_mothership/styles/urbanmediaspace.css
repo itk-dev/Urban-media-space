@@ -286,19 +286,19 @@ h1#page-title {
   Submenu
 */
 
-#sidebar-left .menu-name-primary-links ul {
+#sidebar-left .menu-block-1 ul {
   font-size: 100%;
   margin: 0;
   padding: 0;
 }
 
-#sidebar-left .menu-name-primary-links ul li {
+#sidebar-left .menu-block-1 ul li {
   line-height: 175%;
   margin: 0 0 0 8px;
   padding: 0;
 }
 
-#sidebar-left .menu-name-primary-links ul a {
+#sidebar-left .menu-block-1 ul a {
   background: url('../gfx/sprites-icons.png') no-repeat 5px -237px;
   color: #666666;
   display: block;
@@ -307,22 +307,22 @@ h1#page-title {
   text-decoration: none;
 }
 
-#sidebar-left .menu-name-primary-links ul a.active {
+#sidebar-left .menu-block-1 ul a.active {
   color: #f45000;  
 }
 
-#sidebar-left .menu-name-primary-links ul a,
-#sidebar-left .menu-name-primary-links ul a:link,
-#sidebar-left .menu-name-primary-links ul a:visited {
+#sidebar-left .menu-block-1 ul a,
+#sidebar-left .menu-block-1 ul a:link,
+#sidebar-left .menu-block-1 ul a:visited {
   text-decoration: none;
 }
 
-#sidebar-left .menu-name-primary-links ul a:hover {
+#sidebar-left .menu-block-1 ul a:hover {
   text-decoration: underline;
   color: #f45000;
 }
 
-#sidebar-left .menu-name-primary-links ul li li a {
+#sidebar-left .menu-block-1 ul li li a {
   font-size: 75%;
 }
 
@@ -711,32 +711,32 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Secondary links
 */
 
-.menu-name-secondary-links ul {
+#site-header .menu-name-secondary-links ul {
   float: right;
   right: 0;
   position: absolute;
 }
 
-.menu-name-secondary-links ul li {
+#site-header .menu-name-secondary-links ul li {
   border-right: 1px solid #9f9f9f;
   margin: 0 0 0 5px;
   padding: 0 10px 1px 0;
 }
 
-.menu-name-secondary-links ul li {
+#site-header .menu-name-secondary-links ul li {
   display: inline;
 }
 
-.menu-name-secondary-links ul li.last {
+#site-header .menu-name-secondary-links ul li.last {
   border: 0;
   padding: 0;
 }
 
-.menu-name-secondary-links ul {
+#site-header .menu-name-secondary-links ul {
   top: 5px;
 }
 
-.menu-name-secondary-links ul {
+#site-header .menu-name-secondary-links ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -823,13 +823,13 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu
 */
 
-#sidebar-left .menu-name-primary-links ul li {
+#sidebar-left .menu-block-1 ul li {
   background: #fff url('../gfx/submenu-bg.png') repeat-x bottom;
   list-style: none;
   list-style-image: none;
 }
 
-#sidebar-left .menu-name-primary-links ul li.expanded {
+#sidebar-left .menu-block-1 ul li.expanded {
   background: #f3f3f3 url('../gfx/submenu-bg.png') repeat-x bottom;
 }
 
@@ -837,13 +837,13 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu level 1
 */
 
-#sidebar-left .menu-name-primary-links ul li li {
+#sidebar-left .menu-block-1 ul li li {
   background: none;
   border-top: 1px solid #fff;
   margin: 0;
 }
 
-#sidebar-left .menu-name-primary-links ul li li a {
+#sidebar-left .menu-block-1 ul li li a {
   background-position: 25px -237px;
   margin: 0;
   padding: 3px 0 3px 40px;
@@ -853,7 +853,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu level 2
 */
 
-#sidebar-left .menu-name-primary-links ul li li li a {
+#sidebar-left .menu-block-1 ul li li li a {
   background-position: 45px -237px;
   margin: 0;
   padding: 3px 0 3px 60px;
@@ -863,7 +863,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu level 3
 */
 
-#sidebar-left .menu-name-primary-links ul li li li li a {
+#sidebar-left .menu-block-1 ul li li li li a {
   background-position: 65px -237px;
   margin: 0;
   padding: 3px 0 3px 80px;
