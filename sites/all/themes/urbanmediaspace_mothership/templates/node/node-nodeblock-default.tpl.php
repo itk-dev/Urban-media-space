@@ -31,3 +31,4 @@
 ?>
 
 <?php print views_embed_view('spotbox', 'page_1', $node->nid); ?>
+<?php print views_embed_view('spotbox', 'page_2', $node->nid); ?>
