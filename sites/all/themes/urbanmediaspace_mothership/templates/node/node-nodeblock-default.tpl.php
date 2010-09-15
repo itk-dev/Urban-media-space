@@ -30,6 +30,6 @@
  */
 ?>
 
-<?php print views_embed_view('spotbox', 'page_1', $node->nid); ?>
-<?php print views_embed_view('spotbox', 'page_2', $node->nid); ?>
-<?php print views_embed_view('spotbox', 'page_3', $node->nid); ?>
+<?php if ($node->type == 'spot_box_image_link') print views_embed_view('spotbox', 'page_1', $node->nid); ?>
+<?php if ($node->type == 'spot_box_image_ext_link') print views_embed_view('spotbox', 'page_2', $node->nid); ?>
+<?php if ($node->type == 'spot_box_info') print views_embed_view('spotbox', 'page_3', $node->nid); ?>
