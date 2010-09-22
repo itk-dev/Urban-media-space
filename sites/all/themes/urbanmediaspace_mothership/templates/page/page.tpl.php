@@ -13,8 +13,8 @@
 </head>
 
 <?php
-  if ($node->field_body_background_image[0]['imceimage_path'] != '') {
-    $background_image = ' style="background: url(\'' . $node->field_body_background_image[0]['imceimage_path'] . '\') no-repeat center 80px;"';
+  if ($node->field_body_backgroundimage[0]['filepath'] != '') {
+    $background_image = ' style="background: url(\'' . $node->field_body_backgroundimage[0]['filepath'] . '\') no-repeat center 80px;"';
   }
 ?>
 
