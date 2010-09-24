@@ -1,0 +1,13 @@
+; $Id: lang_dropdown.info,v 1.1 2010/04/04 16:22:21 doublethink Exp $
+name = Language Switcher Dropdown
+package = Multilanguage
+description = Provides a dropdown select to switch languages
+dependencies[] = locale
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-04-18
+version = "6.x-1.2"
+core = "6.x"
+project = "lang_dropdown"
+datestamp = "1271597413"
+

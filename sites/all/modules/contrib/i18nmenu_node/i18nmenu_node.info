@@ -1,0 +1,17 @@
+; $Id: i18nmenu_node.info,v 1.1 2010/07/11 13:06:31 plach Exp $
+name = Menu translation (Node)
+description = Allows a single node menu item to point to different node translations depending on the current language.
+dependencies[] = i18n
+dependencies[] = menu
+dependencies[] = i18nblocks
+dependencies[] = i18nstrings
+dependencies[] = i18nmenu
+package = Multilanguage
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-09-18
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "i18nmenu_node"
+datestamp = "1284812461"
+

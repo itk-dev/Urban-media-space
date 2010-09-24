@@ -1,0 +1,51 @@
+<?php
+// $Id: i18nmenu_node.install,v 1.2 2010/09/18 09:29:49 plach Exp $
+
+/**
+ * @file
+ * Installation file for the Menu translation (Node) module.
+ *
+ * @author Francesco Placella, http://www.psegno.it, 2010
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function i18nmenu_node_install() {
+  global $i18nmenu_node_install;
+  $i18nmenu_node_install = TRUE;
+}
+
+/**
+ * Implementation of hook_enable().
+ */
+function i18nmenu_node_enable() {
+  global $i18nmenu_node_install;
+  // On install enable node translation for all the node menu items, otherwise
+  // preserve the current settings.
+  $force_status = $i18nmenu_node_install ? variable_get('i18nmenu_node_force_status', TRUE) : NULL;
+  i18nmenu_node_item_translations_refresh_all($force_status);
+}
+
+/**
+ * Implementation of hook_uninstall().
+ *
+ * Delete all variables and remove all the node menu items settings.
+ */
+function i18nmenu_node_uninstall() {
+  $result = db_query('SELECT name FROM {variable} WHERE name LIKE \'i18nmenu_node_translation_%%\'');
+  while ($row = db_fetch_object($result)) {
+    variable_del($row->name);
+  }
+  i18nmenu_node_item_translations_refresh_all(FALSE);
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Convert block delta to the new format <module>:<delta>.
+ */
+function i18nmenu_node_update_6100() {
+  $query = "UPDATE {blocks} SET delta = CONCAT('menu:', delta) WHERE module = 'i18nmenu_node'";
+  return array(update_sql($query));
+}

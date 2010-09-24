@@ -1,0 +1,69 @@
+<?php
+// $Id: lang_dropdown.module,v 1.3 2010/04/15 20:08:28 doublethink Exp $
+
+/*
+ * Implementation of hook_block
+ */
+function lang_dropdown_block($op = 'list', $delta = 0, $edit = array()) {
+  if ($op == 'list') {
+    $blocks[0] = array(
+      'info' => t('Language switcher dropdown'), 
+      'cache' => BLOCK_NO_CACHE,
+    );
+    return $blocks;
+  }
+  else if ($op == 'view' && variable_get('language_count', 1) > 1 && variable_get('language_negotiation', LANGUAGE_NEGOTIATION_NONE) != LANGUAGE_NEGOTIATION_NONE) {
+    switch($delta) {
+      case 0:
+        $block = array(
+          'subject' => t('Languages'),
+          'content' => theme('lang_dropdown'));
+        break;
+    }
+    return $block;
+  }
+}
+
+/*
+ * Implementation of hook_theme
+ */
+function lang_dropdown_theme() {
+  return array('lang_dropdown' => array());
+}
+
+/*
+ * Theme function to return dropdown html
+ */
+function theme_lang_dropdown() {
+  /* This code is almost from locale.module with a bit of modifications
+   * Instead of themeing it using theme('links') we'll theme our own dropdown
+   */ 
+  global $language;
+  
+  $path = drupal_is_front_page() ? '<front>' : $_GET['q'];
+  $languages = language_list('enabled');
+  $options = array();
+  foreach ($languages[1] as $lang_item) {
+    $options[$lang_item->language] = array(
+      'href'       => $path,
+      'title'      => $lang_item->native,
+      'language'   => $lang_item,
+    );
+  }
+  drupal_alter('translation_link', $options, $path);
+  
+  /* Here we theme our own dropdown */
+  $output = "<select id=\"language-select-list\" onchange=\"document.location.href=this.options[this.selectedIndex].value;\">\n";
+  foreach ($options as $lang_option) {
+    if ($language->language == $lang_option['language']->language) {
+      $selected = ' selected="selected"';
+      /* Here we output the language flag  from language icons module */
+      if (module_exists('languageicons')) { $languageicon = theme('languageicons_icon', $lang_option['language']); }
+    } else { $selected = ''; }
+    $path = check_url(url($lang_option['href'], array('language' => $lang_option['language'])));
+    $output .= '<option value="' . $path . '"' . $selected . '>' . $lang_option['title'] . '</option>' . "\n";
+  }
+  
+  $output .= "</select>\n" . $languageicon;
+  return $output;
+}

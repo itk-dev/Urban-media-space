@@ -1,0 +1,660 @@
+<?php
+// $Id: i18nmenu_node.module,v 1.20 2010/09/18 10:58:16 plach Exp $
+
+/**
+ * @file
+ * Menu translation (Node).
+ *
+ * Allows a single node menu item to point to different node translations
+ * depending on the current language.
+ *
+ * @author Francesco Placella, http://www.psegno.it, 2010
+ */
+
+/**
+ * Return the information used to provide the [i18n] blocks.
+ */
+function i18nmenu_node_block_info($module = NULL) {
+  static $info;
+
+  if (!isset($info)) {
+    $info = array(
+      'menu' => array(
+        'view' => 'i18nmenu_node_menu_block_view',
+      ),
+      'user' => array(
+        'delta' => array(1),
+        'view' => 'i18nmenu_node_navigation_menu_block_view',
+      ),
+      'menu_block' => array(),
+    );
+    drupal_alter('i18nmenu_node_block_info', $info);
+  }
+
+  return empty($module) ? $info : $info[$module];
+}
+
+/**
+ * Implementation of hook_block().
+ *
+ * Provide an i18n version of each menu block.
+ */
+function i18nmenu_node_block($op = 'list', $delta = 0) {
+  switch ($op) {
+    case 'list':
+      $blocks = array();
+      // Retrieve blocks form all the modules defined in the block information.
+      foreach (i18nmenu_node_block_info() as $module => $data) {
+        $module_blocks = module_invoke($module, 'block');
+        if (!empty($module_blocks)) {
+          // If a delta set is specified filter out the undesired blocks.
+          if (!empty($data['delta'])) {
+            $module_blocks = array_intersect_key($module_blocks, array_flip($data['delta']));
+          }
+          // Create an [i18n] version for each block and store the parent module
+          // as part of the delta.
+          foreach ($module_blocks as $delta => $block) {
+            $blocks["$module:$delta"]['info'] = t('[i18n] !block', array('!block' => $block['info']));
+          }
+        }
+      }
+      return $blocks;
+
+    case 'view':
+      list($module, $delta) = explode(':', $delta, 2);
+      return i18nmenu_node_block_view($module, $delta);
+  }
+}
+
+/**
+ * Render the i18n version of a block.
+ *
+ * Since menu tree rendering is influenced by language selection modes we need
+ * to temporarily disable language selection.
+ *
+ * @see menu_tree_check_access().
+ */
+function i18nmenu_node_block_view($module, $delta) {
+  $info = i18nmenu_node_block_info($module);
+  $default_callback = "{$module}_block";
+
+  if (!empty($info['file'])) {
+    require_once $info['file'];
+  }
+
+  // If a view callback is defined we use it, otherwise we fall back to the
+  // usual hook_block() invocation.
+  i18n_selection_mode('off');
+  $block = !empty($info['view']) && function_exists($info['view']) ? $info['view']($delta) : $default_callback('view', $delta);
+  i18n_selection_mode('reset');
+
+  return $block;
+}
+
+/**
+ * Render the navigation menu block.
+ */
+function i18nmenu_node_navigation_menu_block_view() {
+  global $user;
+  $block = i18nmenu_node_menu_block_view('navigation');
+
+  // Authenticated users have their name as title of the navigation menu.
+  if ($user->uid) {
+    $block['subject'] = check_plain($user->name);
+  }
+
+  return $block;
+}
+
+/**
+ * Render the i18n version of a menu block.
+ *
+ * To render the menu tree we use i18nmenu_translated_tree(). With this approach
+ * we avoid rendering an unlocalized version and then replacing it during block
+ * preprocessing, hence we should have a performance improvement here over the
+ * standard (translated) menu blocks.
+ *
+ * @see menu_tree_check_access().
+ */
+function i18nmenu_node_menu_block_view($menu_name) {
+  static $menus;
+
+  if (!isset($menus)) {
+    $menus = menu_get_menus();
+  }
+
+  $block = array();
+  $block['subject'] = check_plain($menus[$menu_name]);
+  $block['content'] = i18nmenu_translated_tree($menu_name);
+
+  return $block;
+}
+
+/**
+ * Implementation of hook_theme_registry_alter().
+ *
+ * Rebuild the menu system static cache before the primary and secondary links
+ * variables are populated.
+ *
+ * @see i18nmenu_node_navigation_links_prepare().
+ */
+function i18nmenu_node_theme_registry_alter(&$theme_registry) {
+  array_unshift($theme_registry['page']['preprocess functions'], 'i18nmenu_node_navigation_links_prepare');
+}
+
+/**
+ * Force the menu system to build its static cache without language selection.
+ *
+ * By switching temporarily off language selection we avoid hiding menu node
+ * items with a language not matching the current language selection mode. This
+ * must be called before the static cache in menu_tree_page_data() is populated
+ * to be effective.
+ */
+function i18nmenu_node_navigation_links_prepare() {
+  i18n_selection_mode('off');
+  if (theme_get_setting('toggle_primary_links')) {
+    menu_primary_links();
+  }
+  if (theme_get_setting('toggle_secondary_links')) {
+    menu_secondary_links();
+  }
+  i18n_selection_mode('reset');
+}
+
+/**
+ * Implementation of hook_menu_link_alter().
+ *
+ * Prepare node translation.
+ */
+function i18nmenu_node_menu_link_alter(&$item, $menu) {
+  // Check if node translation is enabled.
+  $node_translation = !empty($item['i18nmenu_node_translation']) || (!isset($item['i18nmenu_node_translation']) && isset($item['options']['translations']));
+  // Remove translations: they will be rebuilt below, if necessary.
+  unset($item['options']['translations']);
+
+  // If we are handling custom menu items of menu module and no language is set,
+  // prepare node translation data.
+  if (empty($item['language']) && $item['module'] == 'menu') {
+    $map = explode('/', $item['link_path']);
+    if ($node_translation && $map[0] == 'node' && isset($map[1]) && intval($map[1])) {
+      // Get the translation set id from the menu item path.
+      $tnid = _i18nmenu_node_get_tnid($map[1]);
+      if ($tnid) {
+        // We always store the source node nid to allow a correct handling of
+        // the active trail in i18nmenu_node_nodeapi() and to improve
+        // performance in i18nmenu_node_item_translations_refresh_set().
+        $map[1] = $tnid;
+        // Use the source node nid in the link path.
+        $item['link_path'] = implode('/', $map);
+        // We store here the current translation set to allow later translation.
+        $item['options']['translations'] = i18nmenu_node_get_translations($tnid, NULL);
+      }
+      else {
+        // No translations available yet but node translation for this menu item
+        // is enabled.
+        $item['options']['translations'] = array();
+      }
+    }
+  }
+}
+
+/**
+ * Return the translation set id for the give nid.
+ */
+function _i18nmenu_node_get_tnid($nid) {
+  static $tnids = array();
+  if (!isset($tnids[$nid])) {
+    $tnids[$nid] = db_fetch_object(db_query("SELECT n.tnid FROM {node} n WHERE n.nid = %d", $nid))->tnid;
+  }
+  return $tnids[$nid];
+}
+
+/**
+ * Implementation of hook_translated_menu_link_alter().
+ *
+ * Perform node translation.
+ *
+ * @see i18nmenu_node_menu_link_alter()
+ */
+function i18nmenu_node_translated_menu_link_alter(&$item, $map) {
+  if ($item['module'] == 'menu' && ($map[1] = i18nmenu_node_translation($item, $map))) {
+    $item['href'] = implode('/', $map);
+  }
+}
+
+/**
+ * Return the nid of the node translation for the given language if available.
+ */
+function i18nmenu_node_translation($item, $map, $langcode = NULL) {
+  if (empty($item['options']['translations'])) {
+    return FALSE;
+  }
+
+  // If the current item is also the active item, in $map[1] we have a node
+  // object instead of a simple nid.
+  $nid = is_object($map[1]) ? $map[1]->nid : $map[1];
+
+  if (empty($langcode)) {
+    // Retrieve the current language.
+    $langcode = i18n_get_lang();
+  }
+
+  // If the translation is available, is not the current element and translation
+  // support for its node type is enabled, we can use it.
+  // For performance reasons we check only if the node status is published or
+  // if the user can see unpublished nodes. Uncommon cases of fine-grained
+  // access-controlled translated node menu items might lead to "access denied"
+  // pages.
+  $translations = $item['options']['translations'];
+  if (is_array($translations) && isset($translations[$langcode])) {
+    $translation = $translations[$langcode];
+    if ($translation->nid != $nid && translation_supported_type($translation->type) && ($translation->status || user_access('administer nodes'))) {
+      return $translations[$langcode]->nid;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Implementation of hook_form_FORM_ID_alter().
+ *
+ * Add a checkbox to the menu_edit_menu form to enable path translation for node
+ * links and register a submit callback to process menu title.
+ */
+function i18nmenu_node_form_menu_edit_menu_alter(&$form, $form_state) {
+  $form['submit']['#weight'] = 9;
+  $form['i18nmenu_node_translation'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable node translation'),
+    '#title' => t('Enable node translation by default'),
+    '#description' => t('If this is checked the menu item forms will have the <em>Enable node translation</em> option checked by default.'),
+    '#default_value' => i18nmenu_node_translation_enabled($form['menu_name']['#value']),
+  );
+  $form['#submit'][] = 'i18nmenu_node_menu_edit_menu_submit';
+}
+
+/**
+ * Submit handler for the menu_edit_menu form.
+ */
+function i18nmenu_node_menu_edit_menu_submit($form, &$form_state) {
+  // Save the node translation setting for the current menu.
+  $menu = ($form['#insert'] ? 'menu-' : '') . $form['menu_name']['#value'];
+  $value = $form_state['values']['i18nmenu_node_translation'];
+  variable_set("i18nmenu_node_translation_$menu", $value);
+}
+
+/**
+ * Implementation of hook_form_FORM_ID_alter().
+ *
+ * Add a checkbox to enable node translation.
+ */
+function i18nmenu_node_form_menu_edit_item_alter(&$form, $form_state) {
+  // Node translation has no meaning when one explicitly assigns a language to a
+  // menu item.
+  if (!isset($form['menu']['#item']) || empty($form['menu']['#item']['options']['langcode'])) {
+    $router_item = menu_get_item();
+    $default = !empty($form['menu']['#item']) ?
+      i18nmenu_node_enabled($form['menu']['#item']) :
+      i18nmenu_node_translation_enabled($router_item['page_arguments'][3]['menu_name']);
+  
+    $form['menu']['i18nmenu_node_translation'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable node translation'),
+      '#description' => t('If this is checked node link paths will be replaced with the node translation paths.'),
+      '#default_value' => $default,
+    );
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function i18nmenu_node_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['type']) && isset($form['#node']) && $form['type']['#value'] .'_node_form' == $form_id && isset($form['menu'])) {
+    $node = $form['#node'];
+    $translation_support = translation_supported_type($node->type);
+
+    $node_translation_form = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable translations'),
+      '#description' => t('If this is checked the menu item will be shared among all the node translations, however you will still be able to translate the menu link title.'),
+    );
+
+    // If the node already has a menu just add the node translation option.
+    if (!empty($node->menu['mlid']) && $translation_support) {
+      $node_translation_form['#default_value'] = i18nmenu_node_enabled($node->menu);
+      $form['menu']['i18nmenu_node_translation'] = $node_translation_form;
+      return;
+    }
+    else {
+      $menu_name = variable_get('menu_default_node_menu', 'primary-links');
+      $node_translation_form['#default_value'] = i18nmenu_node_translation_enabled($menu_name);
+    }
+
+    // Select the current translation set id.
+    $tnid = _i18nmenu_node_get_node_tnid($node);
+
+    // Get the original node translation.
+    if (!empty($tnid) && $node->nid != $tnid) {
+      $tnode = node_load($tnid);
+    }
+    // If we have no translations or this is the original translation we just
+    // need to show the "Enable translations" checkbox (if translation support
+    // is enabled).
+    else {
+      if ($translation_support) {
+        $form['menu']['i18nmenu_node_translation'] = $node_translation_form;
+      }
+      return;
+    }
+
+    // Prepare the tnode so the menu item will be available.
+    _i18nmenu_node_prepare($tnode);
+
+    if ($translation_support && $tnode->menu && i18nmenu_node_enabled($tnode->menu)) {
+      // If node translation is enabled we share one single menu item among
+      // all the nodes belonging to the translation set.
+      $form['menu']['link_title_translation'] = $form['menu']['link_title'];
+      $form['menu']['link_title_translation']['#title'] = t('Menu item translation');
+      $form['menu']['link_title_translation']['#description'] = t('The translation of the menu item title.');
+      $default = _i18nmenu_get_item_title($tnode->menu, TRUE, $form['language']['#default_value']);
+      if (!empty($default)) {
+        $form['menu']['link_title_translation']['#default_value'] = $default;
+        $form['menu']['#collapsed'] = FALSE;
+      }
+
+      // Translating the menu item title requires only the 'translate interface'
+      // permission and not the 'administer menu' one.
+      $form['menu']['#access'] = user_access('translate interface');
+
+      unset($form['menu']['link_title']);
+      unset($form['menu']['parent']);
+      unset($form['menu']['weight']);
+
+      $form['#tnode'] = $tnode;
+      $form['#submit'][] = 'i18nmenu_node_form_node_submit';
+    }
+  }
+}
+
+/**
+ * Return the translation set id from the given node.
+ */
+function _i18nmenu_node_get_node_tnid($node) {
+  if (empty($node->translation_source)) {
+    return $node->tnid;
+  }
+  else {
+    // If the tnid is empty we are creating the first translation.
+    return empty($node->translation_source->tnid) ? $node->translation_source->nid : $node->translation_source->tnid;
+  }
+}
+
+/**
+ * Submit handler for the node form.
+ */
+function i18nmenu_node_form_node_submit($form, &$form_state) {
+  $values =& $form_state['values'];
+  $values['status_changed'] = $form['#node']->status != $values['status'];
+  if (!empty($form['#tnode']->menu['link_title']) && !empty($values['menu']['link_title_translation'])) {
+    i18nstrings_save_translation($values['language'], $form['#tnode']->menu['link_title'], $values['menu']['link_title_translation'], 'menu');
+  }
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ */
+function i18nmenu_node_nodeapi(&$node, $op, $a3 = NULL, $page = NULL) {
+  switch ($op) {
+    case 'presave':
+      // Ensure that the menu item language is always set to 'All languages' if
+      // node translation is enabled.
+      if (isset($node->menu) && !empty($node->menu['i18nmenu_node_translation'])) {
+        unset($node->menu['language']);
+        unset($node->menu['options']['langcode']);
+      }
+      break;
+
+    case 'insert':
+      if ($node->translation_source) {
+        i18nmenu_node_item_translations_refresh_set(_i18nmenu_node_get_node_tnid($node));
+      }
+      break;
+
+    case 'update':
+      if ($node->tnid && !empty($node->status_changed)) {
+        i18nmenu_node_item_translations_refresh_set($node->tnid);
+      }
+      break;
+
+    case 'delete':
+      if ($node->tnid) {
+        // @todo: update new source translation node if the translation set is
+        // empty.
+        i18nmenu_node_item_translations_refresh_set($node->tnid);
+      }
+      break;
+
+    case 'view':
+      if ($page) {
+        i18nmenu_node_set_item($node);
+      }
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_context_plugins().
+ */
+function i18nmenu_node_context_plugins() {
+  $plugins = array();
+
+  $plugins['i18nmenu_node_context_condition'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'i18nmenu_node') .'/plugins',
+      'file' => 'i18nmenu_node_context_condition.inc',
+      'class' => 'i18nmenu_node_context_condition',
+      'parent' => 'context_condition_menu',
+    ),
+  );
+
+  return $plugins;
+}
+
+/**
+ * Implementation of hook_context_registry().
+ */
+function i18nmenu_node_context_registry_alter(&$registry) {
+ if (isset($registry['conditions']['menu'])) {
+    $registry['conditions']['menu']['plugin'] = 'i18nmenu_node_context_condition';
+  }
+}
+
+/**
+ * Implementation of hook_token_list().
+ */
+function i18nmenu_node_token_list($type = 'all') {
+  if ($type == 'node' || $type == 'all') {
+    $tokens['node']['i18n-menuhierarchy-raw'] = t("The unfiltered menu path (as reflected in the breadcrumb), not including Home or [menu]. Separated by /.");
+    return $tokens;
+  }
+}
+
+/**
+ * Implementation of hook_token_values().
+ */
+function i18nmenu_node_token_values($type, $node = NULL, $options = array()) {
+  $values = array();
+
+  if ($type == 'node') {
+    $value = '';
+    $tnid = _i18nmenu_node_get_node_tnid($node);
+    $tnode = !empty($tnid) && $tnid != $nid ? (object) array('nid' => $tnid) : $node;
+    _i18nmenu_node_prepare($tnode);
+
+    if (!empty($tnode->menu)) {
+      $trail_raw = array();
+      $item = $tnode->menu;
+
+      while ($item) {
+        array_unshift($trail_raw, _i18nmenu_get_item_title($item, FALSE, $node->language));
+        $item = empty($item['plid']) ? FALSE : menu_link_load($item['plid']);
+      }
+
+      $value = implode('/', $trail_raw);
+    }
+
+    $values['i18n-menuhierarchy-raw'] = $value;
+  }
+
+  return $values;
+}
+
+/**
+ * Implementation of hook_form_FORM_ID_alter().
+ *
+ * Handle addition/deletions to the translation set performed from the "Select
+ * translation" i18n form.
+ */
+function i18nmenu_node_form_i18n_node_select_translation_alter(&$form, $form_state) {
+  $form['#submit'][] = 'i18nmenu_node_translation_set_update';
+}
+
+/**
+ * Submit handler for i18n_node_select_translation form.
+ *
+ * Refresh menu items' translation cache if the translation set has changed.
+ */
+function i18nmenu_node_translation_set_update($form, &$form_state) {
+  $changed = FALSE;
+  $nids = array($form['node']['#value']->nid);
+
+  foreach ($form_state['values']['translations']['nid'] as $langcode => $nid) {
+    $previous = $form['translations']['nid'][$langcode]['#value'];
+    if ($previous != $nid) {
+      $changed = TRUE;
+    }
+    if ($previous) {
+      $nids[] = $previous;
+    }
+    if ($nid) {
+      $nids[] = $nid;
+    }
+  }
+
+  if ($changed) {
+    $nids = array_unique($nids);
+    i18nmenu_node_item_translations_refresh($nids);
+  }
+}
+
+/**
+ * Refresh the translation cache for any menu item belonging to the translation
+ * sets identified by the given tnid.
+ */
+function i18nmenu_node_item_translations_refresh_set($tnid) {
+  $nids = i18nmenu_node_get_translations($tnid);
+  if (empty($nids)) {
+    $nids = array($tnid);
+  }
+  i18nmenu_node_item_translations_refresh($nids);
+}
+
+/**
+ * Refresh the translation cache for any menu item belonging to the translation
+ * sets identified by the given nids.
+ */
+function i18nmenu_node_item_translations_refresh($nids) {
+  $conditions = implode(' OR ', array_fill(0, count($nids), "link_path LIKE 'node/%d%%'"));
+  $query = 'SELECT mlid FROM {menu_links} WHERE '. $conditions .' ORDER by mlid';
+  _i18nmenu_node_item_translations_refresh($query, $nids);
+}
+
+/**
+ * Refresh the translation cache for any menu item pointing to a node page.
+ */
+function i18nmenu_node_item_translations_refresh_all($force_status = NULL) {
+  // @todo: Consider using a batch process here.
+  $query = 'SELECT mlid FROM {menu_links} WHERE link_path LIKE \'node/%%\' ORDER by mlid';
+  _i18nmenu_node_item_translations_refresh($query, NULL, $force_status);
+  watchdog('i18nmenu_node', 'Translation cache has been refreshed for all node menu items.', array(), WATCHDOG_INFO);
+}
+
+/**
+ * Helper function: actually refresh the menu items returned by the given query.
+ */
+function _i18nmenu_node_item_translations_refresh($query, $args = NULL, $force_status = NULL) {
+  $result = db_query($query, $args);
+  $list = module_list(FALSE, FALSE);
+  while ($row = db_fetch_object($result)) {
+    // Refresh the item translation cache.
+    $item = menu_link_load($row->mlid);
+    if (isset($force_status)) {
+      $item['i18nmenu_node_translation'] = $force_status;
+    }
+    // If node translation is disabled we manually call hook_menu_link_alter()
+    // before saving the menu item.
+    if (!isset($list['i18nmenu_node'])) {
+      i18nmenu_node_menu_link_alter($item, NULL);
+    }
+    menu_link_save($item);
+  }
+}
+
+/**
+ * Set as current menu item the source node to correctly handle the active
+ * trail.
+ */
+function i18nmenu_node_set_item($node) {
+  if (!empty($node->tnid) && $node->tnid != $node->nid) {
+    $item = menu_get_item();
+    $item['original_href'] = $item['href'];
+    $href = explode('/', $item['href']);
+    $href[1] = $node->tnid;
+    $item['href'] = implode('/', $href);
+    menu_set_item(NULL, $item);
+  }
+}
+
+/**
+ * Return TRUE if node item translation is enabled for the given menu.
+ */
+function i18nmenu_node_translation_enabled($menu_name) {
+  return variable_get("i18nmenu_node_translation_$menu_name", TRUE);
+}
+
+/**
+ * Return TRUE if node item translation is enabled for the given menu item.
+ */
+function i18nmenu_node_enabled($item) {
+  return isset($item['options']['translations']);
+}
+
+/**
+ * Return an array of node translation nids keyed by language.
+ */
+function i18nmenu_node_get_translations($tnid, $field = 'nid') {
+  static $translations = array();
+
+  if (!isset($translations[$tnid])) {
+    $translations[$tnid] = array();
+    if ($tnid) {
+      $result = db_query("SELECT n.language, n.nid, n.status, n.type FROM {node} n WHERE n.tnid = %d", $tnid);
+      while ($row = db_fetch_object($result)) {
+        $translations[$tnid][$row->language] = $row;
+      }
+    }
+  }
+
+  if (!$field) {
+    return $translations[$tnid];
+  }
+  else {
+    $result = array();
+    foreach ($translations[$tnid] as $langcode => $node) {
+      $result[$langcode] = $node->$field;
+    }
+    return $result;
+  }
+}
