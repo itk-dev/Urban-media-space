@@ -1035,6 +1035,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
 #cm-signup-block-form .campaignmonitor-signup-message {
  color: #73ab22;
  font-weight: bold;
+ padding: 10px 0 0;
 }
 
 /*
