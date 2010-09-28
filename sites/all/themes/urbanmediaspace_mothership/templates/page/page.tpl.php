@@ -93,8 +93,15 @@
               <?php print $help; ?>
 
               <div id="main-content" class="region clear-block">
+                <?php if ($right && !$is_front && !$left): ?>
+                <div id="sidebar-right" class="column sidebar region grid-4">
+                  <div id="sidebar-right-inner">
+                    <?php print $right; ?>
+                  </div>
+                </div> <!--//end #sidebar-right-inner -->
+                <?php endif; ?>
                 <?php print $content; ?>
-                <?php if ($right && !$is_front): ?>
+                <?php if ($right && !$is_front && $left): ?>
                 <div id="sidebar-right" class="column sidebar region grid-4">
                   <div id="sidebar-right-inner">
                     <?php print $right; ?>
