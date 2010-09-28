@@ -64,7 +64,6 @@ dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
 
 textarea,
 html.js .resizable-textarea textarea {
-  background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -372px;
   border: 2px solid #d4d4d4;
   color: #726557;
   font: 12px Arial, Verdana, sans-serif;
