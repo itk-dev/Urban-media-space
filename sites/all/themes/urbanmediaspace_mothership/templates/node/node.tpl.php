@@ -54,7 +54,7 @@
     <h1 class="title" id="page-title"><?php print $title; ?></h1>
   <?php endif; ?>
 
-  <?php if (!$page): ?>
+  <?php if (!$page && $title): ?>
     <h2 class="title">
       <a href="<?php print $node_url; ?>" title="<?php print $title ?>"><?php print $title; ?></a>
     </h2>
