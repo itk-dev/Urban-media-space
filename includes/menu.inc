@@ -866,9 +866,7 @@ function menu_tree_all_data($menu_name = 'navigation', $item = NULL) {
  *   same structure described for the top-level array.
  */
 function menu_tree_page_data($menu_name = 'navigation') {
-  //the line below is uncommented because of bug in localization of menu
-  //TODO: create patch see: http://drupal.org/node/461312
-  //static $tree = array();
+  static $tree = array();
 
   // Load the menu item corresponding to the current page.
   if ($item = menu_get_item()) {
