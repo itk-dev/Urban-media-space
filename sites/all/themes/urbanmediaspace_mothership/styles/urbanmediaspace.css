@@ -296,19 +296,19 @@ h1#page-title {
   Submenu
 */
 
-#sidebar-left .menu-block-1 ul {
+#sidebar-left .menu {
   font-size: 100%;
   margin: 0;
   padding: 0;
 }
 
-#sidebar-left .menu-block-1 ul li {
+#sidebar-left .menu li {
   line-height: 175%;
   margin: 0 0 0 8px;
   padding: 0;
 }
 
-#sidebar-left .menu-block-1 ul a {
+#sidebar-left .menu a {
   background: url('../gfx/sprites-icons.png') no-repeat 5px -237px;
   color: #666666;
   display: block;
@@ -317,22 +317,22 @@ h1#page-title {
   text-decoration: none;
 }
 
-#sidebar-left .menu-block-1 ul a.active {
+#sidebar-left .menu a.active {
   color: #f45000;  
 }
 
-#sidebar-left .menu-block-1 ul a,
-#sidebar-left .menu-block-1 ul a:link,
-#sidebar-left .menu-block-1 ul a:visited {
+#sidebar-left .menu a,
+#sidebar-left .menu a:link,
+#sidebar-left .menu a:visited {
   text-decoration: none;
 }
 
-#sidebar-left .menu-block-1 ul a:hover {
+#sidebar-left .menu a:hover {
   text-decoration: underline;
   color: #f45000;
 }
 
-#sidebar-left .menu-block-1 ul li li a {
+#sidebar-left .menu li li a {
   font-size: 75%;
 }
 
@@ -833,13 +833,13 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu
 */
 
-#sidebar-left .menu-block-1 ul li {
+#sidebar-left .menu li {
   background: #fff url('../gfx/submenu-bg.png') repeat-x bottom;
   list-style: none;
   list-style-image: none;
 }
 
-#sidebar-left .menu-block-1 ul li.expanded {
+#sidebar-left .menu li.expanded {
   background: #f3f3f3 url('../gfx/submenu-bg.png') repeat-x bottom;
 }
 
@@ -847,13 +847,13 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu level 1
 */
 
-#sidebar-left .menu-block-1 ul li li {
+#sidebar-left .menu li li {
   background: none;
   border-top: 1px solid #fff;
   margin: 0;
 }
 
-#sidebar-left .menu-block-1 ul li li a {
+#sidebar-left .menu li li a {
   background-position: 25px -237px;
   margin: 0;
   padding: 3px 0 3px 40px;
@@ -863,7 +863,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu level 2
 */
 
-#sidebar-left .menu-block-1 ul li li li a {
+#sidebar-left .menu li li li a {
   background-position: 45px -237px;
   margin: 0;
   padding: 3px 0 3px 60px;
@@ -873,7 +873,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu level 3
 */
 
-#sidebar-left .menu-block-1 ul li li li li a {
+#sidebar-left .menu li li li li a {
   background-position: 65px -237px;
   margin: 0;
   padding: 3px 0 3px 80px;
