@@ -1,5 +1,5 @@
 <?php
-// $Id: i18n.module,v 1.41.2.49 2010/09/05 10:18:17 jareyero Exp $
+// $Id: i18n.module,v 1.41.2.50 2010/09/09 12:23:48 jareyero Exp $
 
 /**
  * @file
@@ -605,7 +605,7 @@ function i18n_form_alter(&$form, $form_state, $form_id) {
       }
 
       // Multilingual variables in settings form.
-      if (isset($form['#theme']) && $form['#theme'] == 'system_settings_form' && $variables = variable_get('i18n_variables', 0)) {
+      if (isset($form['#theme']) && $form['#theme'] == 'system_settings_form' && $variables = i18n_variable()) {
         if ($i18n_variables = i18n_form_alter_settings($form, $variables)) {
           array_unshift($form['#submit'], 'i18n_variable_form_submit');
           $form['#i18n_variables'] = $i18n_variables;
@@ -675,11 +675,11 @@ function i18n_form_alter_settings(&$form, &$variables) {
  */
 function i18n_variable_form_submit($form, &$form_state) {
   $op = isset($form_state['values']['op']) ? $form_state['values']['op'] : '';
-  $variables = variable_get('i18n_variables', array());
+  $variables = i18n_variable();
   $language = i18n_get_lang();
-
+  $is_default = $language == language_default('language');
   foreach ($form_state['values'] as $key => $value) {
-    if (in_array($key, $variables)) {
+    if (i18n_variable($key)) {
       if ($op == t('Reset to defaults')) {
         i18n_variable_del($key, $language);
       }
@@ -689,11 +689,13 @@ function i18n_variable_form_submit($form, &$form_state) {
         }
         i18n_variable_set($key, $value, $language);
       }
-      unset($form_state['values'][$key]);
+      // If current is default language, we allow global (without language) variables to be set too
+      if (!$is_default) {
+        unset($form_state['values'][$key]);
+      }
     }
   }
-  // Re-submit form
-  // system_settings_form_submit($form_id, $form_values);
+  // The form will go now through system_settings_form_submit()
 }
 
 /**
@@ -704,16 +706,10 @@ function i18n_variable_form_submit($form, &$form_state) {
  */
 function i18n_variable_init($langcode = NULL) {
   global $conf;
-  global $i18n_conf;
 
   $langcode = $langcode ? $langcode : i18n_get_lang();
-  if (isset($i18n_conf[$langcode])) {
-    // If this language was previously set, just switch the array
-    $conf = $i18n_conf[$langcode];
-  }
-  elseif ($variables = _i18n_variable_init($langcode)) {
+  if ($variables = _i18n_variable_init($langcode)) {
     $conf = array_merge($conf, $variables);
-    $i18n_conf[$langcode] = $conf;
   }
 }
 
@@ -751,24 +747,24 @@ function _i18n_language_select($value ='', $description ='', $weight = -20, $lan
  * Load language variables into array.
  */
 function _i18n_variable_init($langcode) {
-  static $variables;
+  global $i18n_conf;
 
-  if (!isset($variables[$langcode])) {
+  if (!isset($i18n_conf[$langcode])) {
     $cacheid = 'variables:'. $langcode;
     if ($cached = cache_get($cacheid)) {
-      $variables[$langcode] = $cached->data;
+      $i18n_conf[$langcode] = $cached->data;
     }
     else {
       $result = db_query("SELECT * FROM {i18n_variable} WHERE language = '%s'", $langcode);
-      $variables[$langcode] = array();
+      $i18n_conf[$langcode] = array();
       while ($variable = db_fetch_object($result)) {
-        $variables[$langcode][$variable->name] = unserialize($variable->value);
+        $i18n_conf[$langcode][$variable->name] = unserialize($variable->value);
       }
-      cache_set($cacheid, $variables[$langcode]);
+      cache_set($cacheid, $i18n_conf[$langcode]);
     }
   }
 
-  return $variables[$langcode];
+  return $i18n_conf[$langcode];
 }
 
 /**
@@ -781,8 +777,8 @@ function _i18n_variable_exit() {
   if (isset($i18n_conf[$langcode])) {  
     $refresh = FALSE;
     // Rewritten because array_diff_assoc may fail with array variables.
-    foreach ($i18n_conf[$langcode] as $name => $value) {
-      if (isset($conf[$name]) && $value != $conf[$name]) {
+    foreach (i18n_variable() as $name) {
+      if (isset($conf[$name]) && isset($i18n_conf[$langcode][$name]) && $conf[$name] != $i18n_conf[$langcode][$name]) {  
         $refresh = TRUE;
         $i18n_conf[$langcode][$name] = $conf[$name];
         db_query("DELETE FROM {i18n_variable} WHERE name='%s' AND language='%s'", $name, $langcode);
@@ -855,6 +851,14 @@ function i18n_supported_languages($all = FALSE) {
 }
 
 /**
+ * Get list of multilingual variables or check whether a variable is multilingual
+ */
+function i18n_variable($name = NULL) {
+  $variables = variable_get('i18n_variables', array());
+  return $name ? in_array($name, $variables) : $variables;
+}
+
+/**
  * Set a persistent language dependent variable.
  *
  * @param $name
@@ -873,11 +877,11 @@ function i18n_variable_set($name, $value, $langcode) {
   if (!db_affected_rows()) {
     @db_query("INSERT INTO {i18n_variable} (name, language, value) VALUES ('%s', '%s', '%s')", $name, $langcode, $serialized_value);
   }
-
   cache_clear_all('variables:'. $langcode, 'cache');
-
-  $conf[$name] = $value;
-  $i18n_conf[$name] = $value;
+  $i18n_conf[$langcode][$name] = $value;
+  if ($langcode == i18n_get_lang()) {
+    $conf[$name] = $value;
+  }
 }
 
 /**
@@ -898,16 +902,31 @@ function i18n_variable_get($name, $langcode, $default = NULL) {
  * @param $name
  *   The name of the variable to undefine.
  * @param $langcode
- *   Language code.
+ *   Optional language code. If not set it will delete the variable for all languages.
  */
-function i18n_variable_del($name, $langcode) {
+function i18n_variable_del($name, $langcode = NULL) {
   global $conf, $i18n_conf;
 
-  db_query("DELETE FROM {i18n_variable} WHERE name = '%s' AND language='%s'", $name, $langcode);
-  cache_clear_all('variables:'. $langcode, 'cache');
-
-  unset($conf[$name]);
-  unset($i18n_conf[$name]);
+  if ($langcode) {
+    db_query("DELETE FROM {i18n_variable} WHERE name = '%s' AND language='%s'", $name, $langcode);
+    cache_clear_all('variables:'. $langcode, 'cache');
+    unset($i18n_conf[$langcode][$name]);
+    // If current language, unset also global conf
+    if ($langcode == i18n_get_lang()) {
+      unset($conf[$name]);
+    }
+  }
+  else {
+    db_query("DELETE FROM {i18n_variable} WHERE name = '%s'", $name);
+    if (db_affected_rows()) {
+      cache_clear_all('variables:', 'cache', TRUE);
+      if (is_array($i18n_conf)) {
+        foreach (array_keys($i18n_conf) as $lang) {
+          unset($i18n_conf[$lang][$name]);
+        }
+      }
+    }
+  }
 }
 
 /**
