@@ -682,7 +682,8 @@ body.context-editing div.draggable:hover a.context-block-handle {
 }
 
 .search-results h2 {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 0 !important;
+  margin: 0;
 }
 
 .search-results h2 a,
@@ -705,7 +706,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
 }
 
 .search-results .content {
-  padding: 5px 0 10px 10px;
+  padding: 5px 0 20px 0;
 }
 
 /*
@@ -1217,7 +1218,12 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Pager
 */
 
-.item-list .pager li {
+.item-list {
+  list-style: none;
+}
+
+.pager.item-list li {
+  display: inline;
   margin: 0;
   padding: 0;
 }
