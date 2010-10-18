@@ -1160,6 +1160,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
 }
 
 #sidebar-right .news-block {
+  float: left;
   padding: 0 0 10px;
   width: 220px;
 }
