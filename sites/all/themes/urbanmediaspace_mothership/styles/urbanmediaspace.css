@@ -342,6 +342,7 @@ h1#page-title {
 
 #sidebar-right .block {
   border-bottom: 1px solid #e5e5e5;
+  clear: both;
   line-height: 150%;
   margin: 0 0 20px;
   overflow: hidden;
