@@ -1370,3 +1370,27 @@ div.error {
 #footer-logos div .content div a {
   display: none;
 }
+
+/*
+  Print
+*/
+
+.block-print {
+  display: inline-block;
+  float: right;
+  font-size: 70%;
+  margin: 2px 0 0;
+}
+
+div#block-print-0 span,
+.block-print span {
+  display: inline;
+}
+
+.block-print a {
+  text-decoration: none;
+}
+
+.block-print img.print-icon {
+  padding: 0 4px 2px 0;
+}

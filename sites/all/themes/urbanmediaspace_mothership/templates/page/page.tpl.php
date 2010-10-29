@@ -74,13 +74,16 @@
 
     <div id="main">
 
+      <div id="breadcrumb">
+        <?php print $breadcrumb_region ?>
+        <?php print $breadcrumb; ?>
+      </div>
+
       <?php if ($content_top): ?>
         <div id="content-top" class="region region-content-top">
-      <?php print $content_top; ?>
+          <?php print $content_top; ?>
         </div> <!-- /#content-top -->
       <?php endif; ?>
-
-       <?php print $breadcrumb; ?>
 
         <div id="content" class="column <?php print ns('grid-16', $left, 4) . ' ' . ns('push-4', !$left, 4); ?>">
   	    <div id="content-inner">

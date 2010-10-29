@@ -67,3 +67,12 @@ function ns() {
   }
   return $output;
 }
+
+function urbanmediaspace_mothership_preprocess_print_page(&$vars) {
+  $format = $vars['type'];
+  $type = $vars['node']->type;
+  $vars['template_files'][] = "print";
+  $vars['template_files'][] = "print.node-$type";
+  $vars['template_files'][] = "print_$format";
+  $vars['template_files'][] = "print_$format.node-$type";
+}

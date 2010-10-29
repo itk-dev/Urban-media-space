@@ -6,17 +6,18 @@ engine      = phptemplate
 base theme  = mothership
 
 ;--------------------- regions -----------------------------
-regions[aaktopbar]      = Aarhus Kommune topbar
-regions[left]           = left sidebar
-regions[right]          = right sidebar
-regions[navbar]         = navigation bar
-regions[mainmenu]       = Mainmenu
-regions[content_top]    = content top
-regions[content_bottom] = content bottom
-regions[header]         = header
-regions[footer]         = footer
-regions[footer_logos]   = footer logos
-regions[closure_region] = closure
+regions[aaktopbar]          = Aarhus Kommune topbar
+regions[left]               = left sidebar
+regions[right]              = right sidebar
+regions[navbar]             = navigation bar
+regions[mainmenu]           = Mainmenu
+regions[breadcrumb_region]  = Breadcrumb
+regions[content_top]        = content top
+regions[content_bottom]     = content bottom
+regions[header]             = header
+regions[footer]             = footer
+regions[footer_logos]       = footer logos
+regions[closure_region]     = closure
 
 ;--------------------- styles ------------------------------
 stylesheets[all][]   = styles/tabs.css
