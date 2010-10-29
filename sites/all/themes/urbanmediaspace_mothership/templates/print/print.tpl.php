@@ -26,7 +26,6 @@
     } ?>
     <div class="print-logo"><?php print $print['logo']; ?></div>
     <p />
-    <div class="print-breadcrumb"><?php print $print['breadcrumb']; ?></div>
     <hr class="print-hr" />
     <div class="print-content"><?php print $print['content']; ?></div>
     <div class="print-taxonomy"><?php print $print['taxonomy']; ?></div>
