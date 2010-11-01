@@ -67,4 +67,3 @@ function ns() {
   }
   return $output;
 }
-
