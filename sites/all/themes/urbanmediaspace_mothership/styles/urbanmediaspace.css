@@ -941,7 +941,8 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Spotboxes
 */
 
-.block-nodeblock {
+.block-nodeblock,
+#content-bottom .block-nodeblock.block {
   float: left;
   margin: 0 20px 20px 0;
 }
