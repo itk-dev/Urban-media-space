@@ -1384,6 +1384,8 @@ div.error {
   float: right;
   font-size: 70%;
   margin: 2px 0 0;
+  text-align: right;
+  width: 75px
 }
 
 div#block-print-0 span,
