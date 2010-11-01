@@ -360,6 +360,10 @@ h1#page-title {
   border: 0;
 }
 
+#content-bottom .block {
+  margin: 20px 0 0;
+}
+
 /*
   Spotboxes
 */
