@@ -1,5 +1,3 @@
-// $Id: ie-css-optimizer.js,v 1.1 2010/07/14 10:03:13 johnalbin Exp $
-
 (function ($) {
 
 Drupal.behaviors.ie_css_optimizer = function (context) {

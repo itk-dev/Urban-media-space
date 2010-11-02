@@ -1,6 +1,3 @@
-// $Id: README.txt,v 1.2 2010/07/14 10:03:13 johnalbin Exp $
-
-
 INSTALLATION
 ------------
 

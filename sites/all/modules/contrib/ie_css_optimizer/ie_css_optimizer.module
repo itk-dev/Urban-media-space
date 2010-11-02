@@ -1,6 +1,4 @@
 <?php
-// $Id: ie_css_optimizer.module,v 1.4 2010/07/14 10:03:13 johnalbin Exp $
-
 /**
  * Implement HOOK_preprocess_page().
  */

@@ -1,4 +1,6 @@
-// $Id: CHANGELOG.txt,v 1.9 2010/07/14 10:04:37 johnalbin Exp $
+IE CSS Optimizer 6.x-1.1, 2010-10-11
+------------------------------------
+- #883596 by eggersrj and enzipher: Warning message for database with table prefixes
 
 IE CSS Optimizer 6.x-1.0, 2010-07-14
 ------------------------------------

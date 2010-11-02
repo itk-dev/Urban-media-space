@@ -1,6 +1,4 @@
 <?php
-// $Id: ie_css_optimizer.admin.inc,v 1.5 2010/07/14 10:03:13 johnalbin Exp $
-
 /**
  * @file
  * Display administrative forms for this module.
@@ -29,7 +27,7 @@ function _ie_css_optimizer_form_system_performance_settings_alter(&$form, $form_
 
   // Create a list of non-core modules.
   $modules = array();
-  $contrib_modules = db_query("SELECT name, info FROM system WHERE status = 1 AND type = 'module' AND info NOT LIKE '%%%s%%'", 's:7:"package";s:15:"Core - ');
+  $contrib_modules = db_query("SELECT name, info FROM {system} WHERE status = 1 AND type = 'module' AND info NOT LIKE '%%%s%%'", 's:7:"package";s:15:"Core - ');
   while ($module = db_fetch_array($contrib_modules)) {
     $module['info'] = unserialize($module['info']);
     $package = isset($module['info']['package']) ? $module['info']['package'] : 'Other';
