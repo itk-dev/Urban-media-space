@@ -1277,7 +1277,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Messages
 */
 
-.messages.status ul {
+.messages ul {
   list-style: none;
 }
 
@@ -1288,10 +1288,10 @@ div.error {
   clear: both;
   min-height: 21px;
   margin: 0 1em 5px 1em;
-  border: 2px solid #ff7;
+  border: 2px solid #eed15f;
   padding: 5px 5px 5px 35px;
-  color: #000;
-  background-color: #ffc;
+  color: #8e730a;
+  background-color: #feefb4;
   background-image: url(../images/messages-status.png);
   background-repeat: no-repeat;
   background-position: 5px 5px;
