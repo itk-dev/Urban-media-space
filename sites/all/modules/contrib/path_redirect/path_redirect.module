@@ -1,5 +1,5 @@
 <?php
-// $Id: path_redirect.module,v 1.3.2.7.2.104 2010/08/10 04:46:01 davereid Exp $
+// $Id: path_redirect.module,v 1.3.2.7.2.107 2010/10/07 15:28:33 davereid Exp $
 
 /**
  * Implements hook_help().
@@ -179,6 +179,20 @@ function path_redirect_path_redirect_operations() {
 }
 
 /**
+ * Implements hook_content_extra_fields().
+ *
+ * This is so that the URL redirect fieldset is sortable on the node edit form.
+ */
+function path_redirect_content_extra_fields() {
+  $extras['path_redirect'] = array(
+    'label' => t('URL redirects'),
+    'description' => t('Path redirect module listing'),
+    'weight' => 30,
+  );
+  return $extras;
+}
+
+/**
  * Implements hook_form_alter().
  *
  * Add a summary of redirects pointing to a node on its edit form.
@@ -313,6 +327,14 @@ function path_redirect_save(&$redirect) {
     'last_used' => time(),
   );
 
+  // Convert query arrays into a saveable query string.
+  if (isset($redirect['source_query']) && is_array($redirect['source_query'])) {
+    $redirect['source'] .= '?' . drupal_query_string_encode($redirect['source_query']);
+  }
+  if (is_array($redirect['query'])) {
+    $redirect['query'] = drupal_query_string_encode($redirect['query']);
+  }
+
   // Allow spaces in "from" path
   // @todo Move to validation?
   $redirect['source'] = str_replace('+', ' ', $redirect['source']);
@@ -392,16 +414,23 @@ function path_redirect_load_multiple($rids = NULL, $conditions = array()) {
 
   $redirects = array();
   while ($redirect = db_fetch_array($query)) {
+    // Unpack query strings into arrays.
+    if (!isset($redirect['source_query']) || !is_array($redirect['source_query'])) {
+      $parsed = parse_url($redirect['source']) + array('query' => '');
+      $redirect['source_query'] = path_redirect_get_query_array($parsed['query']);
+      $redirect['source'] = $parsed['path'];
+    }
+    $redirect['query'] = path_redirect_get_query_array($redirect['query']);
     $redirects[$redirect['rid']] = $redirect;
   }
-  $redirects = array_map('path_redirect_post_load_redirect', $redirects);
+
   return $redirects;
 }
 
 function _path_redirect_build_conditions(&$query, $rids, $conditions) {
   static $schema;
   if (!isset($schema)) {
-    $schema = drupal_get_schema('path_redirect');
+    $schema = !defined('MAINTENANCE_MODE') ? drupal_get_schema('path_redirect') : drupal_get_schema_unprocessed('path_redirect', 'path_redirect');
   }
 
   $query += array(
@@ -435,16 +464,6 @@ function _path_redirect_build_conditions(&$query, $rids, $conditions) {
   $query['conditions'] = array_merge($query['conditions'], $conditions);
 
   return $query;
-}
-
-function path_redirect_post_load_redirect(&$redirect) {
-  if (!isset($redirect['source_query']) || !is_array($redirect['source_query'])) {
-    $parsed = parse_url($redirect['source']) + array('query' => '');
-    $redirect['source_query'] = path_redirect_get_query_array($parsed['query']);
-    $redirect['source'] = $parsed['path'];
-  }
-  $redirect['query'] = path_redirect_get_query_array($redirect['query']);
-  return $redirect;
 }
 
 function path_redirect_clear_cache() {
