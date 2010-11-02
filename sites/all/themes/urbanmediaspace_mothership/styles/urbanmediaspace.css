@@ -1026,16 +1026,19 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Campaign manager
 */
 
-#cm-signup-block-form label {
+#cm-signup-block-form label,
+.cm-block-form label {
   color: #726557;
   margin: 0 0 3px;
 }
 
-#cm-signup-block-form #edit-campaignmonitor-signup-mail {
+#cm-signup-block-form #edit-campaignmonitor-signup-mail,
+.cm-block-form input.form-text {
   width: 95%;
 }
 
-#cm-signup-block-form .form-submit {
+#cm-signup-block-form .form-submit,
+.cm-block-form .form-submit {
   float: right;
 }
 
