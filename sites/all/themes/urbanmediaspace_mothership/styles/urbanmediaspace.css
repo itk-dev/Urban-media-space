@@ -1282,6 +1282,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
 
 .messages ul {
   list-style: none;
+  margin: 0;
 }
 
 div.messages, /* Important messages (status, warning, and error) for the user */
@@ -1291,13 +1292,30 @@ div.error {
   clear: both;
   min-height: 21px;
   margin: 0 1em 5px 1em;
-  border: 2px solid #eed15f;
-  padding: 5px 5px 5px 35px;
-  color: #8e730a;
-  background-color: #feefb4;
-  background-image: url(../images/messages-status.png);
+  border: 2px solid #f8fffc;
+  padding: 10px 12px;
+  color: #668877;
+  background-color: #ecf8f4;
   background-repeat: no-repeat;
   background-position: 5px 5px;
+}
+
+div.warning {
+  color: #aa8844;
+  background: #fff4c0;
+  border-color:#fffce4;
+}
+
+div.error {
+  color: #996655;
+  background: #ffe4e0;
+  border-color: #fff8f4;
+}
+
+div.status {
+  color: #668877;
+  background: #ecf8f4;
+  border-color: #f8fffc;
 }
 
 /*
