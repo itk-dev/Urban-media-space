@@ -1319,6 +1319,19 @@ div.status {
 }
 
 /*
+  Better messages
+*/
+
+#better-messages-default a.message-close {
+  background: url('../gfx/closelabel.gif') no-repeat;
+  width: 22px;
+}
+
+#better-messages-default .messages {
+  padding: 15px 0 15px 45px;
+}
+
+/*
   Footer
 */
 
