@@ -305,15 +305,15 @@ h1#page-title {
 #sidebar-left .menu li {
   line-height: 175%;
   margin: 0;
-  padding: 0 0 0 8px;
+  padding: 0;
 }
 
 #sidebar-left .menu a {
-  background: url('../gfx/sprites-icons.png') no-repeat 5px -237px;
+  background: url('../gfx/sprites-icons.png') no-repeat 13px -238px;
   color: #666666;
   display: block;
   font-size: 75%;
-  padding: 3px 0 3px 20px;
+  padding: 2px 0 3px 28px;
   text-decoration: none;
 }
 
@@ -840,13 +840,28 @@ body.context-editing div.draggable:hover a.context-block-handle {
 */
 
 #sidebar-left .menu li {
-  background: #fff url('../gfx/submenu-bg.png') repeat-x bottom;
+  background: #f3f3f3 url('../gfx/submenu-bg.png') repeat-x 0 -9px;
   list-style: none;
   list-style-image: none;
 }
 
+#sidebar-left .menu li:hover {
+  background-color: #ebebeb;
+}
+
+#sidebar-left .menu li.first.expanded {
+  border-top: 1px solid #e3e3e3;
+}
+
+#sidebar-left .menu li.active,
 #sidebar-left .menu li.expanded {
-  background: #f3f3f3 url('../gfx/submenu-bg.png') repeat-x bottom;
+  background: #f3f3f3;
+  border-bottom: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+}
+
+#sidebar-left .menu li.expanded li.expanded {
+  border-left: 0;
 }
 
 /*
@@ -860,9 +875,15 @@ body.context-editing div.draggable:hover a.context-block-handle {
 }
 
 #sidebar-left .menu li li a {
-  background-position: 25px -237px;
+  background-position: 28px -237px;
   margin: 0;
-  padding: 3px 0 3px 40px;
+  padding: 3px 0 3px 43px;
+}
+
+#sidebar-left .menu li.active a:hover,
+#sidebar-left .menu li.expanded a:hover,
+#sidebar-left .menu li li a:hover {
+  background-color: #efefef;
 }
 
 /*
@@ -870,9 +891,9 @@ body.context-editing div.draggable:hover a.context-block-handle {
 */
 
 #sidebar-left .menu li li li a {
-  background-position: 45px -237px;
+  background-position: 48px -237px;
   margin: 0;
-  padding: 3px 0 3px 60px;
+  padding: 3px 0 3px 63px;
 }
 
 /*
@@ -880,9 +901,9 @@ body.context-editing div.draggable:hover a.context-block-handle {
 */
 
 #sidebar-left .menu li li li li a {
-  background-position: 65px -237px;
+  background-position: 68px -237px;
   margin: 0;
-  padding: 3px 0 3px 80px;
+  padding: 3px 0 3px 83px;
 }
 
 /*
