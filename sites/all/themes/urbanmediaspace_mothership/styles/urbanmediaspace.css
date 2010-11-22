@@ -1133,22 +1133,43 @@ body.context-editing div.draggable:hover a.context-block-handle {
 }
 
 #main-content .view-content.main-content .news-image,
-#main-content .view-content.main-content .post-date {
+#main-content .view-content.main-content .date-wrapper {
   float: left;
 }
 
-#main-content .view-content.main-content .post-date {
+#main-content .view-content.main-content .date-wrapper {
+  background: url('../gfx/calendar-background.png') no-repeat;
   clear: both;
   font-size: 90%;
   display: block;
+  height: 82px;
+  margin: 7px 0 0 15px;
   text-align: center;
-  width: 125px;
+  width: 82px;
+}
+
+#main-content .view-content.main-content .date-wrapper .date-month,
+#main-content .view-content.main-content .date-wrapper .date-post-date {
+  display: block;
+  width: 82px;
+}
+
+#main-content .view-content.main-content .date-wrapper .date-month {
+  color: #fff;
+  line-height: 175%;
+}
+
+#main-content .view-content.main-content .date-wrapper .date-post-date {
+  color: #6d6d6d;
+  font-family: georgia, verdana, sans-serif;
+  font-size: 325%;
+  line-height: 150%;
 }
 
 #main-content .view-content.main-content .title,
 #main-content .view-content.main-content .teaser,
 #main-content .view-content.main-content .link {
-  margin: 0 0 0 140px;
+  margin: 0 0 0 112px;
 }
 
 #main-content .view-content.main-content .teaser,
