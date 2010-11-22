@@ -1,0 +1,10 @@
+; $Id: module_filter.info,v 1.1 2008/10/30 17:24:25 greenskin Exp $
+name = Module filter
+description = "Filter the modules list."
+core = 6.x
+; Information added by drupal.org packaging script on 2010-08-08
+version = "6.x-1.5"
+core = "6.x"
+project = "module_filter"
+datestamp = "1281295874"
+

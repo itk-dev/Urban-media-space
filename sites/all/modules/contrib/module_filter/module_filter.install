@@ -1,0 +1,19 @@
+<?php
+// $Id: module_filter.install,v 1.1.2.3 2010/06/29 17:09:30 greenskin Exp $
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function module_filter_uninstall() {
+  variable_del('module_filter_tabs');
+  variable_del('module_filter_autocomplete');
+}
+
+/**
+ * Force the menu system to rebuild.
+ */
+function module_filter_update_6000() {
+  $ret = array();
+  $ret[] = array('success' => TRUE, 'query' => t('Force menu to rebuild.'));
+  return $ret;
+}

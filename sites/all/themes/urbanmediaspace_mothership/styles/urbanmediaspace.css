@@ -279,7 +279,8 @@ h1#page-title {
   padding: 0 30px;
 }
 
-.front .content p a.nodepicker-link {
+.front .content p a.nodepicker-link,
+.front .content p a.internal-link {
   background: url('../gfx/sprites-icons.png') no-repeat 0 0;
   color: #f45000;
   font-size: 110%;
@@ -288,7 +289,8 @@ h1#page-title {
   text-decoration: none;
 }
 
-.front .content p a.nodepicker-link:hover {
+.front .content p a.nodepicker-link:hover,
+.front .content p a.internal-link:hover {
   color: #8d3205;
 }
 
