@@ -1483,3 +1483,31 @@ div#block-print-0 span,
 .block-print img.print-icon {
   padding: 0 4px 2px 0;
 }
+
+/*
+  Image caption
+*/
+
+.image-caption-container {
+  position: relative;
+}
+
+.image-caption {
+  background: url('../gfx/carousel-transparent-bg.png');
+  bottom: 0;
+  color: #e6e8e9;
+  font-size: 95%;
+  left: 0;
+  padding: 2px 0 2px 8px;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+}
+
+a[rel^=shadowbox]:link,
+a[rel^=shadowbox]:visited {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 0 15px;
+  text-decoration: none;
+}
