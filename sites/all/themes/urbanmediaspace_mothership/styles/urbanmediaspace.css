@@ -1041,6 +1041,10 @@ body.context-editing div.draggable:hover a.context-block-handle {
   width: 480px;
 }
 
+.front.one-sidebar #main-content #content-bottom {
+  width: 720px;
+}
+
 .one-sidebar #main-content #content-bottom {
   width: 700px;
 }
