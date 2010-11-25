@@ -153,7 +153,6 @@
         <div id="footer-inner">
           <?php print $footer; ?>
         </div>
-        <div id="to-top"><a href="#top"><?php print t('Top'); ?></a></div>
         </div> <!--//end #footer-inner -->
     <?php endif; ?>
 

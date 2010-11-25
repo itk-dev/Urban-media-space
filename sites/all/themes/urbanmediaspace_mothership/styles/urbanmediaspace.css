@@ -1384,11 +1384,12 @@ div.status {
 */
 
 #footer {
-  background: #323030;
+  background-color: #323030;
   border-top: 5px solid #dddddd;
   clear: both;
   height: 100px;
   margin: 20px 0 0;
+  padding: 15px 0;
   width: 100%;
 }
 
@@ -1408,18 +1409,30 @@ div.status {
 
 #footer-region {
   line-height: 250%;
-  padding: 30px 0 0;
+  padding: 0;
   width: 960px;
 }
 
-#footer-inner {
+#footer-inner .menu {
+  margin: 15px 0 0;
+}
+
+#footer-inner .block:first-child {
   float: left;
 }
 
-#footer #to-top {
-  background: url('../gfx/sprites-icons.png') no-repeat 0 -302px;
+/*
+  Footer logos
+*/
+
+#footer-inner .footer-logos-wrapper {
   float: right;
-  padding: 0 0 0 12px;
+  margin: 5px 0 0;
+}
+
+#footer-inner .footer-logo {
+  display: inline;
+  margin: 0 0 0 25px;
 }
 
 /*
@@ -1430,32 +1443,6 @@ div.status {
   display: inline;
   list-style: none;
   margin: 0 15px 0 0;
-}
-
-/*
-  Footer logos
-*/
-
-#footer-logos {
-  background-color: #fff;
-  padding: 50px 0;
-  text-align: center;
-  width: 100%;
-}
-
-#footer-logos .block-inner {
-  margin: auto;
-  width: 960px;
-}
-
-#footer-logos div .content div {
-  display: inline;
-  margin: auto;
-  padding: 0 25px;
-}
-
-#footer-logos div .content div a {
-  display: none;
 }
 
 /*

@@ -1,4 +1,4 @@
-$(document).ready(function() {  
+$(document).ready(function() {
 
   // Add example to top search form
   // Get search form input
@@ -15,18 +15,5 @@ $(document).ready(function() {
   $('.views-slideshow-ddblock-cycle-urbanmediaspace a.pager-link').click(function() {
     location.href = $(this).attr('href');
   });
-
-  // Add opacity hover effect on footer logos
-  $('#footer-logos div a')
-  .css({
-    'opacity': .25,
-    'display': 'inline-block'
-  })
-  .mouseover(function() {
-    $(this).css('opacity',1);
-  })
-  .mouseout(function() {
-    $(this).css('opacity',.25);
-  })
 
 });
