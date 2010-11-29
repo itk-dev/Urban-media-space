@@ -25,6 +25,7 @@
  * @see template_preprocess_content_field()
  */
 ?>
+
 <?php if (!$field_empty) : ?>
 <div class="field field-type-<?php print $field_type_css ?> field-<?php print $field_name_css ?>">
   <?php if ($label_display == 'above') : ?>
@@ -39,7 +40,11 @@
             <div class="field-label-inline<?php print($delta ? '' : '-first')?>">
               <?php print t($label) ?>:&nbsp;</div>
           <?php } ?>
-          <?php print $item['view'] ?>
+          <?php if ($node->field_show_caption[0]['value']) : ?>
+            <?php print theme('imagecache', 'content-image', $item['filepath'], $item['data']['alt'], $item['data']['title'], array('class' => 'caption') ) ?>
+          <?php else : ?>
+            <?php print $item['view'] ?>
+          <?php endif;?>
         </div>
       <?php $count++;
       endif;
