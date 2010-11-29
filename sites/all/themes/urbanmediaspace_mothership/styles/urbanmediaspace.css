@@ -1494,18 +1494,21 @@ div#block-print-0 span,
 */
 
 .image-caption-container {
+  height: auto !important;
   position: relative;
 }
 
+.image-caption-container img {
+  display: inline;
+}
+
 .image-caption {
-  background: url('../gfx/carousel-transparent-bg.png');
-  bottom: 0;
-  color: #e6e8e9;
+  background-color: #f1f1f1;
+  color: #666666;
   font-size: 95%;
-  left: 0;
-  padding: 2px 0 2px 8px;
-  position: absolute;
-  right: 0;
+  margin: -7px 0 0;
+  padding: 2px 8px;
+  text-align: right;
   text-decoration: none;
 }
 
