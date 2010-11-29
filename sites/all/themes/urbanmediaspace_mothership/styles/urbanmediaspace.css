@@ -841,6 +841,9 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Submenu
 */
 
+#sidebar-left .menu {
+}
+
 #sidebar-left .menu li {
   background: #f3f3f3 url('../gfx/submenu-bg.png') repeat-x 0 -9px;
   list-style: none;
@@ -851,19 +854,30 @@ body.context-editing div.draggable:hover a.context-block-handle {
   background-color: #ebebeb;
 }
 
-#sidebar-left .menu li.first.expanded {
-  border-top: 1px solid #e3e3e3;
-}
-
 #sidebar-left .menu li.active,
 #sidebar-left .menu li.expanded {
   background: #f3f3f3;
-  border-bottom: 1px solid #e3e3e3;
+}
+
+#sidebar-left .menu li.expanded {
   border-left: 1px solid #e3e3e3;
 }
 
-#sidebar-left .menu li.expanded li.expanded {
+#sidebar-left .menu li li {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+#sidebar-left .menu li.expanded li {
   border-left: 0;
+}
+
+#sidebar-left .menu li.expanded.active-trail {
+  border-bottom: 0;
+}
+
+#sidebar-left .menu li .menu {
+  border-top: 1px solid #e3e3e3;
 }
 
 /*
@@ -872,8 +886,11 @@ body.context-editing div.draggable:hover a.context-block-handle {
 
 #sidebar-left .menu li li {
   background: none;
-  border-top: 1px solid #fff;
   margin: 0;
+}
+
+#sidebar-left .menu li li.first {
+
 }
 
 #sidebar-left .menu li li a {
@@ -882,6 +899,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   padding: 3px 0 3px 43px;
 }
 
+#sidebar-left .menu li.active.active-trail a.active-trail.active,
 #sidebar-left .menu li.active a:hover,
 #sidebar-left .menu li.expanded a:hover,
 #sidebar-left .menu li li a:hover {
