@@ -236,8 +236,7 @@ function custom_views_views_default_views() {
   $handler->override_option('title', 'Nyheder');
   $handler->override_option('header_format', '1');
   $handler->override_option('header_empty', 0);
-  $handler->override_option('items_per_page', 3);
-  $handler->override_option('use_pager', '1');
+  $handler->override_option('use_pager', '0');
   $handler->override_option('style_plugin', 'semanticviews_default');
   $handler->override_option('style_options', array(
     'grouping' => '',
@@ -347,7 +346,7 @@ function custom_views_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'date_format' => 'custom',
-      'custom_date_format' => 'd',
+      'custom_date_format' => 'j',
       'exclude' => 0,
       'id' => 'created_1',
       'table' => 'node',
@@ -596,6 +595,7 @@ function custom_views_views_default_views() {
     ),
   ));
   $handler->override_option('css_class', 'news-block');
+  $handler->override_option('items_per_page', 3);
   $handler->override_option('use_pager', FALSE);
   $handler->override_option('style_plugin', 'default');
   $handler->override_option('style_options', array(
@@ -609,6 +609,440 @@ function custom_views_views_default_views() {
   ));
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
+  $handler = $view->new_display('block', 'News submenu (year)', 'block_2');
+  $handler->override_option('fields', array(
+    'created' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => 'Skrevet den: [created]',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'date_format' => 'custom',
+      'custom_date_format' => 'Y',
+      'exclude' => 0,
+      'id' => 'created',
+      'table' => 'node',
+      'field' => 'created',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+  ));
+  $handler->override_option('arguments', array(
+    'created_year' => array(
+      'default_action' => 'summary desc',
+      'style_plugin' => 'default_summary',
+      'style_options' => array(
+        'count' => 0,
+        'override' => 0,
+        'items_per_page' => '25',
+      ),
+      'wildcard' => 'all',
+      'wildcard_substitution' => 'Alle',
+      'title' => '',
+      'breadcrumb' => '2010',
+      'default_argument_type' => 'fixed',
+      'default_argument' => '',
+      'validate_type' => 'none',
+      'validate_fail' => 'not found',
+      'id' => 'created_year',
+      'table' => 'node',
+      'field' => 'created_year',
+      'validate_user_argument_type' => 'uid',
+      'validate_user_roles' => array(
+        '2' => 0,
+        '3' => 0,
+        '5' => 0,
+        '4' => 0,
+      ),
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+      'default_options_div_prefix' => '',
+      'default_argument_fixed' => '',
+      'default_argument_user' => 0,
+      'default_argument_php' => '',
+      'validate_argument_node_type' => array(
+        'poll' => 0,
+        'panel' => 0,
+        'carousel_item' => 0,
+        'news' => 0,
+        'newsletter' => 0,
+        'page' => 0,
+        'section_frontpage' => 0,
+        'section_page' => 0,
+        'spot_box_image_ext_link' => 0,
+        'spot_box_image_link' => 0,
+        'spot_box_info' => 0,
+        'story' => 0,
+        'webform' => 0,
+      ),
+      'validate_argument_node_access' => 0,
+      'validate_argument_nid_type' => 'nid',
+      'validate_argument_vocabulary' => array(),
+      'validate_argument_type' => 'tid',
+      'validate_argument_transform' => 0,
+      'validate_user_restrict_roles' => 0,
+      'validate_argument_php' => '',
+    ),
+  ));
+  $handler->override_option('title', '');
+  $handler->override_option('css_class', 'menu');
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('style_options', array(
+    'grouping' => '',
+    'group' => array(
+      'element_type' => 'h3',
+      'class' => 'title',
+    ),
+    'list' => array(
+      'element_type' => 'ul',
+      'class' => 'menu',
+    ),
+    'row' => array(
+      'element_type' => 'li',
+      'class' => '',
+      'last_every_nth' => '0',
+      'first_class' => 'first',
+      'last_class' => 'last',
+      'striping_classes' => 'odd even',
+    ),
+  ));
+  $handler->override_option('row_options', array(
+    'semantic_html' => array(
+      'created' => array(
+        'element_type' => 'span',
+        'class' => '',
+      ),
+    ),
+    'skip_blank' => 0,
+  ));
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
+  $handler = $view->new_display('page', 'Newslist (year)', 'page_2');
+  $handler->override_option('fields', array(
+    'created_1' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'date_format' => 'custom',
+      'custom_date_format' => 'F',
+      'exclude' => 1,
+      'id' => 'created_1',
+      'table' => 'node',
+      'field' => 'created',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+    'created' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 1,
+        'text' => '<div class="date-wrapper">
+  <span class="date-month">[created_1]</span>
+  <span class="date-post-date">[created]</span>
+</div>',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'date_format' => 'custom',
+      'custom_date_format' => 'j',
+      'exclude' => 0,
+      'id' => 'created',
+      'table' => 'node',
+      'field' => 'created',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+    'title' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+    ),
+    'teaser' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 1,
+        'max_length' => '200',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'teaser',
+      'table' => 'node_revisions',
+      'field' => 'teaser',
+      'relationship' => 'none',
+    ),
+    'view_node' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 1,
+        'text' => '&#187; [title]',
+        'make_link' => 0,
+        'path' => '[view_node]',
+        'link_class' => '',
+        'alt' => '[title]',
+        'prefix' => '&#187; ',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => '',
+      'exclude' => 0,
+      'id' => 'view_node',
+      'table' => 'node',
+      'field' => 'view_node',
+      'relationship' => 'none',
+    ),
+    'field_newsimage_fid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'news-image-large_default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_newsimage_fid',
+      'table' => 'node_data_field_newsimage',
+      'field' => 'field_newsimage_fid',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+  ));
+  $handler->override_option('arguments', array(
+    'created_year' => array(
+      'default_action' => 'not found',
+      'style_plugin' => 'default_summary',
+      'style_options' => array(),
+      'wildcard' => 'all',
+      'wildcard_substitution' => 'Alle',
+      'title' => '%1',
+      'breadcrumb' => '%1',
+      'default_argument_type' => 'fixed',
+      'default_argument' => '',
+      'validate_type' => 'none',
+      'validate_fail' => 'not found',
+      'id' => 'created_year',
+      'table' => 'node',
+      'field' => 'created_year',
+      'validate_user_argument_type' => 'uid',
+      'validate_user_roles' => array(
+        '2' => 0,
+        '3' => 0,
+        '5' => 0,
+        '4' => 0,
+      ),
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+      'default_options_div_prefix' => '',
+      'default_argument_fixed' => '',
+      'default_argument_user' => 0,
+      'default_argument_php' => '',
+      'validate_argument_node_type' => array(
+        'poll' => 0,
+        'panel' => 0,
+        'carousel_item' => 0,
+        'news' => 0,
+        'newsletter' => 0,
+        'page' => 0,
+        'section_frontpage' => 0,
+        'section_page' => 0,
+        'spot_box_image_ext_link' => 0,
+        'spot_box_image_link' => 0,
+        'spot_box_info' => 0,
+        'story' => 0,
+        'webform' => 0,
+      ),
+      'validate_argument_node_access' => 0,
+      'validate_argument_nid_type' => 'nid',
+      'validate_argument_vocabulary' => array(),
+      'validate_argument_type' => 'tid',
+      'validate_argument_transform' => 0,
+      'validate_user_restrict_roles' => 0,
+      'validate_argument_php' => '',
+    ),
+  ));
+  $handler->override_option('items_per_page', 5);
+  $handler->override_option('use_pager', '1');
+  $handler->override_option('row_options', array(
+    'semantic_html' => array(
+      'created' => array(
+        'element_type' => 'div',
+        'class' => 'post-date',
+      ),
+      'title' => array(
+        'element_type' => 'div',
+        'class' => 'title',
+      ),
+      'field_newsimage_fid' => array(
+        'element_type' => 'div',
+        'class' => '',
+      ),
+      'teaser' => array(
+        'element_type' => 'div',
+        'class' => 'teaser',
+      ),
+      'view_node' => array(
+        'element_type' => 'div',
+        'class' => 'link',
+      ),
+      'created_1' => array(
+        'element_type' => 'div',
+        'class' => '',
+      ),
+    ),
+    'skip_blank' => 0,
+  ));
+  $handler->override_option('path', 'nyheder/%');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
   $views[$view->name] = $view;
 
   return $views;
