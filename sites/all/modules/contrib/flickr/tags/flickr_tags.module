@@ -1,0 +1,196 @@
+<?php
+// $Id: flickr_tags.module,v 1.5 2008/11/13 14:14:43 paulbooker Exp $
+
+require_once(drupal_get_path('module', 'flickr') .'/flickr.inc');
+
+/**
+ * Implementation of hook_menu().
+ */
+function flickr_tags_menu() {
+  $items['flickr/%user/tags'] = array(
+    'title' => 'Tags',
+    'description' => 'Flickr main tag cloud page',
+    'type' => MENU_LOCAL_TASK, 
+    'page callback' => 'flickr_tags_cloud',
+    'page arguments' => array(1),
+    'access callback' => 'flickr_photos_access',
+    'access arguments' => array(1),
+  );
+  $items['flickr/%user/tags/cloud'] = array(
+    'title' => 'Cloud',
+    'description' => 'Flickr main tag cloud page',
+    'type' => MENU_DEFAULT_LOCAL_TASK, 
+    'access callback' => 'flickr_photos_access',
+    'access arguments' => array(1),
+  );
+  $items['flickr/%user/tags/list'] = array(
+    'title' => 'List',
+    'description' => 'Flickr tag list page',
+    'type' => MENU_LOCAL_TASK, 
+    'page callback' => 'flickr_tags_list',
+    'page arguments' => array(1),
+    'access callback' => 'flickr_photos_access',
+    'access arguments' => array(1),
+  );
+  $items['flickr/%user/tags/%flickr_tag'] = array(
+    'title' => 'Photos for tag',
+    'description' => 'Show Flickr photos for a particular tag',
+    'page callback' => 'flickr_tags_photos',
+    'page arguments' => array(1, 3),
+    'access callback' => 'flickr_photos_access',
+    'access arguments' => array(1),
+  );
+  return $items;
+}
+
+function flickr_tag_load($tag, $page = 1) {
+  return $tag;
+}
+
+function flickr_tags_cloud($account, $nsid = NULL) {
+  drupal_add_css(drupal_get_path('module', 'flickr_tags') .'/flickr_tags.css');
+  $nsid = $account->flickr['nsid'];
+  //get tag info
+  $poptag_response = flickr_tags_get_list_user_popular($nsid, variable_get('flickr_tags_in_cloud', 150));
+  
+  if ($poptag_response === FALSE) {
+    drupal_set_message(t('Error retrieving %user\'s tags from Flickr'), array('%user' => $account->name));
+    return '';
+  }
+  elseif (empty($poptag_response)) {
+    drupal_set_message(t('%user has no tags'), array('%user' => $account->name));
+    return '';
+  }
+  
+  $tag_arr = array();
+  $tags = $poptag_response;
+  foreach ($tags as $tag) {
+    $tag_arr[$tag['_content']] = $tag['count'];
+  }
+
+  return theme('flickr_tags_cloud', $account->uid, $nsid, $tag_arr);
+}
+
+function flickr_tags_list($account, $nsid = NULL) {
+  drupal_add_css(drupal_get_path('module', 'flickr_tags') .'/flickr_tags.css');
+  $nsid = $account->flickr['nsid'];
+  //get all tags
+  $taglist_response = flickr_tags_get_list_user($nsid);
+  
+  if ($taglist_response === FALSE) {
+    drupal_set_message(t('Error retrieving %user\'s tags from Flickr'), array('%user' => $account->name));
+    return '';
+  }
+  elseif (empty($taglist_response)) {
+    drupal_set_message('%user has no tags', array('%user' => $account->name));
+    return '';
+  }
+  
+  $tags = $taglist_response;
+  $tag_arr = array();
+  
+  foreach ($tags as $tag) {
+    $tag_arr[] = $tag['_content'];
+  }
+  
+  //pass array to the theme function
+  return theme('flickr_tags_list', $account->uid, $nsid, $tag_arr);
+}
+
+function flickr_tags_photos($account, $tagstring) {
+  global $pager_page_array, $pager_total, $pager_total_items;
+
+  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+
+  $tag_arr = explode(',', $tagstring);
+  $nsid = $account->flickr['nsid'];
+  
+  //set this to something else if you want multiple pagers
+  $element = 0;
+  $pager_page_array[$element] = empty($_GET['page']) ? 0 : (int) $_GET['page'];
+  
+  $photo_arr = flickr_photos_search($nsid, $pager_page_array[$element] + 1, flickr_tag_request_args($tag_arr));
+  
+  if ($photo_arr === FALSE) {
+      drupal_set_message(t('Error retrieving %user\'s photos from Flickr'), array('%user' => $account->name));
+      return '';
+  }
+  else if (empty($photo_arr)) {
+    drupal_set_message(t('No photos tagged with %tags found in %user\'s Flickr account'), array('%user' => $account->name, '%tags' => str_replace(',', ', ', $tagstring)));
+    return '';
+  }
+  
+  //set pager information we just acquired
+  $pager_total[$element] = $photo_arr['pages'];
+  $pager_total_items[$element] = $photo_arr['total'];
+  
+  return theme('flickr_photos', $account->uid, $photo_arr);
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function flickr_tags_theme() {
+  return array(
+    'flickr_tags_list' => array(
+      'arguments' => array('uid', 'nsid', 'tag_arr'),
+    ),
+    'flickr_tags_cloud' => array(
+      'arguments' => array('uid', 'nsid', 'tag_arr'),
+    ),
+  );
+}
+
+function theme_flickr_tags_list($uid, $nsid, $tag_arr) {
+  $output = "<ul id='flickr_taglist'>\n";
+  $first_char = '';
+  foreach ($tag_arr as $tag) {
+    if ($first_char != substr($tag, 0, 1)) {
+      $new_item = TRUE;
+    }
+    else {
+      $new_item = FALSE;
+    }
+    
+    if ($first_char!='' && $new_item) {
+      $output .= "</ul></li>\n";
+    }
+    if ($new_item) {
+      $first_char = substr($tag, 0, 1);
+      $output .= "<li><ul>\n";
+    }
+    
+    $output .= "<li>\n";
+    $output .= l($tag, "flickr/$uid/tags/$tag") ."\n";
+    $output .= "</li>\n";
+  }
+  if ($first_char!='') {
+    $output .= "</ul></li>\n";
+  }
+  $output .= "</ul>\n";
+  
+  return $output; '';
+}
+
+function theme_flickr_tags_cloud($uid, $nsid, $tag_arr) {
+  $max_occur = max($tag_arr);
+  $min_occur = max($tag_arr);
+  
+  // Font size specified in em
+  $max_font = 3.5;
+  $min_font = 0.7;
+  
+  $output = "<ul id='flickr_tagcloud'>\n";
+  foreach ($tag_arr as $tagname => $occurences) {
+    
+    $font_size = round(($max_font-$min_font)*sqrt($occurences/$max_occur)+$min_font, 1);
+    
+    $output .= "<li style='font-size: {$font_size}em'>\n";
+    $output .= l($tagname, "flickr/$uid/tags/$tagname") ."\n";
+    $output .= "</li>\n";
+    
+  }
+  $output .= "</ul>\n";
+  
+  return $output;
+}

@@ -1,0 +1,171 @@
+<?php
+// $Id: flickr_sets.module,v 1.10.2.4 2009/03/25 16:18:08 paulbooker Exp $
+
+require_once(drupal_get_path('module', 'flickr') .'/flickr.inc');
+
+/**
+ * Implementation of hook_menu().
+ */
+function flickr_sets_menu() {
+  $items['flickr/%user/sets'] = array(
+    'title' => 'Sets',
+    'description' => 'Display the Flickr photosets for the specified user',
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'flickr_sets_photosets',
+    'page arguments' => array(1),
+    'access callback' => 'flickr_photos_access',
+    'access arguments' => array(1),
+  );
+  $items['flickr/%user/sets/list'] = array(
+    'title' => 'List',
+    'description' => 'Display the Flickr photosets for the specified user',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['flickr/%user/sets/%flickr_set'] = array(
+    'title' => 'Flickr photo set',
+    'page callback' => 'flickr_sets_photoset',
+    'page arguments' => array(1, 3),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  return $items;
+}
+
+function flickr_set_load($sid, $page = 1) {
+  // TODO: Not sure why this called for /flickr and does not show for admin role
+  if (is_numeric($sid)) {	
+    return flickr_request('flickr.photosets.getPhotos',
+    array(
+      'photoset_id' => $sid,
+      'page' => $page,
+      'per_page' => variable_get('flickr_photos_per_page', 20),
+    )
+    );
+  }
+}
+
+function flickr_sets_photosets($account, $nsid = NULL) {
+  global $pager_page_array, $pager_total, $pager_total_items, $user;
+
+  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+
+  $uid = $account->uid;
+  $nsid = $account->flickr['nsid'];
+  //set this to something else if you want multiple pagers
+  $element = 0;
+  $pager_page_array[$element] = empty($_GET['page']) ? 0 : (int) $_GET['page'];
+
+  $set_response = flickr_photoset_get_list($nsid);
+
+  if ($set_response === FALSE) {
+    drupal_set_message(t('Error retrieving %user\'s photosets from Flickr'), array('%user' => $account->name));
+    return '';
+  }
+  if (!$set_response || empty($set_response)) {
+      drupal_set_message(t('%user has no photosets.', array('%user' => $account->name)));
+    return '';
+  }
+
+  //set pager information we just acquired
+  $pager_total[$element] = ceil(count($set_response)/variable_get('flickr_photosets_per_page', 20));
+  $pager_total_items[$element] = count($set_response);
+
+  return theme('flickr_sets_photosets', $uid, $nsid, $set_response);
+}
+
+function flickr_sets_photoset($account, $set) {
+  global $pager_page_array, $pager_total, $pager_total_items, $user;
+
+  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+
+  $uid = $user->uid;
+  $nsid = $account->flickr['nsid'];
+
+  $set_id = $set['photoset']['id'];
+  $set_info = flickr_photoset_get_info($set_id);
+
+  //make sure that $nsid is the real owner of $set_id
+  if ($nsid != $set_info['owner']) {
+    drupal_goto('flickr/'. $uid .'/sets');
+  }
+
+  //display photos
+  //set this to something else if you want multiple pagers
+  $element = 0;
+  $pager_page_array[$element] = empty($_GET['page']) ? 0 : (int) $_GET['page'];
+  $per_page = variable_get('flickr_photos_per_page', 20);
+
+  //request set photos
+  $set_response = flickr_set_load($set_id, $pager_page_array[$element] + 1);
+
+  if (!$set_response) {
+    drupal_set_message(t('Error retrieving :setid\'s photosets from Flickr'), array(':setid', $set_id));
+    return '';
+  }
+  elseif (!isset($set_response['photoset']['photo']) || empty($set_response['photoset']['photo'])) {
+      drupal_set_message('This photoset is empty');
+      return '';
+  }
+
+  //set pager information we just acquired
+  $pager_total_items[$element] = $set_response['photoset']['total'];
+  $pager_total[$element] = $set_response['photoset']['pages'];
+
+  return theme('flickr_sets_photoset', $uid, $per_page, $set_response, $set_info);
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function flickr_sets_theme() {
+  return array(
+    'flickr_sets_photosets' => array(
+      'arguments' => array('uid', 'nsid', 'photosets'),
+    ),
+    'flickr_sets_photoset' => array(
+      'arguments' => array('uid', 'per_page', 'photo_arr', 'set_info'),
+    ),
+    'flickr_sets_photoset_box' => array(
+      'arguments' => array('ps', 'uid', 'owner', 'size' => 'NULL', 'format' => NULL),
+    ),
+  );
+}
+
+function theme_flickr_sets_photosets($uid, $nsid, $photosets) {
+  $output =
+    theme('pager', NULL, variable_get('flickr_photosets_per_page', 20));
+  $output .= "<div class='fickr-photosets'>\n";
+  foreach ((array) $photosets as $photoset) {
+    $output .= theme('flickr_sets_photoset_box', $photoset, $uid, $nsid, 's');
+  }
+  $output .= '</div>';
+  $output .=
+    theme('pager', NULL, variable_get('flickr_photosets_per_page', 20));
+  return $output;
+}
+
+function theme_flickr_sets_photoset($uid, $per_page, $photo_arr, $set_info) {
+  $output =
+    theme('pager', NULL, variable_get('flickr_photos_per_page', 20));
+  $output .= "<div class='fickr-photoset'>\n";
+  foreach ((array) $photo_arr['photoset']['photo'] as $photo) {
+    //insert owner into $photo because theme_flickr_photo_box/flickr_photo_page_url needs it
+    $photo['owner'] = $set_info['owner'];
+    $output .= theme('flickr_photo_box', $photo, 'm');
+  }
+  $output .= '</div>';
+  $output .=
+    theme('pager', NULL, variable_get('flickr_photos_per_page', 20));
+  return $output;
+}
+
+function theme_flickr_sets_photoset_box($ps, $uid, $owner, $size = NULL, $format = NULL) { 
+  $title = is_array($ps['title']) ? $ps['title']['_content'] : $ps['title'];
+
+  $output = "<div class='flickr-photoset-box'>\n";
+  $output .= l(flickr_img($ps, $size) ."\n", "flickr/{$uid}/sets/{$ps['id']}", array('html' => TRUE));
+  $output .= l('<div class="flickr-photoset-title">'. $title ."</div>\n", "flickr/{$uid}/sets/{$ps['id']}", array('html' => TRUE));
+  $output .= '<div class="flickr-photoset-count">'. format_plural($ps['photos'], '@count photo', '@count photos') ."</div>\n";
+  $output .= "</div>\n";
+
+  return $output;
+}

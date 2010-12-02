@@ -1,0 +1,37 @@
+<?php
+// $Id: flickrfield.install,v 1.2 2008/09/30 10:35:08 karens Exp $
+/**
+ * Implementation of hook_install().
+ */
+function flickrfield_install() {
+  drupal_load('module', 'content');
+  content_notify('install', 'flickrfield');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function flickrfield_uninstall() {
+  drupal_load('module', 'content');
+  content_notify('uninstall', 'flickrfield');
+}
+
+/**
+ * Implementation of hook_enable().
+ *
+ * Notify content module when this module is enabled.
+ */
+function flickrfield_enable() {
+  drupal_load('module', 'content');
+  content_notify('enable', 'flickrfield');
+}
+
+/**
+ * Implementation of hook_disable().
+ *
+ * Notify content module when this module is disabled.
+ */
+function flickrfield_disable() {
+  drupal_load('module', 'content');
+  content_notify('disable', 'flickrfield');
+}

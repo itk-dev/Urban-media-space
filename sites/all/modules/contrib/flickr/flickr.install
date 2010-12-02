@@ -1,0 +1,48 @@
+<?php
+// $Id: flickr.install,v 1.5.2.1 2009/01/30 10:39:01 paulbooker Exp $
+
+function flickr_install() {
+  drupal_install_schema('flickr');
+}
+
+function flickr_uninstall() {
+  drupal_uninstall_schema('flickr');
+  variable_del('flickr_api_key');
+  variable_del('flickr_api_secret');
+  variable_del('flickr_default_userid');
+  variable_del('flickr_cache_duration');
+}
+
+function flickr_schema() {
+  $schema['flickr_users'] = array(
+    'description' => t('Connects Drupal users to their Flickr accounts.'),
+    'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => t('Primary Key: Drupal user ID'),
+      ),
+      'nsid' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'description' => t('Flickr NSID'),
+      ),
+      'identifier' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'description' => t('Flickr identifier'),
+      ),
+    ),
+    'primary key' => array('uid'),
+  );
+  return $schema;
+}
+
+/**
+ * Adding a table to map Drupal users to Flickr users
+ */
+function flickr_update_1() {
+  flickr_install();
+}

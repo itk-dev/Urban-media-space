@@ -1,0 +1,14 @@
+; $Id: flickrfield.info,v 1.3 2008/03/24 19:56:09 drewish Exp $
+name = Flickrfield
+description = Flickr CCK field to insert Flickr images into content.
+dependencies[] = flickr
+dependencies[] = content
+package = CCK
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-05-06
+version = "6.x-1.2"
+core = "6.x"
+project = "flickr"
+datestamp = "1273164907"
+

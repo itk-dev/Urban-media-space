@@ -1,0 +1,30 @@
+<?php
+// $Id: flickr_block.install,v 1.5 2008/03/24 19:56:09 drewish Exp $
+
+function flickr_block_uninstall() {
+  foreach (range(0, 6) as $delta) {
+    variable_del("flickr_block_{$delta}");
+  }
+}
+
+/**
+ * Move all the block settings into a single variable per block.
+ */
+function flickr_block_update_1() {
+  foreach (range(0, 6) as $delta) {
+    $user = variable_get("flickr_block_{$delta}_user_id", FALSE);
+    $show = variable_get("flickr_block_{$delta}_show_n", FALSE);
+    $size = variable_get("flickr_block_{$delta}_size", FALSE);
+    if ($user || $show || $size) {
+      variable_set('flickr_block_'. $delta, array(
+        'user_id' => $user,
+        'show_n' => (int) $show,
+        'size' => $size,
+      ));
+    }
+    variable_del("flickr_block_{$delta}_user_id");
+    variable_del("flickr_block_{$delta}_show_n");
+    variable_del("flickr_block_{$delta}_size");
+  }
+  return array();
+}
