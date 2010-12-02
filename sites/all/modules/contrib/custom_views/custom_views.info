@@ -1,0 +1,6 @@
+; $Id: $
+
+name = custom_views Export Module
+description = Exports some views of custom_views
+dependencies[] = views
+core = 6.x
