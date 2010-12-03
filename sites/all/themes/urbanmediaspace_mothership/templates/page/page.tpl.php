@@ -14,7 +14,7 @@
 
 <?php
   if ($node->field_body_backgroundimage[0]['filepath'] != '') {
-    $background_image = ' style="background: url(\'' . $node->field_body_backgroundimage[0]['filepath'] . '\') no-repeat center 80px;"';
+    $background_image = ' style="background-image: url(\'' . $node->field_body_backgroundimage[0]['filepath'] . '\');"';
   }
 ?>
 
