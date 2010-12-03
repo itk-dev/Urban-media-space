@@ -191,22 +191,6 @@ function custom_views_views_default_views() {
     ),
   ));
   $handler->override_option('filters', array(
-    'type' => array(
-      'operator' => 'in',
-      'value' => array(
-        'news' => 'news',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'type',
-      'table' => 'node',
-      'field' => 'type',
-      'relationship' => 'none',
-    ),
     'language' => array(
       'operator' => 'in',
       'value' => array(
@@ -224,6 +208,22 @@ function custom_views_views_default_views() {
       'override' => array(
         'button' => 'Override',
       ),
+      'relationship' => 'none',
+    ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'news' => 'news',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
       'relationship' => 'none',
     ),
   ));
@@ -705,7 +705,6 @@ function custom_views_views_default_views() {
       'validate_argument_php' => '',
     ),
   ));
-  $handler->override_option('title', '');
   $handler->override_option('css_class', 'menu');
   $handler->override_option('items_per_page', 0);
   $handler->override_option('style_options', array(
@@ -944,13 +943,13 @@ function custom_views_views_default_views() {
   ));
   $handler->override_option('arguments', array(
     'created_year' => array(
-      'default_action' => 'not found',
+      'default_action' => 'ignore',
       'style_plugin' => 'default_summary',
       'style_options' => array(),
       'wildcard' => 'all',
       'wildcard_substitution' => 'Alle',
-      'title' => '%1',
-      'breadcrumb' => '%1',
+      'title' => 'Nyheder %1',
+      'breadcrumb' => '',
       'default_argument_type' => 'fixed',
       'default_argument' => '',
       'validate_type' => 'none',

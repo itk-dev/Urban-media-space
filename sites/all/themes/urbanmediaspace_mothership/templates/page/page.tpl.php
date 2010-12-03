@@ -103,6 +103,9 @@
                   </div>
                 </div> <!--//end #sidebar-right-inner -->
                 <?php endif; ?>
+                <?php if ($title): ?>
+                  <h1 class="title" id="page-title"><?php print $title; ?></h1>
+                <?php endif; ?>
                 <?php print $content; ?>
                 <?php if ($right && !$is_front && $left): ?>
                 <div id="sidebar-right" class="column sidebar region grid-4">

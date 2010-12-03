@@ -52,10 +52,6 @@
 
   <?php print $picture; ?>
 
-  <?php if ($title): ?>
-    <h1 id="page-title" class="news-title"><?php print $title; ?></h1>
-  <?php endif; ?>
-
   <?php if ($unpublished): ?>
     <div class="unpublished"><?php print t('Unpublished'); ?></div>
   <?php endif; ?>

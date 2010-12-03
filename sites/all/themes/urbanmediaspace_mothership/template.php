@@ -7,6 +7,10 @@ function urbanmediaspace_mothership_preprocess_page(&$vars, $hook) {
     $vars['logo_alt_text'] = (empty($vars['logo_alt_text']) ? variable_get('site_name', '') : $vars['logo_alt_text']);
     $vars['site_logo'] = '<a id="site-logo" href="'. $vars['front_page'] .'" title="'. $vars['logo_alt_text'] .'" rel="home"><img src="'. $vars['logo'] .'" alt="'. $vars['logo_alt_text'] .'" /></a>';
   }
+  // Unset title on node (printet in node tpl's instead because of title/image order)
+  if ($vars['node']) {
+    unset($vars['title']);
+  }
 }
 
 /**
