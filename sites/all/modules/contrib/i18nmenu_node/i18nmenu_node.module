@@ -1,5 +1,5 @@
 <?php
-// $Id: i18nmenu_node.module,v 1.20 2010/09/18 10:58:16 plach Exp $
+// $Id: i18nmenu_node.module,v 1.25 2010/11/12 10:41:22 plach Exp $
 
 /**
  * @file
@@ -43,7 +43,7 @@ function i18nmenu_node_block($op = 'list', $delta = 0) {
   switch ($op) {
     case 'list':
       $blocks = array();
-      // Retrieve blocks form all the modules defined in the block information.
+      // Retrieve blocks from all the modules defined in the block information.
       foreach (i18nmenu_node_block_info() as $module => $data) {
         $module_blocks = module_invoke($module, 'block');
         if (!empty($module_blocks)) {
@@ -85,7 +85,15 @@ function i18nmenu_node_block_view($module, $delta) {
   // If a view callback is defined we use it, otherwise we fall back to the
   // usual hook_block() invocation.
   i18n_selection_mode('off');
-  $block = !empty($info['view']) && function_exists($info['view']) ? $info['view']($delta) : $default_callback('view', $delta);
+  if (!empty($info['view']) && function_exists($info['view'])) {
+    $block = $info['view']($delta);
+  }
+  elseif (function_exists($default_callback)) {
+    $block = $default_callback('view', $delta);
+  }
+  else {
+    $block = NULL;
+  }
   i18n_selection_mode('reset');
 
   return $block;
@@ -174,28 +182,33 @@ function i18nmenu_node_menu_link_alter(&$item, $menu) {
 
   // If we are handling custom menu items of menu module and no language is set,
   // prepare node translation data.
-  if (empty($item['language']) && $item['module'] == 'menu') {
-    $map = explode('/', $item['link_path']);
-    if ($node_translation && $map[0] == 'node' && isset($map[1]) && intval($map[1])) {
-      // Get the translation set id from the menu item path.
-      $tnid = _i18nmenu_node_get_tnid($map[1]);
-      if ($tnid) {
-        // We always store the source node nid to allow a correct handling of
-        // the active trail in i18nmenu_node_nodeapi() and to improve
-        // performance in i18nmenu_node_item_translations_refresh_set().
-        $map[1] = $tnid;
-        // Use the source node nid in the link path.
-        $item['link_path'] = implode('/', $map);
-        // We store here the current translation set to allow later translation.
-        $item['options']['translations'] = i18nmenu_node_get_translations($tnid, NULL);
-      }
-      else {
-        // No translations available yet but node translation for this menu item
-        // is enabled.
-        $item['options']['translations'] = array();
-      }
+  if ($node_translation && empty($item['language']) && $item['module'] == 'menu' && ($nid = _i18nmenu_node_check_path($item))) {
+    // Get the translation set id from the menu item path.
+    if ($tnid = _i18nmenu_node_get_tnid($nid)) {
+      $segments = explode('/', $item['link_path']);
+      // We always store the source node nid to allow a correct handling of
+      // the active trail in i18nmenu_node_nodeapi() and to improve
+      // performance in i18nmenu_node_item_translations_refresh_set().
+      $segments[1] = $tnid;
+      // Use the source node nid in the link path.
+      $item['link_path'] = implode('/', $segments);
+      // We store here the current translation set to allow later translation.
+      $item['options']['translations'] = i18nmenu_node_get_translations($tnid, NULL);
+    }
+    else {
+      // No translations available yet but node translation for this menu item
+      // is enabled.
+      $item['options']['translations'] = array();
     }
   }
+}
+
+/**
+ * Check that the given item has a valid node path.
+ */
+function _i18nmenu_node_check_path($item) {
+  $segments = explode('/', $item['link_path']);
+  return $segments[0] == 'node' && isset($segments[1]) && intval($segments[1]) ? $segments[1] : FALSE;
 }
 
 /**
@@ -304,6 +317,23 @@ function i18nmenu_node_form_menu_edit_item_alter(&$form, $form_state) {
       '#description' => t('If this is checked node link paths will be replaced with the node translation paths.'),
       '#default_value' => $default,
     );
+
+    $form['#validate'][] = 'i18nmenu_node_form_menu_edit_item_validate';
+  }
+}
+
+/**
+ * Validation handler for the menu item edit form.
+ */
+function i18nmenu_node_form_menu_edit_item_validate($form, &$form_state) {
+  $item = $form_state['values']['menu'];
+  if ($item['i18nmenu_node_translation']) {
+    if (!_i18nmenu_node_check_path($item)) {
+      form_set_error('menu][link_path', t('Node translation can be enabled only for node paths.'));
+    }
+    if (!empty($item['language'])) {
+      form_set_error('menu][language', t('Node translation cannot be enabled on items having a language associated.'));
+    }
   }
 }
 
@@ -358,7 +388,8 @@ function i18nmenu_node_form_alter(&$form, &$form_state, $form_id) {
       $form['menu']['link_title_translation'] = $form['menu']['link_title'];
       $form['menu']['link_title_translation']['#title'] = t('Menu item translation');
       $form['menu']['link_title_translation']['#description'] = t('The translation of the menu item title.');
-      $default = _i18nmenu_get_item_title($tnode->menu, TRUE, $form['language']['#default_value']);
+      $langcode = empty($node->translation_source) ? $form['language']['#default_value'] : $node->translation_source->language;
+      $default = _i18nmenu_get_item_title($tnode->menu, TRUE, $langcode);
       if (!empty($default)) {
         $form['menu']['link_title_translation']['#default_value'] = $default;
         $form['menu']['#collapsed'] = FALSE;
@@ -476,7 +507,8 @@ function i18nmenu_node_context_registry_alter(&$registry) {
  */
 function i18nmenu_node_token_list($type = 'all') {
   if ($type == 'node' || $type == 'all') {
-    $tokens['node']['i18n-menuhierarchy-raw'] = t("The unfiltered menu path (as reflected in the breadcrumb), not including Home or [menu]. Separated by /.");
+    $tokens['node']['i18n-menupath-raw'] = t("The unfiltered menu path (as reflected in the breadcrumb), not including Home or [menu]. Separated by /.");
+    $tokens['node']['i18n-menuhierarchy-raw'] = t("<strong>[Deprecated] This will be removed in the first stable version. Use <code>[i18n-menupath-raw]</code> instead.</strong>");
     return $tokens;
   }
 }
@@ -489,12 +521,12 @@ function i18nmenu_node_token_values($type, $node = NULL, $options = array()) {
 
   if ($type == 'node') {
     $value = '';
+    $trail_raw = array();
     $tnid = _i18nmenu_node_get_node_tnid($node);
     $tnode = !empty($tnid) && $tnid != $nid ? (object) array('nid' => $tnid) : $node;
     _i18nmenu_node_prepare($tnode);
 
     if (!empty($tnode->menu)) {
-      $trail_raw = array();
       $item = $tnode->menu;
 
       while ($item) {
@@ -505,6 +537,7 @@ function i18nmenu_node_token_values($type, $node = NULL, $options = array()) {
       $value = implode('/', $trail_raw);
     }
 
+    $values['i18n-menupath-raw'] = !empty($options['pathauto']) ? $trail_raw : $value;
     $values['i18n-menuhierarchy-raw'] = $value;
   }
 
@@ -611,9 +644,11 @@ function i18nmenu_node_set_item($node) {
     $item = menu_get_item();
     $item['original_href'] = $item['href'];
     $href = explode('/', $item['href']);
-    $href[1] = $node->tnid;
-    $item['href'] = implode('/', $href);
-    menu_set_item(NULL, $item);
+    if ($href[0] == 'node') {
+      $href[1] = $node->tnid;
+      $item['href'] = implode('/', $href);
+      menu_set_item(NULL, $item);
+    }
   }
 }
 

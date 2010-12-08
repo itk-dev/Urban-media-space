@@ -1,5 +1,5 @@
 <?php
-// $Id: i18nmenu_node.install,v 1.2 2010/09/18 09:29:49 plach Exp $
+// $Id: i18nmenu_node.install,v 1.5 2010/11/12 13:03:29 plach Exp $
 
 /**
  * @file
@@ -41,6 +41,51 @@ function i18nmenu_node_uninstall() {
 }
 
 /**
+ * Implementation of hook_requirements().
+ */
+function i18nmenu_node_requirements($phase) {
+  $t = get_t();
+  $requirements = array();
+
+  $modules = array(
+    'i18n' => array(
+      'version' => 1.6,
+      'severity' => REQUIREMENT_ERROR,
+    ),
+    'context' => array(
+      'version' => 3.0,
+      'severity' => REQUIREMENT_WARNING,
+    ),
+    'token' => array(
+      'version' => 1.15,
+      'severity' => REQUIREMENT_WARNING,
+    ),
+    'pathauto' => array(
+      'version' => 1.5,
+      'severity' => REQUIREMENT_WARNING,
+    ),
+  );
+
+  foreach ($modules as $module => $data) {
+    if (module_exists($module)) {
+      $file = drupal_get_path('module', $module) ."/$module.info";
+      $info = drupal_parse_info_file($file);
+      $version = explode('-', $info['version']);
+      // We do not support extra version information.
+      if (!empty($version[1]) && $version[1] < $data['version']) {
+        $requirements["i18nmenu_node_$module"] = array(
+          'title' => $t('Menu translation (Node)'),
+          'value' => $t('%module version needs to be at least %min_version', array('%module' => $info['name'], '%min_version' => $data['version'])),
+          'severity' => $data['severity'],
+        );
+      }
+    }
+  }
+
+  return $requirements;
+}
+
+/**
  * Implements hook_update_N().
  *
  * Convert block delta to the new format <module>:<delta>.
@@ -48,4 +93,12 @@ function i18nmenu_node_uninstall() {
 function i18nmenu_node_update_6100() {
   $query = "UPDATE {blocks} SET delta = CONCAT('menu:', delta) WHERE module = 'i18nmenu_node'";
   return array(update_sql($query));
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function i18nmenu_node_update_6101() {
+  drupal_set_message(t('The new token <code>[i18n-menupath-raw]</code> has been introduced to replace the deprecated <code>[i18n-menuhierarchy-raw]</code>. Please be sure to replace all its occurrencies as it will be removed in the next stable version. Visit the <a href="!url">status report</a> page to check that the new requirements are satisfied. You might want to read the <a href="http://drupal.org/node/926130">related issue</a> for details.', array('!url' => url('admin/reports/status'))), 'warning');
+  return array();
 }

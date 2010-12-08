@@ -1,0 +1,65 @@
+// $Id: CHANGELOG.txt,v 1.4 2010/11/12 13:03:29 plach Exp $
+
+Menu translation (Node) x.x-x.x, xxxx-xx-xx
+-------------------------------------------
+
+
+Menu translation (Node) 6.x-1.x, xxxx-xx-xx
+-------------------------------------------
+
+
+Menu translation (Node) 6.x-1.0-BETA2, 2010-11-12
+-------------------------------------------------
+#969840 by plach: Changed Show requirements in the status report page.
+#949466 by plach, Johnny vd Laar: Fixed line 88 primary-links_block() function
+  doesn't exist.
+- Added CHANGELOG.txt
+#967552 by plach: Fixed Node translation disabled silently.
+#910976 by plach: Fixed Title translation not matching source language.
+#926130 by plach: Added support for Pathauto segment cleaning mode.
+#933674 by peximo | plach: Fixed Missing check that a node page actually has the
+  'node' router path.
+
+
+Menu translation (Node) 6.x-1.0-BETA1, 2010-09-18
+-------------------------------------------------
+#877378 by plach | miro_dietiker, Lars Kramer: Added Document the possibilty to
+  translate menu title into the default language.
+- Fixed a string issue.
+#867288 by plach | Johnny vd Laar: Added Pathauto path generation.
+#910292 by plach: Added Context integration.
+#911320 by plach: Added Allow other modules to provide [i18n] blocks.
+- API improvements
+- Fixed PHPDocs coding standards
+#909346 by plach: Fixed 'Enable node translation' checkbox not populated in the
+  menu item edit form.
+#905444 by plach | setvik: Fixed Make i18nmenu_node() work with i18n 1.6.
+#889880 by plach: Fixed menu item title translation permission.
+#907592 by plach: Fixed Node form elements should be altered only if they
+  actually exist.
+#891904 by plach: Fixed Wrong href backup while setting the menu item.
+#891354 by plach: Added more visible info about the purpose of the i18n menu
+  blocks.
+
+
+Menu translation (Node) 6.x-1.0-ALPHA3, 2010-07-30
+--------------------------------------------------
+#867608 by plach: Followup patch: the previous fix was incomplete and introduced
+  a critical misbehavior.
+- Fixed a comment left from the initial i18n patch.
+
+
+Menu translation (Node) 6.x-1.0-ALPHA2, 2010-07-29
+--------------------------------------------------
+- Sync with http://drupal.org/cvs?commit=399910
+#867608 by plach: Fixed Menu item widget on node form broken if the source node
+  is not the original one.
+- Restored backward compatibility code while waiting for i18n-1.6
+#868454 by plach: Fixed Breadcrumb behavior mismatch.
+- Updated HEAD after i18n update (#386372).
+
+
+Menu translation (Node) 6.x-1.0-ALPHA1, 2010-07-11
+--------------------------------------------------
+- Initial commit and documentation.
+
