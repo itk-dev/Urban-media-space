@@ -1,0 +1,14 @@
+; Id:
+name = Fuzzysearch filter example
+description = Example module for filtering content and search terms
+dependencies[] = fuzzysearch
+package = Search Engine
+version = VERSION
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-12-04
+version = "6.x-1.5"
+core = "6.x"
+project = "fuzzysearch"
+datestamp = "1291497940"
+

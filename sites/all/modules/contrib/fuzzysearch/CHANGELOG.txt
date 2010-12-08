@@ -1,0 +1,23 @@
+Sorry, this doesn't include the entire fuzzysearch change history.
+
+12/4/2010
+#946414 by sinijkit: Fixed Highlighting is broken when content is not just latin-1.
+  added u flag to preg_match when checking for found words.
+
+11/9/2010
+Clearing index will no longer delete the index before reindexing nodes.
+Fix count query again.
+Remove paging from title query block.
+
+11/7/2010
+Remove pager theming from fuzzysearch_process.
+Fix count_query, joining node and checking node status.
+
+10/25/2010
+Use hook_comment() to set nodes for reindexing.
+Display comments in search results.
+
+10/11/2010
+Use static array for stopwords instead of loading files each node.
+Fix variable name for $sql_count.
+Run fuzzysearch_stopwords($text) after fuzzysearch_cleanse() on index.

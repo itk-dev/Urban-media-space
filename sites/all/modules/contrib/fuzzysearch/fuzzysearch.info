@@ -6,9 +6,16 @@ version = VERSION
 core = 6.x
 
 
-; Information added by drupal.org packaging script on 2010-07-25
-version = "6.x-1.4"
+; Information added by drupal.org packaging script on 2010-09-25
+version = "6.x-1.x-dev"
 core = "6.x"
 project = "fuzzysearch"
-datestamp = "1280085309"
+datestamp = "1285416498"
+
+
+; Information added by drupal.org packaging script on 2010-12-04
+version = "6.x-1.5"
+core = "6.x"
+project = "fuzzysearch"
+datestamp = "1291497940"
 

@@ -1,0 +1,24 @@
+<?php
+
+/*
+ * Implementation of hook_fuzzysearch_filter().
+ *
+ * @param $op
+ *   The operation being performed. Either index or search.
+ * @param $text
+ *   The content to be indexed or search search terms.
+ */
+function fuzzysearch_filter_example_fuzzysearch_filter($op, $text) {
+
+  // Filter on indexing to remove common phrases.
+  if ($op == 'index') {
+    $text = str_ireplace('Common phrase we do not want in our index', '', $text);
+  }
+  
+  // Filter on searching to save processing. Drupal is everywhere in our text,
+  // so no need to search for it.
+  if ($op == 'search') {
+    $text = str_ireplace('drupal', '', $text);
+  }
+  return $text;
+}
