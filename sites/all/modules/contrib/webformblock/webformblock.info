@@ -3,9 +3,9 @@ description = Enables webform nodes to generate blocks.
 core = 6.x
 dependencies[] = webform
 
-; Information added by drupal.org packaging script on 2010-09-25
+; Information added by drupal.org packaging script on 2010-11-12
 version = "6.x-3.x-dev"
 core = "6.x"
 project = "webformblock"
-datestamp = "1285374326"
+datestamp = "1289565000"
 
