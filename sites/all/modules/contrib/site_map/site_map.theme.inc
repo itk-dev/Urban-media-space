@@ -1,5 +1,5 @@
 <?php
-// $Id: site_map.theme.inc,v 1.1.2.3 2010/06/23 05:35:12 frjo Exp $
+// $Id: site_map.theme.inc,v 1.1.2.4 2010/07/11 17:49:10 frjo Exp $
 
 /**
  * @file site_map.theme.inc
@@ -128,9 +128,7 @@ function template_preprocess_site_map(&$variables) {
   }
 
   // Compile the books trees.
-  if (module_exists('book')) {
-    $variables['books'] = _site_map_books();
-  }
+  $variables['books'] = _site_map_books();
 
   // Compile the menu trees.
   $variables['menus'] = _site_map_menus();

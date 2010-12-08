@@ -1,5 +1,5 @@
 <?php
-// $Id: site_map.admin.inc,v 1.1.2.7.2.6 2010/05/24 13:28:09 frjo Exp $
+// $Id: site_map.admin.inc,v 1.1.2.7.2.7 2010/09/02 18:11:33 frjo Exp $
 
 /**
  * @file
@@ -28,7 +28,7 @@ function site_map_admin_settings() {
     '#rows' => 5,
     '#description' => t('Define a message to be displayed above the site map.'),
   );
-  $form['site_map_message_format'] = filter_form(variable_get('site_map_message_format', FILTER_FORMAT_DEFAULT));
+  $form['site_map_message_format'] = filter_form(variable_get('site_map_message_format', FILTER_FORMAT_DEFAULT), NULL, array('site_map_message_format'));
 
   $form['site_map_content'] = array(
     '#type' => 'fieldset',

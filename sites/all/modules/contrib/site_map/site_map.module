@@ -1,5 +1,5 @@
 <?php
-// $Id: site_map.module,v 1.39.2.17.2.9 2010/05/24 13:28:09 frjo Exp $
+// $Id: site_map.module,v 1.39.2.17.2.10 2010/07/11 17:49:10 frjo Exp $
 
 /**
  * @file site_map.module
@@ -234,7 +234,9 @@ function _site_map_video() {
  */
 function _site_map_books() {
   $output = '';
-  if (module_exists('book') && ($nids = variable_get('site_map_show_books', array()))) {
+  $nids = array_filter(variable_get('site_map_show_books', array()));
+
+  if (module_exists('book') && !empty($nids)) {
     $title = t('Books');
     $description = '<div class="description">'. t("Books at %sn.", array("%sn" => variable_get('site_name', 'Drupal'))) .'</div>';
 
@@ -247,7 +249,7 @@ function _site_map_books() {
       $output .= ($data['below']) ? _site_map_menu_tree_output($data['below']) : '';
     }
 
-    if ($output) {
+    if (!empty($output)) {
       $output = theme('site_map_box', $title, $description . $output, 'site-map-book-box');
     }
   }
@@ -259,10 +261,10 @@ function _site_map_books() {
  * Render menus
  */
 function _site_map_menus() {
-  $mids = variable_get('site_map_show_menus', array());
-
   $output = '';
-  if ($mids) {
+  $mids = array_filter(variable_get('site_map_show_menus', array()));
+
+  if (!empty($mids)) {
     foreach ($mids as $mid) {
       $menu = menu_load($mid);
       // Use menu_tree_all_data to retrieve the expanded tree.
@@ -297,7 +299,9 @@ function _site_map_faq() {
  */
 function _site_map_taxonomys() {
   $output = '';
-  if (module_exists('taxonomy') && $vids = variable_get('site_map_show_vocabularies', array())) {
+  $vids = array_filter(variable_get('site_map_show_vocabularies', array()));
+
+  if (module_exists('taxonomy') && !empty($vids)) {
     $result = db_query('SELECT vid, name, description FROM {vocabulary} WHERE vid IN ('. db_placeholders($vids, 'int') .') ORDER BY weight ASC, name', $vids);
     while ($t = db_fetch_object($result)) {
       if (module_exists('i18ntaxonomy')) {
