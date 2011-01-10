@@ -1,9 +1,3 @@
-[submodule "Campaign-monitor"]
-	path = Campaign-monitor
-	url = git://github.com/aakb/Campaign-monitor.git
 [submodule "sites/all/modules/campaignmonitor"]
 	path = sites/all/modules/campaignmonitor
-	url = git://github.com/aakb/Campaign-monitor.git
-[submodule "sites/all/modules/nodeasblock"]
-	path = sites/all/modules/nodeasblock
-	url = git://github.com/cableman/nodeasblock.git
+	url = http://github.com/aakb/Campaign-monitor.git
