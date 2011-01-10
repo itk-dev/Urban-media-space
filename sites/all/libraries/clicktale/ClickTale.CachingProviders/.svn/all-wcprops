@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/coworks/svn/!svn/ver/44/Clicktale/ClickTale.CachingProviders
+END
+ClickTale.CacheProvider.FileSystem.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/coworks/svn/!svn/ver/44/Clicktale/ClickTale.CachingProviders/ClickTale.CacheProvider.FileSystem.php
+END
+ClickTale.CacheProvider.BaseCacheProvider.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/coworks/svn/!svn/ver/44/Clicktale/ClickTale.CachingProviders/ClickTale.CacheProvider.BaseCacheProvider.php
+END
+ClickTale.CacheProvider.MySQLMemory.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/coworks/svn/!svn/ver/44/Clicktale/ClickTale.CachingProviders/ClickTale.CacheProvider.MySQLMemory.php
+END
+ClickTale.CacheProvider.APC.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/coworks/svn/!svn/ver/44/Clicktale/ClickTale.CachingProviders/ClickTale.CacheProvider.APC.php
+END
