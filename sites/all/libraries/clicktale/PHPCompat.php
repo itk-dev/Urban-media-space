@@ -16,6 +16,7 @@
 ?>
 <?php
 
+require_once("PHPCompat/function.gzdecode.php");
 require_once("PHPCompat/sys_get_temp_dir.php");
 
 ?>

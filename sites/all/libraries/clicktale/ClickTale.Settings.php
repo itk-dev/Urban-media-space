@@ -22,7 +22,7 @@ class ClickTale_Settings
 {
 	function __construct() 
 	{
-   	 	require("config.php");
+   	 	require(ClickTale_Root."/config.php");
 		/// ====================================================
 		/// Settings values
 		/// ====================================================
@@ -43,6 +43,7 @@ class ClickTale_Settings
 		$this->CacheFetchingUrl = $config['CacheFetchingUrl'];
 		$this->LogCaching = $config['LogCaching'];
 		$this->LogFetching = $config['LogFetching'];
+		$this->CacheBlockSize = $config['CacheBlockSize'];
 		/// ====================================================
 		///
 		/// ====================================================
@@ -50,6 +51,8 @@ class ClickTale_Settings
 		
 	    $this->config = $config;
 	}
+
+	public static $hadRuntimeError = false;
 
 	public $CacheProvider;
 	public $ScriptsFile;
@@ -66,6 +69,7 @@ class ClickTale_Settings
 	public $MaxFolderSize;
 	public $Version = "1.0.0.0b";
 	public $SystemTempDir;
+	public $CacheBlockSize;
 	
 	public $UseStaticHash = false;
 	public $StaticHash = "test";
@@ -96,7 +100,8 @@ class ClickTale_Settings
 			"DeleteAfterPull" => $this->DeleteAfterPull,
 			"CacheLocation" => $this->CacheLocation,
 			"SystemTempDir" => $this->SystemTempDir,
-			"MaxFolderSize" => $this->MaxFolderSize
+			"MaxFolderSize" => $this->MaxFolderSize,
+			"CacheBlockSize" => $this->CacheBlockSize
 		);
 	}
 	

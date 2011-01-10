@@ -55,10 +55,10 @@ function ClickTale_IpToInteger($ip)
 		if (empty($ipArr[$i]))
 			$ipArr[$i] = 0;
 	
-	$retVal  = intval($ipArr[0], 16)<<24;
-	$retVal += intval($ipArr[1], 16) << 16;
-	$retVal += intval($ipArr[2], 16) << 8;
-	$retVal += intval($ipArr[3], 16); 
+	$retVal  = intval($ipArr[0]) << 24;
+	$retVal += intval($ipArr[1]) << 16;
+	$retVal += intval($ipArr[2]) << 8;
+	$retVal += intval($ipArr[3]); 
 	
 	return $retVal;
 }
@@ -120,8 +120,34 @@ function ClickTale_FileChanged($path)
 	return false;
 }
 
+function ClickTale_ValidateScriptsXMLFile($path)
+{
+	if (!file_exists($path)) 
+		return "Could not find file: $path.";
+	
+	try {
+		$xml = new DOMDocument();
+		$xml->load($path);
+	} catch(Exception $ex)
+	{
+		return $ex.message;
+	}
+	
+	return true;
+}
+
 function ClickTale_LoadScripts($path)
 {
+	$defaultScriptsFileValues = array (
+		"TopScript" => "",
+		"BottomScript" => "",
+
+		"TopDoNotReplaceCondition" => "",
+		"BottomDoNotReplaceCondition" => "",
+		"TopInsertAfter" => "",
+		"BottomInsertBefore" => "</body>",
+	);
+	
 	// We need this even if there is a cached scripts file 
 	// because the timestamp needs to be checked.
 	if (!file_exists($path)) 
@@ -143,33 +169,48 @@ function ClickTale_LoadScripts($path)
 		}
 	} 
 
-	$xml = new DOMDocument();
-	$xml->load($path);
-	// Find name=Top and name=Bottom elements using xpath.
-	$xpath = new DOMXPath($xml);
-	$top = $xpath->query("script[@name=\"Top\"]"); 
-	$bottom = $xpath->query("script[@name=\"Bottom\"]");
-
-	// name=Top and name=Bottom elements are mandatory.
-	if (empty($top) || empty($bottom)) 
-		throw new Exception("Scripts file must contain <script> elements. One with name=top and one with name=bottom."); 
-	
-	$returnItems = array
-	(
-		"TopScript" => $top->item(0)->textContent,
-		"BottomScript" => $bottom->item(0)->textContent,
-
-		"TopDoNotReplaceCondition" => @$top->item(0)->attributes->getNamedItem("DoNotReplaceCondition")->value,
-		"BottomDoNotReplaceCondition" => @$bottom->item(0)->attributes->getNamedItem("DoNotReplaceCondition")->value,
-		"TopInsertAfter" => @$bottom->item(0)->attributes->getNamedItem("InsertAfter")->value,
-		"BottomInsertBefore" => @$bottom->item(0)->attributes->getNamedItem("InsertBefore")->value,
-	);
-	
-	// Store in cache so we will not need to read from file each page request.
-	if(ClickTale_Settings::Instance()->CacheScriptsFile) {
-		$config = ClickTale_Settings::Instance()->getCacheProviderConfig();
-		$config["MaxCachedSeconds"] = false;
-		$cacheProvider->store($key, serialize($returnItems), $config);
+	try {
+		
+		$xml = new DOMDocument();
+		$succ = $xml->load($path);
+		
+		if(!$succ) {
+			ClickTale_Logger::Write("Error - Can't process the xml scripts file. Make sure it's valid XML.");
+			ClickTale_Settings::$hadRuntimeError = true;
+			$returnItems = $defaultScriptsFileValues;
+		} else {
+			// Find name=Top and name=Bottom elements using xpath.
+			$xpath = new DOMXPath($xml);
+			$top = $xpath->query("script[@name=\"Top\"]"); 
+			$bottom = $xpath->query("script[@name=\"Bottom\"]");
+		
+			// name=Top and name=Bottom elements are mandatory.
+			if (empty($top) || empty($bottom)) 
+				throw new Exception("Scripts file must contain <script> elements. One with name=top and one with name=bottom."); 
+			
+			$returnItems = array
+			(
+				"TopScript" => $top->item(0)->textContent,
+				"BottomScript" => $bottom->item(0)->textContent,
+		
+				"TopDoNotReplaceCondition" => @$top->item(0)->attributes->getNamedItem("DoNotReplaceCondition")->value,
+				"BottomDoNotReplaceCondition" => @$bottom->item(0)->attributes->getNamedItem("DoNotReplaceCondition")->value,
+				"TopInsertAfter" => @$bottom->item(0)->attributes->getNamedItem("InsertAfter")->value,
+				"BottomInsertBefore" => @$bottom->item(0)->attributes->getNamedItem("InsertBefore")->value,
+			);
+			
+			// Store in cache so we will not need to read from file each page request.
+			if(ClickTale_Settings::Instance()->CacheScriptsFile) {
+				$config = ClickTale_Settings::Instance()->getCacheProviderConfig();
+				$config["MaxCachedSeconds"] = false;
+				$cacheProvider->store($key, serialize($returnItems), $config);
+			}
+		}
+	}
+	catch (Exception $ex)
+	{
+		ClickTale_Settings::$hadRuntimeError = true;
+		$returnItems = $defaultScriptsFileValues;
 	}
 	
 	return $returnItems;
@@ -275,6 +316,8 @@ function ClickTale_Filter($buffer, $data, $hash)
 	
 	$tokens["%FetchFromUrl%"] = str_replace(array("%CacheToken%","%ClickTaleCacheUrl%"),
 		array($hash,ClickTale_PathToUrl(ClickTale_Root)), $settings->CacheFetchingUrl);
+	$tokens["\\"] = "\\\\";
+	$tokens["$"] = "\\$";
 	  
 	$tokenKeys = array_keys($tokens);
 	$tokenValues = array_values($tokens);
@@ -292,7 +335,8 @@ function ClickTale_Filter($buffer, $data, $hash)
 		if (empty($topInsertAfter)) {
 			$topInsertAfter = "(<body.*?>)"; // Default value.
 		}
-		$buffer = preg_replace($topInsertAfter, "$0".$data["TopScript"], $buffer, 1);
+		$topInsertAfter = str_replace("/", "\\/", $topInsertAfter);
+		$buffer = preg_replace("/$topInsertAfter/i", "$0".$data["TopScript"], $buffer, 1);
 	}	
 	
 	if (!empty($data["BottomScript"]) && !$bottomDoNotReplaceWasFound)
@@ -302,14 +346,15 @@ function ClickTale_Filter($buffer, $data, $hash)
 		if (empty($bottomInsertBefore)) {
 			$bottomInsertBefore = "(</body>)"; // Default value.
 		}
-		$buffer = preg_replace($bottomInsertBefore, $data["BottomScript"]."$0", $buffer, 1);
+		$bottomInsertBefore = str_replace("/", "\\/", $bottomInsertBefore);
+		$buffer = preg_replace("/$bottomInsertBefore/i", $data["BottomScript"]."$0", $buffer, 1);
 	}
 	
 	return $buffer;
 }
 
 
-function ClickTale_ProcessOutput($buffer)
+function ClickTale_ProcessOutput_inject($buffer)
 {
 	if (ClickTale_CheckCookieFlagForRecording()) 
 		return $buffer;
@@ -365,6 +410,97 @@ function ClickTale_ProcessOutput($buffer)
 	return $buffer;
 }
 
+function ClickTale_HasGZipEncodingHeader()
+{
+	foreach(headers_list() as $i => $header)
+	{
+		if(preg_match("/\\s*Content-Encoding:\\s*gzip\\s*/i", $header)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// error handler used to not prevent the page content from displaying
+function ClickTale_BufferErrorHandler($errno, $errstr, $errfile, $errline, $errcontext)
+{
+	return true;
+}
+
+function ClickTale_ProcessOutput($buffer) {
+	$bufferCopy = $buffer;
+	set_error_handler("ClickTale_BufferErrorHandler");
+	
+	try {
+		$gzip = false;
+		// decode gzipped content if there is gzip encoding header
+		if(ClickTale_HasGZipEncodingHeader()) {
+			$gzip = true;
+			$buffer = gzdecode($buffer);
+			// log this
+			//ClickTale_Logger::Write("Decoding gzipped buffer. Might affect performance.");
+		}
+		
+		$buffer = ClickTale_ProcessOutput_inject($buffer);
+		
+		// re-encode the buffer in gzip encoding if we decoded it before
+		if($gzip) {
+			$buffer = gzencode($buffer);
+		}
+	} catch (Exception $ex){
+		ClickTale_Settings::$hadRuntimeError = true;
+	}
+	
+	restore_error_handler();
+	if(ClickTale_Settings::$hadRuntimeError) {
+		return $bufferCopy."<!-- ClickTale PHP Integration module failed to inject ClickTale script -->";
+	} else {
+		return $buffer;
+	}
+}
+
+
+
+
+function ClickTale_DebugBuffers()
+{	
+	// if we don't have the callback registered here, then we have a problem
+	if(!in_array("ClickTale_callback", ob_list_handlers())) {
+		ClickTale_Logger::Write("The output buffer callback does not exist in the buffers stack.");
+	}
+	
+	if(!ClickTale_Settings::Instance()->AllowDebug) {
+		return;
+	}
+	
+	ClickTale_Logger::Write("Serialized Buffer Hanlders: ".join(", ", ob_list_handlers()));
+
+	function clicktale_stringify_buffer_status($level, $stats)
+	{
+		$status = $stats['status'];
+		switch($stats['status']){
+			case 0:
+				$status = "start";
+				break;
+			case 1:
+				$status = "cont";
+				break;
+			case 2:
+				$status = "end";
+				break;
+		}
+		
+		return "Buffer {$stats['name']} level: {$level} status: $status del: {$stats['del']} type: {$stats['type']}";
+	}
+	
+	foreach(ob_get_status(true) as $level => $clicktale_buffer)
+	{
+		ClickTale_Logger::Write("Serialized Buffer Status: ".clicktale_stringify_buffer_status($level, $clicktale_buffer));
+		if($clicktale_buffer["name"] == "ob_gzhandler") {
+			ClickTale_Logger::Write("Warning: You are using ob_gzhandler. ClickTale integration module will unzip and re-zip the page. This might slow down your site response.");
+		}
+	}
+}
 
 
 ?>

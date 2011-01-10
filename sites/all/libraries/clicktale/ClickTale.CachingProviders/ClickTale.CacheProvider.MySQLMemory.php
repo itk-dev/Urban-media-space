@@ -28,7 +28,7 @@ class ClickTale_CacheProvider_MySQLMemory extends ClickTale_CacheProvider_BaseCa
 	
 	private $tablename = "";
 	
-	private $block_size = 255;
+	private $block_size = 240;
 	
 	/**
 	 * Splits a DB URI for it's components
@@ -38,6 +38,7 @@ class ClickTale_CacheProvider_MySQLMemory extends ClickTale_CacheProvider_BaseCa
 	protected function extract_db_config($config)
 	{
 		$parts = parse_url($config['CacheLocation']);
+		$this->block_size = $config['CacheBlockSize'];
 		$db = substr($parts["path"], 1);
 		
 		list($db, $tablename) = split("\\.", substr($parts["path"], 1), 2);
@@ -360,6 +361,26 @@ WHERE blockNumber <= (LENGTH(?) )/$blocksize
 		}
 	}
 	
+	public function refresh($key, $config) {
+		$tablename = $this->tablename;
+		$timestamp = time();
+		$q = "UPDATE $tablename SET timestamp = ? WHERE cache_key = ?";
+		
+		try {
+			$this->start_connection($config);
+		} catch (Exception $e) {
+			return false;
+		}
+		
+		if ($stmt = mysqli_prepare($this->connection, $q)) {
+			mysqli_stmt_bind_param($stmt, "is", $timestamp, $key);
+			mysqli_stmt_execute($stmt);
+			mysqli_stmt_close($stmt);
+		} else {
+			throw new Exception(mysqli_error($this->connection));
+		}
+		return true;
+	}
 	
 }
 

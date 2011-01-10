@@ -66,6 +66,10 @@ abstract class  ClickTale_CacheProvider_BaseCacheProvider
 	 * @param array $config
 	 */
 	abstract public function config_validation($config);
+	
+	public function refresh($key, $config) {
+		return null;
+	}
 }
 
 ?>

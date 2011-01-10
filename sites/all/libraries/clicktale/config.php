@@ -22,7 +22,6 @@ $config = array();
 // use %CacheToken% as a placeholder for the token
 // use %ClickTaleCacheUrl% can be used as the url to ClickTaleCache.php
 $config['CacheFetchingUrl'] = "http://%ClickTaleCacheUrl%/ClickTaleCache.php?t=%CacheToken%";
-//$config['CacheFetchingUrl'] = "http://localhost/drupal/sites/all/modules/clicktale/ClickTaleCache.php?t=%CacheToken%";
 
 // Cache provider name (for example "APC").
 // Look into "ClickTale\ClickTale.CachingProviders" for all aviable providers.
@@ -36,7 +35,7 @@ $config['ScriptsFile'] = ClickTale_Root.ClickTale_DS."ClickTaleScripts.xml";
 // When used with some CacheProviders, this will improve performance.
 $config['CacheScriptsFile'] = true;
 
-// Default seconds is being cleaned. Infinite if false or 0.
+// Number of seconds to keep data in cache provider. Infinite if false or 0.
 $config['MaxCachedSeconds'] = 60;
 
 // Represents a path to the log file (relative to the "ClickTale\Logs" directory.
@@ -44,7 +43,7 @@ $config['MaxCachedSeconds'] = 60;
 // set this param to false or empty string.
 $config['LogPathMask'] = ClickTale_Root.ClickTale_DS."Logs".ClickTale_DS."Log_{0}.txt";
 
-// If false, files that are being retrieved will not be deleted.
+// If false, data will not be deleted after 1 request. Allows more than once fetch per data item.
 $config['DeleteAfterPull'] = true;
 
 $config['AllowDebug'] = false;
@@ -60,13 +59,16 @@ $config['DoNotProcessCookieName'] = "WRUID";
 $config['DoNotProcessCookieValue'] = "0";
 
 // A list of allowed ip masks separated by comma.
-$config['AllowedAddresses'] = "75.125.82.64/26,81.247.104.171";
+$config['AllowedAddresses'] = "75.125.82.64/26";
 
 // The location where cached files will be stored (works with FileSystem provider).
 $config['CacheLocation'] = ClickTale_Root.ClickTale_DS."Cache";
 //$config['CacheLocation'] = "http://<username>:<password>@<host>:<port>/<db name>.<table name>";
 
-// Must be integers. Meashured in megabytes.
+//Cache block size for SQLMemory cache provider
+$config['CacheBlockSize'] = 230;
+
+// Must be integers. Measured in megabytes.
 $config['MaxFolderSize'] = 50;
 
 $config['SystemTempDir'] = sys_get_temp_dir();
@@ -77,16 +79,4 @@ $config['LogCaching'] = false;
 $config['LogFetching'] = false;
 
 
-?>
-
-
-
-
-<?php /* APPENDED BY CLICKTALE INSTALLER - DO NOT REMOVE */
-$config['ScriptsFile'] = 'C:\wamp\www\urbanmediaspace\docs\sites\default\files/clicktale/ClickTaleScripts.xml';
-$config['CacheProvider'] = 'FileSystem';
-$config['CacheFetchingUrl'] = 'http://%ClickTaleCacheUrl%/ClickTaleCache.php?t=%CacheToken%';
-$config['LogPathMask'] = 'C:\wamp\www\urbanmediaspace\docs\sites\default\files/clicktale/Logs/Log_{0}.txt';
-$config['CacheLocation'] = 'C:\wamp\www\urbanmediaspace\docs\sites\default\files/clicktale/Cache';
-$config['AllowedAddresses'] = '75.125.82.64/26,81.247.104.171,75.125.82.80'; 
 ?>
