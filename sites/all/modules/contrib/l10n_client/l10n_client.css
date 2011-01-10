@@ -1,4 +1,4 @@
-/* $Id: l10n_client.css,v 1.6.2.2 2010/04/20 22:16:00 goba Exp $ */
+/* $Id: l10n_client.css,v 1.6.2.2.2.1 2010/12/08 14:37:03 goba Exp $ */
 
 /* width percentages add to 99% rather than 100% to prevent float
 overflows from occurring in an unnamed browser that can't decide
@@ -174,3 +174,17 @@ how it wants to round. */
 
 #l10n-client-data {
   display:none;}
+
+.l10n-client-feedback {
+  background-color: #DF8;
+  padding: 5px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.l10n-client-feedback.message-warning {
+  background-color: #FD8;
+}
+.l10n-client-feedback.message-error {
+  background-color: #F00;
+  color: #fff;
+}

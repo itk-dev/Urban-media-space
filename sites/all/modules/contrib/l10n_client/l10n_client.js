@@ -1,4 +1,4 @@
-// $Id: l10n_client.js,v 1.10.2.8 2010/04/20 22:36:09 goba Exp $
+// $Id: l10n_client.js,v 1.10.2.9.2.2 2010/12/08 14:37:03 goba Exp $
 
 // Store all l10n_client related data + methods in its own object
 jQuery.extend(Drupal, {
@@ -68,7 +68,7 @@ jQuery.extend(Drupal, {
     // Filter the the string list by a search string
     this.filter = function(search) {
       if(search == false || search == '') {
-        $('#l10n-client #search-filter-clear').focus();
+        $('#l10n-client #l10n-client-search-filter-clear').focus();
         $('#l10n-client-string-select li').show();
         $('#l10n-client .string-search').val('');
         $('#l10n-client .string-search').focus();
@@ -111,7 +111,7 @@ Drupal.behaviors.l10nClient = function (context) {
 
     $('#l10n-client-string-editor .source-text').text(Drupal.l10nClient.getString(index, 'source'));
     $('#l10n-client-form .translation-target').val(Drupal.l10nClient.getString(index, 'target'));
-    $('#l10n-client-form #edit-textgroup').val(Drupal.l10nClient.getString(index, 'textgroup'));
+    $('#l10n-client-form .source-textgroup').val(Drupal.l10nClient.getString(index, 'textgroup'));
     Drupal.l10nClient.selected = index;
     $('#l10n-client-form .form-submit').removeAttr("disabled");
   });
@@ -164,7 +164,7 @@ Drupal.behaviors.l10nClient = function (context) {
       data: {
         source: $('#l10n-client-string-editor .source-text').text(),
         target: $('#l10n-client-form .translation-target').val(),
-        textgroup: $('#l10n-client-form #edit-textgroup').val(),
+        textgroup: $('#l10n-client-form .source-textgroup').val(),
         'form_token': $('#l10n-client-form #edit-l10n-client-form-form-token').val()
       },
       success: function (data) {
@@ -195,7 +195,8 @@ Drupal.behaviors.l10nClient = function (context) {
         $('#l10n-client-string-select li').eq(Drupal.l10nClient.selected).removeClass('untranslated').removeClass('active').addClass('translated').text(newTranslationDisplay);
 
         // Empty input fields.
-        $('#l10n-client-string-editor .source-text').html('');
+        var messageValue = Drupal.parseJson(data);
+        $('#l10n-client-string-editor .source-text').html(messageValue.message);
         $('#l10n-client-form .translation-target').val('');
 
       },

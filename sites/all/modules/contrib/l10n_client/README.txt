@@ -1,4 +1,4 @@
-$Id: README.txt,v 1.4.2.1 2010/04/19 20:39:35 goba Exp $
+$Id: README.txt,v 1.4.2.2 2010/08/04 10:07:37 goba Exp $
 
 CONTENTS
 --------
@@ -24,7 +24,7 @@ please check the Drupal handbook page about the Translation module
 
 The module can instantly share your translations by sending them to
 localization servers such as localize.drupal.org. See also the Localization
-server project  (http://drupal.org/proj ect/l10n_server).
+server project  (http://drupal.org/project/l10n_server).
 
 Finally the module includes a translation package re-import tool, which
 simplifies importing new and changed translations, especially when upgrading
@@ -62,7 +62,7 @@ strings right on the page that they are viewing.
  3. Click the  "TRANSLATE TEXT" button in the right bottom corner of the webpage
     The on-page translation pane appears, showing all strings available on the
     current webpage in the left column. Already translated strings are marked
-    green. yet untranslated strings are shown in white. You can filter the list
+    green, yet untranslated strings are shown in white. You can filter the list
     using the input field in the left bottom corner of the page.
  4. Select a string in the left column to see the source text and the
     translation (if available). You can add your own translation or edit the
@@ -96,6 +96,8 @@ Drupal directories.
 
 Choose the languages for which you want to re-import translations at
 Administer > Site building > Translate interface > Import > Reimport packages.
+
+See also http://drupal.org/project/l10n_update.
 
 CONTRIBUTORS & SPONSORS
 --------------------------------------------------------------------------------

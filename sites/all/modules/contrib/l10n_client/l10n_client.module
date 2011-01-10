@@ -1,5 +1,5 @@
 <?php
-// $Id: l10n_client.module,v 1.22.2.11 2010/04/29 08:29:56 goba Exp $
+// $Id: l10n_client.module,v 1.22.2.13.2.5 2010/12/08 14:37:03 goba Exp $
 
 /**
  * @file
@@ -43,24 +43,6 @@ function l10n_client_menu() {
     'type' => MENU_LOCAL_TASK,
     'weight' => 10,
   );
-  // Direct copy of the import tab from locale module to
-  // make space for the "Reimport package" tab below.
-  $items['admin/build/translate/import/file'] = array(
-    'title' => 'Import file',
-    'page callback' => 'locale_inc_callback',
-    'page arguments' => array('drupal_get_form', 'locale_translate_import_form'),
-    'access arguments' => array('translate interface'),
-    'weight' => -5,
-    'type' => MENU_DEFAULT_LOCAL_TASK,
-  );
-  $items['admin/build/translate/import/package'] = array(
-    'title' => 'Reimport packages',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('l10n_client_import_package_form'),
-    'access arguments' => array('translate interface'),
-    'weight' => 5,
-    'type' => MENU_LOCAL_TASK,
-  );
 
   // Direct copy of the Configure tab from locale module to
   // make space for the "Localization sharing" tab below.
@@ -88,6 +70,17 @@ function l10n_client_menu() {
  */
 function l10n_client_perm() {
   return array('use on-page translation', 'submit translations to localization server');
+}
+
+/**
+ * Implement hook_theme().
+ */
+function l10n_client_theme($existing, $type, $theme, $path) {
+  return array(
+    'l10n_client_message' => array(
+      'arguments' => array('message' => '', 'level' => WATCHDOG_ERROR),
+    ),
+  );
 }
 
 /**
@@ -390,8 +383,11 @@ function l10n_client_form($form_id, $strings) {
     '#value' => t('Save translation'),
     '#type' => 'submit',
   );
-  // Hidden field for textgroup
-  $form['textgroup'] = array('#type' => 'hidden', '#value' => 'default');
+  $form['textgroup'] = array(
+    '#type' => 'hidden',
+    '#value' => 'default',
+    '#attributes' => array('class' => 'source-textgroup'),
+  );
   $form['copy'] = array(
     '#type' => 'button',
     '#id' => 'l10n-client-edit-copy',
@@ -435,91 +431,72 @@ function l10n_client_save_string() {
   global $user, $language;
 
   if (l10n_client_access()) {
-    if (isset($_POST['source']) && isset($_POST['target']) && isset($_POST['textgroup']) && !empty($_POST['form_token']) && drupal_valid_token($_POST['form_token'], 'l10n_client_form')) {
-      include_once 'includes/locale.inc';
-      $report = array('skips' => 0, 'additions' => 0, 'updates' => 0);
-      _locale_import_one_string_db($report, $language->language, $_POST['source'], $_POST['target'], $_POST['textgroup'], NULL, LOCALE_IMPORT_OVERWRITE);
-      cache_clear_all('locale:', 'cache', TRUE);
-      _locale_invalidate_js($language->language);
+    if (isset($_POST['source']) && isset($_POST['target']) && !empty($_POST['textgroup']) && !empty($_POST['form_token']) && drupal_valid_token($_POST['form_token'], 'l10n_client_form')) {
+      // Ensure we have this source string before we attempt to save it.
+      $lid = db_result(db_query("SELECT lid FROM {locales_source} WHERE source = '%s' AND textgroup = '%s'", $_POST['source'], $_POST['textgroup']));
 
-      // Submit to remote server if enabled.
-      if (variable_get('l10n_client_use_server', FALSE) && user_access('submit translations to localization server') && !empty($user->l10n_client_key)) {
-        l10n_client_submit_translation($language->language, $_POST['source'], $_POST['target'], $user->l10n_client_key, l10n_client_user_token($user));
+      if (!empty($lid)) {
+        include_once 'includes/locale.inc';
+        $report = array('skips' => 0, 'additions' => 0, 'updates' => 0, 'deletes' => 0);
+        _locale_import_one_string_db($report, $language->language, $_POST['source'], $_POST['target'], $_POST['textgroup'], NULL, LOCALE_IMPORT_OVERWRITE);
+        cache_clear_all('locale:', 'cache', TRUE);
+        _locale_invalidate_js($language->language);
+        if (!empty($report['skips'])) {
+          $message = theme('l10n_client_message', t('Not saved locally due to invalid HTML content.'));
+        }
+        elseif (!empty($report['additions']) || !empty($report['updates'])) {
+          $message = theme('l10n_client_message', t('Translation saved locally.'), WATCHDOG_INFO);
+        }
+        elseif (!empty($report['deletes'])) {
+          $message = theme('l10n_client_message', t('Translation successfuly removed locally.'), WATCHDOG_INFO);
+        }
+        else {
+          $message = theme('l10n_client_message', t('Unknown error while saving translation locally.'));
+        }
+
+        // Submit to remote server if enabled.
+        if (variable_get('l10n_client_use_server', FALSE) && user_access('submit translations to localization server') && ($_POST['textgroup'] == 'default')) {
+          if (!empty($user->l10n_client_key)) {
+            $remote_result = l10n_client_submit_translation($language->language, $_POST['source'], $_POST['target'], $user->l10n_client_key, l10n_client_user_token($user));
+            $message .= theme('l10n_client_message', $remote_result[1], $remote_result[0] ? WATCHDOG_INFO : WATCHDOG_ERROR);
+          }
+          else {
+            $server_url = variable_get('l10n_client_server', 'http://localize.drupal.org');
+            $user_edit_url = url('user/'. $user->uid .'/edit', array('absolute' => TRUE));
+            $message .= theme('l10n_client_message', t('You could share your work with !l10n_server if you set your API key at !user_link.', array('!l10n_server' => l($server_url, $server_url), '!user_link' => l($user_edit_url, 'user/'. $user->uid .'/edit'))), WATCHDOG_WARNING);
+          }
+        }
+      }
+      else {
+        $message = theme('l10n_client_message', t('Not saved due to source string missing.'));
       }
     }
+    else {
+      $message = theme('l10n_client_message', t('Not saved due to missing form values.'));
+    }
   }
-}
-
-// -----------------------------------------------------------------------------
-
-/**
- * Page callback function to present a form to reimport a translation package.
- *
- * @ingroup forms
- * @see l10n_client_import_package_form_submit()
- */
-function l10n_client_import_package_form(&$form_state) {
-  // Get all languages, except English
-  $names = locale_language_list('name', TRUE);
-  unset($names['en']);
-
-  if (!count($names)) {
-    // This only works if there is any foreign language set up.
-    drupal_set_message(t('No languages set up to reimport packages into.'), 'warning');
-    return array();
+  else {
+    $message = theme('l10n_client_message', t('Not saved due to insufficient permissions.'));
   }
-
-  $form = array();
-  $form['reimport'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Reimport translation packages'),
-  );
-  $form['reimport']['langcodes'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Language packages'),
-    '#description' => t('Choose language packages to reimport translations from. All files of the packages should be already uncompressed to the Drupal directories. All translation files will be imported for enabled modules and themes and will be imported to the built-in interface textgroup.'),
-    '#options' => $names,
-    '#required' => TRUE,
-  );
-  $form['reimport']['textgroups'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Clean up textgroups in database before reimport'),
-    '#description' => t('If checked, all translations for the given language and selected textgroups will be deleted from the database first, and you will loose all your customized translations and those not available in the files being imported. Use with extreme caution.'),
-    '#default_value' => array(),
-    '#options' => module_invoke_all('locale', 'groups'),
-  );
-  $form['reimport']['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Reimport packages')
-  );
-  return $form;
+  drupal_json(array('message' => $message));
+  exit;
 }
 
 /**
- * Submission handler for package reimport form.
- *
- * @see l10n_client_import_package_form()
+ * Theme function to wrap l10n_client messages in proper markup.
  */
-function l10n_client_import_package_form_submit($form, &$form_state) {
-  if (!empty($form_state['values']['textgroups'])) {
-    // Clean out all translations first if user asked to do that.
-    $langcodes = array_keys(array_filter($form_state['values']['langcodes']));
-    $textgroups = array_keys(array_filter($form_state['values']['textgroups']));
-    if (!empty($textgroups)) {
-      db_query("DELETE FROM {locales_target} WHERE language IN (". db_placeholders($langcodes, 'varchar') .") AND lid IN (SELECT lid FROM {locales_source} WHERE textgroup IN (". db_placeholders($textgroups, 'varchar') ."))", array_merge($langcodes, $textgroups));
-      // Also remove all source strings without translations.
-      db_query("DELETE FROM {locales_source} WHERE lid NOT IN (SELECT lid FROM {locales_target})");
-    }
+function theme_l10n_client_message($message, $level) {
+  switch ($level) {
+    case WATCHDOG_INFO:
+      return '<div class="l10n-client-feedback message-info">'. $message .'</div>';
+      break;
+    case WATCHDOG_WARNING:
+      return '<div class="l10n-client-feedback message-warning">'. $message .'</div>';
+      break;
+    case WATCHDOG_ERROR:
+      return '<div class="l10n-client-feedback message-error">'. $message .'</div>';
+      break;
   }
-
-  // Set up and start batch for new imports.
-  include_once 'includes/locale.inc';
-  foreach (array_filter($form_state['values']['langcodes']) as $langcode) {
-    if ($batch = locale_batch_by_language($langcode, '_locale_batch_language_finished')) {
-      batch_set($batch);
-    }
-  }
-  $form_state['redirect'] = 'admin/build/translate';
 }
 
 // -----------------------------------------------------------------------------
@@ -539,8 +516,8 @@ function l10n_client_settings_form() {
   $form['l10n_client_server'] = array(
     '#title' => t('Address of localization server to use'),
     '#type' => 'textfield',
-    '#description' => t('This server will be used to share translations submitted through the localization client interface. Each local submission will result in a call to this server as well. To be able to submit a translation there, you should be logged in there, but from then on, everything is automated. A list of servers you can use is available from the <a href="@project">Localization server project page</a>.', array('@project' => 'http://drupal.org/project/l10n_server')),
-    '#default_value' => variable_get('l10n_client_server', ''),
+    '#description' => t('Each translation submission will also be submitted to this server. We suggest you enter <a href="@localize">http://localize.drupal.org</a> to share with the greater Drupal community. Make sure you set up an API-key in the user account settings for each user that will participate in the translations.', array('@localize' => 'http://localize.drupal.org')),
+    '#default_value' => variable_get('l10n_client_server', 'http://localize.drupal.org'),
   );
   return system_settings_form($form);
 }
@@ -553,19 +530,23 @@ function l10n_client_settings_form() {
 function l10n_client_settings_form_validate($form, &$form_state) {
   if ($form_state['values']['l10n_client_use_server']) {
 
-    // Try to invoke the remote string submission with a test request.
-    $response = xmlrpc($form_state['values']['l10n_client_server'] .'/xmlrpc.php', 'l10n.server.test', '2.0');
-
-    if ($response && !empty($response['name']) && !empty($response['version'])) {
-      if (empty($response['supported']) || !$response['supported']) {
-        form_set_error('l10n_client_server', t('The given server could not handle the v2.0 remote submission API.'));
+    if (!empty($form_state['values']['l10n_client_server'])) {
+      // Try to invoke the remote string submission with a test request.
+      $response = xmlrpc($form_state['values']['l10n_client_server'] .'/xmlrpc.php', 'l10n.server.test', '2.0');
+      if ($response && !empty($response['name']) && !empty($response['version'])) {
+        if (empty($response['supported']) || !$response['supported']) {
+          form_set_error('l10n_client_server', t('The given server could not handle the v2.0 remote submission API.'));
+        }
+        else {
+          drupal_set_message(t('Verified that the specified server can handle remote string submissions. Supported languages: %languages.', array('%languages' => $response['languages'])));
+        }
       }
       else {
-        drupal_set_message(t('Verified that the specified server can handle remote string submissions. Supported languages: %languages.', array('%languages' => $response['languages'])));
+        form_set_error('l10n_client_server', t('Invalid localization server address specified. Make sure you specified the right server address.'));
       }
     }
     else {
-      form_set_error('l10n_client_server', t('Invalid localization server address specified. Make sure you specified the right server address.'));
+      form_set_error('l10n_client_server', t('You should provide a server address, such as http://localize.drupal.org'));
     }
   }
 }
@@ -581,7 +562,7 @@ function l10n_client_user($type, &$edit, &$account, $category = NULL) {
 
     if (variable_get('l10n_client_use_server', FALSE) && user_access('submit translations to localization server', $account)) {
       // Build link to retrieve user key.
-      $server_link = variable_get('l10n_client_server', '') .'?q=translate/remote/userkey/'. l10n_client_user_token($account);
+      $server_link = variable_get('l10n_client_server', 'http://localize.drupal.org') .'?q=translate/remote/userkey/'. l10n_client_user_token($account);
       $items['l10n_client_key'] = array(
         '#type' => 'textfield',
         '#title' => t('Your Localization Server API key'),
@@ -598,7 +579,7 @@ function l10n_client_user($type, &$edit, &$account, $category = NULL) {
         '#default_value' => !empty($account->l10n_client_disabled),
       );
     }
-    
+
     if (!empty($items)) {
       // Add items in a fieldset wrapper if any items available.
       $form = array('l10n_client' =>
@@ -610,7 +591,7 @@ function l10n_client_user($type, &$edit, &$account, $category = NULL) {
         ),
       );
     }
-    
+
     return $form;
   }
   elseif ($type == 'submit' && $category == 'account' && isset($edit['l10n_client_key'])) {
@@ -633,9 +614,10 @@ function l10n_client_user_token($account = NULL) {
 function l10n_client_submit_translation($langcode, $source, $translation, $user_key, $user_token) {
   $server_uid = current(split(':', $user_key));
   $signature = md5($user_key . $langcode . $source . $translation . $user_token);
+  $server_url = variable_get('l10n_client_server', 'http://localize.drupal.org');
 
   $response = xmlrpc(
-    variable_get('l10n_client_server', '') .'/xmlrpc.php',
+    $server_url .'/xmlrpc.php',
     'l10n.submit.translation',
     $langcode,
     $source,
@@ -647,14 +629,17 @@ function l10n_client_submit_translation($langcode, $source, $translation, $user_
 
   if (!empty($response) && isset($response['status'])) {
     if ($response['status']) {
-      watchdog('l10n_client', 'Translation sent and accepted by remote server.');
+      $message = t('Translation sent and accepted by @server.', array('@server' => $server_url));
+      watchdog('l10n_client', 'Translation sent and accepted by @server.', array('@server' => $server_url));
     } else {
-      watchdog('l10n_client', 'Translation rejected by remote server. Reason: %reason', array('%reason' => $response['reason']), WATCHDOG_WARNING);
+      $message = t('Translation rejected by @server. Reason: %reason', array('%reason' => $response['reason'], '@server' => $server_url));
+      watchdog('l10n_client', 'Translation rejected by @server. Reason: %reason', array('%reason' => $response['reason'], '@server' => $server_url), WATCHDOG_WARNING);
     }
-    return $response['status'];
+    return array($response['status'], $message);
   }
   else {
-    watchdog('l10n_client', 'The connection with the remote server failed with the following error: %error_code: %error_message.', array('%error_code' => xmlrpc_errno(), '%error_message' => xmlrpc_error_msg()), WATCHDOG_ERROR);
-    return FALSE;
+    $message = t('The connection with @server failed with the following error: %error_code: %error_message.', array('%error_code' => xmlrpc_errno(), '%error_message' => xmlrpc_error_msg(), '@server' => $server_url));
+    watchdog('l10n_client', 'The connection with @server failed with the following error: %error_code: %error_message.', array('%error_code' => xmlrpc_errno(), '%error_message' => xmlrpc_error_msg(), '@server' => $server_url), WATCHDOG_ERROR);
+    return array(FALSE, $message);
   }
 }
