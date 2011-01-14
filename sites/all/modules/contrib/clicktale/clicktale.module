@@ -1,0 +1,121 @@
+<?php
+ 
+// $Id: clicktale.module,v 1.1.2.1 2011/01/13 23:21:38 cableman0408 Exp $
+
+
+/*
+ * Implementation of hook_perm.
+ */
+function clicktale_perm() {
+  return array('administer clicktale');
+}
+
+/**
+ * Implementation of hook_menu.
+ *
+ */
+function clicktale_menu() {
+  // Build include path
+  $path = drupal_get_path('module', 'clicktale') . '/includes';
+
+  $items = array();
+  $items['admin/settings/clicktale'] = array(
+    'title' => 'Clicktale',
+    'description' => t('Clicktale tracking service settings.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('clicktale_admin_settings_form'),
+    'access arguments' => array('administer clicktale'),
+    'file' => 'clicktale.admin.inc',
+    'file path' => $path,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/settings/clicktale/account'] = array(
+    'title' => 'Account settings',
+    'description' => t('Administrate you Clicktale account.'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items['admin/settings/clicktale/configuration'] = array(
+    'title' => 'Configurations',
+    'description' => t('Clicktale configuration.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('clicktale_admin_configuration_form'),
+    'access arguments' => array('administer clicktale'),
+    'file' => 'clicktale.admin.inc',
+    'file path' => $path,
+    'type' => MENU_LOCAL_TASK,
+  );
+  
+  return $items;
+}
+
+
+/**
+ * Adds clicktale top tracking code to the top of the page.
+ *
+ * @global object $user
+ */
+function clicktale_init() {
+  global $user;
+  
+  // Get path to clicktale include code
+  include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
+  $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
+
+  // Never track admin pages and user 1
+  if (arg(0) != 'admin' || $user->uid == 1) {
+    require_once($path);
+  }
+}
+
+/**
+ * Adds clicktale bottom tracking code to the bottom just befor </body> tag.
+ *
+ * @global object $user
+ */
+function clicktale_exit() {
+  global $user;
+
+  // Get path to clicktale include code
+  include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
+  $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
+  
+  // Never track admin pages and user 1
+  if (arg(0) != 'admin' || $user->uid == 1) {
+    require_once($path);
+  }
+}
+
+///**
+// *
+// * @return <type>
+// */
+//function clicktale_get_configurations() {
+//  $default = clicktale_default_configuration_values();
+//
+//  // Set default value
+//  $data = array('default' => $default);
+//
+//  // Load confifurations ?
+//  if (is_array($configs)) {
+//    $data = array();
+//    foreach ($configs as $name => $config) {
+//      if (is_array($config)) {
+//        $data[$name] = array_merge($default, $config);
+//      }
+//    }
+//  }
+//
+//  return $data;
+//}
+//
+//function clicktale_default_configuration_values() {
+//  return array('name' => 'Default',
+//               'cid' => 'default',
+//               'pages' => array(),
+//               'ips' => array(),
+//               'page-type' => 'blacklist',
+//               'ip-type' => 'blacklist',
+//               'roles' => array_keys(user_roles()));
+//}
