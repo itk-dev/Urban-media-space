@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<scripts>
+  <script name="Top" DoNotReplaceCondition = "&lt;!-- ClickTale Top part --&gt;">
+    <![CDATA[
+<!-- ClickTale Integration module. Please follow the accompanying documentation to properly configure it. -->
+]]>
+  </script>
+  <script name="Bottom" DoNotReplaceCondition="&lt;!-- No ClickTale --&gt;" InsertBefore="&lt;!-- ClickTale Bottom part Here --&gt;|&lt;/body&gt;">
+    <![CDATA[
+<!-- ClickTale Integration module. Please follow the accompanying documentation to properly configure it. -->
+]]>
+  </script>
+</scripts>
