@@ -1,5 +1,0 @@
-; $Id$
-name = Clicktale
-description = Provides integration with the Clicktale user tracking service
-core = 6.x
-version = 1.01
