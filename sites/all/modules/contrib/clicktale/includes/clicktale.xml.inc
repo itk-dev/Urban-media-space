@@ -1,6 +1,12 @@
 <?php
 
-// $Id: clicktale.xml.inc,v 1.1.2.1 2011/01/13 23:21:38 cableman0408 Exp $
+// $Id: clicktale.xml.inc,v 1.1.2.3 2011/01/17 20:50:12 cableman0408 Exp $
+
+/**
+ * @file
+ * Contains helpers to build the clicktale PHP integration library XML
+ * configuration file.
+ */
 
 define('CLICKTALE_XML_FILENAME', '/ClickTaleScripts.xml');
 
