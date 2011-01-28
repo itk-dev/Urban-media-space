@@ -80,10 +80,10 @@ $config['LogFetching'] = false;
 
 
 // APPENDED BY DRUPAL CLICKTALE MODULE
-$config['ScriptsFile'] = '/home/www/drupal/urbanmediaspace_dk/htdocs/sites/default/files/clicktale/ClickTaleScripts.xml';
+$config['ScriptsFile'] = '/home/www/drupal/stg_urbanmediaspace_dk/htdocs/sites/default/files/clicktale/ClickTaleScripts.xml';
 $config['CacheFetchingUrl'] = 'http://%ClickTaleCacheUrl%/ClickTaleCache.php?t=%CacheToken%';
-$config['LogPathMask'] = '/home/www/drupal/urbanmediaspace_dk/htdocs/sites/default/files/clicktale/Logs/Log_{0}.txt';
-$config['CacheLocation'] = '/home/www/drupal/urbanmediaspace_dk/htdocs/sites/default/files/clicktale/Cache';
+$config['LogPathMask'] = '/home/www/drupal/stg_urbanmediaspace_dk/htdocs/sites/default/files/clicktale/Logs/Log_{0}.txt';
+$config['CacheLocation'] = '/home/www/drupal/stg_urbanmediaspace_dk/htdocs/sites/default/files/clicktale/Cache';
 $config['CacheProvider'] = 'FileSystem';
 $config['MaxFolderSize'] = 50;
 $config['DeleteAfterPull'] = true;
