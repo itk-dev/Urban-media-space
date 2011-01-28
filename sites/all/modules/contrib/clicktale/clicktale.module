@@ -1,17 +1,16 @@
 <?php
- 
-// $Id: clicktale.module,v 1.1.2.1 2011/01/13 23:21:38 cableman0408 Exp $
 
+// $Id: clicktale.module,v 1.1.2.5 2011/01/20 08:11:32 cableman0408 Exp $
 
 /*
- * Implementation of hook_perm.
+ * Implementation of hook_perm().
  */
 function clicktale_perm() {
   return array('administer clicktale');
 }
 
 /**
- * Implementation of hook_menu.
+ * Implementation of hook_menu().
  *
  */
 function clicktale_menu() {
@@ -46,7 +45,7 @@ function clicktale_menu() {
     'file path' => $path,
     'type' => MENU_LOCAL_TASK,
   );
-  
+
   return $items;
 }
 
@@ -57,14 +56,12 @@ function clicktale_menu() {
  * @global object $user
  */
 function clicktale_init() {
-  global $user;
-  
   // Get path to clicktale include code
   include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
   $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
 
-  // Never track admin pages and user 1
-  if (arg(0) != 'admin' || $user->uid == 1) {
+  // Should the tracking code be inserted
+  if (clicktale_tracking_configuration ()) {
     require_once($path);
   }
 }
@@ -75,14 +72,12 @@ function clicktale_init() {
  * @global object $user
  */
 function clicktale_exit() {
-  global $user;
-
   // Get path to clicktale include code
   include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
   $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
-  
-  // Never track admin pages and user 1
-  if (arg(0) != 'admin' || $user->uid == 1) {
+
+  // Should the tracking code be inserted
+  if (clicktale_tracking_configuration ()) {
     require_once($path);
   }
 }

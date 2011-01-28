@@ -5,9 +5,3 @@ package = Ding!
 core = 6.x
 php = 5.2
 dependencies[] = libraries
-; Information added by drupal.org packaging script on 2011-01-14
-version = "6.x-1.x-dev"
-core = "6.x"
-project = "clicktale"
-datestamp = "1294963875"
-

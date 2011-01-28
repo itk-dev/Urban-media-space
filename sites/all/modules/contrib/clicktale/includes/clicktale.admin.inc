@@ -1,5 +1,10 @@
 <?php
-// $Id: clicktale.admin.inc,v 1.1.2.1 2011/01/13 23:21:38 cableman0408 Exp $
+// $Id: clicktale.admin.inc,v 1.1.2.3 2011/01/17 20:50:12 cableman0408 Exp $
+
+/**
+ * @file
+ * Contains the administration UI forms and handlers.
+ */
 
 include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
 
@@ -16,7 +21,17 @@ function clicktale_admin_settings_form() {
     drupal_set_message($msg, 'error');
     return;
   }
-  
+
+  // Check that the PHP integration library config.php file is writable.
+  $config = clicktale_get_library_path() . '/config.php';
+  if (!clicktale_is_config_writable($config)) {
+    // This is done this way, as is_writable do not test if the file is writable
+    // by the web-server and touch dies without return value.
+    $msg = t('The PHP integration library config.php file (%path) is *not* writable.', array('path' => $config));
+    drupal_set_message($msg, 'error');
+    return;
+  }
+
   // The top and bottom javascript textares
   $form['clicktale'] = array(
     '#type' => 'fieldset',
@@ -61,9 +76,10 @@ function clicktale_admin_settings_form() {
     '#type' => 'select',
     '#title' => t('Cache method'),
     '#default_value' => isset($defaults['method']) ? $defaults['method'] : array('filesystem' => 'filesystem'),
-    '#options' => array('FileSystem' => t('Filesystem'),
-                        'APC' => t('APC'),
-                       ),
+    '#options' => array(
+        'FileSystem' => t('Filesystem'),
+        'APC' => t('APC'),
+      ),
     '#description' => t('Different cache metods can be used to save clicktale informations'),
   );
 
@@ -167,6 +183,6 @@ function clicktale_admin_configuration_form() {
   $form = array();
 
   drupal_set_message(t('This part of the module is under development.'), 'error');
-  
+
   return $form;
 }
