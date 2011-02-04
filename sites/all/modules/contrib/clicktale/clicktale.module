@@ -1,6 +1,6 @@
 <?php
 
-// $Id: clicktale.module,v 1.1.2.5 2011/01/20 08:11:32 cableman0408 Exp $
+// $Id: clicktale.module,v 1.1.2.6 2011/01/23 13:23:23 cableman0408 Exp $
 
 /*
  * Implementation of hook_perm().
@@ -30,9 +30,10 @@ function clicktale_menu() {
   );
 
   $items['admin/settings/clicktale/account'] = array(
-    'title' => 'Account settings',
+    'title' => 'Tracking code',
     'description' => t('Administrate you Clicktale account.'),
     'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => 1,
   );
 
   $items['admin/settings/clicktale/configuration'] = array(
@@ -44,6 +45,7 @@ function clicktale_menu() {
     'file' => 'clicktale.admin.inc',
     'file path' => $path,
     'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
   );
 
   return $items;
@@ -61,7 +63,7 @@ function clicktale_init() {
   $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
 
   // Should the tracking code be inserted
-  if (clicktale_tracking_configuration ()) {
+  if (clicktale_tracking_configuration()) {
     require_once($path);
   }
 }
@@ -77,40 +79,7 @@ function clicktale_exit() {
   $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
 
   // Should the tracking code be inserted
-  if (clicktale_tracking_configuration ()) {
+  if (clicktale_tracking_configuration()) {
     require_once($path);
   }
 }
-
-///**
-// *
-// * @return <type>
-// */
-//function clicktale_get_configurations() {
-//  $default = clicktale_default_configuration_values();
-//
-//  // Set default value
-//  $data = array('default' => $default);
-//
-//  // Load confifurations ?
-//  if (is_array($configs)) {
-//    $data = array();
-//    foreach ($configs as $name => $config) {
-//      if (is_array($config)) {
-//        $data[$name] = array_merge($default, $config);
-//      }
-//    }
-//  }
-//
-//  return $data;
-//}
-//
-//function clicktale_default_configuration_values() {
-//  return array('name' => 'Default',
-//               'cid' => 'default',
-//               'pages' => array(),
-//               'ips' => array(),
-//               'page-type' => 'blacklist',
-//               'ip-type' => 'blacklist',
-//               'roles' => array_keys(user_roles()));
-//}

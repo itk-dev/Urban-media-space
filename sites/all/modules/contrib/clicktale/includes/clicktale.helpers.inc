@@ -1,6 +1,6 @@
 <?php
 
-// $Id: clicktale.helpers.inc,v 1.1.2.5 2011/01/20 08:11:33 cableman0408 Exp $
+// $Id: clicktale.helpers.inc,v 1.1.2.6 2011/01/23 13:23:23 cableman0408 Exp $
 
 /**
  * @file
@@ -221,25 +221,76 @@ function clicktale_configuration_value($name, $value, $type) {
   return $str;
 }
 
+/**
+ * Determinds if the tracking code sould be inserted on the current page.
+ *
+ * @return boolean returns true if tacking code should be inserted else false.
+ */
 function clicktale_tracking_configuration() {
   global $user;
 
   // Check that a configuration exists
   $config = variable_get('clicktale', NULL);
-  if ($config && isset($config['top']) && isset($config['bottom'])) {
-    $track = TRUE;
-  }
-  else {
+  if (!($config && isset($config['top']) && isset($config['bottom']))) {
     return FALSE;
   }
 
   // Check that the we are not in the admin section or is user 1
-  if (arg(0) != 'admin' || $user->uid != 1) {
-    $track = TRUE;
-  }
-  else {
+  if (arg(0) == 'admin' || $user->uid == 1) {
     return FALSE;
   }
 
+  // Check configurations
+  $enabled = variable_get('clicktale_configuration', array());
+  if ($enabled['enable']) { // Configuration active
+    // Check user roles configuration
+    global $user;
+    $roles = variable_get('clicktale_roles', array());
+    $roles = array_keys(array_filter($roles['roles']));
+
+    // Run through the users roles
+    $found = FALSE;
+    foreach ($user->roles as $rid => $role) {
+      if (in_array($rid, $roles)) {
+        $found = TRUE;
+        continue;
+      }
+    }
+    if (!$found) { return FALSE; }
+
+    // Check the path
+    $pages = variable_get('clicktale_paths', array());
+    if (!empty($pages)) {
+      $path = drupal_get_path_alias($_GET['q']);
+      $page_match = drupal_match_path($path, $pages['pages']);
+      if ($path != $_GET['q']) {
+        $page_match = $page_match || drupal_match_path($_GET['q'], $pages['pages']);
+      }
+
+      if ($pages['visibility'] == 0) { // Insert on every page except the listed pages.
+        if ($page_match) { return FALSE; }
+      }
+      else {
+        if (!$page_match) { return FALSE; }
+      }
+    }
+
+    // IP based tracking
+    $ips = variable_get('clicktale_ip', array());
+    if (!empty($ips)) {
+      $ip = ip_address();
+      $list = explode(',', $ips['list']);
+      if ($ips['visibility']) { // Black list
+        if (in_array($ip, $list)) {
+          return FALSE;
+        }
+      }
+      else { // White list
+        if (!in_array($ip, $list)) {
+          return FALSE;
+        }
+      }
+    }
+  }
   return TRUE;
 }
