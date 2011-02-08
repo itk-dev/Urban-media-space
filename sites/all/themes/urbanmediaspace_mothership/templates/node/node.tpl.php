@@ -50,7 +50,7 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"><div class="node-inner">
 
-  <?php if ($title): ?>
+  <?php if ($title && !$is_front): ?>
     <h1 class="title" id="page-title"><?php print $title; ?></h1>
   <?php endif; ?>
 
