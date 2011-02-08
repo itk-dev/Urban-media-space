@@ -1,250 +1,59 @@
 <?php
 
-// $Id$
-/*
- * @file Install functions for ClickTale. Checks files and permissions.
+// $Id: clicktale.install,v 1.1.2.3 2011/01/17 20:50:12 cableman0408 Exp $
+
+/**
+ * @file
+ * Install ensures to remove clicktale from the system during uninstall and
+ * checks basic requirements at runtime.
  */
-/*
- * Implementation of hook_requirements
- * This hook checks for the presence of the ClickTale PHP Integration kit
+
+include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
+
+/**
+ * Implementation of hook_install().
+ *
  */
 function clicktale_uninstall() {
+  // Remove configuration variables
+  variable_del('clicktale');
+  variable_del('clicktale_library_path');
+
+  // XXX Clean out cache
 
 }
 
-/*
- * Check file permissions and PHPInt availability.
- * PHP Integrations kit has to be unzipped in a libraries subdirectory.
+/**
+ * Implementation of hook_requirements().
+ *
+ * @param string $phase
+ * @return array $requirements
  */
 function clicktale_requirements($phase) {
   $requirements = array();
   $t = get_t();
-  $clicktale_path = drupal_get_path('module', 'clicktale');
-  $files_path = realpath(file_directory_path()) . '/clicktale';
-  $lib_path = realpath('sites/all/libraries');
 
-  // attempt to create a clicktale dir in /files  
-  if (!file_check_directory($files_path, FILE_CREATE_DIRECTORY)) {
-    watchdog('Clicktale', 'Could not create the directory: ' . $files_path, array(), WATCHDOG_ERROR);
+  switch ($phase) {
+    case 'runtime':
+      // Check for the PHP integration library
+      if (!clicktale_get_library_path ()) {
+        $requirements['clicktale_library'] = array(
+          'title' => $t('PHP Integration library'),
+          'value' => $t('The PHP Integration library was not found. Please download the library from http://www.clicktale.com/integration/ClickTalePHPIntegrationModule_latest.zip and install it in the libraries folder (e.g site/all/libraries/clicktale).'),
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+      // Check the the cache and logs paths for the PHP integration library
+      if (!clicktale_create_paths()) {
+        $requirements['clicktale_paths'] = array(
+          'title' => $t('Clicktale path not found'),
+          'value' => $t('Clicktale folders in the files folder could not be accessed, is it writable!'),
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+      break;
   }
 
-  /*
-   *  Recursive search for PHP Integrations in libraries dir.
-   */
-  if (is_dir($lib_path)) {
-    $scan_libdir = file_scan_directory($lib_path, 'ClickTaleTop.php');
-    foreach ($scan_libdir as $fpath => $fmeta) {
-      if ($fmeta->name == 'ClickTaleTop') {
-        $phpint_path = dirname($fpath);
-      }
-    }
-  }
-
-  /*
-   * Recursive search for multisites, also search for libraries in multisite library directories.
-   */
-  if (!$phpint_path) {
-    $scan_subsites = file_scan_directory(realpath('sites'), 'ClickTaleTop.php');
-    foreach ($scan_subsites as $sspath => $ssmeta) {
-      // scan each library directory
-      if ($ssmeta->name == 'ClickTaleTop') {
-        $phpint_path = dirname($sspath);
-      }
-    }
-  }
-
-  /*
-   * Attempt to create a Cache and Logs subdir in files/clicktale.
-   */
-  foreach (array('Cache', 'Logs') as $dir) {
-    $dir_path = "$files_path/$dir"; // drupal_$phpint_path.'/'.$dir;
-    if (!file_check_directory($dir_path, FILE_CREATE_DIRECTORY)) {
-      watchdog('Clicktale', 'Could not create the directory: ' . $files_path, array(), WATCHDOG_ERROR);
-    }
-
-    if (!is_dir($dir_path)) {
-      ${strtolower($dir) . '_status'} = 'cant create';
-    } elseif (!(_clicktale_check_dir($dir_path) && file_check_directory($dir_path) && is_writeable($dir_path))) {
-      //echo "<br />file_check $dir: "; var_dump(file_check_directory($dir_path));
-      //echo "<br />clicktale_check $dir: "; var_dump(_clicktale_check_dir($dir_path));
-      //echo "<br />writable $dir: "; var_dump(is_writeable($dir_path));
-      ${strtolower($dir) . '_status'} = 'permissions';
-    } else {
-      ${strtolower($dir) . '_status'} = 'ok';
-    }
-  }
-
-  /*
-   * Attempt to alter PHP Integration's config.php file so it points to our Cache and Logs directories. 
-   * Also need to move the xml file to our /files/clicktale directory.
-   */
-  if ($phpint_path) {
-    if (file_exists("$phpint_path/config.php")) {
-      $config_applied = file_get_contents("$phpint_path/config.php");
-      $config_applied = strpos($config_applied, '/* APPENDED BY CLICKTALE INSTALLER - DO NOT REMOVE */') !== false;
-      if (!$config_applied) {
-        if ($fh = @fopen("$phpint_path/config.php", 'a')) {
-          $config_suffix = "\n\n\n\n<?php /* APPENDED BY CLICKTALE INSTALLER - DO NOT REMOVE */"
-                  . "\n\$config['ScriptsFile'] = '$files_path/ClickTaleScripts.xml';"
-                  . "\n\$config['CacheProvider'] = 'FileSystem';"
-                  . "\n\$config['CacheFetchingUrl'] = 'http://%ClickTaleCacheUrl%/ClickTaleCache.php?t=%CacheToken%';"
-                  . "\n\$config['LogPathMask'] = '$files_path/Logs/Log_{0}.txt';"
-                  . "\n\$config['CacheLocation'] = '$files_path/Cache';"
-                  . "\n\$config['AllowedAddresses'] = '75.125.82.64/26,81.247.104.171,75.125.82.80'; \n?>";
-
-          if (@fwrite($fh, $config_suffix) === FALSE) {
-            $config_status = 'permissions';
-          } else {
-            $config_status = 'ok';
-          }
-        } else {
-          $config_status = 'permissions';
-        }
-      }
-    } else {
-      $config_status = 'doesnt exist';
-    }
-
-    if (file_exists("$clicktale_path/ClickTaleScripts.xml") && !file_exists("$files_path/ClickTaleScripts.xml")) {
-      if (@copy("$clicktale_path/ClickTaleScripts.xml", "$files_path/ClickTaleScripts.xml")) {
-        chmod("$files_path/ClickTaleScripts.xml", 0770);
-        $xml_status = 'ok';
-      } else {
-        $xml_status = 'permissions';
-      }
-    }
-  }
-
-  // attempt to remove Install directory
-  if (is_dir($phpint_path . '/Install')) {
-    @_clicktale_remove_dir($phpint_path . '/Install');
-  }
-  $install_status = is_dir($phpint_path . '/Install') ? 'exists' : 'gone';
-
-  // create warnings and watchdog errors
-  if ($phpint_path) {
-    variable_set('ClickTale_PHP_Kit', $phpint_path);
-
-    $status_link = '<br />' . l(t('Refresh the status page to check Clicktales status.'), 'admin/reports/status');
-
-    // create warning
-    if ($cache_status == 'cant create' || $logs_status == 'cant create') {
-      $requirements['clicktale_dirs']['title'] = $t('ClickTale Directories');
-      $requirements['clicktale_dirs']['value'] = $t('Not able to create');
-      $requirements['clicktale_dirs']['description'] = $t("Unable to create the Cache and Logs subdirectories in '%path', please create them manually and make them writeable.", array('%path' => $files_path));
-      $requirements['clicktale_dirs']['severity'] = REQUIREMENT_ERROR;
-      watchdog('Clicktale', t($requirements['clicktale_dirs']['description']) . $status_link, array(), WATCHDOG_ERROR);
-      if ($phase == 'install') {
-        //drupal_set_message($requirements['clicktale_dirs']['description'] . $status_link, 'error');
-      }
-    }
-
-    // permission warning
-    elseif ($cache_status == 'permissions' || $logs_status == 'permissions') {
-      $requirements['clicktale_dirs']['title'] = $t('ClickTale Directories');
-      $requirements['clicktale_dirs']['value'] = $t('Not writable');
-      $requirements['clicktale_dirs']['description'] = $t("The directories Cache and Logs in '%path' are not writable, please make sure they are.", array('%path' => $files_path));
-      $requirements['clicktale_dirs']['severity'] = REQUIREMENT_ERROR;
-      watchdog('Clicktale', $requirements['clicktale_dirs']['description'] . $status_link, array(), WATCHDOG_ERROR);
-      if ($phase == 'install') {
-        //drupal_set_message($requirements['clicktale_dirs']['description'] . $status_link, 'error');
-      }
-    }
-
-    // can't change config file.
-    if ($config_status == 'permissions') {
-      $requirements['phpint_config']['title'] = $t('PHP Integration configuration');
-      $requirements['phpint_config']['value'] = $t('Not writable');
-      $requirements['phpint_config']['description'] = $t("The file config.php in '%path' is not writable, please make sure it is.", array('%path' => $phpint_path));
-      $requirements['phpint_config']['severity'] = REQUIREMENT_ERROR;
-      watchdog('Clicktale', $requirements['phpint_config']['description'] . $status_link, array(), WATCHDOG_ERROR);
-      if ($phase == 'install') {
-        //drupal_set_message($requirements['phpint_config']['description'] . $status_link, 'error');
-      }
-    }
-
-    // config file does not exist.
-    elseif ($config_status == 'doesnt exist') {
-      $requirements['phpint_config']['title'] = $t('PHP Integration configuration');
-      $requirements['phpint_config']['value'] = $t('Not found');
-      $requirements['phpint_config']['description'] = $t("The file config.php in '%path' does not exist, please make sure it is.", array('%path' => $phpint_path));
-      $requirements['phpint_config']['severity'] = REQUIREMENT_ERROR;
-      watchdog('Clicktale', $requirements['phpint_config']['description'] . $status_link, array(), WATCHDOG_ERROR);
-      if ($phase == 'install') {
-        //drupal_set_message($requirements['phpint_config']['description'] . $status_link, 'error');
-      }
-    }
-
-    // can't create xml file
-    if ($xml_status == 'permissions') {
-      $requirements['phpint_xml']['title'] = $t('PHP Integration scripts');
-      $requirements['phpint_xml']['value'] = $t('Not writable');
-      $requirements['phpint_xml']['description'] = $t("The file ClickTaleScripts.xml in '%path' cannot be created, please copy the file from the ClickTale module directory.", array('%path' => $files_path));
-      $requirements['phpint_xml']['severity'] = REQUIREMENT_ERROR;
-      watchdog('Clicktale', $requirements['phpint_xml']['description'] . $status_link, array(), WATCHDOG_ERROR);
-      if ($phase == 'install') {
-        //drupal_set_message($requirements['phpint_xml']['description'] . $status_link, 'error');
-      }
-    }
-
-    // all ok
-    else {
-      variable_set('ClickTale_PHP_Kit', $phpint_path);
-      $requirements['clicktale']['title'] = $t('ClickTale');
-      $requirements['clicktale']['value'] = $phpint_path;
-      $requirements['clicktale']['severity'] = REQUIREMENT_OK;
-      watchdog('Clicktale', "All tests OK. Good job!", array(), WATCHDOG_INFO);
-    }
-  } else {
-    // PHP Integrations not found
-    $requirements['clicktale']['title'] = $t('ClickTale');
-    $requirements['clicktale']['value'] = $t('Not found');
-    $requirements['clicktale']['description'] = $t('The <a href="@clicktale">ClickTale PHP Integration Module 0.9</a> is missing. Use the PHP Integration version 0.9 from the ClickTale module package and extract it to your <em>/sites/all/libraries</em> directory. See <a href="@readme">README.txt</a> for more info.', array('@clicktale' => 'http://forum.clicktale.net/viewtopic.php?f=5&t=580', '@download' => 'http://www.clicktale.com/integration/ClickTalePHPIntegrationModule_latest.zip', '@readme' => url(drupal_get_path('module', 'clicktale') . '/README.txt')));
-    $requirements['clicktale']['severity'] = REQUIREMENT_ERROR;
-    watchdog('Clicktale', $requirements['clicktale']['description'] . $status_link, array(), WATCHDOG_ERROR);
-    if ($phase == 'install') {
-      //drupal_set_message($requirements['clicktale']['description'] . $status_link, 'warning');
-    }
-  }
-
-  // Install dir warning/message
-  if ($install_status == 'exists') {
-    watchdog('Clicktale', "Failed to remove the PHP Integration kit installation folder in '$phpint_path'.<br />Please check the filerights on the system and manually remove this directory for security purposes." . $status_link, WATCHDOG_WARNING);
-    if ($phase == 'install') {
-      //drupal_set_message("Failed to remove the PHP Integration kit installation folder in '$phpint_path'.<br />Please check the filerights on the system and manually remove this directory for security purposes." . $status_link, 'warning');
-    } else {
-      $requirements['clicktale_install']['title'] = $t('ClickTale Install');
-      $requirements['clicktale_install']['value'] = $t('Still present');
-      $requirements['clicktale_install']['description'] = $t("The install directory in '$phpint_path' is still present, please remove this directory manually.");
-      $requirements['clicktale_install']['severity'] = REQUIREMENT_WARNING;
-    }
-  }
-  //exit(var_dump($requirements));
   return $requirements;
 }
 
-/*
- * Check file permissions. Drupal's way doesn't seem to be working that well...
- */
-
-function _clicktale_check_dir($dir) {
-  return file_check_directory($dir);
-}
-
-function _clicktale_remove_dir($path) {
-  if (!is_dir($path)) {
-    return;
-  }
-  $files = scandir($path);
-  foreach ($files as $file) {
-    if (in_array($file, array('.', '..'))) {
-      continue;
-    }
-    if (!is_dir($path . '/' . $file)) {
-      unlink($path . '/' . $file);
-    } else {
-      _clicktale_remove_dir($path . '/' . $file);
-    }
-  }
-  rmdir($path);
-}

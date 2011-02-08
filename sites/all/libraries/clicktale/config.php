@@ -59,7 +59,7 @@ $config['DoNotProcessCookieName'] = "WRUID";
 $config['DoNotProcessCookieValue'] = "0";
 
 // A list of allowed ip masks separated by comma.
-$config['AllowedAddresses'] = "75.125.82.64/26";
+$config['AllowedAddresses'] = "75.125.82.64/26, 127.0.0.1";
 
 // The location where cached files will be stored (works with FileSystem provider).
 $config['CacheLocation'] = ClickTale_Root.ClickTale_DS."Cache";
@@ -78,5 +78,15 @@ $config['LogCaching'] = false;
 // used to log the token requested in the fetch phase
 $config['LogFetching'] = false;
 
+
+// APPENDED BY DRUPAL CLICKTALE MODULE
+$config['ScriptsFile'] = '/home/www/drupal/urbanmediaspace_dk/htdocs/sites/default/files/clicktale/ClickTaleScripts.xml';
+$config['CacheFetchingUrl'] = 'http://%ClickTaleCacheUrl%/ClickTaleCache.php?t=%CacheToken%';
+$config['LogPathMask'] = '/home/www/drupal/urbanmediaspace_dk/htdocs/sites/default/files/clicktale/Logs/Log_{0}.txt';
+$config['CacheLocation'] = '/home/www/drupal/urbanmediaspace_dk/htdocs/sites/default/files/clicktale/Cache';
+$config['CacheProvider'] = 'FileSystem';
+$config['MaxFolderSize'] = 50;
+$config['DeleteAfterPull'] = true;
+$config['MaxCachedSeconds'] = 60;
 
 ?>
