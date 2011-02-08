@@ -59,7 +59,7 @@ $config['DoNotProcessCookieName'] = "WRUID";
 $config['DoNotProcessCookieValue'] = "0";
 
 // A list of allowed ip masks separated by comma.
-$config['AllowedAddresses'] = "75.125.82.64/26";
+$config['AllowedAddresses'] = "75.125.82.64/26, 127.0.0.1";
 
 // The location where cached files will be stored (works with FileSystem provider).
 $config['CacheLocation'] = ClickTale_Root.ClickTale_DS."Cache";

@@ -1,5 +1,5 @@
 <?php
-// $Id: clicktale.admin.inc,v 1.1.2.3 2011/01/17 20:50:12 cableman0408 Exp $
+// $Id: clicktale.admin.inc,v 1.1.2.4 2011/01/23 13:23:23 cableman0408 Exp $
 
 /**
  * @file
@@ -27,7 +27,7 @@ function clicktale_admin_settings_form() {
   if (!clicktale_is_config_writable($config)) {
     // This is done this way, as is_writable do not test if the file is writable
     // by the web-server and touch dies without return value.
-    $msg = t('The PHP integration library config.php file (%path) is *not* writable.', array('path' => $config));
+    $msg = t('The PHP integration library config.php file (%path) is *not* writable.', array('%path' => $config));
     drupal_set_message($msg, 'error');
     return;
   }
@@ -56,6 +56,7 @@ function clicktale_admin_settings_form() {
   $form['clicktale']['bottom'] = array(
     '#type' => 'textarea',
     '#title' => t('Bottom code'),
+    '#rows' => 12,
     '#default_value' => isset($defaults['bottom']) ? $defaults['bottom'] : '',
     '#required' => TRUE,
   );
@@ -182,7 +183,85 @@ function clicktale_admin_settings_form_submit($form, &$form_state) {
 function clicktale_admin_configuration_form() {
   $form = array();
 
-  drupal_set_message(t('This part of the module is under development.'), 'error');
+  // Enable
+  $form['clicktale_configuration'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Enable configuration'),
+    '#options' => array('enable' => t('Enable')),
+    '#description' => t('If checked the settings here will be used to limit the insertion of the tracking code.'),
+    '#default_value' => variable_get('clicktale_configuration', array()),
+  );
+
+  // Rolles
+  $default = variable_get('clicktale_roles', array());
+  $form['clicktale_roles'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Roles',
+    '#description' => t('Tracking by user roles (Only checked user roles will be tracked).'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#tree' => TRUE,
+  );
+
+  $form['clicktale_roles']['roles'] = array(
+    '#type' => 'checkboxes',
+    '#options' => user_roles(),
+    '#default_value' => isset($default['roles']) ? $default['roles'] : array(1 => 1),
+  );
+
+  // Path (taken from the block module)
+  $options = array(t('Insert on every page except the listed pages.'), t('Insert only on the listed pages.'));
+  $default = variable_get('clicktale_paths', array());
+  $form['clicktale_paths'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Paths',
+    '#description' => t("Enter one page per line as Drupal paths. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>')),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#tree' => TRUE,
+  );
+  
+  $form['clicktale_paths']['visibility'] = array(
+    '#type' => 'radios',
+    '#title' => t('Insert tracking code on specific pages'),
+    '#options' => $options,
+    '#default_value' => isset($default['visibility']) ? $default['visibility'] : '0',
+  );
+
+  $form['clicktale_paths']['pages'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Pages'),
+    '#default_value' => isset($default['pages']) ? $default['pages'] : '',
+  );
+
+  // Ip
+  $options = array(t('Whitelist IP\'s'), t('Black list IP\'s'));
+  $default = variable_get('clicktale_ip', array());
+  $form['clicktale_ip'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'IP adresses',
+    '#description' => t('Filter user tracking based in IP\s.'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#tree' => TRUE,
+  );
+
+  $form['clicktale_ip']['visibility'] = array(
+    '#type' => 'radios',
+    '#title' => t('IP\'s'),
+    '#options' => $options,
+    '#default_value' => isset($default['visibility']) ? $default['visibility'] : '1',
+  );
+  
+  $form['clicktale_ip']['list'] = array(
+    '#type' => 'textfield',
+    '#title' => t('IP\'s'),
+    '#default_value' => isset($default['list']) ? $default['list'] : '',
+    '#description' => t('Enter a list of comma spereated IP\'s'),
+  );
+
+  // System setting look
+  $form = system_settings_form($form);
 
   return $form;
 }
