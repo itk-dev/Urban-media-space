@@ -16,3 +16,4 @@ CVS
 tmp
 backup
 cache
+/sites/all/libraries/clicktale/config.php
