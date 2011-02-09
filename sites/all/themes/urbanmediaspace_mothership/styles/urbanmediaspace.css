@@ -280,7 +280,7 @@ h1#page-title {
 }
 
 .front .node-inner {
-  padding: 0 30px;
+  padding: 15px 30px 0;
 }
 
 .front .content p a.nodepicker-link,
