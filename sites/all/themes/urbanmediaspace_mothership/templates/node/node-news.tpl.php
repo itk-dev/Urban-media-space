@@ -72,6 +72,4 @@
     </div> <!-- /#content-bottom -->
   <?php endif; ?>
 
-  <?php print $links; ?>
-
 </div></div> <!-- /node-inner, /node -->
