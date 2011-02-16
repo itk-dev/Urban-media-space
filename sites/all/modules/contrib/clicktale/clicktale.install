@@ -1,11 +1,10 @@
 <?php
 
-// $Id: clicktale.install,v 1.1.2.3 2011/01/17 20:50:12 cableman0408 Exp $
+// $Id: clicktale.install,v 1.1.2.4 2011/02/06 12:54:47 cableman0408 Exp $
 
 /**
- * @file
- * Install ensures to remove clicktale from the system during uninstall and
- * checks basic requirements at runtime.
+ * @file Install ensures to remove clicktale configuration from the system
+ * during uninstall and checks basic requirements at runtime.
  */
 
 include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
@@ -17,7 +16,15 @@ include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpe
 function clicktale_uninstall() {
   // Remove configuration variables
   variable_del('clicktale');
+  variable_del('clicktale_advanced');
   variable_del('clicktale_library_path');
+
+  // Remove configuration variables
+  variable_del('clicktale_ip');
+  variable_del('clicktale_paths');
+  variable_del('clicktale_roles');
+  variable_del('clicktale_configuration');
+
 
   // XXX Clean out cache
 
@@ -35,14 +42,15 @@ function clicktale_requirements($phase) {
 
   switch ($phase) {
     case 'runtime':
-      // Check for the PHP integration library
+      // Check for the existences of the clicltale PHP integration library
       if (!clicktale_get_library_path ()) {
         $requirements['clicktale_library'] = array(
           'title' => $t('PHP Integration library'),
-          'value' => $t('The PHP Integration library was not found. Please download the library from http://www.clicktale.com/integration/ClickTalePHPIntegrationModule_latest.zip and install it in the libraries folder (e.g site/all/libraries/clicktale).'),
+          'value' => $t('The clicktale PHP Integration library was not found. Please download the library from http://www.clicktale.com/integration/ClickTalePHPIntegrationModule_latest.zip and install it in the libraries folder (e.g site/all/libraries/clicktale).'),
           'severity' => REQUIREMENT_ERROR,
         );
       }
+
       // Check the the cache and logs paths for the PHP integration library
       if (!clicktale_create_paths()) {
         $requirements['clicktale_paths'] = array(
@@ -56,4 +64,3 @@ function clicktale_requirements($phase) {
 
   return $requirements;
 }
-
