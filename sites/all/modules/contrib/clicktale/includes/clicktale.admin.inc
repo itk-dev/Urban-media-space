@@ -1,11 +1,11 @@
 <?php
-// $Id: clicktale.admin.inc,v 1.1.2.4 2011/01/23 13:23:23 cableman0408 Exp $
+// $Id: clicktale.admin.inc,v 1.1.2.5 2011/02/06 12:54:47 cableman0408 Exp $
 
 /**
- * @file
- * Contains the administration UI forms and handlers.
+ * @file Contains the administration UI forms and submission handlers.
  */
 
+// Load helpers
 include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
 
 /**
@@ -176,10 +176,11 @@ function clicktale_admin_settings_form_submit($form, &$form_state) {
   clicktale_configuration_update_php($form_state['values']['clicktale_advanced']);
 }
 
-/****************************
- * Configuration admin form *
- ****************************/
-
+/**
+ * Build configuration form.
+ *
+ * @return array $form
+ */
 function clicktale_admin_configuration_form() {
   $form = array();
 

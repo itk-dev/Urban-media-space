@@ -1,6 +1,12 @@
 <?php
+// $Id: clicktale.module,v 1.1.2.7 2011/02/06 12:54:47 cableman0408 Exp $
 
-// $Id: clicktale.module,v 1.1.2.6 2011/01/23 13:23:23 cableman0408 Exp $
+/**
+ * @file The menu callback and functions to insert the tracking code is defined
+ * in this module file. The clicktale tracking code is inserted just after the
+ * body tag using hook_init and the hook_exit is used for the bottom tracking
+ * code.
+ */
 
 /*
  * Implementation of hook_perm().
@@ -14,7 +20,7 @@ function clicktale_perm() {
  *
  */
 function clicktale_menu() {
-  // Build include path
+  // Set the include path
   $path = drupal_get_path('module', 'clicktale') . '/includes';
 
   $items = array();
@@ -29,6 +35,7 @@ function clicktale_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
+  // Basic settings menu callback
   $items['admin/settings/clicktale/account'] = array(
     'title' => 'Tracking code',
     'description' => t('Administrate you Clicktale account.'),
@@ -36,6 +43,7 @@ function clicktale_menu() {
     'weight' => 1,
   );
 
+  // Configuration menu callback
   $items['admin/settings/clicktale/configuration'] = array(
     'title' => 'Configurations',
     'description' => t('Clicktale configuration.'),
@@ -53,17 +61,17 @@ function clicktale_menu() {
 
 
 /**
- * Adds clicktale top tracking code to the top of the page.
+ * Adds clicktale top tracking code to the top of the page just after the <body>
+ * tag.
  *
- * @global object $user
  */
 function clicktale_init() {
-  // Get path to clicktale include code
+  // Load helper functions
   include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
-  $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
-
-  // Should the tracking code be inserted
+ 
+  // If the conditions are right the tracking code is inserted.
   if (clicktale_tracking_configuration()) {
+    $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
     require_once($path);
   }
 }
@@ -74,12 +82,12 @@ function clicktale_init() {
  * @global object $user
  */
 function clicktale_exit() {
-  // Get path to clicktale include code
+  // Load helper functions
   include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
-  $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
 
-  // Should the tracking code be inserted
+  // If the conditions are right the tracking code is inserted.
   if (clicktale_tracking_configuration()) {
+    $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
     require_once($path);
   }
 }
