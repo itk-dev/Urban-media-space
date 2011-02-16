@@ -45,7 +45,7 @@ function clicktale_get_library_path(&$msg = '') {
   }
 
   // Library was found so set new return message.
-  $msg = t('The PHP integration library was found in "%path"', array('%path' => $library_path));
+  $msg = t('The PHP integration library was found in "@path"', array('@path' => $library_path));
   return $library_path;
 }
 

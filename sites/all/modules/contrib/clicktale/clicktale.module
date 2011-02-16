@@ -68,10 +68,10 @@ function clicktale_menu() {
 function clicktale_init() {
   // Load helper functions
   include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
-  $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
-
+ 
   // If the conditions are right the tracking code is inserted.
   if (clicktale_tracking_configuration()) {
+    $path = realpath(clicktale_get_library_path()) . "/ClickTaleTop.php";
     require_once($path);
   }
 }
@@ -84,10 +84,10 @@ function clicktale_init() {
 function clicktale_exit() {
   // Load helper functions
   include_once drupal_get_path('module', 'clicktale') . '/includes/clicktale.helpers.inc';
-  $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
 
   // If the conditions are right the tracking code is inserted.
   if (clicktale_tracking_configuration()) {
+    $path = realpath(clicktale_get_library_path()) . "/ClickTaleBottom.php";
     require_once($path);
   }
 }
