@@ -1,9 +1,0 @@
-<?php
-
-function require_translation_install() {
-
-}
-
-function require_translation_uninstall() {
-
-}

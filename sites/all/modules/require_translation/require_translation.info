@@ -1,6 +1,6 @@
 ; $Id$
 name = Require translation
-description = Enables indication on a node that needs be translated.
+description = Enables content editors to flag a node as require translation.
 package = Multilanguage
 core = 6.x
 dependencies[] = translation

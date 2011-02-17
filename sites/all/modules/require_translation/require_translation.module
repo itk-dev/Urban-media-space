@@ -3,9 +3,8 @@
 /**
  * Implementation of hook_form_alter().
  *
- * - Add translation option to content type form.
- * - Alters language fields on node forms when a translation
- *   is about to be created.
+ * - Add translation option to node edit form.
+ * 
  */
 function require_translation_form_alter(&$form, $form_state, $form_id) {
   if (isset($form['#id']) && $form['#id'] == 'node-form' && translation_supported_type($form['#node']->type)) {
@@ -51,6 +50,11 @@ function require_translation_form_alter(&$form, $form_state, $form_id) {
   
 }
 
+/**
+ * Overridden filter form submit. It is the same funtion as in drupal core, but
+ * it calls require translation filters.
+ *
+ */
 function require_translation_node_filter_form_submit($form, &$form_state) {
   $filters = require_translation_node_filters();
   switch ($form_state['values']['op']) {
@@ -76,6 +80,10 @@ function require_translation_node_filter_form_submit($form, &$form_state) {
   }
 }
 
+/**
+ * Adds the required translation option to filters
+ * @return <type>
+ */
 function require_translation_node_filters() {
   $filters = node_filters();
   $filters['status']['options']['translate-2'] = t('Require translation');
@@ -113,7 +121,7 @@ function require_translation_nodeapi(&$node, $op, $teaser, $page) {
         // Remove require translation from orginal node, when node have been
         // translated.
         if ($translations = translation_node_get_translations($node->tnid)) {
-          // Do not show link to the same node.
+          // The current node do not have require translation, so remove it.
           unset($translations[$node->language]);
           foreach ($translations as $translation) {
             db_query("UPDATE {node} SET translate = 0 WHERE nid = %d AND translate = 2", $translation->nid);
