@@ -39,14 +39,47 @@ function require_translation_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'node_admin_content') {
     $filters = require_translation_node_filters();
     $form['filters']['status']['status']['#options'] = $filters['status']['options'];
-  }
 
-  // Hijack submit function
-  for ($i = 0; $i < count($form['#submit']); $i++) {
-    if ($form['#submit'][$i] == 'node_filter_form_submit') {
-      $form['#submit'][$i] = 'require_translation_node_filter_form_submit';
+    // Hijack the style of the current filter string (code copyed from node.admin.inc).    
+    $session = &$_SESSION['node_overview_filter'];
+    $session = is_array($session) ? $session : array();
+    if (!empty($session)) {
+      $form['filters']['current'] = array();
+      foreach ($session as $filter) {
+        list($type, $value) = $filter;
+        if ($type == 'category') {
+          // Load term name from DB rather than search and parse options array.
+          $value = module_invoke('taxonomy', 'get_term', $value);
+          $value = $value->name;
+        }
+        else if ($type == 'language') {
+          $value = empty($value) ? t('Language neutral') : module_invoke('locale', 'language_name', $value);
+        }
+        else {
+          $value = $filters[$type]['options'][$value];
+        }
+        if ($i++) {
+          $form['filters']['current'][] = array('#value' => t('<em>and</em> where <strong>%a</strong> is <strong>%b</strong>', array('%a' => $filters[$type]['title'], '%b' => $value)));
+        }
+        else {
+          $form['filters']['current'][] = array('#value' => t('<strong>%a</strong> is <strong>%b</strong>', array('%a' => $filters[$type]['title'], '%b' => $value)));
+        }
+        if (in_array($type, array('type', 'language'))) {
+          // Remove the option if it is already being filtered on.
+          unset($filters[$type]);
+        }
+      }
+    }
+
+    // Hijack submit function
+    for ($i = 0; $i < count($form['#submit']); $i++) {
+      if ($form['#submit'][$i] == 'node_filter_form_submit') {
+        $form['#submit'][$i] = 'require_translation_node_filter_form_submit';
+      }
     }
   }
+
+
   
 }
 
