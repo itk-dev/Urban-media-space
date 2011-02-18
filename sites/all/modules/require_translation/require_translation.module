@@ -1,0 +1,166 @@
+<?php
+
+/**
+ * Implementation of hook_form_alter().
+ *
+ * - Add translation option to node edit form.
+ * 
+ */
+function require_translation_form_alter(&$form, $form_state, $form_id) {
+  if (isset($form['#id']) && $form['#id'] == 'node-form' && translation_supported_type($form['#node']->type)) {
+    $node = $form['#node'];
+
+    // This node do not have a translation
+    if (!$node->tnid) {
+      // Add workflow settings
+      if (!isset($form['translation'])) {
+        $form['translation'] = array(
+          '#type' => 'fieldset',
+          '#title' => t('Translation settings'),
+          '#access' => user_access('translate content'),
+          '#collapsible' => TRUE,
+          '#collapsed' => !$node->translate,
+          '#tree' => TRUE,
+          '#weight' => 30,
+        );
+      }
+      
+      // Give the option to flag this node as requiring translation
+      $form['translation']['require_translation'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('This node require translation'),
+        '#default_value' => isset($node->translate['require_translation']) ? $node->translate['require_translation'] : 0,
+        '#description' => t('Flag this node as requiring translation.'),
+      );
+    }
+  }
+
+  // Change filter options on node admin content form
+  if ($form_id == 'node_admin_content') {
+    $filters = require_translation_node_filters();
+    $form['filters']['status']['status']['#options'] = $filters['status']['options'];
+
+    // Hijack the style of the current filter string (code copyed from node.admin.inc).    
+    $session = &$_SESSION['node_overview_filter'];
+    $session = is_array($session) ? $session : array();
+    if (!empty($session)) {
+      $form['filters']['current'] = array();
+      foreach ($session as $filter) {
+        list($type, $value) = $filter;
+        if ($type == 'category') {
+          // Load term name from DB rather than search and parse options array.
+          $value = module_invoke('taxonomy', 'get_term', $value);
+          $value = $value->name;
+        }
+        else if ($type == 'language') {
+          $value = empty($value) ? t('Language neutral') : module_invoke('locale', 'language_name', $value);
+        }
+        else {
+          $value = $filters[$type]['options'][$value];
+        }
+        if ($i++) {
+          $form['filters']['current'][] = array('#value' => t('<em>and</em> where <strong>%a</strong> is <strong>%b</strong>', array('%a' => $filters[$type]['title'], '%b' => $value)));
+        }
+        else {
+          $form['filters']['current'][] = array('#value' => t('<strong>%a</strong> is <strong>%b</strong>', array('%a' => $filters[$type]['title'], '%b' => $value)));
+        }
+        if (in_array($type, array('type', 'language'))) {
+          // Remove the option if it is already being filtered on.
+          unset($filters[$type]);
+        }
+      }
+    }
+
+    // Hijack submit function
+    for ($i = 0; $i < count($form['#submit']); $i++) {
+      if ($form['#submit'][$i] == 'node_filter_form_submit') {
+        $form['#submit'][$i] = 'require_translation_node_filter_form_submit';
+      }
+    }
+  }
+
+
+  
+}
+
+/**
+ * Overridden filter form submit. It is the same funtion as in drupal core, but
+ * it calls require translation filters.
+ *
+ */
+function require_translation_node_filter_form_submit($form, &$form_state) {
+  $filters = require_translation_node_filters();
+  switch ($form_state['values']['op']) {
+    case t('Filter'):
+    case t('Refine'):
+      if (isset($form_state['values']['filter'])) {
+        $filter = $form_state['values']['filter'];
+
+        // Flatten the options array to accommodate hierarchical/nested options.
+        $flat_options = form_options_flatten($filters[$filter]['options']);
+
+        if (isset($flat_options[$form_state['values'][$filter]])) {
+          $_SESSION['node_overview_filter'][] = array($filter, $form_state['values'][$filter]);
+        }
+      }
+      break;
+    case t('Undo'):
+      array_pop($_SESSION['node_overview_filter']);
+      break;
+    case t('Reset'):
+      $_SESSION['node_overview_filter'] = array();
+      break;
+  }
+}
+
+/**
+ * Adds the required translation option to filters
+ * @return <type>
+ */
+function require_translation_node_filters() {
+  $filters = node_filters();
+  $filters['status']['options']['translate-2'] = t('Require translation');
+
+  return $filters;
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ *
+ * Manages translation information for nodes.
+ */
+function require_translation_nodeapi(&$node, $op, $teaser, $page) {
+  // Only act if we are dealing with a content type supporting translations.
+  if (!translation_supported_type($node->type)) {
+    return;
+  }
+
+  // This part needs a helper function
+  switch ($op) {
+    case 'insert':
+    case 'update':
+      if (!$node->tnid) {
+        if ($node->translation['require_translation']) {
+          // Set translate to 2 to indecate required translation
+          db_query("UPDATE {node} SET translate = 2 WHERE nid = %d", $node->nid);
+        }
+        else {
+          // Set translation to 0 as the only options avaliable for the org node
+          // is 0 or 2.
+          db_query("UPDATE {node} SET translate = 0 WHERE nid = %d", $node->nid);
+        }
+      }
+      else {
+        // Remove require translation from orginal node, when node have been
+        // translated.
+        if ($translations = translation_node_get_translations($node->tnid)) {
+          // The current node do not have require translation, so remove it.
+          unset($translations[$node->language]);
+          foreach ($translations as $translation) {
+            db_query("UPDATE {node} SET translate = 0 WHERE nid = %d AND translate = 2", $translation->nid);
+          }
+        }
+      }
+      break;
+  }
+}
