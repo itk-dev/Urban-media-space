@@ -1532,3 +1532,11 @@ a[rel^=shadowbox]:visited {
   margin: 0 0 15px;
   text-decoration: none;
 }
+
+/*
+  3D viewer
+*/
+
+.building-viewer-wrapper {
+  text-align: center;
+}
