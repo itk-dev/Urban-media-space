@@ -50,7 +50,7 @@
 ?>
 <script type="text/javascript" src="<?php print $directory ?>/scripts/swfobject.js"></script>
 <script type="text/javascript">
-  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "900", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://dalux.dk/mmhus_040211/images/&currentLocation=1&angle=-7&angle2=-13"},{allowScriptAccess:"always",wmode: "1"});
+  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "900", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://dalux.dk/mmhus_040211/images/&currentLocation=2&angle=-4&angle2=0"},{allowScriptAccess:"always",wmode: "1"});
 </script>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"><div class="node-inner">
 
