@@ -15,5 +15,13 @@ $(document).ready(function() {
   $('.views-slideshow-ddblock-cycle-urbanmediaspace a.pager-link').click(function() {
     location.href = $(this).attr('href');
   });
-
 });
+
+function moveCloseLink(){
+  var cb = document.getElementById('sb-nav-close');
+  var tb = document.getElementById('sb-title');
+  if(tb) {
+    tb.appendChild(cb);
+  }
+}
+Shadowbox.options.onOpen = moveCloseLink;
