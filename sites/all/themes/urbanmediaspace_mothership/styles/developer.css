@@ -1,12 +1,3 @@
 .edit-region-context {
   display: none;
 }
-
-#sb-nav-close {
-  position: absolute;
-  top: 8px;
-  right: 0;
-  width:15px;
-  height:15px;
-  cursor:pointer;
-}

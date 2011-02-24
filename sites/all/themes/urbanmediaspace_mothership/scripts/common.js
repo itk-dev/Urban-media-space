@@ -15,13 +15,20 @@ $(document).ready(function() {
   $('.views-slideshow-ddblock-cycle-urbanmediaspace a.pager-link').click(function() {
     location.href = $(this).attr('href');
   });
-});
 
-function moveCloseLink(){
-  var cb = document.getElementById('sb-nav-close');
-  var tb = document.getElementById('sb-title');
-  if(tb) {
-    tb.appendChild(cb);
+  function moveCloseLink(){
+    var sbClose = $('#sb-nav-close');
+    var sbTitle = $('#sb-title');
+
+    sbClose.attr('title',Drupal.t('Close'));
+    sbTitle.append('<span id="sb-nav-label">' + sbClose.attr('title') + '</span>').click(function() {Shadowbox.close()});
+
+    if(sbTitle) {
+      sbTitle.append(sbClose);
+    }
+
   }
-}
-Shadowbox.options.onOpen = moveCloseLink;
+
+  Shadowbox.options.onOpen = moveCloseLink;
+
+});
