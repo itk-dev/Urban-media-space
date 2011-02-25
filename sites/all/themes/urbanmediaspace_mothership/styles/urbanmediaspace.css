@@ -1530,7 +1530,7 @@ div#block-print-0 span,
 */
 
 #sb-overlay {
-  cursor: cursor;
+  cursor: pointer;
 }
 
 #sb-nav-label,
