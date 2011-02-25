@@ -1525,6 +1525,35 @@ div#block-print-0 span,
   text-decoration: none;
 }
 
+/*
+  Shadowbox
+*/
+
+#sb-overlay {
+  cursor: pointer;
+}
+
+#sb-nav-label,
+#sb-nav-close {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 0;
+}
+
+#sb-nav-label {
+  color: #fff;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 115%;
+  right: 20px;
+}
+
+#sb-nav-close {
+  height: 13px;
+  width: 13px;
+}
+
 a[rel^=shadowbox]:link,
 a[rel^=shadowbox]:visited {
   cursor: pointer;
