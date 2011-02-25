@@ -36,4 +36,4 @@ $(document).ready(function() {
   // Call the function when Shadowbox opens
   Shadowbox.options.onOpen = moveCloseLink;
 
-});
+  });
