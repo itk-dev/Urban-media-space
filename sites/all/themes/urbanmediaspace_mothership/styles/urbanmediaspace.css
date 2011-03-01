@@ -1578,6 +1578,10 @@ a[rel^=shadowbox]:visited {
   overflow: visible;
 }
 
+.imagecache-content-image-tags{
+  float: left;
+}
+
 #main-content .view-tags .row {
   border-bottom: 1px solid #e5e5e5;
   margin: 0 0 20px;
@@ -1585,52 +1589,10 @@ a[rel^=shadowbox]:visited {
   padding: 0 0 10px;
 }
 
-#main-content .view-tags .news-image {
-  margin: 8px 0 0;
-}
-
-#main-content .view-tags .news-image,
-#main-content .view-tags .date-wrapper {
-  float: left;
-}
-/*
-#main-content .view-tags .date-wrapper {
-  background: url('../gfx/calendar-background.png') no-repeat;
-  clear: both;
-  font-size: 90%;
-  display: block;
-  height: 82px;
-  margin: 7px 0 0;
-  text-align: center;
-  width: 82px;
-}
-
-#main-content .view-tags .date-wrapper .date-month,
-#main-content .view-tags .date-wrapper .date-post-date {
-  display: block;
-  width: 82px;
-}
-
-#main-content .view-tags .date-wrapper .date-month {
-  color: #fff;
-  line-height: 175%;
-}
-
-#main-content .view-tags .date-wrapper .date-post-date {
-  color: #6d6d6d;
-  font-family: georgia, verdana, sans-serif;
-  font-size: 325%;
-  line-height: 150%;
-}
-*/
 #main-content .view-tags .title,
 #main-content .view-tags .teaser,
 #main-content .view-tags .link {
-  margin: 0 0 0 102px;
-}
-
-#main-content .view-tags .teaser,
-#main-content .view-tags .link {
+  margin: 0 0 0 145px;
 }
 
 #main-content .view-tags .title a,
