@@ -1597,22 +1597,26 @@ a[rel^=shadowbox]:visited {
   overflow: visible;
 }
 
-.imagecache-content-tag-image {
+#main-content .view-tags .imagecache-content-tag-image {
   float: left;
-  margin: 0 5px 0 0;
+  margin: 10px 5px 10px 0;
 }
 
 #main-content .view-tags .row {
   border-bottom: 1px solid #e5e5e5;
-  margin: 0 0 20px;
   overflow: auto;
-  padding: 0 0 10px;
 }
 
-#main-content .view-tags .title,
-#main-content .view-tags .teaser,
-#main-content .view-tags .link {
+#main-content .view-tags .title {
+   padding-top: 20px;
+}
+
+#main-content .view-tags .teaser {
   margin: 0;
+}
+
+#main-content .view-tags .link {
+  margin-bottom: 20px;
 }
 
 #main-content .view-tags .title a,
