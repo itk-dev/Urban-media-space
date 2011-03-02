@@ -105,7 +105,7 @@ html.js .resizable-textarea textarea {
 h1#page-title {
   border-bottom: 1px solid #e5e5e5;
   color: #3f3f3f;
-  font: 225% Georgia, Times New Roman, Arial, sans-serif;
+  font: 225% Georgia, Times New Roman, serif;
   line-height: 150%;
 }
 
@@ -116,7 +116,7 @@ h1#page-title {
 #main-content h2 {
   border-bottom: 1px solid #e5e5e5;
   color: #3f3f3f;
-  font: 225% Georgia, Times New Roman, Arial, sans-serif;
+  font: 225% Georgia, Times New Roman, serif;
   line-height: 150%;
 }
 
@@ -130,7 +130,7 @@ h1#page-title {
 
 #content-bottom h2, #sidebar-right h2 {
   color: #3f3f3f;
-  font: 175%/150% Georgia, Times New Roman, Arial, sans-serif;
+  font: 175%/150% Georgia, Times New Roman, serif;
 }
 
 .form-submit {
@@ -712,7 +712,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
 .search-results h2 a:hover,
 .search-results h2 a:active {
   color: #3f3f3f;
-  font: 100% Georgia, Times New Roman, Arial, sans-serif;
+  font: 100% Georgia, Times New Roman, serif;
   line-height: 150%;
   text-decoration: none;
 }
@@ -1220,7 +1220,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
 #main-content .view-content.main-content .title a:active {
   color: #3f3f3f;
   display: block;
-  font: 150%/150% Georgia, Times New Roman, Arial, sans-serif;
+  font: 150%/150% Georgia, Times New Roman, serif;
   margin: 0 0 5px;
   text-decoration: none;
   width: 99%;
@@ -1568,4 +1568,30 @@ a[rel^=shadowbox]:visited {
 
 .building-viewer-wrapper {
   text-align: center;
+}
+
+
+
+
+
+
+/*
+  Tags
+*/
+
+#main-content .view .title a,
+#main-content .view .title a:link,
+#main-content .view .title a:visited,
+#main-content .view .title a:hover,
+#main-content .view .title a:active {
+  color: #3f3f3f;
+  display: block;
+  font: 150%/150% Georgia, Times New Roman, serif;
+  margin: 0 0 5px;
+  text-decoration: none;
+  width: 99%;
+}
+
+#main-content .view .title h3 {
+  font-weight: normal;
 }
