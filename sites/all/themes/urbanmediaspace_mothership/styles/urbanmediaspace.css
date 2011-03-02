@@ -1631,3 +1631,11 @@ a[rel^=shadowbox]:visited {
   text-decoration: none;
   width: 99%;
 }
+
+.block-tagadelic a {
+  text-decoration: none;
+}
+
+.block-tagadelic a:hover {
+  text-decoration: underline;
+}
