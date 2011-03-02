@@ -3,19 +3,6 @@
 
 
 /*
-  Temporary stuff
-*/
-
-/*
-  Hide views admin links
-*/
-.views-admin-links.views-hide {
-  display: none !important;
-}
-
-
-
-/*
   Font, colors etc.
 */
 
@@ -1610,8 +1597,9 @@ a[rel^=shadowbox]:visited {
   overflow: visible;
 }
 
-.imagecache-content-tag-image{
+.imagecache-content-tag-image {
   float: left;
+  margin: 0 5px 0 0;
 }
 
 #main-content .view-tags .row {
@@ -1624,7 +1612,7 @@ a[rel^=shadowbox]:visited {
 #main-content .view-tags .title,
 #main-content .view-tags .teaser,
 #main-content .view-tags .link {
-  margin: 0 0 0 145px;
+  margin: 0;
 }
 
 #main-content .view-tags .title a,
