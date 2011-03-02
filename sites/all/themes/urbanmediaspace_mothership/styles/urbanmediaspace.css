@@ -1570,11 +1570,6 @@ a[rel^=shadowbox]:visited {
   text-align: center;
 }
 
-
-
-
-
-
 /*
   Tags
 */
@@ -1587,11 +1582,60 @@ a[rel^=shadowbox]:visited {
   color: #3f3f3f;
   display: block;
   font: 150%/150% Georgia, Times New Roman, serif;
-  margin: 0 0 5px;
-  text-decoration: none;
-  width: 99%;
 }
 
 #main-content .view .title h3 {
   font-weight: normal;
+}
+
+#main-content .view-tags a,
+#main-content .view-tags a:link,
+#main-content .view-tags a:visited {
+  color: #f45000;
+  text-decoration: none;
+}
+
+#main-content .view-tags a:hover,
+#main-content .view-tags a:active {
+  color: #f45000;
+  text-decoration: underline;
+}
+
+
+/*
+  Tagging
+*/
+
+#sidebar-right .block-tagadelic {
+  overflow: visible;
+}
+
+.imagecache-content-tag-image{
+  float: left;
+}
+
+#main-content .view-tags .row {
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 0 20px;
+  overflow: auto;
+  padding: 0 0 10px;
+}
+
+#main-content .view-tags .title,
+#main-content .view-tags .teaser,
+#main-content .view-tags .link {
+  margin: 0 0 0 145px;
+}
+
+#main-content .view-tags .title a,
+#main-content .view-tags .title a:link,
+#main-content .view-tags .title a:visited,
+#main-content .view-tags .title a:hover,
+#main-content .view-tags .title a:active {
+  color: #3f3f3f;
+  display: block;
+  font: 150%/150% Georgia, Times New Roman, serif;
+  margin: 0 0 5px;
+  text-decoration: none;
+  width: 99%;
 }
