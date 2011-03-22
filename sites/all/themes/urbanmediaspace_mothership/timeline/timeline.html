@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="da" lang="da">
+<head>
+<meta http-equiv="content-language" content="da" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="robots" content="all" />
+<title>Timeline prototype</title>
+<script type="text/javascript" src="/misc/jquery.js?x"></script>
+<script type="text/javascript" src="/misc/drupal.js?x"></script>
+<script type="text/javascript" src="/sites/all/modules/contrib/jquery_ui/jquery.ui/ui/minified/ui.core.min.js?x"></script>
+<script type="text/javascript" src="/sites/all/modules/contrib/jquery_ui/jquery.ui/ui/minified/ui.draggable.min.js?x"></script>
+<script type="text/javascript" src="/sites/all/modules/contrib/jquery_ui/jquery.ui/ui/minified/ui.droppable.min.js?x"></script>
+<script type="text/javascript" src="/sites/all/modules/contrib/jquery_ui/jquery.ui/ui/minified/ui.sortable.min.js?x"></script>
+<script type="text/javascript" src="/sites/all/themes/urbanmediaspace_mothership/scripts/jquery.example.min.js?x"></script>
+<script type="text/javascript" src="/sites/all/themes/urbanmediaspace_mothership/scripts/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // Width of timeline nav wrapper
+    var timelineWidth = $('#timeline-nav-wrapper').width();
+
+    // Image array
+    timelineImages = ['2007','2011'];
+
+    // Set initial background image
+    $('#timeline-image').css('background', 'url(' + timelineImages[0] + '.jpg) no-repeat');
+
+    function removeActiveClasses() {
+      $('ul#timeline-nav-primary > li').removeClass('active');
+    }
+
+    function hideSubmenus() {
+      $('ul.timeline-nav-secondary').hide();
+    }
+
+    // hoverIntent configuration
+    var config = {
+     over: function() {
+
+       // Change background image
+       $('#timeline-image').fadeOut(500, function() {
+         $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
+       }).fadeIn(500);
+
+       // Set the submenu var
+       var submenu = $('ul.timeline-nav-secondary',$(this));
+
+       // Remove classes and hide submenus
+       // so there is only one displayed at a time
+       removeActiveClasses();
+       hideSubmenus();
+
+       // Position submenu
+       var submenuPos = $(this).position().left - ($('ul.timeline-nav-secondary',$(this)).width()/2 - $(this).width()/2);
+
+       if (submenuPos<=0) {
+         // If the submenu is position negative
+         // position is 0 pixels from left
+         submenu.css('left',0);
+       } else if (submenuPos+submenu.width()>timelineWidth) {
+         // If the submenu is positionen to far to the right
+         // reset left and position it 0 pixels from right
+         submenu.css({'left': 'auto', 'right': 0});
+       } else {
+        // If the submenu fits inside the wrapper
+        // position it centered on the active menu item
+        submenu.css('left',submenuPos);
+       }
+
+       // Add active class
+       // and show the submenu
+       $(this).addClass('active');
+       $('ul.timeline-nav-secondary',$(this))
+       .fadeIn(125)
+     },
+     timeout: 150, // set timeout in milliseconds
+     out: function() {
+       // Remove the active class
+       // and hide the submenu
+       $(this).removeClass('active');
+       $('ul.timeline-nav-secondary',$(this))
+       .fadeOut(50)
+     }
+   };
+
+   // Add hoverIntent to menu items
+   $('ul#timeline-nav-primary > li').hoverIntent(config);
+
+   var submenuConfig = {
+     over: function() {
+       // Change background image
+       $('#timeline-image').fadeOut(500, function() {
+         $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
+       }).fadeIn(500);
+     },
+     timeout: 150, // set timeout in milliseconds
+     out: function() {}
+   };
+
+   $('ul.timeline-nav-secondary > li').hoverIntent(submenuConfig);
+
+});
+</script>
+<style type="text/css">
+  h3 {
+    margin: 0 0 15px;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  #timeline-wrapper {
+    border: 4px solid #e5e5e5;
+    overflow: hidden;
+    width: 932px;
+  }
+
+  #timeline-image-wrapper {
+    border: 1px solid #d7d7d7;
+  }
+
+  #timeline-image {
+    border: 1px solid #fff;
+    height: 291px;
+    width: 928px;
+  }
+
+  #timeline-image-text {
+    background: url('/sites/all/themes/urbanmediaspace_mothership/gfx/carousel-transparent-bg.png');
+    color: #fff;
+    float: right;
+    margin: 50px 50px 0 0;
+    padding: 15px;
+    width: 300px;
+  }
+
+  #timeline-wrapper ul {
+    clear: both;
+    margin: auto;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  #timeline-wrapper ul li {
+    display: inline-block;
+    *float: left;
+    list-style: none;
+    text-align: center;
+  }
+
+  #timeline-wrapper ul li span {
+    display: block;
+    margin: 8px 18px;
+  }
+
+  #timeline-wrapper #timeline-nav-wrapper {
+      text-align: center;
+  }
+
+  #timeline-wrapper #timeline-nav-primary {
+    padding: 0 0 33px;
+    position: relative;
+  }
+
+  #timeline-wrapper #timeline-nav-primary li {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+  }
+
+  #timeline-wrapper #timeline-nav-primary li:hover,
+  #timeline-wrapper #timeline-nav-primary li.active {
+    background-color: #ddd;
+    border-top: 1px solid #ddd;
+  }
+
+  #timeline-wrapper .timeline-nav-secondary {
+    display: none;
+    font-size: 85%;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+  }
+
+  #timeline-wrapper #timeline-nav-primary .timeline-nav-secondary li {
+    background-color: #ddd;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    float: left;
+    width: auto;
+  }
+</style>
+</head>
+<body>
+  <div id="timeline-wrapper">
+    <div id="timeline-image-wrapper">
+      <div id="timeline-image">
+        <div id="timeline-image-text">
+          <h3>Byggeriet begynder</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        </div>
+      </div>
+    </div>
+    <div id="timeline-nav-wrapper">
+      <ul id="timeline-nav-primary">
+        <li>
+          <a href="#"><span>1997</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>1</span></a></li>
+            <li><a href="#"><span>2</span></a></li>
+            <li><a href="#"><span>3</span></a></li>
+            <li><a href="#"><span>4</span></a></li>
+            <li><a href="#"><span>5</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>1999</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer og planlægning</span></a></li>
+            <li><a href="#"><span>Realdania støtte</span></a></li>
+            <li><a href="#"><span>Børns ideer</span></a></li>
+            <li><a href="#"><span>Netværk og samarbejde</span></a></li>
+            <li><a href="#"><span>Værdigrundlag for projektet</span></a></li>
+            <li><a href="#"><span>Konkurrenceprogram</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2001</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2003</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>1</span></a></li>
+            <li><a href="#"><span>2</span></a></li>
+            <li><a href="#"><span>3</span></a></li>
+            <li><a href="#"><span>4</span></a></li>
+            <li><a href="#"><span>5</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2005</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2007</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer og planlægning</span></a></li>
+            <li><a href="#"><span>Realdania støtte</span></a></li>
+            <li><a href="#"><span>Børns ideer</span></a></li>
+            <li><a href="#"><span>Netværk og samarbejde</span></a></li>
+            <li><a href="#"><span>Værdigrundlag for projektet</span></a></li>
+            <li><a href="#"><span>Konkurrenceprogram</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2009</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2010</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2011</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2012</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>1</span></a></li>
+            <li><a href="#"><span>2</span></a></li>
+            <li><a href="#"><span>3</span></a></li>
+            <li><a href="#"><span>4</span></a></li>
+            <li><a href="#"><span>5</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2013</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2014</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>1</span></a></li>
+            <li><a href="#"><span>2</span></a></li>
+            <li><a href="#"><span>3</span></a></li>
+            <li><a href="#"><span>4</span></a></li>
+            <li><a href="#"><span>5</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><span>2015</span></a>
+          <ul class="timeline-nav-secondary">
+            <li><a href="#"><span>Ideer</span></a></li>
+            <li><a href="#"><span>Støtte</span></a></li>
+            <li><a href="#"><span>Lang tekst</span></a></li>
+            <li><a href="#"><span>Samarbejde</span></a></li>
+            <li><a href="#"><span>For projektet</span></a></li>
+            <li><a href="#"><span>Program</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
