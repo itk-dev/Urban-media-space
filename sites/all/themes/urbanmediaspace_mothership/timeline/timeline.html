@@ -100,7 +100,17 @@
      out: function() {}
    };
 
-   $('ul.timeline-nav-secondary > li').hoverIntent(submenuConfig);
+   //$('ul.timeline-nav-secondary > li').hoverIntent(submenuConfig);
+
+   $('#timeline-image').fadeOut(500, function() {
+     $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
+   }).fadeIn(500);
+
+   $('ul.timeline-nav-secondary > li').click(function() {
+     $('#timeline-image').fadeOut(500, function() {
+       $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
+     }).fadeIn(500);
+   });
 
 });
 </script>
