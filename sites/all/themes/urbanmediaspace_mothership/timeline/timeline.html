@@ -39,11 +39,11 @@
     // hoverIntent configuration
     var config = {
      over: function() {
-
+       
        // Change background image
-       $('#timeline-image').fadeOut(500, function() {
+       $('#timeline-image').fadeOut(250, function() {
          $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
-       }).fadeIn(500);
+       }).fadeIn(250);
 
        // Set the submenu var
        var submenu = $('ul.timeline-nav-secondary',$(this));
@@ -101,10 +101,6 @@
    };
 
    //$('ul.timeline-nav-secondary > li').hoverIntent(submenuConfig);
-
-   $('#timeline-image').fadeOut(500, function() {
-     $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
-   }).fadeIn(500);
 
    $('ul.timeline-nav-secondary > li').click(function() {
      $('#timeline-image').fadeOut(500, function() {
