@@ -32,20 +32,50 @@ function urbanmediaspace_mothership_site_map_box($title, $content, $class = '') 
  */
 function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
+//    // Rewrite "all" link when viewing news view
+//    // Danish
+//    if ($breadcrumb[1] == '<a href="/nyheder/all">Nyheder</a>') {
+//      $breadcrumb[1] = '<a href="/nyheder">Nyheder</a>';
+//    }
+//    // English
+//    if ($breadcrumb[1] == '<a href="/news/all">News</a>') {
+//      $breadcrumb[1] = '<a href="/news">News</a>';
+//    }
+    
+    global $language;
+    $trail = array();
+    urbanmediaspace_mothership_active_trail(menu_tree_page_data('primary-links'), $trail, $language->language);
+    $trail= array_reverse($trail, TRUE);
+    array_pop($trail);    
+    
+    foreach ($trail as $key => $value) {
+      $breadcrumb[] = l($key, $value);
+    }
+
     $title = drupal_get_title();
     if (!empty($title)) {
-      // Rewrite "all" link when viewing news view
-      // Danish
-      if ($breadcrumb[1] == '<a href="/nyheder/all">Nyheder</a>') {
-        $breadcrumb[1] = '<a href="/nyheder">Nyheder</a>';
-      }
-      // English
-      if ($breadcrumb[1] == '<a href="/news/all">News</a>') {
-        $breadcrumb[1] = '<a href="/news">News</a>';
-      }
       $breadcrumb[]=$title;
     }
+
+
+    //i18nmenu_translated_tree('primary-links');
+
     return '<div class="breadcrumb">'. implode(' > ', $breadcrumb) .'</div>';
+  }
+}
+
+function urbanmediaspace_mothership_active_trail($menu, &$trail, $langcode) {
+
+  foreach ($menu as $key => $item) {
+    if ($item['link']['in_active_trail']) {
+      if (is_array($item['below'])) {
+        urbanmediaspace_mothership_active_trail($item['below'], $trail, $langcode);
+      }
+      $title = !empty($item['link']['localized_options']['attributes']['title']) ? $item['link']['localized_options']['attributes']['title'] : $item['link']['link_title'];
+      $link_path = 'node/' . $item['link']['options']['translations'][$langcode]->nid;
+      $trail[$title] = $link_path;
+      break;
+    }
   }
 }
 
