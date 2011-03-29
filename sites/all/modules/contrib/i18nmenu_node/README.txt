@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.3 2010/09/18 12:09:23 plach Exp $
 
 Menu translation (Node) allows a single node menu item to point to different 
 node translations belonging to the same translation set depending on the 

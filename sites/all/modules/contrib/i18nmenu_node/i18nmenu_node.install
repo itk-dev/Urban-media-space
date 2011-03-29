@@ -1,5 +1,4 @@
 <?php
-// $Id: i18nmenu_node.install,v 1.5 2010/11/12 13:03:29 plach Exp $
 
 /**
  * @file
@@ -49,7 +48,7 @@ function i18nmenu_node_requirements($phase) {
 
   $modules = array(
     'i18n' => array(
-      'version' => 1.6,
+      'version' => 1.9,
       'severity' => REQUIREMENT_ERROR,
     ),
     'context' => array(
@@ -71,8 +70,8 @@ function i18nmenu_node_requirements($phase) {
       $file = drupal_get_path('module', $module) ."/$module.info";
       $info = drupal_parse_info_file($file);
       $version = explode('-', $info['version']);
-      // We do not support extra version information.
-      if (!empty($version[1]) && $version[1] < $data['version']) {
+      // We do not support extra version information, dev versions are ignored.
+      if (!empty($version[1]) && $version[1] < $data['version'] && (empty($version[2]) || $version[2] != 'dev')) {
         $requirements["i18nmenu_node_$module"] = array(
           'title' => $t('Menu translation (Node)'),
           'value' => $t('%module version needs to be at least %min_version', array('%module' => $info['name'], '%min_version' => $data['version'])),
@@ -99,6 +98,24 @@ function i18nmenu_node_update_6100() {
  * Implements hook_update_N().
  */
 function i18nmenu_node_update_6101() {
-  drupal_set_message(t('The new token <code>[i18n-menupath-raw]</code> has been introduced to replace the deprecated <code>[i18n-menuhierarchy-raw]</code>. Please be sure to replace all its occurrencies as it will be removed in the next stable version. Visit the <a href="!url">status report</a> page to check that the new requirements are satisfied. You might want to read the <a href="http://drupal.org/node/926130">related issue</a> for details.', array('!url' => url('admin/reports/status'))), 'warning');
+  drupal_set_message(t('The new token <code>[i18n-menupath-raw]</code> has been introduced to replace the deprecated <code>[i18n-menuhierarchy-raw]</code>. Please be sure to replace all its occurrences as it will be removed in the next stable version. Visit the <a href="!url">status report</a> page to check that the new requirements are satisfied. You might want to read the <a href="http://drupal.org/node/926130">related issue</a> for details.', array('!url' => url('admin/reports/status'))), 'warning');
+  return array();
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Convert block delta to the new format <module>--<delta>.
+ */
+function i18nmenu_node_update_6102() {
+  $query = "UPDATE {blocks} SET delta = REPLACE(delta, ':', '--') WHERE module = 'i18nmenu_node'";
+  return array(update_sql($query));
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function i18nmenu_node_update_6103() {
+  drupal_set_message(t('The <code>[i18n-menuhierarchy-raw]</code> token has been removed. Please be sure to replace all its occurrences with <code>[i18n-menupath-raw]</code>.'), 'warning');
   return array();
 }
