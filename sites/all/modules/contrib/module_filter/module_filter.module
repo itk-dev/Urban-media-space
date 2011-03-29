@@ -1,5 +1,4 @@
 <?php
-// $Id: module_filter.module,v 1.2.2.25 2010/06/29 17:09:30 greenskin Exp $
 
 /**
  * @file
@@ -31,12 +30,6 @@ function module_filter_menu() {
     'page arguments' => array('module_filter_settings'),
     'file' => 'module_filter.admin.inc'
   );
-  $items['module_filter/autocomplete'] = array(
-    'access arguments' => array('administer site configuration'),
-    'page callback' => 'module_filter_autocomplete',
-    'file' => 'module_filter.admin.inc',
-    'type' => MENU_CALLBACK
-  );
   return $items;
 }
 
@@ -54,10 +47,6 @@ function module_filter_form_system_modules_alter(&$form, $form_state) {
     '#type' => 'textfield',
     '#title' => t('Filter list')
   );
-
-  if (variable_get('module_filter_autocomplete', 0)) {
-    $form['module_filter']['#autocomplete_path'] = 'module/autocomplete';
-  }
 
   $form['module_filter']['show'] = array(
     '#type' => 'checkboxes',

@@ -29,11 +29,19 @@ function theme_module_filter_system_modules($form) {
   if (variable_get('module_filter_tabs', 1)) {
     drupal_add_css(drupal_get_path('module', 'module_filter') .'/css/module_filter_tab.css');
     drupal_add_js(drupal_get_path('module', 'module_filter') .'/js/module_filter_tab.js');
+
+    drupal_add_js(array('moduleFilter' => array('visualAid' => variable_get('module_filter_visual_aid', 1))), 'setting');
+
+    if (variable_get('module_filter_dynamic_save_position', 0)) {
+      drupal_add_js(drupal_get_path('module', 'module_filter') .'/js/dynamic_position.js');
+    }
+
     $form['module_filter']['#size'] = 45;
     $output .= theme('module_filter_system_modules_tabs', $form);
   }
   else {
     drupal_add_js(drupal_get_path('module', 'module_filter') .'/js/module_filter.js');
+
     $form['module_filter']['#prefix'] = '<div id="module-filter-wrapper" style="display: none;">';
     $form['module_filter']['#suffix'] = '</div>';
     $output = drupal_render($form['module_filter']);
@@ -78,13 +86,25 @@ function theme_module_filter_system_modules_tabs($form) {
   ksort($packages);
 
   // Display packages.
+  $tab_counts = array(t('All') => array('id' => 'all', 'enabled' => 0, 'total' => 0));
   $rows = array();
-  $tabs = array('all' => '<li class="active"><a id="all-tab" class="project-tab" href="#all">'. t('All') .'</a></li>');
   foreach ($packages as $package => $modules) {
     $id = strtolower($package);
     // $id = preg_replace('/[^a-z ]\//', '', $id);
     $id = preg_replace('/([^a-z])([\/(  )])*/', '-', $id);
+
+    if (!isset($tab_counts[$package])) {
+      $tab_counts[$package] = array('id' => $id, 'enabled' => 0, 'total' => 0);
+    }
+
     foreach ($modules as $key => $module) {
+      $tab_counts[t('All')]['total']++;
+      $tab_counts[$package]['total']++;
+      if ($form['status'][$key]['#default_value']) {
+        $tab_counts[$package]['enabled']++;
+        $tab_counts[t('All')]['enabled']++;
+      }
+
       $row = array();
       $description = drupal_render($form['description'][$key]);
       if (isset($form['status']['#incompatible_modules_core'][$key])) {
@@ -111,10 +131,10 @@ function theme_module_filter_system_modules_tabs($form) {
 
       // Add labels only when there is also a checkbox.
       if (isset($form['status'][$key])) {
-        $row[] = '<strong><label for="'. $form['status'][$key]['#id'] .'">'. drupal_render($form['name'][$key]) .'</label></strong>';
+        $row[] = '<strong class="project-name"><label for="'. $form['status'][$key]['#id'] .'">'. drupal_render($form['name'][$key]) .'</label></strong>';
       }
       else {
-        $row[] = '<strong>'. drupal_render($form['name'][$key]) .'</strong>';
+        $row[] = '<strong class="project-name">'. drupal_render($form['name'][$key]) .'</strong>';
       }
 
       $row[] = array('data' => drupal_render($form['version'][$key]), 'class' => 'version');
@@ -123,13 +143,22 @@ function theme_module_filter_system_modules_tabs($form) {
       // Set the key for the row to the module name so we can easily sort it.
       // Append the $key variable to the end of the row key to ensure a unique
       // key. http://drupal.org/node/840324
-      $rows[$form['name'][$key]['#value'] . $key] = array(
+      $rows[strtolower($form['name'][$key]['#value'] . $key)] = array(
         'data' => $row,
         'class' => $id .'-tab-content'
       );
     }
-    $tabs[$id] = '<li><a id="'. $id .'-tab" class="project-tab" href="#'. str_replace('-', '_', $id) .'">'. $package .'</a></li>';
   }
+
+  $tabs = array();
+  foreach ($tab_counts as $package => $value) {
+    $count = (variable_get('module_filter_count_enabled', 1)) ? '<span class="counts">'. t('!enabled of !total', array('!enabled' => $value['enabled'], '!total' => $value['total'])) .'</span>' : '';
+    $tabs[strtolower($package)] = '<li'. (($value['id'] == 'all') ? ' class="active"' : '') .'><a id="'. $value['id'] .'-tab" class="project-tab" href="#'. str_replace('-', '_', $value['id']) .'">'. $package . $count .'</a></li>';
+  }
+
+  $all_tab = array_shift($tabs); // Shifts the 'All' tab off so we can prepend it back on after sorting.
+  ksort($tabs);
+  $tabs = array_merge(array(t('All') => $all_tab), $tabs);
 
   ksort($rows);
   $output = '<div id="module-filter-wrapper">';

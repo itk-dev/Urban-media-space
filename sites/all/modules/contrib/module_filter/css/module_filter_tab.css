@@ -1,4 +1,3 @@
-/* $Id: module_filter_tab.css,v 1.1.2.5 2010/04/08 19:34:30 greenskin Exp $ */
 
 #module-filter-wrapper .form-item {
   border: 0px none;
@@ -54,11 +53,40 @@
 #module-filter-left ul li.active a:hover {
   background-color: #FFFFFF;
 }
+#module-filter-left ul li a span.visual-aid {
+  font-size: 8px;
+  float: right;
+}
+#module-filter-left ul li a span.enabling {
+  color: green;
+}
+#module-filter-left ul li a span.disabling {
+  color: red;
+  margin-left: 5px;
+}
+#module-filter-left ul li a span.counts {
+  font-weight: normal;
+  display: none;
+  font-size: 0.8em;
+  color: #333333;
+  padding: 2px 0 0;
+}
+#module-filter-left ul li.active a span.counts {
+  display: block;
+}
 #module-filter-submit {
   text-align: center;
 }
 #module-filter-submit input {
   margin: 2em 0.5em 1em 0;
+}
+#module-filter-submit.fixed {
+  position: fixed;
+  bottom: 0;
+  background-color: #F6F6F6;
+  border: 1px solid #D6DBDE;
+  margin-left: -1px;
+  width: 167px;
 }
 #module-filter-right {
   display: block;
@@ -89,4 +117,10 @@ table#projects {
 table#projects tbody tr {
   border-right: 0 none;
   border-left: 0 none;
+}
+table#projects tr.enabling {
+  background-color: #dfd;
+}
+table#projects tr.disabling {
+  background-color: #fcc;
 }
