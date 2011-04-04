@@ -1,4 +1,4 @@
-; $Id$
+; $Id: rubik.info,v 1.2.2.2 2010/09/28 20:50:29 yhahn Exp $
 name = "Rubik"
 description = "Clean admin theme."
 base theme = "tao"
@@ -10,11 +10,9 @@ stylesheets[screen][] = "core.css"
 stylesheets[screen][] = "icons.css"
 stylesheets[screen][] = "style.css"
 
-regions[content] = "Content"
-
-; Information added by fserver
+; Information added by drupal.org packaging script on 2010-09-28
+version = "6.x-3.0-beta2"
 core = "6.x"
-datestamp = "1267655587"
 project = "rubik"
-project status url = "http://code.developmentseed.org/fserver"
-version = "6.x-1.0-beta8"
+datestamp = "1285709466"
+

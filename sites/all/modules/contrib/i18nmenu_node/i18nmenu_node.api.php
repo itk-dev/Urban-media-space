@@ -1,5 +1,4 @@
 <?php
-// $Id: i18nmenu_node.api.php,v 1.1 2010/09/18 09:29:49 plach Exp $
 
 /**
  * @file

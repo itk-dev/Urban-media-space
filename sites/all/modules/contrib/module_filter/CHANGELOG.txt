@@ -1,4 +1,28 @@
-// $Id: CHANGELOG.txt,v 1.1.2.24 2010/08/08 19:23:09 greenskin Exp $
+
+Module Filter 6.x-1.6, 2011-03-12
+---------------------------------
+#904984 by greenSkin: Fixed sorting of modules/tabs. Uncapitalized modules/tabs
+now correctly sort into capitalized modules/tabs rather than sorting
+independently below the capitalized modules/tabs.
+#1033012 by greenSkin: Hide incompatible module rows when the 'Unavailable'
+checkbox is unchecked.
+#1050182 by greenSkin: Fixed filtering rows where <strong> is used in the
+module description.
+#1032996 by greenSkin: Added visual aids functionality.
+#1085792 by greenSkin: Removed autocomplete functionality.
+by greenSkin: The count of enabled modules is no longer built via JavaScript
+  but in PHP. The count reflects the number of currently enabled modules,
+  meaning checking a module's checkbox without saving will not change the
+  number of enabled modules until the form is saved.
+by greenSkin: Simplifying displayRows() method.
+#883262 by greenSkin: Removed call to Drupal.ModuleFilter.setSpacerHeight().
+by greenSkin: Added number of enabled of total number of modules to the active 
+  tab.
+by greenSkin: Added some JavaScript code to help position the 'Save 
+  configuration' button for instances with lots of tabs.
+by greenSkin: Enabled modules count and dynamic save position can be 
+  enabled/disabled via the Module Filter's settings page.
+
 
 Module Filter 6.x-1.5, 2010-08-08
 ---------------------------------

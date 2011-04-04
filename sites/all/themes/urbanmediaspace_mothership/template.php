@@ -32,20 +32,55 @@ function urbanmediaspace_mothership_site_map_box($title, $content, $class = '') 
  */
 function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
-    $title = drupal_get_title();
-    if (!empty($title)) {
-      // Rewrite "all" link when viewing news view
-      // Danish
-      if ($breadcrumb[1] == '<a href="/nyheder/all">Nyheder</a>') {
-        $breadcrumb[1] = '<a href="/nyheder">Nyheder</a>';
+    // Find menu name of current active menu item
+    $item = menu_get_item();
+    $menu = db_fetch_object(db_query("SELECT menu_name
+                                        FROM {menu_links}
+                                       WHERE link_path = '%s'", $item['href']))->menu_name;
+
+
+    // Find active trail for current menu based on language (i18nmenu_node).
+    global $language;
+    $trail = array();
+    urbanmediaspace_mothership_active_trail(menu_tree_page_data($menu), $trail, $language->language);
+
+    // Found trail, lets create links.
+    if (!empty($trail)) {
+      $size = count($trail) - 1;
+      for ($i = 0; $i < $size; $i++) {
+        $breadcrumb[] = l($trail[$i]['title'], $trail[$i]['link_path']);
       }
-      // English
-      if ($breadcrumb[1] == '<a href="/news/all">News</a>') {
-        $breadcrumb[1] = '<a href="/news">News</a>';
-      }
-      $breadcrumb[]=$title;
+      // Last item should not be at link
+      $breadcrumb[] = $trail[$i]['title'];
     }
+    else {
+      // User current page title, as no trail was found.
+      $title = drupal_get_title();
+      if (!empty($title)) {
+        $breadcrumb[]=$title;
+      }
+    }
+
     return '<div class="breadcrumb">'. implode(' > ', $breadcrumb) .'</div>';
+  }
+}
+
+function urbanmediaspace_mothership_active_trail($menu, &$trail, $langcode) {
+  // Loop over the menu and find items in active trail.
+  foreach ($menu as $key => $item) {
+    if ($item['link']['in_active_trail']) {
+      // Found active trail, so add item to trail.
+      $title = !empty($item['link']['localized_options']['attributes']['title']) ? $item['link']['localized_options']['attributes']['title'] : $item['link']['link_title'];
+      $link_path = 'node/' . $item['link']['options']['translations'][$langcode]->nid;
+      $trail[] = array('title' => $title, 'link_path' => $link_path);
+
+      // Current item have sub-menus, call self on sub-menu.
+      if (is_array($item['below'])) {
+        urbanmediaspace_mothership_active_trail($item['below'], $trail, $langcode);
+      }
+      // Found active item, so break loop.
+      break;
+    }
   }
 }
 

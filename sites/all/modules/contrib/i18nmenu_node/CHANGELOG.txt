@@ -1,4 +1,3 @@
-// $Id: CHANGELOG.txt,v 1.4 2010/11/12 13:03:29 plach Exp $
 
 Menu translation (Node) x.x-x.x, xxxx-xx-xx
 -------------------------------------------
@@ -6,6 +5,20 @@ Menu translation (Node) x.x-x.x, xxxx-xx-xx
 
 Menu translation (Node) 6.x-1.x, xxxx-xx-xx
 -------------------------------------------
+
+
+Menu translation (Node) 6.x-1.0, 2001-03-14
+-------------------------------------------
+#910974 by plach: Fixed Menu title translation not removed on node deletion.
+  (followup)
+#967622 by plach: Removed [i18n-menuhierarchy-raw] token before 1.0 release.
+
+
+Menu translation (Node) 6.x-1.0-RC1, 2011-02-21
+-----------------------------------------------
+#1062126 by plach: Fixed [i18n] block deltas do not work with CSS.
+#910974 by plach: Fixed Menu title translation not removed on node deletion.
+#969840 follow-up by plach | mandreato: Fixed dev versions requirements.
 
 
 Menu translation (Node) 6.x-1.0-BETA2, 2010-11-12

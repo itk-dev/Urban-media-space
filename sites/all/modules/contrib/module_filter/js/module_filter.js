@@ -1,4 +1,3 @@
-// $Id: module_filter.js,v 1.1.2.5 2010/04/08 17:43:46 greenskin Exp $
 
 if (Drupal.jsEnabled) {
   var moduleFilterTimeOut;

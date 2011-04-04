@@ -48,9 +48,9 @@ stylesheets[all][] = "tracker.css"
 stylesheets[all][] = "update.css"
 stylesheets[all][] = "user.css"
 
-; Information added by fserver
+; Information added by drupal.org packaging script on 2010-10-21
+version = "6.x-3.2"
 core = "6.x"
-datestamp = "1282580698"
 project = "tao"
-project status url = "http://code.developmentseed.org/fserver"
-version = "6.x-3.1"
+datestamp = "1287680788"
+

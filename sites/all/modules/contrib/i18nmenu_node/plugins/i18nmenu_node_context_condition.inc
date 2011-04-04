@@ -1,5 +1,4 @@
 <?php
-// $Id: i18nmenu_node_context_condition.inc,v 1.1 2010/09/18 09:31:30 plach Exp $
 
 /**
  * Expose translated node menu items as a context condition.
