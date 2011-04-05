@@ -673,8 +673,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   padding: 8px 0 8px 28px;
 }
 
-#block-search-0 #search-block-form #edit-submit,
-#block-search-0 #search-block-form #edit-submit-2 {
+#block-search-0 #search-block-form input.form-submit {
   border-width: 2px;
   float: none;
   margin: -1px 0 0;
