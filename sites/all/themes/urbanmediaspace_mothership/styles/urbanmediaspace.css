@@ -253,6 +253,7 @@ h1#page-title {
   font-size: 75%;
 }
 
+#content ul,
 #content .content ul {
   margin: 15px;
 }
@@ -622,14 +623,14 @@ body.context-editing div.draggable:hover a.context-block-handle {
   Search
 */
 
-#block-fuzzysearch-0 {
+#block-search-0 {
   float: right;
   right: 15px;
   position: absolute;
   top: 59px;
 }
 
-#fuzzysearch-form #edit-submit {
+#search-block-form #edit-submit {
   float: left;
   margin: 0 0 0 5px;
   *margin: 1px 0 0 5px;
@@ -637,49 +638,57 @@ body.context-editing div.draggable:hover a.context-block-handle {
   *padding: 7px 10px 7px;
 }
 
-#fuzzysearch-form .search-form .form-item {
+#block-search-0 #edit-search-block-form-1-wrapper,
+#block-search-0 .form-button {
+  display: inline;
+}
+
+#search-block-form .search-form .form-item {
   width: auto;
 }
 
-#fuzzysearch-form .search-form .form-item label {
+#search-block-form .search-form .form-item label {
   float: left;
   display: inline;
   margin: 4px 10px 0 0;
 }
 
-#fuzzysearch-form .search-form .form-item input {
+#search-block-form .search-form .form-item input {
   padding: 7px 10px 6px;
   width: 232px;
 }
 
-#block-fuzzysearch-0 h2.title {
+#block-search-0 h2.title,
+#block-search-0 #edit-search-block-form-1-wrapper label {
    display: none;
 }
 
-#fuzzysearch-box-form .form-item input.form-text {
+#search-block-form .form-item input.form-text {
   background: #fff url('../gfx/sprites-icons.png') no-repeat 7px -159px;
   padding: 7px 0 9px 28px;
   width: 225px;
 }
 
-#fuzzysearch-box-form .form-item input.form-text, x:-moz-any-link {
+#search-block-form .form-item input.form-text, x:-moz-any-link {
   padding: 8px 0 8px 28px;
 }
 
-#fuzzysearch-box-form .form-submit {
+#block-search-0 #search-block-form #edit-submit,
+#block-search-0 #search-block-form #edit-submit-2 {
   border-width: 2px;
+  float: none;
   margin: -1px 0 0;
   height: 36px;
   padding: 5px 15px 8px;
   *padding: 4px 15px 3px;
 }
 
-#fuzzysearch-box-form .form-submit:hover {
+#search-block-form .form-submit:hover {
   border-color: #c6c6c6;
   border-width: 2px;
 }
 
-#fuzzysearch-box-form #edit-submit:hover {
+#search-block-form #edit-submit:hover {
   background: #ebebeb url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -487px;
 }
 
