@@ -700,6 +700,21 @@ body.context-editing div.draggable:hover a.context-block-handle {
   padding: 20px 0 0;
 }
 
+.search-results dt.title a {
+  color: #726557;
+  font-size: 140%;
+  text-decoration: none;
+}
+
+.search-results dd {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 0 15px;
+}
+
+.search-results dd p.search-snippet {
+  padding: 5px 0;
+}
+
 .search-results h2 {
   border-bottom: 0 !important;
   margin: 0;
