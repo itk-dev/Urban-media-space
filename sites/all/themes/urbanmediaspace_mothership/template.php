@@ -53,11 +53,15 @@ function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
       // Last item should not be at link
       $breadcrumb[] = $trail[$i]['title'];
     }
+    else if (arg(1) == 'apachesolr_search') {
+      // Fix link to search
+      $breadcrumb[1] = l(t('Search'), 'search/apachesolr_search');
+    }
     else {
       // User current page title, as no trail was found.
       $title = drupal_get_title();
       if (!empty($title)) {
-        $breadcrumb[]=$title;
+        $breadcrumb[] = $title;
       }
     }
 
