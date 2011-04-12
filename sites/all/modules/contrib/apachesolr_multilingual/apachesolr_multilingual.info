@@ -1,4 +1,3 @@
-; $Id: apachesolr_multilingual.info,v 1.2.2.1 2010/05/19 09:33:03 mkalkbrenner Exp $
 name = Apache Solr Multilingual
 description = multilingual and non-English search with Solr
 dependencies[] = apachesolr
@@ -8,9 +7,9 @@ package = Apache Solr
 core = "6.x"
 
 
-; Information added by drupal.org packaging script on 2010-09-02
-version = "6.x-1.0-beta3"
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-1.x-dev"
 core = "6.x"
 project = "apachesolr_multilingual"
-datestamp = "1283442104"
+datestamp = "1298618838"
 

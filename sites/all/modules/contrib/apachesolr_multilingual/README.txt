@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.3.2.5 2010/08/19 07:26:29 mkalkbrenner Exp $
 
 Apache Solr Multilingual
 ========================

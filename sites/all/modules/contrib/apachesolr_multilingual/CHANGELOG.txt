@@ -1,6 +1,15 @@
-// $Id: CHANGELOG.txt,v 1.13.2.39 2010/09/02 15:27:08 mkalkbrenner Exp $
 
-Apache Solr Multilingual 6.x-1.0-beta3, 2010-09-10
+Apache Solr Multilingual 6.x-1.0-rc1, 2010-xx-xx
+------------------------------------------------
+[       ] mkalkbrenner: fixed some internal links in message boxes
+[       ] mkalkbrenner: fixed some more warnings
+[       ] mkalkbrenner: added mapping-ISOLatin1Accent.txt to ziped configuration download
+[       ] mkalkbrenner: fixed compatibility to apachesolr 6.x-1.2, hidden get parameters are no longer serialized but json encoded
+[#915626] robertDouglass, mkalkbrenner: hook modify_query clobbers hl.fl from previous modules
+[#915626] robertDouglass, mkalkbrenner: hook modify query is determining the user's language improperly
+
+
+Apache Solr Multilingual 6.x-1.0-beta3, 2010-09-02
 --------------------------------------------------
 [#863154] mkalkbrenner: SpellCheckComponent error
 [#866546] mkalkbrenner: Warning: Call-time pass-by-reference

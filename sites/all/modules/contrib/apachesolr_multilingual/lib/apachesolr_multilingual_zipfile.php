@@ -1,5 +1,4 @@
 <?php
-// $Id: apachesolr_multilingual_zipfile.php,v 1.1.2.1 2010/08/26 10:42:02 mkalkbrenner Exp $
 
 /**
  * @file

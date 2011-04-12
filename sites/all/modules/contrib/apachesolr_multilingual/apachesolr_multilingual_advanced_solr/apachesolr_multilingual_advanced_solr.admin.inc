@@ -1,5 +1,4 @@
 <?php
-// $Id: apachesolr_multilingual_advanced_solr.admin.inc,v 1.1.2.3 2010/09/01 21:13:18 mkalkbrenner Exp $
 
 /**
  * @file

@@ -1,5 +1,4 @@
 <?php
-// $Id: apachesolr_multilingual.schema_generator.inc,v 1.7.2.13 2010/08/26 14:08:22 mkalkbrenner Exp $
 
 /**
  * @file

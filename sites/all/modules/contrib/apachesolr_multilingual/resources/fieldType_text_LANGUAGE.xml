@@ -1,4 +1,3 @@
-    <!-- $Id: fieldType_text_LANGUAGE.xml,v 1.1.2.2 2010/06/18 09:38:03 mkalkbrenner Exp $ -->
     
     <fieldType name="text[LANGUAGE_ID]" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">

@@ -1,5 +1,4 @@
 <?php
-// $Id: apachesolr_multilingual.admin.inc,v 1.3.2.17 2010/09/01 21:13:18 mkalkbrenner Exp $
 
 /**
  * @file
@@ -49,16 +48,16 @@ function apachesolr_multilingual_admin_form($form_state) {
 
   $form['apachesolr_multilingual_language_settings']['apachesolr_multilingual_auto_language_filter'] = array(
     '#type' => 'checkbox',
-    '#title' => t("Limit search to user's language by default"),
+    '#title' => t("Limit search to current language by default"),
     '#default_value' => variable_get('apachesolr_multilingual_auto_language_filter', 0),
-    '#description' => t("Show only search results that match the user's current language."),
+    '#description' => t("Show only search results that match the current language."),
   );
 
   $form['apachesolr_multilingual_language_settings']['apachesolr_multilingual_auto_language_filter_detachable'] = array(
     '#type' => 'checkbox',
-    '#title' => t("Limit search to user's language could be disabled by user"),
+    '#title' => t("Limit search to current language could be disabled by user"),
     '#default_value' => variable_get('apachesolr_multilingual_auto_language_filter_detachable', 0),
-    '#description' => t("Displays a checkbox on search result page to search over all languages if \"Limit search to user's language by default\" is active."),
+    '#description' => t("Displays a checkbox on search result page to search over all languages if \"Limit search to current language by default\" is active."),
   );
 
   $form['apachesolr_multilingual_clir'] = array(
@@ -356,7 +355,7 @@ function apachesolr_multilingual_admin_form_validate_new_config($element, $form_
   if (!$msg_sent) {
     if ($element['#value'] != $element['#default_value']) {
       drupal_set_message(t('Changing "%title" requires you to !link_download a new set of configuration files, to update your solr configuration, to restart your solr server and to !link_delete the index.',
-        array('%title' => $element['#title'], '!link_download' => l(t('download'), '/admin/settings/apachesolr/schema_generator'), '!link_delete' => l(t('delete'), '/admin/settings/apachesolr/index'))),
+        array('%title' => $element['#title'], '!link_download' => l(t('download'), 'admin/settings/apachesolr/schema_generator'), '!link_delete' => l(t('delete'), 'admin/settings/apachesolr/index'))),
        'warning');
 
       $msg_sent = TRUE;
@@ -370,7 +369,7 @@ function apachesolr_multilingual_admin_form_validate_new_config_no_delete($eleme
   if (!$msg_sent) {
     if ($element['#value'] != $element['#default_value']) {
       drupal_set_message(t('Changing "%title" requires you to !link_download a new set of configuration files, to update your solr configuration and to restart your solr server.',
-        array('%title' => $element['#title'], '!link_download' => l(t('download'), '/admin/settings/apachesolr/schema_generator'))),
+        array('%title' => $element['#title'], '!link_download' => l(t('download'), 'admin/settings/apachesolr/schema_generator'))),
        'warning');
 
       $msg_sent = TRUE;
@@ -384,7 +383,7 @@ function apachesolr_multilingual_admin_form_validate_reindex($element, $form_sta
   if (!$msg_sent) {
     if ($element['#value'] != $element['#default_value']) {
       drupal_set_message(t('Changing "%title" requires you to !link_reindex your content.',
-        array('%title' => $element['#title'], '!link_reindex' => l(t('re-index'), '/admin/settings/apachesolr/index'))),
+        array('%title' => $element['#title'], '!link_reindex' => l(t('re-index'), 'admin/settings/apachesolr/index'))),
         'warning');
 
       $msg_sent = TRUE;
