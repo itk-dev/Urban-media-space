@@ -1665,3 +1665,22 @@ a[rel^=shadowbox]:visited {
 .block-tagadelic a:hover {
   text-decoration: underline;
 }
+
+/*
+  Language select
+*/
+
+#header .block-languageinterface-0 ul {
+  position: absolute;
+  right: 0px;
+}
+
+#header .block-languageinterface-0 ul li {
+  margin: 0;
+  text-align: center;
+  width: 65px;
+}
+
+#header .block-languageinterface-0 .active {
+  display: none;
+}
