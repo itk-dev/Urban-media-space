@@ -25,6 +25,7 @@ stylesheets[all][]   = styles/framework/reset.css
 stylesheets[all][]   = styles/framework/960-rtl.css
 stylesheets[all][]   = styles/framework/960.css
 stylesheets[all][]   = styles/urbanmediaspace.css
+stylesheets[all][]   = styles/3dviewer.css
 stylesheets[all][]   = styles/custom-admin.css
 stylesheets[all][]   = styles/developer.css
 stylesheets[all][]   = styles/l10n_client.css

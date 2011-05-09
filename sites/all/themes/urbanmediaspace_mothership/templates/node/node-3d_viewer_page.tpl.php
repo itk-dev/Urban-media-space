@@ -50,7 +50,7 @@
 ?>
 <script type="text/javascript" src="<?php print $directory ?>/scripts/swfobject.js"></script>
 <script type="text/javascript">
-  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "900", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://prod.dalux.dk/mmhus/output/test_abc1/&currentLocation=0&angle=-4&angle2=0"},{allowScriptAccess:"sameDomain",wmode: "1"});
+  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "940", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://prod.dalux.dk/mmhus/output/test_abc1/&currentLocation=0&angle=-4&angle2=0"},{allowFullScreen:"true",allowScriptAccess:"sameDomain",wmode: "1"});
 </script>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"><div class="node-inner">
 
@@ -80,6 +80,21 @@
     <?php print $content; ?>
   </div>
 
-  <div class="building-viewer-wrapper"><div id="building-viewer"></div></div>
+  <div id="building-viewer-nav-wrapper">
+    <ul id="building-viewer-nav">
+      <li><a href="#" title="Start">Start</a></li>
+      <li><a href="#" title="Gå til destination">Gå til "destination"</a></li>
+      <li><a href="#" title="Vælg">Vælg ny</a></li>
+      <li class="last"><a href="#" title="Gå til destination">Gå til "destination"</a></li>
+    </ul>
+    <ul id="building-viewer-menu">
+      <li class="first"><a href="#" title="Menu">Menu</a></li>
+      <li><a href="#" title="Hjælp">Hjælp</a></li>
+      <li class="last"><a href="#" title="Fuldskærm">Fuldskærm</a></li>
+    </ul>
+  </div>
+  <div id="building-viewer-wrapper">
+    <div id="building-viewer"></div>
+  </div>
 
 </div></div> <!-- /node-inner, /node -->

@@ -1,0 +1,64 @@
+#building-viewer-nav-wrapper {
+  background-color: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+#building-viewer-nav-wrapper a,
+#building-viewer-nav-wrapper a:link,
+#building-viewer-nav-wrapper a:visited,
+#building-viewer-nav-wrapper a:hover,
+#building-viewer-nav-wrapper a:active {
+  font-size: 90%;
+  text-decoration: none;
+}
+
+#building-viewer-nav-wrapper ul {
+  margin: 0;
+}
+
+#building-viewer-nav-wrapper ul li {
+  background-color: #fff;
+  border-right: 1px dotted #e5e5e5;
+  float: left;
+  list-style: none;
+}
+
+#building-viewer-nav-wrapper ul li a {
+  background-color: #f8f8f8;
+  border: 1px solid #fff;
+  display: block;
+  padding: 5px 10px;
+}
+
+#building-viewer-nav-wrapper #building-viewer-nav li a {
+  background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -210px;
+}
+
+#building-viewer-nav-wrapper ul li a:hover,
+#building-viewer-nav-wrapper #building-viewer-nav li a:hover {
+  background: #faede0;
+}
+
+#building-viewer-nav-wrapper ul li.first {
+  border-left: 1px dotted #e5e5e5;
+}
+
+#building-viewer-nav-wrapper ul li.last {
+  margin: 0;
+}
+
+#building-viewer-nav {
+  float: left;
+}
+
+#building-viewer-menu {
+  float: right;
+}
+
+#building-viewer-wrapper {
+  clear: both;
+  float: left;
+  margin: 1px 0 0;
+}
