@@ -19,25 +19,23 @@
 }
 
 #building-viewer-nav-wrapper ul li {
-  background-color: #fff;
   border-right: 1px dotted #e5e5e5;
   float: left;
   list-style: none;
 }
 
 #building-viewer-nav-wrapper ul li a {
-  background-color: #f8f8f8;
   border: 1px solid #fff;
   display: block;
-  padding: 5px 10px;
+  padding: 9px 20px 6px;
 }
 
-#building-viewer-nav-wrapper #building-viewer-nav li a {
+#building-viewer-nav-wrapper #building-viewer-nav li {
   background: #fff url('../gfx/sprites-gradient-bgs.png') repeat-x 0 -210px;
 }
 
-#building-viewer-nav-wrapper ul li a:hover,
-#building-viewer-nav-wrapper #building-viewer-nav li a:hover {
+#building-viewer-nav-wrapper ul li:hover,
+#building-viewer-nav-wrapper #building-viewer-nav li:hover {
   background: #faede0;
 }
 
@@ -45,8 +43,9 @@
   border-left: 1px dotted #e5e5e5;
 }
 
-#building-viewer-nav-wrapper ul li.last {
-  margin: 0;
+#building-viewer-nav-wrapper ul li.fullscreen {
+  border-right: 0;
+  border-left: 1px dotted #c4c4c4;
 }
 
 #building-viewer-nav {
@@ -61,4 +60,44 @@
   clear: both;
   float: left;
   margin: 1px 0 0;
+}
+
+#building-viewer-nav-wrapper ul li.home a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -12px -93px;
+  padding-left: 34px;
+}
+
+#building-viewer-nav-wrapper ul li.home a:hover {
+  background-position: -12px -123px;
+}
+
+#building-viewer-nav-wrapper ul li.previous a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -12px -157px;
+  padding-left: 34px;
+}
+
+#building-viewer-nav-wrapper ul li.previous a:hover {
+  background-position: -12px -190px;
+}
+
+#building-viewer-nav-wrapper ul li.next a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat 134px -223px;
+  padding-right: 34px;
+}
+
+#building-viewer-nav-wrapper ul li.next a:hover {
+  background-position: 134px -256px;
+}
+
+#building-viewer-nav-wrapper ul li.fullscreen a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -12px -13px;
+  height: 35px;
+  overflow: hidden;
+  padding: 0;
+  text-indent: -10000px;
+  width: 36px;
+}
+
+#building-viewer-nav-wrapper ul li.fullscreen a:hover {
+  background-position: -12px -53px;
 }
