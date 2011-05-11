@@ -96,6 +96,10 @@
        }
    }
 
+  $(document).ready(function() {
+    $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
+  });
+
 </script>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"><div class="node-inner">
 
@@ -127,15 +131,15 @@
 
   <div id="building-viewer-nav-wrapper">
     <ul id="building-viewer-nav">
-      <li class="home"><a href="javascript:gotoLocation(1,2,1)" title="Start">Gå til start</a></li>
-      <li class="previous"><a href="#" title="Forrige destination">Forrige destination</a></li>
+      <li class="home"><a href="javascript:gotoLocation(1,2,1)" title="Klik for at gå til start">Gå til start</a></li>
+      <li class="previous"><a href="#" title="Gå til forrige destination">Forrige destination</a></li>
       <!-- <li><a href="#" title="Vælg">Vælg ny</a></li> -->
-      <li class="next last"><a href="#" title="Næste destination">Næste destination</a></li>
+      <li class="next last"><a href="#" title="Gå til næste destination">Næste destination</a></li>
     </ul>
     <ul id="building-viewer-menu">
       <!-- <li class="first"><a href="#" title="Menu">Menu</a></li>
       <li><a href="#" title="Hjælp">Hjælp</a></li> -->
-      <li class="fullscreen last"><a href="#" title="Fuldskærm">Fuldskærm</a></li>
+      <li class="fullscreen last"><a href="#" title="Skift til fuldskærms visning">Fuldskærm</a></li>
     </ul>
   </div>
   <div id="building-viewer-wrapper">
