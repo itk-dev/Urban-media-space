@@ -32,29 +32,40 @@ function urbanmediaspace_mothership_site_map_box($title, $content, $class = '') 
  */
 function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
-    // Find menu name of current active menu item
-    $item = menu_get_item();
-    $href = isset($item['original_href']) ? $item['original_href'] : $item['href'];
+    // Find the source node for translation nodes.
+    $source = translation_path_get_translations($_GET['q']);
+    $source = $source['da'];
     $menu = db_fetch_object(db_query("SELECT menu_name
                                         FROM {menu_links}
-                                       WHERE link_path = '%s'", $href))->menu_name;
-  
-    // Find active trail for current menu based on language (i18nmenu_node).
+                                       WHERE link_path = '%s'", $source))->menu_name;
+
+    // Change the active item to source node, to make active trail work and back
+    // again to not crash other parts of the page, after getting the menu tree.
+    $old_path = $_GET['q'];
+    menu_set_active_item($source);
+    $tree = menu_tree_page_data($menu);
+    menu_set_active_item($old_path);
+
+    // Find active trail.
     global $language;
     $trail = array();
-    urbanmediaspace_mothership_active_trail(menu_tree_page_data($menu), $trail, $language->language);
+    urbanmediaspace_mothership_active_trail($tree, $trail, $language->language);
 
     // Found trail, lets create links.
     if (!empty($trail)) {
+      // Reset breadcrumb (do to menu_set_active_trail).
+      $breadcrumb = array(l(t('Home'), '<front>'));
+
+      // Build new breadcrumb.
       $size = count($trail) - 1;
       for ($i = 0; $i < $size; $i++) {
         $breadcrumb[] = l($trail[$i]['title'], $trail[$i]['link_path']);
       }
-      // Last item should not be at link
+      // Last item should not be at link.
       $breadcrumb[] = t($trail[$i]['title']);
     }
     else if (arg(1) == 'apachesolr_search') {
-      // Fix link to search
+      // Fix link to search.
       $breadcrumb[1] = l(t('Search'), 'search/apachesolr_search');
     }
     else {
@@ -74,7 +85,7 @@ function urbanmediaspace_mothership_active_trail($menu, &$trail, $langcode) {
   foreach ($menu as $key => $item) {
     if ($item['link']['in_active_trail']) {
       // Found active trail, so add item to trail.
-      $title = !empty($item['link']['localized_options']['attributes']['title']) ? $item['link']['localized_options']['attributes']['title'] : $item['link']['link_title'];
+      $title = $item['link']['title'];
       $link_path = 'node/' . $item['link']['options']['translations'][$langcode]->nid;
       $trail[] = array('title' => $title, 'link_path' => $link_path);
 
