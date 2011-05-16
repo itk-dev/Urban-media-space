@@ -34,11 +34,11 @@ function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
     // Find menu name of current active menu item
     $item = menu_get_item();
+    $href = isset($item['original_href']) ? $item['original_href'] : $item['href'];
     $menu = db_fetch_object(db_query("SELECT menu_name
                                         FROM {menu_links}
-                                       WHERE link_path = '%s'", $item['href']))->menu_name;
-
-
+                                       WHERE link_path = '%s'", $href))->menu_name;
+  
     // Find active trail for current menu based on language (i18nmenu_node).
     global $language;
     $trail = array();
