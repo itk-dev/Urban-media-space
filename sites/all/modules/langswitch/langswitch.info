@@ -1,0 +1,6 @@
+name = Consistent Language Switch (Two language only)
+description = Creates an independent language interface block.
+package = Multilanguage
+version = 1.0-beta1
+core = 6.x
+dependencies[] = locale

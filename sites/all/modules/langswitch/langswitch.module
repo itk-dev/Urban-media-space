@@ -1,0 +1,39 @@
+<?php
+
+define('LANGSWITCH_SOURCE', 'da');
+define('LANGSWITCH_SOURCE_TITLE', 'Danish');
+define('LANGSWITCH_TRANS', 'en');
+define('LANGSWITCH_TRANS_TITLE', 'English');
+
+function langswitch_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks[0]['info'] = t('Consistent Language Switch');
+      $blocks[0]['cache'] = BLOCK_NO_CACHE;
+    return $blocks;
+
+    case 'view':
+      $block['subject'] = t('Language');
+      $block['content'] = langswitch_get_language_switch();
+  }
+  //end switch ($op)
+  return $block;
+}
+
+/**
+ * Find path the to translated node base on the current path.
+ */
+function langswitch_get_language_switch() {
+  global $language;
+  $page = translation_path_get_translations($_GET['q']);
+  unset($page[$language->language]);
+  if (!empty ($page)) {
+    if (isset($page[LANGSWITCH_SOURCE])) {
+      $link = l(t(LANGSWITCH_SOURCE_TITLE), drupal_get_path_alias($page[LANGSWITCH_SOURCE], LANGSWITCH_SOURCE), array('language' => LANGSWITCH_SOURCE));
+    }
+    else {
+      $link = l(t(LANGSWITCH_TRANS_TITLE), LANGSWITCH_TRANS . '/' . drupal_get_path_alias($page[LANGSWITCH_TRANS], LANGSWITCH_TRANS), array('language' => LANGSWITCH_TRANS));
+    }
+  }
+  return '<ul class="language-switch"><li class="leaf">' . $link . '</li></ul>';
+}
