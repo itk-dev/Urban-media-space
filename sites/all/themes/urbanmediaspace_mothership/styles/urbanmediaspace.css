@@ -158,7 +158,7 @@ h1#page-title {
 */
 
 .menu-name-secondary-links ul,
-#site-header .block-languageinterface ul {
+#site-header .block-langswitch ul {
   font-size: 80%;
   line-height: 200%;
 }
@@ -166,17 +166,17 @@ h1#page-title {
 .menu-name-secondary-links ul a,
 .menu-name-secondary-links ul a:link,
 .menu-name-secondary-links ul a:visited,
-#site-header .block-languageinterface ul a,
-#site-header .block-languageinterface ul a:link,
-#site-header .block-languageinterface ul a:visited {
+#site-header .block-langswitch ul a,
+#site-header .block-langswitch ul a:link,
+#site-header .block-langswitch ul a:visited {
   color: #000;
   text-decoration: none;
 }
 
 .menu-name-secondary-links ul a:hover,
 .menu-name-secondary-links ul a:active,
-#site-header .block-languageinterface ul a:hover,
-#site-header .block-languageinterface ul a:active {
+#site-header .block-langswitch ul a:hover,
+#site-header .block-langswitch ul a:active {
   color: #989898;
 }
 
@@ -1666,13 +1666,13 @@ a[rel^=shadowbox]:visited {
   Language select
 */
 
-#site-header .block-languageinterface ul {
+#site-header .block-langswitch ul {
   float: right;
   list-style: none;
   padding: 0;
 }
 
-#site-header .block-languageinterface ul li {
+#site-header .block-langswitch ul li {
   border-left: 1px solid #9f9f9f;
   display: inline;
   margin: 0 0 0 10px;
@@ -1680,6 +1680,6 @@ a[rel^=shadowbox]:visited {
   text-align: center;
 }
 
-#site-header .block-languageinterface .active {
+#site-header .block-langswitch .active {
   display: none;
 }
