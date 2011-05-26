@@ -4,6 +4,7 @@ define('LANGSWITCH_SOURCE', 'da');
 define('LANGSWITCH_SOURCE_TITLE', 'Danish');
 define('LANGSWITCH_TRANS', 'en');
 define('LANGSWITCH_TRANS_TITLE', 'English');
+define('LANGSWITCH_FRONT_PAGE', TRUE);
 
 function langswitch_block($op = 'list', $delta = 0, $edit = array()) {
   switch ($op) {
@@ -58,8 +59,21 @@ function langswitch_get_language_switch() {
     }
   }
 
+  // Link to translation found.
   if ($link) {
     return '<ul class="language-switch"><li class="leaf">' . $link . '</li></ul>';
   }
+
+  // No translation where found, send user to front page?
+  if (LANGSWITCH_FRONT_PAGE) {
+    if ($langcode == LANGSWITCH_SOURCE) {
+      $link = $link = l(t(LANGSWITCH_TRANS_TITLE), LANGSWITCH_TRANS, array('language' => LANGSWITCH_TRANS));
+    }
+    else {
+      $link = '<a href="/">' . t(LANGSWITCH_SOURCE_TITLE) . '</a>';
+    }
+    return '<ul class="language-switch"><li class="leaf">' . $link . '</li></ul>';
+  }
+
   return;
 }
