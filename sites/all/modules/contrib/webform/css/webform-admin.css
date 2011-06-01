@@ -1,5 +1,17 @@
-/* $Id: webform-admin.css,v 1.1.2.5 2010/10/18 07:20:54 quicksketch Exp $ */
 
+.webform-submission-info {
+  padding: 10px;
+}
+.webform-submission-info .user-picture {
+  float: right;
+  margin-left: 10px;
+}
+.webform-submission-info-text {
+  overflow: hidden;
+}
+.webform-submission-actions {
+  float: left;
+}
 .webform-submission-navigation {
   text-align: right;
 }

@@ -1,5 +1,4 @@
 <?php
-// $Id: webform.pages.inc,v 1.10.2.4 2010/10/17 18:53:09 quicksketch Exp $
 
 /**
  * @file
@@ -62,7 +61,7 @@ function webform_configure_form(&$form_state, $node) {
     '#type' => 'item',
     '#title' => t('Redirection location'),
     '#theme' => 'webform_advanced_redirection_form',
-    '#description' => t('Choose where to redirect the user upon successful submission.'),
+    '#description' => t('Choose where to redirect the user upon successful submission.') . ' ' . t('The <em>Custom URL</em> option supports Webform token replacements.') . theme('webform_token_help', array('basic', 'node', 'special', 'submission')),
   );
   $form['submission']['redirection']['redirect']= array(
     '#type' => 'radios',
@@ -113,6 +112,14 @@ function webform_configure_form(&$form_state, $node) {
     '#parents' => array('submit_interval'),
   );
 
+  $form['submission']['status'] = array(
+    '#type' => 'radios',
+    '#title' => t('Status of this form'),
+    '#default_value' => $node->webform['status'] == 0 ? 0 : 1,
+    '#description' => t('Closing a form prevents any further submissions by any users.'),
+    '#parents' => array('status'),
+    '#options' => array(1 => t('Open'), 0 => t('Closed')),
+  );
   /* End Edit Form */
 
   /* Start per-role submission control */
@@ -137,7 +144,7 @@ function webform_configure_form(&$form_state, $node) {
     '#options' => $user_roles,
     '#type' => 'checkboxes',
     '#title' => t('Roles that can submit this webform'),
-    '#description' => t('Uncheck all roles to prevent new submissions. The %authenticated role applies to any user signed into the site, regardless of other assigned roles.', array('%authenticated' => $user_roles[2])),
+    '#description' => t('The %authenticated role applies to any user signed into the site, regardless of other assigned roles.', array('%authenticated' => $user_roles[2])),
   );
   /* End per-role submission control */
 
@@ -164,9 +171,15 @@ function webform_configure_form(&$form_state, $node) {
   );
   $form['advanced']['allow_draft'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Allow users to save a draft'),
+    '#title' => t('Show "Save draft" button'),
     '#default_value' => $node->webform['allow_draft'],
-    '#description' => t('Allow your users to save and finish the form later.'),
+    '#description' => t('Allow your users to save and finish the form later. This option is available only for authenticated users.'),
+  );
+  $form['advanced']['auto_save'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Automatically save as draft between pages'),
+    '#default_value' => $node->webform['auto_save'],
+    '#description' => t('Automatically save partial submissions when users click the "Next" or "Previous" buttons in a multipage form.'),
   );
   $form['advanced']['submit_notice'] = array(
     '#type' => 'checkbox',
@@ -240,6 +253,9 @@ function webform_configure_form_submit($form, &$form_state) {
   // Save the redirect URL
   $node->webform['redirect_url'] = $form_state['values']['redirect_url'];
 
+  // Overall form status.
+  $node->webform['status'] = $form_state['values']['status'];
+
   // Save roles.
   $node->webform['roles'] = array_keys(array_filter($form_state['values']['roles']));
 
@@ -251,6 +267,9 @@ function webform_configure_form_submit($form, &$form_state) {
 
   // Set the draft option.
   $node->webform['allow_draft'] = $form_state['values']['allow_draft'];
+
+  // Set the auto-save draft option.
+  $node->webform['auto_save'] = $form_state['values']['auto_save'];
 
   // Set the submit limit to -1 if set to unlimited.
   if ($form_state['values']['enforce_limit'] == 'no') {
