@@ -1,5 +1,4 @@
 <?php
-// $Id: file.inc,v 1.121.2.13 2010/08/11 17:40:55 goba Exp $
 
 /**
  * @file
@@ -35,57 +34,19 @@ define('FILE_STATUS_PERMANENT', 1);
 /**
  * Create the download path to a file.
  *
- * There are two kinds of local files:
- * - "created files", i.e. those in the files directory (which is stored in
- *   the file_directory_path variable and can be retrieved using
- *   file_directory_path()). These are files that have either been uploaded by
- *   users or were generated automatically (for example through CSS
- *   aggregation).
- * - "shipped files", i.e. those outside of the files directory, which ship as
- *   part of Drupal core or contributed modules or themes.
- *
- * @param $path
- *   A string containing the Drupal path (i.e. path relative to the Drupal
- *   root directory) of the file to generate the URL for.
- * @return
- *   A string containing a URL that can be used to download the file.
+ * @param $path A string containing the path of the file to generate URL for.
+ * @return A string containing a URL that can be used to download the file.
  */
 function file_create_url($path) {
-  // Clean up Windows paths.
-  $old_path = $path = str_replace('\\', '/', $path);
-
-  drupal_alter('file_url', $path);
-
-  // If any module has altered the path, then return the alteration.
-  if ($path != $old_path) {
-    return $path;
+  // Strip file_directory_path from $path. We only include relative paths in urls.
+  if (strpos($path, file_directory_path() .'/') === 0) {
+    $path = trim(substr($path, strlen(file_directory_path())), '\\/');
   }
-
-  // Otherwise serve the file from Drupal's web server. This point will only
-  // be reached when either no custom_file_url_rewrite() function has been
-  // defined, or when that function returned FALSE, thereby indicating that it
-  // cannot (or doesn't wish to) rewrite the URL. This is typically because
-  // the file doesn't match some conditions to be served from a CDN or static
-  // file server, or because the file has not yet been synced to the CDN or
-  // static file server.
-
-  // Shipped files.
-  if (strpos($path, file_directory_path() . '/') !== 0) {
-    return base_path() . $path;
-  }
-  // Created files.
-  else {
-    switch (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC)) {
-      case FILE_DOWNLOADS_PUBLIC:
-        return $GLOBALS['base_url'] . '/' . $path;
-      case FILE_DOWNLOADS_PRIVATE:
-        // Strip file_directory_path from $path. Private downloads' URLs are
-        // rewritten to be served relatively to system/files (which is a menu
-        // callback that streams the file) instead of relatively to the file
-        // directory path.
-        $path = file_directory_strip($path);
-        return url('system/files/' . $path, array('absolute' => TRUE));
-    }
+  switch (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC)) {
+    case FILE_DOWNLOADS_PUBLIC:
+      return $GLOBALS['base_url'] .'/'. file_directory_path() .'/'. str_replace('\\', '/', $path);
+    case FILE_DOWNLOADS_PRIVATE:
+      return url('system/files/'. $path, array('absolute' => TRUE));
   }
 }
 
@@ -121,17 +82,28 @@ function file_create_path($dest = 0) {
 }
 
 /**
- * Check that the directory exists and is writable. Directories need to
- * have execute permissions to be considered a directory by FTP servers, etc.
+ * Checks whether a directory exists and is writable.
  *
- * @param $directory A string containing the name of a directory path.
- * @param $mode A Boolean value to indicate if the directory should be created
- *   if it does not exist or made writable if it is read-only.
- * @param $form_item An optional string containing the name of a form item that
- *   any errors will be attached to. This is useful for settings forms that
- *   require the user to specify a writable directory. If it can't be made to
- *   work, a form error will be set preventing them from saving the settings.
- * @return FALSE when directory not found, or TRUE when directory exists.
+ * Furthermore, the directory can optionally be created if it does not exist,
+ * and/or be set to writable if it is currently not. Directories need to have
+ * execute permission to be considered a directory by FTP servers.
+ *
+ * @param $directory
+ *   A string representing the directory path.
+ * @param $mode
+ *   An optional bitmask containing the actions, if any, to be carried out on
+ *   the directory. Any combination of the actions FILE_CREATE_DIRECTORY and
+ *   FILE_MODIFY_PERMISSIONS is allowed.
+ * @param $form_item
+ *   An optional string containing the name of a form item that any errors
+ *   will be attached to. Useful when the function validates a directory path
+ *   entered as a form value. An error will consequently prevent form submit
+ *   handlers from running, and instead display the form along with the
+ *   error messages.
+ *
+ * @return
+ *   FALSE if the directory does not exist or is not writable, even after
+ *   any optional actions have been carried out. Otherwise, TRUE is returned.
  */
 function file_check_directory(&$directory, $mode = 0, $form_item = NULL) {
   $directory = rtrim($directory, '/\\');
@@ -525,17 +497,17 @@ function file_space_used($uid = NULL) {
 }
 
 /**
- * Saves a file upload to a new location. The source file is validated as a
- * proper upload and handled as such.
+ * Saves a file upload to a new location.
  *
- * The file will be added to the files table as a temporary file. Temporary files
- * are periodically cleaned. To make the file permanent file call
+ * The source file is validated as a proper upload and handled as such.
+ * The file will be added to the files table as a temporary file. Temporary
+ * files are periodically cleaned. To make the file permanent file call
  * file_set_status() to change its status.
  *
  * @param $source
  *   A string specifying the name of the upload field to save.
  * @param $validators
- *   An optional, associative array of callback functions used to validate the
+ *   (optional) An associative array of callback functions used to validate the
  *   file. The keys are function names and the values arrays of callback
  *   parameters which will be passed in after the file object. The
  *   functions should return an array of error messages; an empty array
@@ -545,9 +517,12 @@ function file_space_used($uid = NULL) {
  *   A string containing the directory $source should be copied to. If this is
  *   not provided or is not writable, the temporary directory will be used.
  * @param $replace
- *   A boolean indicating whether an existing file of the same name in the
- *   destination directory should overwritten. A false value will generate a
- *   new, unique filename in the destination directory.
+ *   Replace behavior when the destination file already exists:
+ *   - FILE_EXISTS_REPLACE: Replace the existing file.
+ *   - FILE_EXISTS_RENAME: Append _{incrementing number} until the filename
+ *     is unique.
+ *   - FILE_EXISTS_ERROR: Do nothing and return FALSE.
+ *
  * @return
  *   An object containing the file information, or 0 in the event of an error.
  */
@@ -693,9 +668,12 @@ function file_validate_name_length($file) {
  * @param $file
  *   A Drupal file object.
  * @param $extensions
- *   A string with a space separated
+ *   A string with a space separated list of allowed file extensions, not
+ *   including the period. For example, 'bmp jpg gif png'.
+ *
  * @return
- *   An array. If the file extension is not allowed, it will contain an error message.
+ *   An array. If the file extension is not allowed, it will contain an error
+ *   message.
  */
 function file_validate_extensions($file, $extensions) {
   global $user;
@@ -876,6 +854,14 @@ function file_transfer($source, $headers) {
   if (ob_get_level()) {
     ob_end_clean();
   }
+  
+  // IE cannot download private files because it cannot store files downloaded
+  // over https in the browser cache. The problem can be solved by sending
+  // custom headers to IE. See http://support.microsoft.com/kb/323308/en-us
+  if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) {
+    drupal_set_header('Cache-Control: private');
+    drupal_set_header('Pragma: private');
+  }
 
   foreach ($headers as $header) {
     // To prevent HTTP header injection, we delete new lines that are
@@ -1043,23 +1029,6 @@ function file_directory_temp() {
  */
 function file_directory_path() {
   return variable_get('file_directory_path', conf_path() .'/files');
-}
-
-/**
- * Remove a possible leading file directory path from the given path.
- *
- * @param $path
- *   Path to a file that may be in Drupal's files directory.
- * @return
- *   String with Drupal's files directory removed from it.
- */
-function file_directory_strip($path) {
-  // Strip file_directory_path from $path. We only include relative paths in
-  // URLs.
-  if (strpos($path, file_directory_path() . '/') === 0) {
-    $path = trim(substr($path, strlen(file_directory_path())), '\\/');
-  }
-  return $path;
 }
 
 /**

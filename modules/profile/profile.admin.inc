@@ -1,5 +1,4 @@
 <?php
-// $Id: profile.admin.inc,v 1.8.2.2 2010/03/01 10:20:28 goba Exp $
 
 /**
  * @file
@@ -396,7 +395,7 @@ function profile_field_delete_submit($form, &$form_state) {
  */
 function profile_admin_settings_autocomplete($string) {
   $matches = array();
-  $result = db_query_range("SELECT category FROM {profile_fields} WHERE category LIKE '%s%%'", $string, 0, 10);
+  $result = db_query_range("SELECT category FROM {profile_fields} WHERE LOWER(category) LIKE LOWER('%s%%')", $string, 0, 10);
   while ($data = db_fetch_object($result)) {
     $matches[$data->category] = check_plain($data->category);
   }

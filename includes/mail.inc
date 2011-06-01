@@ -1,5 +1,4 @@
 <?php
-// $Id: mail.inc,v 1.8.2.8 2010/06/02 12:07:24 goba Exp $
 
 /**
  * Compose and optionally send an e-mail message.
@@ -99,7 +98,7 @@ function drupal_mail($module, $key, $to, $language, $params = array(), $from = N
     'MIME-Version'              => '1.0',
     'Content-Type'              => 'text/plain; charset=UTF-8; format=flowed; delsp=yes',
     'Content-Transfer-Encoding' => '8Bit',
-    'X-Mailer'                  => 'Pressflow'
+    'X-Mailer'                  => 'Drupal'
   );
   if ($default_from) {
     // To prevent e-mail from looking like spam, the addresses in the Sender and

@@ -1,5 +1,4 @@
 <?php
-// $Id: template.php,v 1.16.2.3 2010/05/11 09:41:22 goba Exp $
 
 /**
  * Sets the body-tag class attribute.
@@ -96,9 +95,9 @@ function phptemplate_node_submitted($node) {
 function phptemplate_get_ie_styles() {
   global $language;
 
-  $iecss = '<link type="text/css" rel="stylesheet" media="all" href="'. file_create_url(path_to_theme() .'/fix-ie.css') . ' />';
+  $iecss = '<link type="text/css" rel="stylesheet" media="all" href="'. base_path() . path_to_theme() .'/fix-ie.css" />';
   if ($language->direction == LANGUAGE_RTL) {
-    $iecss .= '<style type="text/css" media="all">@import "'. file_create_url(path_to_theme() .'/fix-ie-rtl.css') . '";</style>';
+    $iecss .= '<style type="text/css" media="all">@import "'. base_path() . path_to_theme() .'/fix-ie-rtl.css";</style>';
   }
 
   return $iecss;

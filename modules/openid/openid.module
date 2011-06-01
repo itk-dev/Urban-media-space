@@ -1,5 +1,4 @@
 <?php
-// $Id: openid.module,v 1.19.2.11 2010/08/11 20:35:48 goba Exp $
 
 /**
  * @file
@@ -167,8 +166,6 @@ function openid_begin($claimed_id, $return_to = '', $form_values = array()) {
     form_set_error('openid_identifier', t('Sorry, that is not a valid OpenID. Please ensure you have spelled your ID correctly.'));
     return;
   }
-
-  drupal_session_start();
 
   // Store discovered information in the users' session so we don't have to rediscover.
   $_SESSION['openid']['service'] = $services[0];

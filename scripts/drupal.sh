@@ -1,6 +1,5 @@
 #!/usr/bin/php
 <?php
-// $Id: drupal.sh,v 1.4 2007/07/02 14:41:37 dries Exp $
 
 /**
  * Drupal shell execution script
@@ -62,7 +61,7 @@ $cmd = 'index.php';
 $_SERVER['HTTP_HOST']       = 'default';
 $_SERVER['PHP_SELF']        = '/index.php';
 $_SERVER['REMOTE_ADDR']     = '127.0.0.1';
-$_SERVER['SERVER_SOFTWARE'] = NULL;
+$_SERVER['SERVER_SOFTWARE'] = 'PHP CLI';
 $_SERVER['REQUEST_METHOD']  = 'GET';
 $_SERVER['QUERY_STRING']    = '';
 $_SERVER['PHP_SELF']        = $_SERVER['REQUEST_URI'] = '/';
