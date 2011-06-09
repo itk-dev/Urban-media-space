@@ -50,7 +50,7 @@
 ?>
 <script type="text/javascript" src="<?php print $directory ?>/scripts/swfobject.js"></script>
 <script type="text/javascript">
-  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "940", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://prod.dalux.dk/mmhus/output/0505/&OverviewURL=http://prod.dalux.dk/mmhus/overview/&currentLocation=2&angle=-4&angle2=0&showTopBar=false&showLog=true"},{allowFullScreen:"true",allowScriptAccess:"sameDomain",wmode: "1"});
+  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "940", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://prod.dalux.dk/mmhus/output/0806/&OverviewURL=http://prod.dalux.dk/mmhus/overview/&currentLocation=2&angle=-4&angle2=0&showTopBar=false&showLog=true"},{allowFullScreen:"true",allowScriptAccess:"sameDomain",wmode: "1"});
 
   function gotoLocation(pos, angle1, angle2) {
     var app = thisMovie('building-viewer');
