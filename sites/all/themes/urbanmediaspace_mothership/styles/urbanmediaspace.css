@@ -115,9 +115,17 @@ h1#page-title {
   padding: 10px 0 5px;
 }
 
-#content-bottom h2, #sidebar-right h2 {
+#sidebar-right h2 {
   color: #3f3f3f;
   font: 175%/150% Georgia, Times New Roman, serif;
+}
+
+#content-bottom h2 {
+  border: 0;
+  color: #3f3f3f;
+  font: bold 125% Arial,Verdana,sans-serif;
+  margin: 0;
+  padding: 10px 0 5px;
 }
 
 .form-submit {
