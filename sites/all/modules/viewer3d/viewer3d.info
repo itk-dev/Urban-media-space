@@ -1,0 +1,5 @@
+name = 3D viewer (flash)
+description = Displays the house in a 3D flash module
+package = Other
+version = 1.0-beta1
+core = 6.x

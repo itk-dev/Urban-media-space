@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * Implementation of hook_perm().
+ */
+function viewer3d_perm() {
+  return array(
+    'administer viewer',
+    'administer route',
+    'view model'
+  );
+}
+
+function viewer3d_menu() {
+  $items = array();
+
+  $items['admin/settings/3dviewer'] = array(
+    'title' => t('3D viewer'),
+    'description' => t('Configure 3D viewer (flash model)'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('viewer3d_admin_form'),
+    'access arguments' => array('administer viewer'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/viewer3d.admin.inc',
+  );
+
+  // Load settings
+  $settings = variable_get('viewer3d', array());
+  if (isset($settings['path'])) {
+    $items[$settings['path']] = array(
+      'title' => t('3D viewer'),
+      'description' => t('Display 3D viewer'),
+      'page callback' => 'viewer3d_page',
+      'access arguments' => array('view model'),
+      'type' => MENU_CALLBACK,
+    );
+  }
+
+  return $items;
+}
+
+function viewer3d_page() {  
+  
+  
+
+
+  return 'fisk';
+}
