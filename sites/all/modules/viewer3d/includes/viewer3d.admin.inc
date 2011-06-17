@@ -59,8 +59,8 @@ function viewer3d_admin_form() {
 
    $form['viewer3d']['angle'] = array(
     '#type' => 'textfield',
-    '#title' => t('Angle'),
-    '#description' => t('The angle to use at the start location.'),
+    '#title' => t('Horizontal angle'),
+    '#description' => t('The horizontal angle used to define the camera direction.'),
     '#maxlenght' => 3,
     '#size' => 3,
     '#required' => TRUE,
@@ -69,8 +69,8 @@ function viewer3d_admin_form() {
 
   $form['viewer3d']['angle2'] = array(
     '#type' => 'textfield',
-    '#title' => t('Angle 2'),
-    '#description' => t('The angle to use at the start location.'),
+    '#title' => t('Vertical angle'),
+    '#description' => t('The vertical angle used to define the camera direction.'),
     '#maxlenght' => 3,
     '#size' => 3,
     '#required' => TRUE,
