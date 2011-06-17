@@ -11,6 +11,9 @@ function viewer3d_perm() {
   );
 }
 
+/**
+ * Implementation of hook_menu().
+ */
 function viewer3d_menu() {
   $items = array();
 
@@ -39,62 +42,21 @@ function viewer3d_menu() {
   return $items;
 }
 
-function viewer3d_page() {  
-  
-//<script type="text/javascript" src="<?php print $directory ?>/scripts/swfobject.js"></script>
-//<script type="text/javascript">
-//  swfobject.embedSWF("<?php print $directory ?>/3d-viewer/BuildingViewer.swf", "building-viewer", "940", "600", "10.0.0", "<?php print $directory ?>/scripts/expressInstall.swf",{DaluxBuildingViewServerURL:"http://prod.dalux.dk/mmhus/output/0806/&OverviewURL=http://prod.dalux.dk/mmhus/overview/&currentLocation=2&angle=-4&angle2=0&showTopBar=false&showLog=true"},{allowFullScreen:"true",allowScriptAccess:"sameDomain",wmode: "1"});
-//
-//  function gotoLocation(pos, angle1, angle2) {
-//    var app = thisMovie('building-viewer');
-//
-//    app = getObject('building-viewer');
-//    if (!app) {
-//      app = getObject('BuildingViewer-name');
-//    }
-//
-//    app.gotoLocation(pos, angle1, angle2);
-//  }
-//
-//   function getObject(obj) {
-//       var theObj;
-//       if (document.all) {
-//           if (typeof obj == "string") {
-//               return document.all(obj);
-//           } else {
-//               return obj.style;
-//           }
-//       }
-//       if (document.getElementById) {
-//           if (typeof obj == "string") {
-//               return document.getElementById(obj);
-//           } else {
-//               return obj.style;
-//           }
-//       }
-//       return null;
-//   }
-//
-//   function thisMovie(movieName) {
-//       // IE and Netscape refer to the movie object differently.
-//       // This function returns the appropriate syntax depending on the browser.
-//
-//       var IE = /*@cc_on!@*/false
-//
-//
-//       if (IE) {
-//        return window[movieName];
-//       } else {
-//        return window.document[movieName];
-//       }
-//   }
-//
-//  $(document).ready(function() {
-//    $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
-//  });
-//
-//</script>
+function viewer3d_page() {
+  // Build settings array to set to jQuery.
+  $path = drupal_get_path('module', 'viewer3d');
+  $settings = variable_get('viewer3d', array());
+  $settings['flash_location'] = $path;
 
+  drupal_add_js(array('viewer3d' => $settings), 'setting');
+  drupal_add_js($path . '/js/swfobject.js', 'module');
+  drupal_add_js($path . '/js/viewer3d.js', 'module');
 
-  return 'fisk';
+  // Create viewer placeholder.
+  $output = '';
+  $output .= '<div id="building-viewer-wrapper">';
+  $output .= '<div id="building-viewer"></div>';
+  $output .= '</div>';
+
+  return $output;
 }

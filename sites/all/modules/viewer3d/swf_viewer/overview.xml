@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Levels>
-	<Level height="0">
+	<Level height="0" label="st.">
 		<Tile textureMinX="-500" textureMinY="-1000" textureMaxX="1000" textureMaxY="500" height="0" src="images2/mmhus/mmhus_top_zoomed_out.jpg"/>
-		<Tile textureMinX="0" textureMinY="-500" textureMaxX="500" textureMaxY="0" src="images2/mmhus/mmhus_floor0.jpg"/>
+		<Tile textureMinX="0" textureMinY="-500" textureMaxX="500" textureMaxY="0"  src="images2/mmhus/mmhus_floor0.jpg"/>
 	</Level>
 
-
-	<!--<Level height="12">	 
+	<Level height="12" label="1">	 
 		<Tile textureMinX="-500" textureMinY="-1000" textureMaxX="1000" textureMaxY="500" height="0" src="images2/mmhus/mmhus_top_zoomed_out.jpg"/>
 		<Tile textureMinX="0" textureMinY="-500" textureMaxX="500" textureMaxY="0"  src="images2/mmhus/mmhus_floor1.jpg"/>
 	</Level>
 
-	<Level height="16">
+	<Level height="16" label="2">
 		<Tile textureMinX="-500" textureMinY="-1000" textureMaxX="1000" textureMaxY="500" height="0" src="images2/mmhus/mmhus_top_zoomed_out.jpg"/>
 		<Tile textureMinX="0" textureMinY="-500" textureMaxX="500" textureMaxY="0"  src="images2/mmhus/mmhus_floor2.jpg"/>
-	</Level>-->
+	</Level>
 </Levels>

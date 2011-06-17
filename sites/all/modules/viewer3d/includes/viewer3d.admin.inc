@@ -31,12 +31,12 @@ function viewer3d_admin_form() {
     '#default_value' => isset($default['path']) ? $default['path'] : '',
   );
 
-  $form['viewer3d']['location'] = array(
+  $form['viewer3d']['data'] = array(
     '#type' => 'textfield',
-    '#title' => t('Location of the viewer'),
-    '#description' => t('The location of the flash viewer inside the files folder'),
+    '#title' => t('Location of the data'),
+    '#description' => t('The location of the data folder or a http adress'),
     '#required' => TRUE,
-    '#default_value' => isset($default['location']) ? $default['location'] : '',
+    '#default_value' => isset($default['data']) ? $default['data'] : '',
   );
 
   return system_settings_form($form);
