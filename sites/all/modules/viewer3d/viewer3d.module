@@ -6,7 +6,7 @@
 function viewer3d_perm() {
   return array(
     'administer viewer',
-    'administer route',
+    'administer points',
     'view model'
   );
 }
@@ -25,6 +25,16 @@ function viewer3d_menu() {
     'access arguments' => array('administer viewer'),
     'type' => MENU_NORMAL_ITEM,
     'file' => 'includes/viewer3d.admin.inc',
+  );
+
+  $items['admin/settings/3dviewer/points'] = array(
+    'title' => t('Points'),
+    'description' => t('Configure points'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('viewer3d_points_form'),
+    'access arguments' => array('administer points'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/viewer3d.points.inc',
   );
 
   // Load settings
@@ -54,9 +64,24 @@ function viewer3d_page() {
 
   // Create viewer placeholder.
   $output = '';
+  if (isset($settings['text']) && $settings['text'] != '') {
+    $output .= '<p>' . $settings['text'] . '</p>';
+  }
   $output .= '<div id="building-viewer-wrapper">';
   $output .= '<div id="building-viewer"></div>';
   $output .= '</div>';
 
   return $output;
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function viewer3d_theme() {
+  $items = array();
+  $items['viewer3d_points_form'] = array(
+    'arguments' => array('form' => array()),
+    'file' => drupal_get_path('module', 'viewer3d') . '/includes/viewer3d.points.inc',
+  );
+  return $items;
 }

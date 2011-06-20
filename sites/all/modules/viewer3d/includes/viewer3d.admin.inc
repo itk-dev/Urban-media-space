@@ -91,6 +91,13 @@ function viewer3d_admin_form() {
     '#default_value' => isset($default['showLog']) ? $default['showLog'] : 0,
   );
 
+  $form['viewer3d']['text'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Introduction text'),
+    '#description' => t('Description placed at the top of the page.'),
+    '#default_value' => isset($default['text']) ? $default['text'] : '',
+  );
+
   return system_settings_form($form);
 }
 
