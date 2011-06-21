@@ -1,5 +1,4 @@
-$(document).ready(function() {
-    
+$(document).ready(function() { 
   var viewerSettings = Drupal.settings.viewer3d;
   swfobject.embedSWF(viewerSettings['flash_location']+'/swf_viewer/BuildingViewer.swf',
                      "building-viewer",
@@ -11,18 +10,40 @@ $(document).ready(function() {
                      {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: "1"});
 
   $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
+
+  // Set rute information.
+  var route = Drupal.settings.viewer3d_route;
+  
+  // Set current point, its update by view3dLocationChanged event
+  viewer3d_current_point = viewerSettings['currentLocation'];
+
+  // Set prev and next
+  $('#building-viewer-nav .previous').click(function() {
+    viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].prev);
+    return false;
+  });
+  $('#building-viewer-nav .next').click(function() {
+    viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].next);
+    return false;
+  });
 });
 
 /**********************
  * API IMPLEMENTATION *
  **********************/
-function viewer3dGotoLocation(pos, angle1, angle2) {
-  var app = thisMovie('building-viewer');
+function viewer3dGotoLocation(pos, angle, angle2) {
+  var app = viewer3dMovie('BuildingViewer');
   app = viewer3dGetObject('building-viewer');
   if (!app) {
-    app = viewer3dGetObject('BuildingViewer-name');
+    app = viewer3dGetObject('BuildingViewer');
+    if (!app) {
+      app = viewer3dGetObject('BuildingViewer-name');
+      if (!app)
+        alert("not found");
+        return;
+    }
   }
-  app.gotoLocation(pos, angle1, angle2);
+  app.gotoLocation(pos, angle, angle2);
 }
 
 function viewer3dGetObject(obj) {
@@ -46,12 +67,14 @@ function viewer3dGetObject(obj) {
 
 function viewer3dGotoLocationDefaultDirection(pos) {
   var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
       app = viewer3dGetObject('BuildingViewer-name');
       if (!app)
         alert("not found");
+        return;
     }
   }
   app.gotoLocationDefaultDirection(pos);
@@ -59,12 +82,14 @@ function viewer3dGotoLocationDefaultDirection(pos) {
 
 function viewer3dFlyToLocation(pos) {
   var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
       app = viewer3dGetObject('BuildingViewer-name');
       if (!app)
         alert("not found");
+        return;
     }
   }
   app.flyToLocation(pos);
@@ -72,12 +97,14 @@ function viewer3dFlyToLocation(pos) {
 
 function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
   var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
       app = viewer3dGetObject('BuildingViewer-name');
       if (!app)
         alert("not found");
+        return;
     }
   }
   app.createJumpPoint(jumpName,pos, angle1, angle2);
@@ -86,12 +113,14 @@ function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
 
 function viewer3dCreateLoadPoint(jumpName, url) {
   var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
       app = viewer3dGetObject('BuildingViewer-name');
       if (!app)
         alert("not found");
+        return;
     }
   }
   app.createLoadPoint(jumpName,url);
@@ -99,12 +128,14 @@ function viewer3dCreateLoadPoint(jumpName, url) {
 
 function viewer3dSetPointLabel(point, label) {
   var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
       app = viewer3dGetObject('BuildingViewer-name');
       if (!app)
         alert("not found");
+        return;
     }
   }
   app.setPointLabel(point,label);
@@ -128,7 +159,9 @@ function viewer3dMovie(movieName) {
 /****************************
  * MOVIE CALLBACK FUNCTIONS *
  ****************************/
-function view3dLocationChanged(id) {}
+function view3dLocationChanged(id) {
+  viewer3d_current_point = id;
+}
 
 function view3DLoaded(){}
 

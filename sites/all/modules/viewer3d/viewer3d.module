@@ -58,15 +58,54 @@ function viewer3d_page() {
   $settings = variable_get('viewer3d', array());
   $settings['flash_location'] = $path;
 
+  // Build rute list.
+  $points =  variable_get('viewer3d_points', array());
+  viewer3d_points_weight_sort($points);
+  if (!empty($points)) {
+    $route = array();
+    $length = count($points);
+    for ($i = 0; $length > $i; $i++) {
+      $prev = ($i == 0) ? $points[$length-1]['pid'] : $points[$i-1]['pid'];
+      $next = ($i == $length-1) ? $points[0]['pid'] : $points[$i+1]['pid'];
+      $route[$points[$i]['pid']] = array('prev' => $prev, 'next' => $next);
+    }
+  }
+
+  // Add all the javascript bits.
   drupal_add_js(array('viewer3d' => $settings), 'setting');
+  drupal_add_js(array('viewer3d_route' => $route), 'setting');
   drupal_add_js($path . '/js/swfobject.js', 'module');
   drupal_add_js($path . '/js/viewer3d.js', 'module');
+  drupal_add_js($path . '/js/jquery.tipsy.js', 'module');
 
   // Create viewer placeholder.
   $output = '';
   if (isset($settings['text']) && $settings['text'] != '') {
     $output .= '<p>' . $settings['text'] . '</p>';
   }
+
+  // Build navigation bar.
+  $output .= '<div id="building-viewer-nav-wrapper">';
+  $output .= '<ul id="building-viewer-nav">';
+
+  // Start link.
+  $output .= '<li class="home"><a href="javascript:viewer3dGotoLocation('.$settings['currentLocation'].','.$settings['angle'].','.$settings['angle2'].')" title="' . t('Click here to go back to the starting point') . '">' . t('Back to start') . '</a></li>';
+
+  // Prev button (action is added in front-end).
+  $output .= '<li class="previous"><a href="#" title="' . t('Go to previous destination') . '">' . t('Previous destination') . '</a></li>';
+
+  // Next button (action is added in front-end).
+  $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+
+  $output .= '</ul>';
+
+  $output .= '<ul id="building-viewer-menu">';
+//      <li class="first"><a href="#" title="Menu">Menu</a></li>
+//      <li><a href="#" title="Hjælp">Hjælp</a></li>
+  $output .= '</ul>';
+  $output .= '</div>';
+  
+  // Viewer placeholder
   $output .= '<div id="building-viewer-wrapper">';
   $output .= '<div id="building-viewer"></div>';
   $output .= '</div>';
@@ -93,4 +132,26 @@ function viewer3d_theme() {
   );
 
   return $items;
+}
+
+/**
+ * Sort the points stored in the default database format.
+ *
+ * @param array $points
+ */
+function viewer3d_points_weight_sort(&$points) {
+  usort($points, '_viewer3d_points_weight_sort');
+}
+
+/**
+ * Compare function used be sort above.
+ */
+function _viewer3d_points_weight_sort($a, $b) {
+  if ($a['weight'] < $b['weight']) {
+    return -1;
+  }
+  elseif ($a['weight'] > $b['weight']) {
+    return 1;
+  }
+  return 0;
 }

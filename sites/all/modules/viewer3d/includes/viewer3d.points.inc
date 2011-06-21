@@ -37,7 +37,7 @@ function viewer3d_points_form(&$form_state) {
     $default = variable_get('viewer3d_points', array());
     if (!empty($default)) {
       // Order point based on weight.
-      usort($default, '_viewer3d_points_weight_sort');
+      viewer3d_points_weight_sort($default);
       // Loop the default points and unset them in the XML points. Then loop
       // over the remaining points, if any, they will be new points.
       foreach ($default as $point) {
@@ -46,7 +46,6 @@ function viewer3d_points_form(&$form_state) {
         $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
         unset($points[$point['pid']]);
       }
-
     }
     
     // Output remaining points or all points if non have been unset above.
@@ -60,16 +59,6 @@ function viewer3d_points_form(&$form_state) {
   $form['#theme'] = 'viewer3d_points_form';
   
   return $form;
-}
-
-function _viewer3d_points_weight_sort($a, $b) {
-  if ($a['weight'] < $b['weight']) {
-    return -1;
-  }
-  elseif ($a['weight'] > $b['weight']) {
-    return 1;
-  }
-  return 0;
 }
 
 /**
