@@ -9,21 +9,20 @@
  * Implementation of 3D viewer administration form.
  */
 function viewer3d_points_form(&$form_state) {
-  $form = array();
-  $form['#theme'] = 'viewer3d_points_form';
+  $form = array();  
   $form['#tree'] = TRUE;
 
   $file = variable_get('viewer3d_points_file', '');
-//
-//  $form['viewer3d_points_file'] = array(
-//    '#type' => 'textfield',
-//    '#title' => t('Points file'),
-//    '#description' => t('The location of points.xml inside files or a URL (save to reload points from the file).'),
-//    '#required' => TRUE,
-//    '#default_value' => $file,
-//  );
+
+  $form['viewer3d_points_file'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Points file'),
+    '#description' => t('The location of points.xml inside files or a URL (save to reload points from the file).'),
+    '#required' => TRUE,
+    '#default_value' => $file,
+  );
   
-  //if (!empty($file)) {
+  if (!empty($file)) {
     // Load points information form the file.
     $xml = simplexml_load_file($file);
     if (!xml) {
@@ -33,15 +32,7 @@ function viewer3d_points_form(&$form_state) {
 
     // Load default values
     $default = variable_get('viewer3d_points', array());
-
-//    $form['viewer3d_points'] = array(
-//      '#type' => 'fieldset',
-//      '#collapsible' => FALSE,
-//      '#collapsed' => FALSE,
-//      '#title' => t('Points settings'),
-//      '#tree' => TRUE,
-//    );
-
+    
     foreach ($xml->Point as $point) {
       $attributes = $point->attributes();
       $data = array(
@@ -50,13 +41,16 @@ function viewer3d_points_form(&$form_state) {
         'weight' => 0,
       );
       $form['viewer3d_points'][$data['pid']] = _viewer3d_points_ordering_field($data);
-      //$points[$row->nid] = $row;
     }
   
-  //}
+  }
+
+  // Give the form some system settings options
+  $form = system_settings_form($form);
+  $form['#theme'] = 'viewer3d_points_form';
+  
 
   return $form;
-  //return system_settings_form($form);
 }
 
 /**
@@ -97,6 +91,8 @@ function theme_viewer3d_points_form($form) {
   // weights by dragging and dropping the records in a list -- we just need to
   // add identifying CSS classes to key elements in the table.
 
+  $output  = drupal_render($form['viewer3d_points_file']);
+  
   $rows = array();
   foreach (element_children($form['viewer3d_points']) as $key) {
     $row = array();
@@ -130,7 +126,7 @@ function theme_viewer3d_points_form($form) {
   // on the form itself after we're done, so hidden security fields and other
   // elements (like buttons) will appear properly at the bottom of the form.
   $header = array(t('Name'), t('Weight'));
-  $output = theme('table', $header, $rows, array('id' => 'viewer3d-points-table'));
+  $output .= theme('table', $header, $rows, array('id' => 'viewer3d-points-table'));
   $output .= drupal_render($form);
 
   // Now that we've built our output, tell Drupal to add the tabledrag.js library.

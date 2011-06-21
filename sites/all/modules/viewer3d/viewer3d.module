@@ -79,9 +79,18 @@ function viewer3d_page() {
  */
 function viewer3d_theme() {
   $items = array();
+
   $items['viewer3d_points_form'] = array(
     'arguments' => array('form' => array()),
     'file' => drupal_get_path('module', 'viewer3d') . '/includes/viewer3d.points.inc',
+    'path' => drupal_get_path('theme', 'rubik') .'/templates',
+    'template' => 'form-default',
+    'preprocess functions' => array(
+      'rubik_preprocess_form_buttons',
+      'rubik_preprocess_form_legacy',
+      'rubik_preprocess_form_filter',
+    ),
   );
+
   return $items;
 }
