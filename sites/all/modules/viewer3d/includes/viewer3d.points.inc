@@ -30,27 +30,65 @@ function viewer3d_points_form(&$form_state) {
       return system_settings_form($form);
     }
 
-    // Load default values
+    // Load points from XML.
+    $points = _viewer3d_load_points($xml);
+
+    // Load default values.
     $default = variable_get('viewer3d_points', array());
-    
-    foreach ($xml->Point as $point) {
-      $attributes = $point->attributes();
-      $data = array(
-        'pid' => (Int)$point->attributes()->Id,
-        'name' => (String)$point->attributes()->Name,
-        'weight' => 0,
-      );
-      $form['viewer3d_points'][$data['pid']] = _viewer3d_points_ordering_field($data);
+    if (!empty($default)) {
+      // Order point based on weight.
+      usort($default, '_viewer3d_points_weight_sort');
+      // Loop the default points and unset them in the XML points. Then loop
+      // over the remaining points, if any, they will be new points.
+      foreach ($default as $point) {
+        // Get point name from XML points.
+        $point['name'] = $points[$point['pid']]['name'];
+        $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
+        unset($points[$point['pid']]);
+      }
+
     }
-  
+    
+    // Output remaining points or all points if non have been unset above.
+    foreach ($points as $point) {
+      $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
+    }
   }
 
-  // Give the form some system settings options
+  // Give the form some system settings options.
   $form = system_settings_form($form);
   $form['#theme'] = 'viewer3d_points_form';
   
-
   return $form;
+}
+
+function _viewer3d_points_weight_sort($a, $b) {
+  if ($a['weight'] < $b['weight']) {
+    return -1;
+  }
+  elseif ($a['weight'] > $b['weight']) {
+    return 1;
+  }
+  return 0;
+}
+
+/**
+ * Load points from xml string.
+ *
+ * @param SimpleXMLelement $xml
+ * @return array $points
+ */
+function _viewer3d_load_points($xml) {
+  $points = array();
+  foreach ($xml->Point as $point) {
+    $pid = (Int)$point->attributes()->Id;
+    $points[] = array(
+      'pid' => $pid,
+      'name' => (String)$point->attributes()->Name,
+      'weight' => isset($default[$pid]) ? $default[$pid]['weight'] : 50,
+    );
+  }
+  return $points;
 }
 
 /**
@@ -91,7 +129,8 @@ function theme_viewer3d_points_form($form) {
   // weights by dragging and dropping the records in a list -- we just need to
   // add identifying CSS classes to key elements in the table.
 
-  $output  = drupal_render($form['viewer3d_points_file']);
+  // Start with the file field.
+  $output = drupal_render($form['viewer3d_points_file']);
   
   $rows = array();
   foreach (element_children($form['viewer3d_points']) as $key) {
