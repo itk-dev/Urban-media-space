@@ -18,7 +18,7 @@ function viewer3d_menu() {
   $items = array();
 
   $items['admin/settings/3dviewer'] = array(
-    'title' => t('3D viewer'),
+    'title' => '3D viewer',
     'description' => t('Configure 3D viewer (flash model)'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('viewer3d_admin_form'),
@@ -27,17 +27,23 @@ function viewer3d_menu() {
     'file' => 'includes/viewer3d.admin.inc',
   );
 
+    $items['admin/settings/3dviewer/settings'] = array(
+    'title' => '3D viewer',
+    'description' => t('Configure 3D viewer (flash model)'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
   $items['admin/settings/3dviewer/points'] = array(
-    'title' => t('Points'),
+    'title' => 'Points',
     'description' => t('Configure points'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('viewer3d_points_form'),
     'access arguments' => array('administer points'),
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_LOCAL_TASK,
     'file' => 'includes/viewer3d.points.inc',
   );
 
-  // Load settings
+  // Viewer callback, that generate page.
   $settings = variable_get('viewer3d', array());
   if (isset($settings['path'])) {
     $items[$settings['path']] = array(
