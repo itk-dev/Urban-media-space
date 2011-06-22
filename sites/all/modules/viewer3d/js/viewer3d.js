@@ -3,10 +3,10 @@ $(document).ready(function() {
   swfobject.embedSWF(viewerSettings['flash_location']+'/swf_viewer/BuildingViewer.swf',
                      "building-viewer",
                      "940",
-                     "600",
+                     "666",
                      "10.0.0",
                      viewerSettings['flash_location']+"/scripts/expressInstall.swf",
-                     {width:'1045',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']},
+                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']},
                      {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: "1"});
 
   $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
