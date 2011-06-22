@@ -2,7 +2,10 @@
   background-color: #f8f8f8;
   border: 1px solid #e5e5e5;
   text-transform: uppercase;
+  margin: 0 34px 0 0;
   overflow: hidden;
+  position: relative;
+  top: 40px;
 }
 
 #building-viewer-nav-wrapper a,
@@ -43,11 +46,6 @@
   border-left: 1px dotted #e5e5e5;
 }
 
-#building-viewer-nav-wrapper ul li.fullscreen {
-  border-right: 0;
-  border-left: 1px dotted #c4c4c4;
-}
-
 #building-viewer-nav {
   float: left;
 }
@@ -81,23 +79,10 @@
 }
 
 #building-viewer-nav-wrapper ul li.next a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat 134px -223px;
-  padding-right: 34px;
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat right -223px;
+  padding-right: 38px;
 }
 
 #building-viewer-nav-wrapper ul li.next a:hover {
-  background-position: 134px -256px;
-}
-
-#building-viewer-nav-wrapper ul li.fullscreen a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -12px -13px;
-  height: 35px;
-  overflow: hidden;
-  padding: 0;
-  text-indent: -10000px;
-  width: 36px;
-}
-
-#building-viewer-nav-wrapper ul li.fullscreen a:hover {
-  background-position: -12px -53px;
+  background-position: right -256px;
 }
