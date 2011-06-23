@@ -33,7 +33,10 @@ $(document).ready(function() {
     }
   }
 
-  // Call the function when Shadowbox opens
-  Shadowbox.options.onOpen = moveCloseLink;
+  // Make sure Shadowbox is defined
+  if (typeof Shadowbox != 'undefined') {
+    // Call the function when Shadowbox opens
+    Shadowbox.options.onOpen = moveCloseLink;
+  }
 
   });
