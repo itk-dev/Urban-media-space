@@ -7,7 +7,7 @@ $(document).ready(function() {
                      "10.0.0",
                      viewerSettings['flash_location']+"/scripts/expressInstall.swf",
                      {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']},
-                     {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: "1"});
+                     {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: "opaque"});
 
   $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
 
