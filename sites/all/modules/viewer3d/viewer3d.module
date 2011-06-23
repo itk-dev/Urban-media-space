@@ -73,7 +73,10 @@ function viewer3d_page() {
     for ($i = 0; $length > $i; $i++) {
       $prev = ($i == 0) ? $points[$length-1]['pid'] : $points[$i-1]['pid'];
       $next = ($i == $length-1) ? $points[0]['pid'] : $points[$i+1]['pid'];
-      $route[$points[$i]['pid']] = array('prev' => $prev, 'next' => $next);
+      $route[$points[$i]['pid']] = array(
+        'prev' => array('pid' => $prev, 'jump' => $points[$i]['jump_type']['prev']),
+        'next' => array('pid' => $next, 'jump' => $points[$i]['jump_type']['next']),
+      );
     }
   }
 

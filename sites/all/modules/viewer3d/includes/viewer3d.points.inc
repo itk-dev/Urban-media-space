@@ -95,6 +95,14 @@ function _viewer3d_points_ordering_field($point) {
     '#value' => empty($point['name']) ? 'Point ' . $point['pid'] : $point['name'],
   );
 
+  $field['jump_type'] = array(
+    '#type' => 'checkboxes',
+    '#title' => 'Jump to point',
+    '#options' => array('prev' => 'Previous', 'next' => 'Next'),
+    '#description' => '',
+    '#default_value' => !empty($point['jump_type']) ? $point['jump_type'] : array(),
+  );
+
   $field['weight'] = array(
     '#type' => 'weight',
     '#delta' => 50,
@@ -128,6 +136,7 @@ function theme_viewer3d_points_form($form) {
     // Render the hidden 'node id' field and the title of the record into the
     // same column of the row.
     $row[] = drupal_render($form['viewer3d_points'][$key]['pid']) . drupal_render($form['viewer3d_points'][$key]['name']);
+    $row[] = drupal_render($form['viewer3d_points'][$key]['jump_type']);
 
     // Add an identifying CSS class to our weight field, as it's the one
     // the tabledrag.js will be controlling. This can be anything we want it to
@@ -153,7 +162,7 @@ function theme_viewer3d_points_form($form) {
   // we've already rendered all of our records, we always call drupal_render()
   // on the form itself after we're done, so hidden security fields and other
   // elements (like buttons) will appear properly at the bottom of the form.
-  $header = array(t('Name'), t('Weight'));
+  $header = array(t('Name'), t('Goto'), t('Weight'));
   $output .= theme('table', $header, $rows, array('id' => 'viewer3d-points-table'));
   $output .= drupal_render($form);
 

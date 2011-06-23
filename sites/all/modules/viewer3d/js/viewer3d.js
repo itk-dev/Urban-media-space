@@ -19,12 +19,23 @@ $(document).ready(function() {
 
   // Set prev and next
   $('#building-viewer-nav .previous').click(function() {
-    viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].prev);
+    if (route[viewer3d_current_point].prev.jump) {
+      viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].prev.pid);
+    }
+    else {
+      viewer3dFlyToLocation(route[viewer3d_current_point].prev.pid);
+    }
     return false;
   });
   $('#building-viewer-nav .next').click(function() {
-    viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].next);
-    return false;
+    if (route[viewer3d_current_point].next.jump) {
+      viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].next.pid);
+      return false;
+    }
+    else {
+      viewer3dFlyToLocation(route[viewer3d_current_point].next.pid);
+    }
+
   });
 });
 
