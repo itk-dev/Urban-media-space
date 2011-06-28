@@ -195,6 +195,10 @@ function _viewer3d_points_name_sort($a, $b) {
   return 0;
 }
 
+/**
+ * Implementaion of hook_form_alter(). We use it to hook into the node edit
+ * form for 3D points and add selection of viewer 3D point.
+ */
 function viewer3d_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'point3d_node_form') {
     // Load a sort points.
@@ -235,6 +239,10 @@ function viewer3d_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+/**
+ * Form submittion handler to save 3D points content type relations to XML
+ * points.
+ */
 function viewer3d_form_alter_submit($form, &$form_state) {
   $points_used = variable_get('viewer3d_points_used', array());
 

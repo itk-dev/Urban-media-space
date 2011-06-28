@@ -38,7 +38,7 @@ $(document).ready(function() {
 
   });
 
-  // Bind to first title link.
+  // Bind to stating point title link.
   $('#building-viewer-point-title a').click(function() {
     view3dLoadInfoBox($(this).attr('href'))
     return false;
@@ -226,12 +226,12 @@ function view3dUpdateTitle(title) {
 }
 
 function view3dLoadInfoBox(href) {
+  // Make ajax call to get extended information information about the point.
   $.get(href, function(data) {
     data = Drupal.parseJson(data);
     $('#building-viewer-point-information').html(data.html);
   });
 }
-
 /******************
  * END OF HELPERS *
 *******************/
