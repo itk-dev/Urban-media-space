@@ -1,0 +1,3 @@
+<?php
+
+include_once('points3d.features.inc');
