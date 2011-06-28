@@ -174,11 +174,25 @@ function view3dLocationChanged(id) {
   viewer3d_current_point = id;
 }
 
-function view3DLoaded(){}
+function view3DLoaded() {
 
-function view3dPointClicked(id, x, y){}
+}
 
-function view3dMoved(){}
+function view3dPointClicked(id, x, y) {
+
+}
+
+function view3dMoved() {
+
+}
+
+function view3dMouseOverPoint(id, flashPosX, flashPosY, height) {
+  alert('P' + $id);
+}
+
+function view3dMouseOutPoint(id) {
+  alert('P' + $id);
+}
 /***********************************
  * END OF MOVIE CALLBACK FUNCTIONS *
  ***********************************/
