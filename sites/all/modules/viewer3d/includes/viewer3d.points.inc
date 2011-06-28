@@ -86,13 +86,21 @@ function _viewer3d_load_points($xml) {
 function _viewer3d_points_ordering_field($point) {
   $field = array();
 
+  // Create label in a evil way, this is to make them sortable by label elsewhere.
+  $label = empty($point['name']) ? 'Point ' . ($point['pid'] < 10 ? '0' . $point['pid'] : $point['pid']) : $point['name'];
+
   $field['pid'] = array(
     '#type' => 'hidden',
     '#value' => $point['pid'],
   );
 
   $field['name'] = array(
-    '#value' => empty($point['name']) ? 'Point ' . $point['pid'] : $point['name'],
+    '#type' => 'hidden',
+    '#value' => $label,
+  );
+
+  $field['label'] = array(
+    '#value' => $label,
   );
 
   $field['jump_type'] = array(
@@ -135,7 +143,7 @@ function theme_viewer3d_points_form($form) {
 
     // Render the hidden 'node id' field and the title of the record into the
     // same column of the row.
-    $row[] = drupal_render($form['viewer3d_points'][$key]['pid']) . drupal_render($form['viewer3d_points'][$key]['name']);
+    $row[] = drupal_render($form['viewer3d_points'][$key]['name']) . drupal_render($form['viewer3d_points'][$key]['pid']) . drupal_render($form['viewer3d_points'][$key]['label']);
     $row[] = drupal_render($form['viewer3d_points'][$key]['jump_type']);
 
     // Add an identifying CSS class to our weight field, as it's the one

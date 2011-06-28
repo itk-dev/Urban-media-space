@@ -53,6 +53,15 @@ function viewer3d_menu() {
       'access arguments' => array('view model'),
       'type' => MENU_CALLBACK,
     );
+
+    $items[$settings['path'] . '/ajax'] = array(
+      'title' => t('3D viewer'),
+      'description' => t('Display 3D viewer'),
+      'page callback' => 'viewer3d_ajax',
+      'access arguments' => array('view model'),
+      'type' => MENU_CALLBACK,
+      'file' => 'includes/viewer3d.ajax.inc',
+    );
   }
 
   return $items;
@@ -119,6 +128,14 @@ function viewer3d_page() {
   $output .= '<div id="building-viewer"></div>';
   $output .= '</div>';
 
+  // Point title
+  $output .= '<div id="building-viewer-point-title">';
+  $output .= viewer3d_get_point_title($settings['currentLocation']);
+  $output .= '</div>';
+
+  // Point information
+  $output .= '<div id="building-viewer-point-information"></div>';
+
   return $output;
 }
 
@@ -139,7 +156,7 @@ function viewer3d_theme() {
       'rubik_preprocess_form_filter',
     ),
   );
-
+  
   return $items;
 }
 
@@ -153,7 +170,7 @@ function viewer3d_points_weight_sort(&$points) {
 }
 
 /**
- * Compare function used be sort above.
+ * Compare function used by sort.
  */
 function _viewer3d_points_weight_sort($a, $b) {
   if ($a['weight'] < $b['weight']) {
@@ -163,4 +180,84 @@ function _viewer3d_points_weight_sort($a, $b) {
     return 1;
   }
   return 0;
+}
+
+/**
+ * Compare function used by sort.
+ */
+function _viewer3d_points_name_sort($a, $b) {
+  if ($a['name'] < $b['name']) {
+    return -1;
+  }
+  elseif ($a['name'] > $b['name']) {
+    return 1;
+  }
+  return 0;
+}
+
+function viewer3d_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'point3d_node_form') {
+    // Load a sort points.
+    $points = variable_get('viewer3d_points', array());
+    $points_used = variable_get('viewer3d_points_used', array());
+    if (!empty($points)) {
+      usort($points, '_viewer3d_points_name_sort');
+    }
+
+    // Create dropdown with un-used points + current point.
+    $options = array();
+    foreach ($points as $point) {
+      if (!isset($points_used[$point['pid']])) {
+        $options[$point['pid']] = $point['name'];
+      }
+      elseif (isset($form['nid']) && $points_used[$point['pid']] == $form['nid']['#value']) {
+        // Enable the user to select "current" point once more.
+        $options[$point['pid']] = $point['name'];
+        $default_value = $point['pid'];
+      }
+    }
+
+    // Save current point, used later to update array.
+    $form['points3d_old'] = array(
+      '#type' => 'hidden',
+      '#value' => $default_value,
+    );
+    
+    $form['points3d'] = array(
+      '#type' => 'select',
+      '#title' => t('Select 3D point reference'),
+      '#description' => t('Only points that is not used yet is selectable. If points are missing please go to the point administrator a re-save the route.'),
+      '#options' => $options,
+      '#default_value' => $default_value,
+    );
+
+    $form['#submit'][] = 'viewer3d_form_alter_submit';
+  }
+}
+
+function viewer3d_form_alter_submit($form, &$form_state) {
+  $points_used = variable_get('viewer3d_points_used', array());
+
+  // Remove old value.
+  if (isset($points_used[$form_state['values']['points3d_old']])) {
+    unset($points_used[$form_state['values']['points3d_old']]);
+  }
+  
+  // Set new value.
+  $points_used[$form_state['values']['points3d']] = $form_state['values']['nid'];
+  variable_set('viewer3d_points_used', $points_used);
+  unset($form_state['values']['points3d']);
+}
+
+function viewer3d_get_point_title($pid) {
+  $settings = variable_get('viewer3d', array());
+  $points = variable_get('viewer3d_points_used', array());
+
+  $title = t('Point @pid', array('@pid' => $pid));
+  if (isset($points[$pid])) {
+    $result = db_query('SELECT title FROM {node} WHERE nid=%d', $points[$pid]);
+    $title = db_fetch_object($result)->title;
+  }
+
+  return l($title, $settings['path'].'/ajax/info/'.$pid);
 }

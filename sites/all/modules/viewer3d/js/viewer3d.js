@@ -37,6 +37,12 @@ $(document).ready(function() {
     }
 
   });
+
+  // Bind to first title link.
+  $('#building-viewer-point-title a').click(function() {
+    view3dLoadInfoBox($(this).attr('href'))
+    return false;
+  });
 });
 
 /**********************
@@ -172,6 +178,11 @@ function viewer3dMovie(movieName) {
  ****************************/
 function view3dLocationChanged(id) {
   viewer3d_current_point = id;
+
+  $.get('/3dviewer/ajax/title/' + id, function(data) {
+    data = Drupal.parseJson(data);
+    view3dUpdateTitle(data.html);
+  });
 }
 
 function view3DLoaded() {
@@ -196,3 +207,31 @@ function view3dMouseOutPoint(id) {
 /***********************************
  * END OF MOVIE CALLBACK FUNCTIONS *
  ***********************************/
+
+/*****************************
+ * IMPLEMENTATION OF HELPERS *
+ *****************************/
+function view3dUpdateTitle(title) {
+  // Update title.
+  $('#building-viewer-point-title').html(title);
+
+  // Bind click to the new link.
+  $('#building-viewer-point-title a').click(function() {
+    view3dLoadInfoBox($(this).attr('href'))
+    return false;
+  });
+
+  // Remove old information.
+  $('#building-viewer-point-information').html('');
+}
+
+function view3dLoadInfoBox(href) {
+  $.get(href, function(data) {
+    data = Drupal.parseJson(data);
+    $('#building-viewer-point-information').html(data.html);
+  });
+}
+
+/******************
+ * END OF HELPERS *
+*******************/
