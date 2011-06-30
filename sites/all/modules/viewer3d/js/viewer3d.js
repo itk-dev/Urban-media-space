@@ -11,6 +11,9 @@ $(document).ready(function() {
 
   $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
 
+  // Hide information on load
+  $('#building-viewer-point-information').hide();
+
   // Set rute information.
   var route = Drupal.settings.viewer3d_route;
   
@@ -38,11 +41,18 @@ $(document).ready(function() {
 
   });
 
-  // Bind to stating point title link.
+  // Bind to starting point title link.
   $('#building-viewer-point-title a').click(function() {
     view3dLoadInfoBox($(this).attr('href'))
     return false;
   });
+
+  // Close information link
+  $('#building-viewer-point-information a.close').click(function() {
+    $(this).parent().fadeOut();
+    return false;
+  });
+
 });
 
 /**********************
@@ -229,8 +239,13 @@ function view3dLoadInfoBox(href) {
   // Make ajax call to get extended information information about the point.
   $.get(href, function(data) {
     data = Drupal.parseJson(data);
-    $('#building-viewer-point-information').html(data.html);
+
+    $('#building-viewer-point-information .building-viewer-point-inner').html(data.html);
   });
+
+  // Show the element
+  $('#building-viewer-point-information').fadeIn();
+
 }
 /******************
  * END OF HELPERS *

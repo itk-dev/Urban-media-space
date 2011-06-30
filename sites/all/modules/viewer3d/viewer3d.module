@@ -134,7 +134,10 @@ function viewer3d_page() {
   $output .= '</div>';
 
   // Point information
-  $output .= '<div id="building-viewer-point-information"></div>';
+  $output .= '<div id="building-viewer-point-information">';
+  $output .= '<a href="#close" class="close"><span>' . t('Close') . '</span></a>';
+  $output .= '<div class="building-viewer-point-inner"></div>';
+  $output .= '</div>';
 
   return $output;
 }

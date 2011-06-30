@@ -86,3 +86,49 @@
 #building-viewer-nav-wrapper ul li.next a:hover {
   background-position: right -256px;
 }
+
+#building-viewer-point-title {
+  background-color: #fff;
+  bottom: 40px;
+  left: 0;
+  position: absolute;
+}
+
+#building-viewer-point-title a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat right -300px;
+  color: #666;
+  display: block;
+  font-size: 150%;
+  padding: 10px 60px 10px 10px;
+  text-decoration: none;
+}
+
+#building-viewer-point-information {
+  background-color: #fff;
+  left: 50px;
+  position: absolute;
+  top: 181px;
+  width: 840px;
+}
+
+#building-viewer-point-information a.close {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -15px -360px;
+  height: 22px;
+  overflow: hidden;
+  position: absolute;
+  right: -8px;
+  text-indent: -10000px;
+  top: -8px;
+  width: 22px;
+  z-index: 100;
+}
+
+#building-viewer-point-information .node-point3d {
+  overflow: auto;
+  padding: 15px;
+}
+
+#building-viewer-point-information .node-point3d .field-field-3dpoint-image {
+  float: left;
+  margin: 0 10px 0 0;
+}
