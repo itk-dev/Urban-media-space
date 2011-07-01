@@ -11,7 +11,7 @@
   overflow: auto;
   margin: 0 40px 0 0;
   position: relative;
-  z-index: 99;
+  z-index: 95;
 }
 
 #building-viewer-nav-wrapper a,
@@ -121,11 +121,11 @@
 
 .building-viewer-overlay {
   background-color: #000;
-  height: 626px;
+  height: 666px;
   left: 0px;
-  top: 39px;
+  top: 0;
   width: 940px;
-  z-index: 90;
+  z-index: 96;
 }
 
 #building-viewer-help {
