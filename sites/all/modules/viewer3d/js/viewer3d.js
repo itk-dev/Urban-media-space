@@ -41,6 +41,13 @@ $(document).ready(function() {
 
   });
 
+
+  // Help link
+  $('#building-viewer-nav .help').click(function() {
+    viewerToggleHelp();
+    return false;
+  });
+
   // Bind to starting point title link.
   $('#building-viewer-point-title a').click(function() {
     view3dLoadInfoBox($(this).attr('href'))
@@ -48,12 +55,29 @@ $(document).ready(function() {
   });
 
   // Close information link
-  $('#building-viewer-point-information a.close').click(function() {
+  $('a.building-viewer-close').click(function() {
     $(this).parent().fadeOut();
+    viewerToggleOverlay();
     return false;
   });
 
 });
+
+/**********************
+ * CUSTOM FUNCTIONS *
+ **********************/
+
+// Toggle overlay, opt = show, hide
+function viewerToggleOverlay(opt) {
+  $('.building-viewer-overlay')
+  .css('opacity', .5)
+  .toggle();
+}
+
+function viewerToggleHelp() {
+  viewerToggleOverlay();
+  $('#building-viewer-help').toggle();
+}
 
 /**********************
  * API IMPLEMENTATION *
@@ -196,7 +220,7 @@ function view3dLocationChanged(id) {
 }
 
 function view3DLoaded() {
-
+  viewerToggleHelp();
 }
 
 function view3dPointClicked(id, x, y) {
@@ -241,10 +265,13 @@ function view3dLoadInfoBox(href) {
     data = Drupal.parseJson(data);
 
     $('#building-viewer-point-information .building-viewer-point-inner').html(data.html);
-  });
 
-  // Show the element
-  $('#building-viewer-point-information').fadeIn();
+    // Toggle overlay
+    viewerToggleOverlay();
+
+    // Show the element
+    $('#building-viewer-point-information').fadeIn();
+  });
 
 }
 /******************

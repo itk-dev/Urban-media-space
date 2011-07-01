@@ -102,6 +102,9 @@ function viewer3d_page() {
     $output .= '<p>' . $settings['text'] . '</p>';
   }
 
+  // Outer wrapper.
+  $output .= '<div id="building-viewer-outer-wrapper">';
+
   // Build navigation bar.
   $output .= '<div id="building-viewer-nav-wrapper">';
   $output .= '<ul id="building-viewer-nav">';
@@ -114,6 +117,7 @@ function viewer3d_page() {
 
   // Next button (action is added in front-end).
   $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+  $output .= ' <li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
   $output .= '</ul>';
 
@@ -125,6 +129,14 @@ function viewer3d_page() {
   
   // Viewer placeholder
   $output .= '<div id="building-viewer-wrapper">';
+  $output .= '<div class="building-viewer-overlay"></div>';
+  $output .= '<div id="building-viewer-help">';
+  $output .= '<a href="#close" class="building-viewer-close"><span>' . t('Close') . '</span></a>';
+  $output .= '<div id="building-viewer-help-inner-wrapper">';
+  $output .= '<h3>[Hjælpetekst header]</h3>';
+  $output .= '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
+  $output .= '</div>';
+  $output .= '</div>';
   $output .= '<div id="building-viewer"></div>';
   $output .= '</div>';
 
@@ -135,8 +147,11 @@ function viewer3d_page() {
 
   // Point information
   $output .= '<div id="building-viewer-point-information">';
-  $output .= '<a href="#close" class="close"><span>' . t('Close') . '</span></a>';
+  $output .= '<a href="#close" class="building-viewer-close"><span>' . t('Close') . '</span></a>';
   $output .= '<div class="building-viewer-point-inner"></div>';
+  $output .= '</div>';
+
+  // Outer wrapper.
   $output .= '</div>';
 
   return $output;

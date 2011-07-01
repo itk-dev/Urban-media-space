@@ -1,11 +1,17 @@
+#building-viewer-outer-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
 #building-viewer-nav-wrapper {
   background-color: #f8f8f8;
   border: 1px solid #e5e5e5;
+  border-right: 0;
   text-transform: uppercase;
+  overflow: auto;
   margin: 0 40px 0 0;
-  overflow: hidden;
   position: relative;
-  top: 40px;
+  z-index: 99;
 }
 
 #building-viewer-nav-wrapper a,
@@ -19,6 +25,7 @@
 
 #building-viewer-nav-wrapper ul {
   margin: 0;
+  width: 100%;
 }
 
 #building-viewer-nav-wrapper ul li {
@@ -58,6 +65,8 @@
   clear: both;
   float: left;
   margin: 1px 0 0;
+  position: relative;
+  top: -40px;
 }
 
 #building-viewer-nav-wrapper ul li.home a {
@@ -87,9 +96,53 @@
   background-position: right -256px;
 }
 
+#building-viewer-nav-wrapper ul li.help {
+  border-right: 0;
+  border-left: 1px dotted #e5e5e5;
+  float: right;
+}
+
+#building-viewer-nav-wrapper ul li.help a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -7px -394px;
+  overflow: hidden;
+  text-indent: -10000px;
+}
+
+#building-viewer-nav-wrapper ul li.help a:hover {
+  background-position: -7px -436px;
+}
+
+.building-viewer-overlay,
+#building-viewer-help {
+  display: none;
+  position: absolute;
+}
+
+
+.building-viewer-overlay {
+  background-color: #000;
+  height: 626px;
+  left: 0px;
+  top: 39px;
+  width: 940px;
+  z-index: 90;
+}
+
+#building-viewer-help {
+  background-color: #fff;
+  left: 190px;
+  top: 90px;
+  width: 550px;
+  z-index: 99;
+}
+
+#building-viewer-help-inner-wrapper {
+  padding: 15px;
+}
+
 #building-viewer-point-title {
   background-color: #fff;
-  bottom: 40px;
+  bottom: 80px;
   left: 0;
   position: absolute;
 }
@@ -107,11 +160,12 @@
   background-color: #fff;
   left: 50px;
   position: absolute;
-  top: 181px;
+  top: 90px;
   width: 840px;
+  z-index: 99;
 }
 
-#building-viewer-point-information a.close {
+.building-viewer-close {
   background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -15px -360px;
   height: 22px;
   overflow: hidden;
@@ -119,7 +173,7 @@
   right: -8px;
   text-indent: -10000px;
   top: -8px;
-  width: 22px;
+  width: 23px;
   z-index: 100;
 }
 
