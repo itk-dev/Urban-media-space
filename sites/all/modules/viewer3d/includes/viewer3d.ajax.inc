@@ -14,19 +14,19 @@ define('VIEWER3D_TYPE_INFO', 'info');
  * @param string $type the type of data to fetch.
  * @param int $pid point id.
  */
-function viewer3d_ajax($type, $pid) {
+function viewer3d_ajax($type, $pid, $html = TRUE) {
   switch ($type) {
     case VIEWER3D_TYPE_TITLE:
       $data = array(
         'type' => VIEWER3D_TYPE_TITLE,
-        'html' => viewer3d_get_point_title($pid),
+        'value' => viewer3d_get_point_title($pid, $html),
       );
       break;
 
     case VIEWER3D_TYPE_INFO:
       $data = array(
         'type' => VIEWER3D_TYPE_INFO,
-        'html' => viewer3d_load_information($pid),
+        'value' => viewer3d_load_information($pid),
       );
 
     default:

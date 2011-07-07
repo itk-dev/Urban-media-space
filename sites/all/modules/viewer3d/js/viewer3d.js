@@ -41,7 +41,6 @@ $(document).ready(function() {
 
   });
 
-
   // Help link
   $('#building-viewer-nav .help').click(function() {
     viewerToggleHelp();
@@ -49,7 +48,7 @@ $(document).ready(function() {
   });
 
   // Bind to starting point title link.
-  $('#building-viewer-point-title a').click(function() {    
+  $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
       view3dLoadInfoBox($(this).attr('href'))
@@ -64,6 +63,9 @@ $(document).ready(function() {
     viewerToggleOverlay();
     return false;
   });
+
+  // Set tipsy on point placeholder.
+  $('#building-viewer-point-tipsy [title]').tipsy({gravity: 's',fade: true, live: true});
 });
 
 /**********************
@@ -203,7 +205,7 @@ function view3dLocationChanged(id) {
   var viewerSettings = Drupal.settings.viewer3d;
   $.get(viewerSettings['path'] + '/ajax/title/' + id, function(data) {
     data = Drupal.parseJson(data);
-    view3dUpdateTitle(data.html);
+    view3dUpdateTitle(data.value);
   });
 }
 
@@ -220,11 +222,22 @@ function view3dMoved() {
 }
 
 function view3dMouseOverPoint(id, x, y, height) {
-  alert('P' + $id);
+  // Move point
+  $('#building-viewer-point-tipsy').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
+
+  // Get point title.
+  var viewerSettings = Drupal.settings.viewer3d;
+  $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
+    data = Drupal.parseJson(data);
+    var point = $('#building-viewer-point-tipsy a');
+    point.attr('title', data.value);    
+    point.tipsy("show");
+  });
+
 }
 
 function view3dMouseOutPoint(id) {
-  alert('P' + $id);
+
 }
 /***********************************
  * END OF MOVIE CALLBACK FUNCTIONS *
@@ -256,7 +269,7 @@ function view3dLoadInfoBox(href) {
   $.get(href, function(data) {
     data = Drupal.parseJson(data);
 
-    $('#building-viewer-point-information .building-viewer-point-inner').html(data.html);
+    $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
 
     // Toggle overlay
     viewerToggleOverlay();

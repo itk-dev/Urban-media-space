@@ -27,7 +27,7 @@ function viewer3d_menu() {
     'file' => 'includes/viewer3d.admin.inc',
   );
 
-    $items['admin/settings/3dviewer/settings'] = array(
+  $items['admin/settings/3dviewer/settings'] = array(
     'title' => '3D viewer',
     'description' => t('Configure 3D viewer (flash model)'),
     'type' => MENU_DEFAULT_LOCAL_TASK,
@@ -142,6 +142,10 @@ function viewer3d_page() {
   // Viewer placeholder
   $output .= '<div id="building-viewer-wrapper">';
   $output .= '<div id="building-viewer"></div>';
+  $output .= '</div>';
+
+  $output .= '<div id="building-viewer-point-tipsy">';
+  $output .= '<a href="#" title="Test tipsy">#####</a>';
   $output .= '</div>';
 
   // Point title
@@ -279,7 +283,7 @@ function viewer3d_form_alter_submit($form, &$form_state) {
   unset($form_state['values']['points3d']);
 }
 
-function viewer3d_get_point_title($pid) {
+function viewer3d_get_point_title($pid, $html = TRUE) {
   $settings = variable_get('viewer3d', array());
   $points = variable_get('viewer3d_points_used', array());
 
@@ -289,5 +293,10 @@ function viewer3d_get_point_title($pid) {
     $title = db_fetch_object($result)->title;
   }
 
-  return l($title, $settings['path'].'/ajax/info/'.$pid);
+  if ($html) {
+    return l($title, $settings['path'].'/ajax/info/'.$pid);
+  }
+  else {
+    return $title;
+  }
 }
