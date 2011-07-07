@@ -105,6 +105,18 @@ function viewer3d_page() {
   // Outer wrapper.
   $output .= '<div id="building-viewer-outer-wrapper">';
 
+  // Overlay.
+  $output .= '<div class="building-viewer-overlay"></div>';
+
+  // Help.
+  $output .= '<div id="building-viewer-help">';
+  $output .= '<a href="#close" class="building-viewer-close"><span>' . t('Close') . '</span></a>';
+  $output .= '<div id="building-viewer-help-inner-wrapper">';
+  $output .= '<h3>[Hjælpetekst header]</h3>';
+  $output .= '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
+  $output .= '</div>';
+  $output .= '</div>';
+
   // Build navigation bar.
   $output .= '<div id="building-viewer-nav-wrapper">';
   $output .= '<ul id="building-viewer-nav">';
@@ -129,14 +141,6 @@ function viewer3d_page() {
   
   // Viewer placeholder
   $output .= '<div id="building-viewer-wrapper">';
-  $output .= '<div class="building-viewer-overlay"></div>';
-  $output .= '<div id="building-viewer-help">';
-  $output .= '<a href="#close" class="building-viewer-close"><span>' . t('Close') . '</span></a>';
-  $output .= '<div id="building-viewer-help-inner-wrapper">';
-  $output .= '<h3>[Hjælpetekst header]</h3>';
-  $output .= '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
-  $output .= '</div>';
-  $output .= '</div>';
   $output .= '<div id="building-viewer"></div>';
   $output .= '</div>';
 
