@@ -49,8 +49,12 @@ $(document).ready(function() {
   });
 
   // Bind to starting point title link.
-  $('#building-viewer-point-title a').click(function() {
-    view3dLoadInfoBox($(this).attr('href'))
+  $('#building-viewer-point-title a').click(function() {    
+    if (viewer3d_click) {
+      viewer3d_click = false;
+      view3dLoadInfoBox($(this).attr('href'))
+      return false;
+    }
     return false;
   });
 
@@ -60,24 +64,7 @@ $(document).ready(function() {
     viewerToggleOverlay();
     return false;
   });
-
 });
-
-/**********************
- * CUSTOM FUNCTIONS *
- **********************/
-
-// Toggle overlay, opt = show, hide
-function viewerToggleOverlay(opt) {
-  $('.building-viewer-overlay')
-  .css('opacity', .5)
-  .toggle();
-}
-
-function viewerToggleHelp() {
-  viewerToggleOverlay();
-  $('#building-viewer-help').toggle();
-}
 
 /**********************
  * API IMPLEMENTATION *
@@ -213,7 +200,8 @@ function viewer3dMovie(movieName) {
 function view3dLocationChanged(id) {
   viewer3d_current_point = id;
 
-  $.get('/3dviewer/ajax/title/' + id, function(data) {
+  var viewerSettings = Drupal.settings.viewer3d;
+  $.get(viewerSettings['path'] + '/ajax/title/' + id, function(data) {
     data = Drupal.parseJson(data);
     view3dUpdateTitle(data.html);
   });
@@ -231,7 +219,7 @@ function view3dMoved() {
 
 }
 
-function view3dMouseOverPoint(id, flashPosX, flashPosY, height) {
+function view3dMouseOverPoint(id, x, y, height) {
   alert('P' + $id);
 }
 
@@ -251,12 +239,16 @@ function view3dUpdateTitle(title) {
 
   // Bind click to the new link.
   $('#building-viewer-point-title a').click(function() {
-    view3dLoadInfoBox($(this).attr('href'))
+    if (viewer3d_click) {
+      viewer3d_click = false;
+      view3dLoadInfoBox($(this).attr('href'))
+      return false;
+    }
     return false;
   });
 
   // Remove old information.
-  $('#building-viewer-point-information').html('');
+  $('#building-viewer-point-information .building-viewer-point-inner').html('');
 }
 
 function view3dLoadInfoBox(href) {
@@ -272,7 +264,23 @@ function view3dLoadInfoBox(href) {
     // Show the element
     $('#building-viewer-point-information').fadeIn();
   });
+}
 
+// Used to prevent dlb click.
+var viewer3d_click = true;
+
+// Toggle overlay, opt = show, hide
+function viewerToggleOverlay(opt) {
+  $('.building-viewer-overlay')
+  .css('opacity', .5)
+  .toggle('fast', function() {
+    viewer3d_click = true;
+  });
+}
+
+function viewerToggleHelp() {
+  viewerToggleOverlay();
+  $('#building-viewer-help').toggle();
 }
 /******************
  * END OF HELPERS *
