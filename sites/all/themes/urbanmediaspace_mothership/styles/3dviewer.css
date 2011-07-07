@@ -191,8 +191,6 @@
 #building-viewer-point-tipsy {
   position: absolute;
   z-index: 100;
-  top: 200px;
-  left: 200px;
 }
 
 #building-viewer-point-tipsy a {  

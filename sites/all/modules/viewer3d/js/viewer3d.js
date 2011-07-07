@@ -230,10 +230,8 @@ function view3dMouseOverPoint(id, x, y, height) {
   $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
     data = Drupal.parseJson(data);
     var point = $('#building-viewer-point-tipsy a');
-    point.attr('title', data.value);    
-    point.tipsy("show");
+    point.attr('original-title', data.value);
   });
-
 }
 
 function view3dMouseOutPoint(id) {
@@ -295,6 +293,7 @@ function viewerToggleHelp() {
   viewerToggleOverlay();
   $('#building-viewer-help').toggle();
 }
+
 /******************
  * END OF HELPERS *
 *******************/
