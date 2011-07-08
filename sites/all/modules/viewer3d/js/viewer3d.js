@@ -116,6 +116,7 @@ $(document).ready(function() {
   });
 
   $('#building-viewer-point-tip a').click(function() {
+    $(this).qtip("hide");
     viewer3dFlyToLocation(viewer3d_current_point_clicked);
     return false;
   });
