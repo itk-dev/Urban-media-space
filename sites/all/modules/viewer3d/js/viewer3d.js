@@ -90,7 +90,7 @@ $(document).ready(function() {
 
   // Set tooltip on point placeholder.
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
-  $('#building-viewer-point-tipsy [title]').qtip({
+  $('#building-viewer-point-tip [title]').qtip({
       position: {
       corner: {
          target: 'topMiddle',
@@ -271,14 +271,14 @@ function view3dMoved() {
 
 function view3dMouseOverPoint(id, x, y, height) {
   // Move point
-  $('#building-viewer-point-tipsy').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
+  $('#building-viewer-point-tip').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
 
   // Get point title.
   var viewerSettings = Drupal.settings.viewer3d;
   $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
     data = Drupal.parseJson(data);
-    var point = $('#building-viewer-point-tipsy a');
-    point.attr('title', data.value);
+    var point = $('#building-viewer-point-tip a');
+    $(point).qtip("api").updateContent(data.value);
   });
 }
 

@@ -188,12 +188,12 @@
   margin: 0 10px 0 0;
 }
 
-#building-viewer-point-tipsy {
+#building-viewer-point-tip {
   position: absolute;
   z-index: 100;
 }
 
-#building-viewer-point-tipsy a {  
+#building-viewer-point-tip a {  
   display: block;
   height: 20px;
   overflow: hidden;
