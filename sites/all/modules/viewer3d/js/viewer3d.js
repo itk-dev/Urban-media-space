@@ -30,7 +30,7 @@ $(document).ready(function() {
       },
       tip: {
         corner: 'bottomMiddle',
-        size: { x: 7, y: 5 }
+        size: {x: 7, y: 5}
       }
     }
   });
@@ -110,9 +110,14 @@ $(document).ready(function() {
       },
       tip: {
         corner: 'bottomMiddle',
-        size: { x: 7, y: 5 }
+        size: {x: 7, y: 5}
       }
     }
+  });
+
+  $('#building-viewer-point-tip a').click(function() {
+    viewer3dFlyToLocation(viewer3d_current_point_clicked);
+    return false;
   });
 });
 
@@ -262,7 +267,7 @@ function view3DLoaded() {
 }
 
 function view3dPointClicked(id, x, y) {
-
+  
 }
 
 function view3dMoved() {
@@ -270,6 +275,9 @@ function view3dMoved() {
 }
 
 function view3dMouseOverPoint(id, x, y, height) {
+  // qtip blocks flash point, so save the id to get around this.
+  viewer3d_current_point_clicked = id;
+
   // Move point
   $('#building-viewer-point-tip').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
 
