@@ -94,7 +94,7 @@ function viewer3d_page() {
   drupal_add_js(array('viewer3d_route' => $route), 'setting');
   drupal_add_js($path . '/js/swfobject.js', 'module');
   drupal_add_js($path . '/js/viewer3d.js', 'module');
-  drupal_add_js($path . '/js/jquery.tipsy.js', 'module');
+  drupal_add_js($path . '/js/jquery.qtip.js', 'module');
 
   // Create viewer placeholder.
   $output = '';

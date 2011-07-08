@@ -9,7 +9,31 @@ $(document).ready(function() {
                      {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']},
                      {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: "opaque"});
 
-  $('#building-viewer-nav-wrapper li a').tipsy({gravity: 's',fade: true});
+  // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
+  $('#building-viewer-nav-wrapper li a').qtip({
+      position: {
+      corner: {
+         target: 'topMiddle',
+         tooltip: 'bottomMiddle'
+      },
+      adjust: {
+        y: -5
+      }
+    },
+    style: {
+      name: 'dark',
+      background: '#333',
+      fontSize: '11px',
+      border: {
+        radius: 3,
+        width: 0
+      },
+      tip: {
+        corner: 'bottomMiddle',
+        size: { x: 7, y: 5 }
+      }
+    }
+  });
 
   // Hide information on load
   $('#building-viewer-point-information').hide();
@@ -64,8 +88,32 @@ $(document).ready(function() {
     return false;
   });
 
-  // Set tipsy on point placeholder.
-  $('#building-viewer-point-tipsy [title]').tipsy({gravity: 's',fade: true, live: true});
+  // Set tooltip on point placeholder.
+  // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
+  $('#building-viewer-point-tipsy [title]').qtip({
+      position: {
+      corner: {
+         target: 'topMiddle',
+         tooltip: 'bottomMiddle'
+      },
+      adjust: {
+        y: -5
+      }
+    },
+    style: {
+      name: 'dark',
+      background: '#333',
+      fontSize: '11px',
+      border: {
+        radius: 3,
+        width: 0
+      },
+      tip: {
+        corner: 'bottomMiddle',
+        size: { x: 7, y: 5 }
+      }
+    }
+  });
 });
 
 /**********************
@@ -230,7 +278,7 @@ function view3dMouseOverPoint(id, x, y, height) {
   $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
     data = Drupal.parseJson(data);
     var point = $('#building-viewer-point-tipsy a');
-    point.attr('original-title', data.value);
+    point.attr('title', data.value);
   });
 }
 
