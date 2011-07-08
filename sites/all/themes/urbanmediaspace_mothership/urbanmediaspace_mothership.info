@@ -35,7 +35,6 @@ stylesheets[print][] = styles/print.css
 ;--------------------- scripts ------------------------------
 scripts[] = scripts/jquery.example.min.js
 scripts[] = scripts/jquery.hoverintent.minified.js
-scripts[] = scripts/jquery.tipsy.js
 scripts[] = scripts/common.js
 
 ;--------------------- features ----------------------------
