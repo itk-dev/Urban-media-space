@@ -17,7 +17,7 @@ function viewer3d_admin_form() {
   
   $form['viewer3d'] = array(
     '#type' => 'fieldset',
-    '#collapsible' => FALSE,
+    '#collapsible' => TRUE,
     '#collapsed' => FALSE,
     '#title' => t('General settings'),
     '#tree' => TRUE,
@@ -97,6 +97,36 @@ function viewer3d_admin_form() {
     '#description' => t('Description placed at the top of the page.'),
     '#default_value' => isset($default['text']) ? $default['text'] : '',
   );
+
+  $default = variable_get('viewer3d_help', array());
+  $form['viewer3d_help'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#title' => t('Help text'),
+    '#tree' => TRUE,
+  );
+
+  $form['viewer3d_help']['header'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Header'),
+    '#description' => t('Help text title.'),
+    '#required' => TRUE,
+    '#default_value' => isset($default['header']) ? $default['header'] : '',
+  );
+
+
+  $form['viewer3d_help']['text'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Help text'),
+    '#description' => t('Help text shown when the viewer starts.'),
+    '#required' => TRUE,
+    '#wysiwyg' => TRUE,
+    '#default_value' => isset($default['text']) ? $default['text'] : '',
+  );
+
+  // Add wysiwyg editor
+  $form['viewer3d_help']['format'] = filter_form(FILTER_FORMAT_DEFAULT);
 
   return system_settings_form($form);
 }

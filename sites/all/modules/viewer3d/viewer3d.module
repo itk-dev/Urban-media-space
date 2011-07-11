@@ -108,12 +108,15 @@ function viewer3d_page() {
   // Overlay.
   $output .= '<div class="building-viewer-overlay"></div>';
 
+  // Load help text.
+  $help = variable_get('viewer3d_help', array());
+
   // Help.
   $output .= '<div id="building-viewer-help">';
   $output .= '<a href="#close" class="building-viewer-close"><span>' . t('Close') . '</span></a>';
   $output .= '<div id="building-viewer-help-inner-wrapper">';
-  $output .= '<h3>[Hjælpetekst header]</h3>';
-  $output .= '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
+  $output .= '<h3>' . (isset($help['header']) ? $help['header'] : '[Hjælpetekst header]') . '</h3>';
+  $output .= isset($help['text']) ? $help['text'] : '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
   $output .= '</div>';
   $output .= '</div>';
 
