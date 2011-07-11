@@ -256,11 +256,20 @@ function viewer3dMovie(movieName) {
 function view3dLocationChanged(id) {
   viewer3d_current_point = id;
 
-  var viewerSettings = Drupal.settings.viewer3d;
-  $.get(viewerSettings['path'] + '/ajax/title/' + id, function(data) {
-    data = Drupal.parseJson(data);
-    view3dUpdateTitle(data.value);
-  });
+  // Try to find information in the cache
+  var title = jQuery.data(document.body, "title_"+id);
+  if (title) {
+    view3dUpdateTitle(title);
+  }
+  else {
+    var viewerSettings = Drupal.settings.viewer3d;
+    $.get(viewerSettings['path'] + '/ajax/title/' + id, function(data) {
+      data = Drupal.parseJson(data);
+      // Save information in cache.
+      jQuery.data(document.body, 'title_'+id, data.value);
+      view3dUpdateTitle(data.value);
+    });
+  }
 }
 
 function view3DLoaded() {
@@ -283,12 +292,18 @@ function view3dMouseOverPoint(id, x, y, height) {
   $('#building-viewer-point-tip').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
 
   // Get point title.
-  var viewerSettings = Drupal.settings.viewer3d;
-  $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
-    data = Drupal.parseJson(data);
-    var point = $('#building-viewer-point-tip a');
-    $(point).qtip("api").updateContent(data.value);
-  });
+  var title = jQuery.data(document.body, "title_tip_"+id);
+  if (title) {
+    view3dUpdateTip(title);
+  }
+  else {
+    var viewerSettings = Drupal.settings.viewer3d;
+    $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
+      data = Drupal.parseJson(data);
+      jQuery.data(document.body, 'title_tip_'+id, data.value);
+      view3dUpdateTip(data.value);
+    });
+  }
 }
 
 function view3dMouseOutPoint(id) {
@@ -320,18 +335,29 @@ function view3dUpdateTitle(title) {
 }
 
 function view3dLoadInfoBox(href) {
-  // Make ajax call to get extended information information about the point.
-  $.get(href, function(data) {
-    data = Drupal.parseJson(data);
-
-    $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
-
-    // Toggle overlay
+  // Lookup the local cache.
+  id = href.split('/').pop();
+  var info = jQuery.data(document.body, "info_"+id);
+  if (info) {
+    $('#building-viewer-point-information .building-viewer-point-inner').html(info);
     viewerToggleOverlay();
-
-    // Show the element
     $('#building-viewer-point-information').fadeIn();
-  });
+  }
+  else {
+    // Make ajax call to get extended information information about the point.
+    $.get(href, function(data) {
+      data = Drupal.parseJson(data);
+      $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
+      viewerToggleOverlay();
+      $('#building-viewer-point-information').fadeIn();
+      jQuery.data(document.body, 'info_'+id, data.value);
+    });
+  }
+}
+
+function view3dUpdateTip(tip) {
+  var point = $('#building-viewer-point-tip a');
+  $(point).qtip("api").updateContent(tip);
 }
 
 // Used to prevent dlb click.
