@@ -57,11 +57,26 @@ $(document).ready(function() {
   $('#building-viewer-nav .next').click(function() {
     if (route[viewer3d_current_point].next.jump) {
       viewer3dGotoLocationDefaultDirection(route[viewer3d_current_point].next.pid);
-      return false;
     }
     else {
       viewer3dFlyToLocation(route[viewer3d_current_point].next.pid);
     }
+    return false;
+  });
+
+  // Full screen (not used yet)
+  $('#building-viewer-full-screen').click(function() {
+    $('#building-viewer-outer-wrapper').css('z-index',99);
+    
+    Shadowbox.open({
+        content:    $('#building-viewer-outer-wrapper').html(),
+        player:     "html",
+        title:      "3D viewer",
+        height:     $(window).height(),
+        width:      $(window).width()
+    }); 
+
+    return false;
 
   });
 
@@ -273,7 +288,7 @@ function view3dLocationChanged(id) {
 }
 
 function view3DLoaded() {
-  viewerToggleHelp();
+  viewerToggleHelp();    
 }
 
 function view3dPointClicked(id, x, y) {
