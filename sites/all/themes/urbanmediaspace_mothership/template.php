@@ -34,7 +34,12 @@ function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
     // Find the source node for translation nodes.
     $source = translation_path_get_translations($_GET['q']);
-    $source = $source['da'];
+    if ($source) {
+      $source = $source['da'];
+    }
+    else {
+      $source = $_GET['q'];
+    }
     $menu = db_fetch_object(db_query("SELECT menu_name
                                         FROM {menu_links}
                                        WHERE link_path = '%s'", $source))->menu_name;
