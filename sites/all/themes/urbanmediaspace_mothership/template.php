@@ -149,3 +149,24 @@ function ns() {
   }
   return $output;
 }
+
+/**
+ * Theme function for 'plain' text field formatter for cck links.
+ */
+function urbanmediaspace_mothership_link_formatter_plain($element) {
+  global $language;
+  $url = '';
+  if (empty($element['#item']['url'])) {
+    $url = check_plain($element['#item']['title']);
+  }
+  else {
+    $url = url($element['#item']['url'], $element['#item']);
+  }
+
+  // Remove language prefix from url paths.
+  if (preg_match('/^\/' . $language->language . '\//', $url)) {
+    $url = substr($url, strlen($language->language)+1);
+  }
+
+  return $url;
+}
