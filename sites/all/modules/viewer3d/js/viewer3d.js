@@ -288,7 +288,11 @@ function view3dLocationChanged(id) {
 }
 
 function view3DLoaded() {
-  viewerToggleHelp();    
+  // Only show helper text, if it's the first time the viewer is shown.
+  if (!$.cookie('viewer3d_help')) {
+    viewerToggleHelp();
+  }
+  $.cookie('viewer3d_help', 1);
 }
 
 function view3dPointClicked(id, x, y) {
