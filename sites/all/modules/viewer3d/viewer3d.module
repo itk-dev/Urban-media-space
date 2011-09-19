@@ -131,11 +131,16 @@ function viewer3d_page() {
   // Start link.
   $output .= '<li class="home"><a href="javascript:viewer3dGotoLocation('.$settings['currentLocation'].','.$settings['angle'].','.$settings['angle2'].')" title="' . t('Click here to go back to the starting point') . '">' . t('Back to start') . '</a></li>';
 
-  // Prev button (action is added in front-end).
-  $output .= '<li class="previous"><a href="#" title="' . t('Go to previous destination') . '">' . t('Previous destination') . '</a></li>';
+  $show_buttons = isset($settings['showPrevNext']) ? $settings['showPrevNext'] : 1;
+  if ($show_buttons) {
+    // Prev button (action is added in front-end).
+    $output .= '<li class="previous"><a href="#" title="' . t('Go to previous destination') . '">' . t('Previous destination') . '</a></li>';
 
-  // Next button (action is added in front-end).
-  $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+    // Next button (action is added in front-end).
+    $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+  }
+
+  // Help button.
   $output .= ' <li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
   $output .= '</ul>';

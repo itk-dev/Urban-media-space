@@ -91,6 +91,13 @@ function viewer3d_admin_form() {
     '#default_value' => isset($default['showLog']) ? $default['showLog'] : 0,
   );
 
+  $form['viewer3d']['showPrevNext'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show prev / next buttons'),
+    '#description' => t('Show log, mostly used for debuging.'),
+    '#default_value' => isset($default['showPrevNext']) ? $default['showPrevNext'] : 1,
+  );
+
   $form['viewer3d']['text'] = array(
     '#type' => 'textarea',
     '#title' => t('Introduction text'),
