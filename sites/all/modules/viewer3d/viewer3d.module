@@ -88,7 +88,7 @@ function viewer3d_page() {
       );
     }
   }
-
+  
   // Add all the javascript bits.
   drupal_add_js(array('viewer3d' => $settings), 'setting');
   drupal_add_js(array('viewer3d_route' => $route), 'setting');
