@@ -166,6 +166,10 @@
   z-index: 99;
 }
 
+#building-viewer-point-information li {
+  list-style: inside square;
+}
+
 .building-viewer-close {
   background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -15px -360px;
   height: 22px;
