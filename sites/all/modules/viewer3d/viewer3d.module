@@ -83,12 +83,13 @@ function viewer3d_page() {
       $prev = ($i == 0) ? $points[$length-1]['pid'] : $points[$i-1]['pid'];
       $next = ($i == $length-1) ? $points[0]['pid'] : $points[$i+1]['pid'];
       $route[$points[$i]['pid']] = array(
+        'type' => $points[$i]['type'],
         'prev' => array('pid' => $prev, 'jump' => $points[$i]['jump_type']['prev']),
         'next' => array('pid' => $next, 'jump' => $points[$i]['jump_type']['next']),
       );
     }
   }
-  
+
   // Add all the javascript bits.
   drupal_add_js(array('viewer3d' => $settings), 'setting');
   drupal_add_js(array('viewer3d_route' => $route), 'setting');

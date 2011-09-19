@@ -311,17 +311,25 @@ function view3dMouseOverPoint(id, x, y, height) {
   $('#building-viewer-point-tip').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
 
   // Get point title.
-  var title = jQuery.data(document.body, "title_tip_"+id);
-  if (title) {
-    view3dUpdateTip(title);
+  if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
+    // Set a default title for midway points.
+    view3dUpdateTip(Drupal.t('Go here'));
   }
   else {
-    var viewerSettings = Drupal.settings.viewer3d;
-    $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
-      data = Drupal.parseJson(data);
-      jQuery.data(document.body, 'title_tip_'+id, data.value);
-      view3dUpdateTip(data.value);
-    });
+    // Look up local cache for the title.
+    var title = jQuery.data(document.body, "title_tip_"+id);
+    if (title) {
+      view3dUpdateTip(title);
+    }
+    else {
+      // Ask the backend for a title.
+      var viewerSettings = Drupal.settings.viewer3d;
+      $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
+        data = Drupal.parseJson(data);
+        jQuery.data(document.body, 'title_tip_' + id, data.value);
+        view3dUpdateTip(data.value);
+      });
+    }
   }
 }
 
