@@ -63,6 +63,9 @@ function viewer3d_points_form(&$form_state) {
   $form = system_settings_form($form);
   $form['#theme'] = 'viewer3d_points_form';
   
+  // Remove the reset button.
+  unset($form['buttons']['reset']);
+
   return $form;
 }
 
