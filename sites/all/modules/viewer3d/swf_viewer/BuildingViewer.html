@@ -54,11 +54,22 @@ var hasProductInstall = DetectFlashVer(6, 0, 65);
 
 //Correct wmode, to have mouse working outside of browserwindow.
 function getWMode(){
+	
 	//Chrome and IE works with 'opaque', Firefox and Opera works with 'window'
-	if(/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent)){
+	if(/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)){
 		return 'opaque';
 	}else{
 		return 'window';
+	}
+}
+
+//When using Chrome, the mouse gets stuck in flash. So this functions returns false for chrome.
+function useCustomCursor(){
+	//Chrome and IE works with 'opaque', Firefox and Opera works with 'window'
+	if(/Chrome/i.test(navigator.userAgent)){
+		return "false";
+	}else{
+		return "true";
 	}
 }
 
@@ -88,7 +99,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"allowFullScreen","true",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer",
-				"flashvars","width=940&DaluxBuildingViewServerURL=http://buildingviewer.dalux.dk/mmhus/lf_24-06_11/&OverviewURL=http://buildingviewer.dalux.dk/mmhus/overview/mmhusoverview/&currentLocation=9&angle=4.54&angle2=6.10&showTopBar=false&showLog=true"
+		"flashvars", "customCursor=" + useCustomCursor() + "&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_v30_no_turn/&OverviewURL=http://prod.dalux.dk/mmhus/overview_25-08/&currentLocation=9&angle=4.54&angle2=6.10&informationPoints=true&showTopBar=false&showLog=true"
 	);
 } else if (hasRequestedVersion) {
 	// if we've detected an acceptable version
@@ -107,7 +118,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"allowFullScreen","true",
 			"type", "application/x-shockwave-flash",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer",
-			"flashvars","width=940&DaluxBuildingViewServerURL=http://buildingviewer.dalux.dk/mmhus/lf_24-06_11/&OverviewURL=http://buildingviewer.dalux.dk/mmhus/overview/mmhusoverview/&currentLocation=9&angle=4.54&angle2=6.10&showTopBar=false&showLog=true"
+			"flashvars", "customCursor=" + useCustomCursor() + "&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_v30_no_turn/&OverviewURL=http://prod.dalux.dk/mmhus/overview_25-08/&currentLocation=9&angle=4.54&angle2=6.10&informationPoints=true&showTopBar=false&showLog=true"
 	);
   } else {  // flash is too old or we can't detect the plugin
     var alternateContent = 'Alternate HTML content should be placed here. '
@@ -120,11 +131,13 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 </div>
 <br>
 <!---->
-<INPUT TYPE="button" NAME="pos1" Value="Hop til 1" onClick="gotoLocation(1, 1,-0.5)">
-<INPUT TYPE="button" NAME="pos2" Value="Hop til 2" onClick="gotoLocation(2, 0,0)">
-<INPUT TYPE="button" NAME="pos3" Value="Hop til 2 (ingen retning)" onClick="gotoLocationDefaultDirection(2)">
-<INPUT TYPE="button" NAME="fly1" Value="Animér til 1" onClick="flyToLocation(1)">
-<INPUT TYPE="button" NAME="fly2" Value="Animér til 2" onClick="flyToLocation(2)">
+<INPUT TYPE="button" NAME="pos1" Value="Hop til 7" onClick="gotoLocation(7, 1,-0.5)">
+<INPUT TYPE="button" NAME="pos2" Value="Hop til 8" onClick="gotoLocation(8, 0,0)">
+<INPUT TYPE="button" NAME="pos3" Value="Hop til 8 (ingen retning)" onClick="gotoLocationDefaultDirection(8)">
+<INPUT TYPE="button" NAME="pos3" Value="Rotér til default retning" onClick="rotateToDefaultDirection()">
+
+<INPUT TYPE="button" NAME="fly1" Value="Animér til 7" onClick="flyToLocation(7)">
+<INPUT TYPE="button" NAME="fly2" Value="Animér til 8" onClick="flyToLocation(8)">
 
 <!--<INPUT TYPE="button" NAME="hoptil1" Value="Lav hoptil1 punkt" onClick="createJumpPoint('> hoptil1', 5, 0,0)">
 <INPUT TYPE="button" NAME="hoptil2" Value="Lav hoptil2 punkt" onClick="createJumpPoint('> hoptil2', 1, 0,0)">-->
@@ -171,6 +184,19 @@ if ( hasProductInstall && !hasRequestedVersion ) {
                }
            }
 		   app.gotoLocationDefaultDirection(pos);
+		}
+		
+		function rotateToDefaultDirection() {
+	   	   var app = thisMovie('BuildingViewer');
+           if (!app) {
+               app = getObject('BuildingViewer');
+               if (!app) {
+                   app = getObject('BuildingViewer-name');
+                   if (!app)
+                    alert("not found");
+               }
+           }
+		   app.rotateToDefaultDirection();
 		}
 		
 		 function flyToLocation(pos) {
@@ -258,12 +284,26 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			var flash = document.getElementById("BuildingViewer"); 
 			
 			popup.style.left = (x - popup.offsetWidth / 2) + "px";
-			popup.style.top = (y - popup.offsetHeight - height / 2 - 5)  + "px";
+			popup.style.top = (y - popup.offsetHeight - height / 2 + 10)  + "px";
 			popup.style.visibility = "visible";
 			popup.innerHTML = "Mouse over på punkt " + id; 
 		}
 		
 		function view3dMouseOutPoint(id){
+			popup.style.visibility = "hidden";
+		}
+		
+		function view3dOverviewMouseOverPoint(id, x, y, height){
+			var popup = document.getElementById("popup"); 
+			var flash = document.getElementById("BuildingViewer"); 
+			
+			popup.style.left = (x - popup.offsetWidth / 2) + "px";
+			popup.style.top = (y - popup.offsetHeight - height / 2 - 5)  + "px";
+			popup.style.visibility = "visible";
+			popup.innerHTML = "Overview mouse over på punkt " + id; 
+		}
+		
+		function view3dOverviewMouseOutPoint(id){
 			popup.style.visibility = "hidden";
 		}
 		
@@ -330,7 +370,8 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			</embed>
 	</object>
 </noscript>
-<div id="popup" style="display:block; position:absolute; zIndex:999; background:#ffffcc; top:1000;left:1000 ">HTML Overlay test</>
+<div id="popup" style="display:block; position:absolute; zIndex:999; background:#ffffcc; top:1000;left:1000 ">HTML Overlay test</div>
+<div id="mouseOverTest" style="display:block; position:absolute; zIndex:999; background:#000000; color:#FFFFFF; border-color:#FFFFFF; top:600;left:0;width:300;height:50 ">HTML Integration</div>
 
 
 
