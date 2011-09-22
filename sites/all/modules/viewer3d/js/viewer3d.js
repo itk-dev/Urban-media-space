@@ -390,7 +390,7 @@ function view3dLoadInfoBox(href) {
   id = href.split('/').pop();
 
   // Rotate the users view in the viewer.
-  //viewer3dGotoLocationDefaultDirection(id);
+  viewer3dRotateToDefaultDirection();
 
   // Lookup the local cache.
   var info = jQuery.data(document.body, "info_"+id);
