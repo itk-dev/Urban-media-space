@@ -7,7 +7,7 @@ $(document).ready(function() {
                      "10.0.0",
                      viewerSettings['flash_location']+"/scripts/expressInstall.swf",
                      {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']},
-                     {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: "opaque"});
+                     {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: view3dGetWMode()});
 
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
   $('#building-viewer-nav-wrapper li a').qtip({
@@ -204,6 +204,21 @@ function viewer3dFlyToLocation(pos) {
   app.flyToLocation(pos);
 }
 
+function viewer3dRotateToDefaultDirection() {
+  var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
+  if (!app) {
+    app = viewer3dGetObject('BuildingViewer');
+    if (!app) {
+      app = viewer3dGetObject('BuildingViewer-name');
+      if (!app)
+        alert("not found");
+        return;
+    }
+  }
+  app.rotateToDefaultDirection();
+}
+
 function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
   var app = viewer3dMovie('BuildingViewer');
   app = viewer3dGetObject('building-viewer');
@@ -343,6 +358,16 @@ function view3dMouseOutPoint(id) {
 /*****************************
  * IMPLEMENTATION OF HELPERS *
  *****************************/
+function view3dGetWMode() {
+//  if (/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)) {
+//    return "opaque";
+//  }
+//  else {
+//    return "window";
+//  }
+  return "opaque";
+}
+
 function view3dUpdateTitle(title) {
   // Update title.
   $('#building-viewer-point-title').html(title);
