@@ -98,6 +98,29 @@ function viewer3d_admin_form() {
     '#default_value' => isset($default['showPrevNext']) ? $default['showPrevNext'] : 1,
   );
 
+  $form['viewer3d']['infoPoints'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use information points'),
+    '#description' => t('Display markers for information points.'),
+    '#default_value' => isset($default['infoPoints']) ? $default['infoPoints'] : 0,
+  );
+
+  $form['viewer3d']['markerSize'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Marker size'),
+    '#description' => t('The size of the markers.'),
+    '#size' => '4',
+    '#default_value' => isset($default['markerSize']) ? $default['markerSize'] : 40,
+  );
+
+  $form['viewer3d']['markerMinSize'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Marker min. size'),
+    '#description' => t('The markers min. size.'),
+    '#size' => '4',
+    '#default_value' => isset($default['markerMinSize']) ? $default['markerMinSize'] : 30,
+  );
+
   $form['viewer3d']['text'] = array(
     '#type' => 'textarea',
     '#title' => t('Introduction text'),
