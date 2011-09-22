@@ -288,11 +288,15 @@ function view3dLocationChanged(id) {
 }
 
 function view3DLoaded() {
-  viewerToggleHelp();    
+  // Only show helper text, if it's the first time the viewer is shown.
+  if (!$.cookie('viewer3d_help')) {
+    viewerToggleHelp();
+  }
+  $.cookie('viewer3d_help', 1);
 }
 
 function view3dPointClicked(id, x, y) {
-  
+ 
 }
 
 function view3dMoved() {
@@ -350,8 +354,12 @@ function view3dUpdateTitle(title) {
 }
 
 function view3dLoadInfoBox(href) {
-  // Lookup the local cache.
   id = href.split('/').pop();
+
+  // Rotate the users view in the viewer.
+  //viewer3dGotoLocationDefaultDirection(id);
+
+  // Lookup the local cache.
   var info = jQuery.data(document.body, "info_"+id);
   if (info) {
     $('#building-viewer-point-information .building-viewer-point-inner').html(info);

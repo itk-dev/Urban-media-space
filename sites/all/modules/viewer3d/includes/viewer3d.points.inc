@@ -41,15 +41,20 @@ function viewer3d_points_form(&$form_state) {
       // Loop the default points and unset them in the XML points. Then loop
       // over the remaining points, if any, they will be new points.
       foreach ($default as $point) {
-        // Get point name from XML points.
-        $point['name'] = $points[$point['pid']]['name'];
-        $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
+        // Get point name from XML points and only show points avalible in XML.
+        if ($points[$point['pid']]) {
+          $point['name'] = $points[$point['pid']]['name'];
+          $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
+        }        
         unset($points[$point['pid']]);
       }
     }
-    
+
     // Output remaining points or all points if non have been unset above.
     foreach ($points as $point) {
+      if (isset($form['viewer3d_points'][$point['pid']])) {
+        echo '<br />Point id is allready used: ',$point['pid'];
+      }
       $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
     }
   }
@@ -58,6 +63,9 @@ function viewer3d_points_form(&$form_state) {
   $form = system_settings_form($form);
   $form['#theme'] = 'viewer3d_points_form';
   
+  // Remove the reset button.
+  unset($form['buttons']['reset']);
+
   return $form;
 }
 
@@ -71,10 +79,10 @@ function _viewer3d_load_points($xml) {
   $points = array();
   foreach ($xml->Point as $point) {
     $pid = (Int)$point->attributes()->Id;
-    $points[] = array(
+    $points[$pid] = array(
       'pid' => $pid,
       'name' => (String)$point->attributes()->Name,
-      'weight' => isset($default[$pid]) ? $default[$pid]['weight'] : 50,
+      'weight' => 50,
     );
   }
   return $points;

@@ -88,13 +88,14 @@ function viewer3d_page() {
       );
     }
   }
-
+  
   // Add all the javascript bits.
   drupal_add_js(array('viewer3d' => $settings), 'setting');
   drupal_add_js(array('viewer3d_route' => $route), 'setting');
   drupal_add_js($path . '/js/swfobject.js', 'module');
   drupal_add_js($path . '/js/viewer3d.js', 'module');
   drupal_add_js($path . '/js/jquery.qtip.js', 'module');
+  drupal_add_js($path . '/js/jquery.cookie.js', 'module');
 
   // Create viewer placeholder.
   $output = '';
@@ -129,11 +130,16 @@ function viewer3d_page() {
   // Start link.
   $output .= '<li class="home"><a href="javascript:viewer3dGotoLocation('.$settings['currentLocation'].','.$settings['angle'].','.$settings['angle2'].')" title="' . t('Click here to go back to the starting point') . '">' . t('Back to start') . '</a></li>';
 
-  // Prev button (action is added in front-end).
-  $output .= '<li class="previous"><a href="#" title="' . t('Go to previous destination') . '">' . t('Previous destination') . '</a></li>';
+  $show_buttons = isset($settings['showPrevNext']) ? $settings['showPrevNext'] : 1;
+  if ($show_buttons) {
+    // Prev button (action is added in front-end).
+    $output .= '<li class="previous"><a href="#" title="' . t('Go to previous destination') . '">' . t('Previous destination') . '</a></li>';
 
-  // Next button (action is added in front-end).
-  $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+    // Next button (action is added in front-end).
+    $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+  }
+
+  // Help button.
   $output .= ' <li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
   $output .= '</ul>';
