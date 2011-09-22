@@ -348,6 +348,10 @@ function view3dMouseOverPoint(id, x, y, height) {
   }
 }
 
+function view3dRotationCompleted(id) {
+  console.log('Rotation complete');
+}
+
 function view3dMouseOutPoint(id) {
 
 }
