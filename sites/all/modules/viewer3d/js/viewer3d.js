@@ -90,6 +90,7 @@ $(document).ready(function() {
   $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
+      viwer3dInfoShow = true;
       viewer3dRotateToDefaultDirection();
       return false;
     }
@@ -231,7 +232,7 @@ function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
         return;
     }
   }
-  app.createJumpPoint(jumpName,pos, angle1, angle2);
+  app.createJumpPoint(jumpName, pos, angle1, angle2);
 }
 
 
@@ -247,7 +248,7 @@ function viewer3dCreateLoadPoint(jumpName, url) {
         return;
     }
   }
-  app.createLoadPoint(jumpName,url);
+  app.createLoadPoint(jumpName, url);
 }
 
 function viewer3dSetPointLabel(point, label) {
@@ -262,7 +263,7 @@ function viewer3dSetPointLabel(point, label) {
         return;
     }
   }
-  app.setPointLabel(point,label);
+  app.setPointLabel(point, label);
 }
 
 function viewer3dMovie(movieName) {
@@ -350,25 +351,28 @@ function view3dMouseOverPoint(id, x, y, height) {
 
 function view3dRotationCompleted(id) {
 
-  var viewerSettings = Drupal.settings.viewer3d;
-  var href = viewerSettings.path + '/ajax/info/' + id;
+  // Info box, if requested else do ...
+  if (viwer3dInfoShow) {
+    var viewerSettings = Drupal.settings.viewer3d;
+    var href = viewerSettings.path + '/ajax/info/' + id;
 
-  // Lookup the local cache.
-  var info = jQuery.data(document.body, "info_"+id);
-  if (info) {
-    $('#building-viewer-point-information .building-viewer-point-inner').html(info);
-    viewerToggleOverlay();
-    $('#building-viewer-point-information').fadeIn();
-  }
-  else {
-    // Make ajax call to get extended information information about the point.
-    $.get(href, function(data) {
-      data = Drupal.parseJson(data);
-      $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
+    // Lookup the local cache.
+    var info = jQuery.data(document.body, "info_"+id);
+    if (info) {
+      $('#building-viewer-point-information .building-viewer-point-inner').html(info);
       viewerToggleOverlay();
       $('#building-viewer-point-information').fadeIn();
-      jQuery.data(document.body, 'info_'+id, data.value);
-    });
+    }
+    else {
+      // Make ajax call to get extended information information about the point.
+      $.get(href, function(data) {
+        data = Drupal.parseJson(data);
+        $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
+        viewerToggleOverlay();
+        $('#building-viewer-point-information').fadeIn();
+        jQuery.data(document.body, 'info_'+id, data.value);
+      });
+    }
   }
 }
 
@@ -400,6 +404,7 @@ function view3dUpdateTitle(title) {
   $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
+      viwer3dInfoShow = true;
       viewer3dRotateToDefaultDirection();
       return false;
     }
@@ -420,6 +425,9 @@ function view3dUpdateTip(tip) {
 
 // Used to prevent dlb click.
 var viewer3d_click = true;
+
+// Fix problem with rotation complete event and info box.
+var viwer3dInfoShow = false;
 
 // Toggle overlay, opt = show, hide
 function viewerToggleOverlay(opt) {
