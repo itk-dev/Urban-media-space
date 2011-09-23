@@ -387,13 +387,13 @@ function view3dMouseOutPoint(id) {
  * IMPLEMENTATION OF HELPERS *
  *****************************/
 function view3dGetWMode() {
-//  if (/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)) {
-//    return "opaque";
-//  }
-//  else {
-//    return "window";
-//  }
-  return "opaque";
+  if (/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)) {
+    return "opaque";
+  }
+  else {
+    return "window";
+  }
+//  return "opaque";
 }
 
 function view3dUpdateTitle(title) {
