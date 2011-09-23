@@ -286,6 +286,12 @@ function viewer3dMovie(movieName) {
  ****************************/
 function view3dLocationChanged(id) {
   viewer3d_current_point = id;
+  
+  if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
+    $('#building-viewer-point-title').hide();
+  } else {
+    $('#building-viewer-point-title').show();    
+  }
 
   // Try to find information in the cache
   var title = jQuery.data(document.body, "title_"+id);
