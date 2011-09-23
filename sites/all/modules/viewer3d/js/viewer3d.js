@@ -6,7 +6,7 @@ $(document).ready(function() {
                      "666",
                      "10.0.0",
                      viewerSettings['flash_location']+"/scripts/expressInstall.swf",
-                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']},
+                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']+'&markerSize='+viewerSettings['markerSize']+'&markerMinSize='+viewerSettings['markerMinSize']},
                      {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: view3dGetWMode()});
 
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
@@ -90,7 +90,7 @@ $(document).ready(function() {
   $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
-      view3dLoadInfoBox($(this).attr('href'))
+      viewer3dRotateToDefaultDirection();
       return false;
     }
     return false;
@@ -349,7 +349,27 @@ function view3dMouseOverPoint(id, x, y, height) {
 }
 
 function view3dRotationCompleted(id) {
-  console.log('Rotation complete');
+
+  var viewerSettings = Drupal.settings.viewer3d;
+  var href = viewerSettings.path + '/ajax/info/' + id;
+
+  // Lookup the local cache.
+  var info = jQuery.data(document.body, "info_"+id);
+  if (info) {
+    $('#building-viewer-point-information .building-viewer-point-inner').html(info);
+    viewerToggleOverlay();
+    $('#building-viewer-point-information').fadeIn();
+  }
+  else {
+    // Make ajax call to get extended information information about the point.
+    $.get(href, function(data) {
+      data = Drupal.parseJson(data);
+      $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
+      viewerToggleOverlay();
+      $('#building-viewer-point-information').fadeIn();
+      jQuery.data(document.body, 'info_'+id, data.value);
+    });
+  }
 }
 
 function view3dMouseOutPoint(id) {
@@ -380,7 +400,7 @@ function view3dUpdateTitle(title) {
   $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
-      view3dLoadInfoBox($(this).attr('href'))
+      viewer3dRotateToDefaultDirection();
       return false;
     }
     return false;
@@ -391,28 +411,6 @@ function view3dUpdateTitle(title) {
 }
 
 function view3dLoadInfoBox(href) {
-  id = href.split('/').pop();
-
-  // Rotate the users view in the viewer.
-  viewer3dRotateToDefaultDirection();
-
-  // Lookup the local cache.
-  var info = jQuery.data(document.body, "info_"+id);
-  if (info) {
-    $('#building-viewer-point-information .building-viewer-point-inner').html(info);
-    viewerToggleOverlay();
-    $('#building-viewer-point-information').fadeIn();
-  }
-  else {
-    // Make ajax call to get extended information information about the point.
-    $.get(href, function(data) {
-      data = Drupal.parseJson(data);
-      $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
-      viewerToggleOverlay();
-      $('#building-viewer-point-information').fadeIn();
-      jQuery.data(document.body, 'info_'+id, data.value);
-    });
-  }
 }
 
 function view3dUpdateTip(tip) {
