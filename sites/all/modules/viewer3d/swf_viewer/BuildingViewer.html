@@ -28,7 +28,7 @@ Learn more about Flex at http://flex.org
 <!--  END Browser History required section -->
 
 <style>
-body { margin: 0px; overflow:hidden }
+body { margin: 0px;}
 </style>
 <script language="JavaScript" type="text/javascript">
 <!--
@@ -45,7 +45,7 @@ var requiredRevision = 0;
 </script>
 </head>
 
-<body scroll="no" bgcolor="#b9b9b9">
+<body bgcolor="#b9b9b9">
 <div width="940" height="666">
 <script language="JavaScript" type="text/javascript">
 <!--
@@ -54,7 +54,7 @@ var hasProductInstall = DetectFlashVer(6, 0, 65);
 
 //Correct wmode, to have mouse working outside of browserwindow.
 function getWMode(){
-	
+	return 'opaque';
 	//Chrome and IE works with 'opaque', Firefox and Opera works with 'window'
 	if(/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)){
 		return 'opaque';
@@ -65,6 +65,7 @@ function getWMode(){
 
 //When using Chrome, the mouse gets stuck in flash. So this functions returns false for chrome.
 function useCustomCursor(){
+	//return false;
 	//Chrome and IE works with 'opaque', Firefox and Opera works with 'window'
 	if(/Chrome/i.test(navigator.userAgent)){
 		return "false";
@@ -99,7 +100,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"allowFullScreen","true",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer",
-		"flashvars", "customCursor=" + useCustomCursor() + "&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_v30_no_turn/&OverviewURL=http://prod.dalux.dk/mmhus/overview_25-08/&currentLocation=9&angle=4.54&angle2=6.10&informationPoints=true&showTopBar=false&showLog=true"
+		"flashvars", "customCursor=" + useCustomCursor() + "&mouseOutsideFlash=true&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V40a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
 	);
 } else if (hasRequestedVersion) {
 	// if we've detected an acceptable version
@@ -118,7 +119,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"allowFullScreen","true",
 			"type", "application/x-shockwave-flash",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer",
-			"flashvars", "customCursor=" + useCustomCursor() + "&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_v30_no_turn/&OverviewURL=http://prod.dalux.dk/mmhus/overview_25-08/&currentLocation=9&angle=4.54&angle2=6.10&informationPoints=true&showTopBar=false&showLog=true"
+			"flashvars", "customCursor=" + useCustomCursor() + "&mouseOutsideFlash=true&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V40a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
 	);
   } else {  // flash is too old or we can't detect the plugin
     var alternateContent = 'Alternate HTML content should be placed here. '
@@ -142,115 +143,108 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 <!--<INPUT TYPE="button" NAME="hoptil1" Value="Lav hoptil1 punkt" onClick="createJumpPoint('> hoptil1', 5, 0,0)">
 <INPUT TYPE="button" NAME="hoptil2" Value="Lav hoptil2 punkt" onClick="createJumpPoint('> hoptil2', 1, 0,0)">-->
 
+
 <LABEL ID="atPointLbl"></LABEL>
 <!---->
 <script language="JavaScript" type="text/javascript">
 
-/*	   function flashReady() {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
-       }*/
+
+	var app;
+   	function view3DLoaded(){
+   		//Init app
+			app = thisMovie('BuildingViewer');
+	        if (!app) {
+	           app = getObject('BuildingViewer');
+	           if (!app) {
+	               app = getObject('BuildingViewer-name');
+	               if (!app)
+	                alert("not found");
+	           }
+	       }
+			createLoadPoint('16/3-2011', 'http://prod.dalux.dk/pihl/output/160311_7/');
+			createLoadPoint('26/3-2011', 'http://prod.dalux.dk/pihl/output/260711_7/');
+			createLoadPoint('30/9-2011', 'http://prod.dalux.dk/pihl/output/300911_7/');
+			createLoadPoint('Færdig', 'http://prod.dalux.dk/pihl/output/full_7/');
+			setPointLabel('44', "Taget");
+			setPointLabel('30', "Indgang");
+		}
        
-     
-       
-	   function gotoLocation(pos, angle1, angle2) {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+	   function gotoLocation(pos, angle1, angle2){
 		   app.gotoLocation(pos, angle1, angle2);
 		}
 		
-		function gotoLocationDefaultDirection(pos) {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+		function gotoLocationDefaultDirection(pos){
 		   app.gotoLocationDefaultDirection(pos);
 		}
 		
-		function rotateToDefaultDirection() {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+		function rotateToDefaultDirection(){
+           document.getElementById('rotationCompletedDiv').innerHTML = 'Rotating';
 		   app.rotateToDefaultDirection();
 		}
 		
-		 function flyToLocation(pos) {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+		function view3dRotationCompleted(id){
+	   	 document.getElementById('rotationCompletedDiv').innerHTML = 'Rotation completed';
+		}
+		
+		function flyToLocation(pos){
 		   app.flyToLocation(pos);
 		}
 		
-	   function createJumpPoint(jumpName, pos, angle1, angle2) {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+	   function createJumpPoint(jumpName, pos, angle1, angle2){
 		   app.createJumpPoint(jumpName,pos, angle1, angle2);
 		}
 		
-				
-	   function createLoadPoint(jumpName, url) {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+	   function createLoadPoint(jumpName, url){
 		   app.createLoadPoint(jumpName,url);
 		}
 		
-		 function setPointLabel(point, label) {
-	   	   var app = thisMovie('BuildingViewer');
-           if (!app) {
-               app = getObject('BuildingViewer');
-               if (!app) {
-                   app = getObject('BuildingViewer-name');
-                   if (!app)
-                    alert("not found");
-               }
-           }
+		 function setPointLabel(point, label){
 		   app.setPointLabel(point,label);
 		}
+		
+		function getUrl(){
+			document.getElementById('urlText').value = app.getUrl();
+		}
+		
+		function gotoUrl(){
+			app.gotoUrl(document.getElementById('urlText').value);
+		}
+		
+		
+		function recordMovie(){       
+           	app.recordMovie();
+		}
+		
+		function stopRecordingMovie() {       
+           	app.stopRecordingMovie();
+		}
+		
+		function getMovieUrl(){
+           	document.getElementById('movieUrlText').value = app.getMovieUrl();
+		}
+		
+		function playMovieUrl(){
+			document.getElementById('movieStatus').innerHTML = 'Playing';
+		   app.playMovieUrl(document.getElementById('movieUrlText').value);
+		}
+		
+		function stopMovie(){
+		   app.stopMovie();
+		}
+		
+		function resumeMovie(){
+		   app.resumeMovie();
+		}
+		
+		function view3dMovieCompleted(){
+		   document.getElementById('movieStatus').innerHTML = 'Movie finnished';
+		}
+		
+		function snapshot(){
+		   var imageBase64 = app.snapshot();
+		   document.getElementById('snapshotImage').src = 'data:image/png;base64,' + imageBase64;
+		}
+		
 		
 		function view3dLocationChanged(id){
 			var lbl = document.getElementById('atPointLbl');
@@ -258,15 +252,6 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 				lbl.innerHTML = 'Ved punkt ' + id;
 			}
 			popup.style.visibility = "hidden";
-		}
-		
-		function view3DLoaded(){
-			createLoadPoint('16/3-2011', 'http://prod.dalux.dk/pihl/output/160311_7/');
-			createLoadPoint('26/3-2011', 'http://prod.dalux.dk/pihl/output/260711_7/');
-			createLoadPoint('30/9-2011', 'http://prod.dalux.dk/pihl/output/300911_7/');
-			createLoadPoint('Færdig', 'http://prod.dalux.dk/pihl/output/full_7/');
-			setPointLabel('44', "Taget");
-			setPointLabel('30', "Indgang");
 		}
 		
 		function view3dPointClicked(id, x, y){
@@ -287,6 +272,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			popup.style.top = (y - popup.offsetHeight - height / 2 + 10)  + "px";
 			popup.style.visibility = "visible";
 			popup.innerHTML = "Mouse over på punkt " + id; 
+			currentPointClick = id;
 		}
 		
 		function view3dMouseOutPoint(id){
@@ -298,9 +284,10 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			var flash = document.getElementById("BuildingViewer"); 
 			
 			popup.style.left = (x - popup.offsetWidth / 2) + "px";
-			popup.style.top = (y - popup.offsetHeight - height / 2 - 5)  + "px";
+			popup.style.top = (y - popup.offsetHeight - height / 2 )  + "px";
 			popup.style.visibility = "visible";
 			popup.innerHTML = "Overview mouse over på punkt " + id; 
+
 		}
 		
 		function view3dOverviewMouseOutPoint(id){
@@ -346,34 +333,47 @@ if ( hasProductInstall && !hasRequestedVersion ) {
            }
        }
 
+currentPointClick = "-1";
        
 </script>
 
 <noscript>
-  	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-			id="BuildingViewer" width="900" height="600"
-			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
-			<param name="movie" value="BuildingViewer.swf" />
-			<param name="quality" value="high" />
-			<param name="bgcolor" value="#000000" />
-			<param name="allowScriptAccess" value="sameDomain" />
-			<param name="allowFullScreen"  value="true" />
-			<param name="wmode" value="opaque" />  
-			<embed src="BuildingViewer.swf" quality="high" bgcolor="#000000"
-				width="900" height="600" name="BuildingViewer" align="middle"
-				play="true"
-				loop="false"
-				quality="high"
-				allowScriptAccess="sameDomain"
-				type="application/x-shockwave-flash"
-				pluginspage="http://www.adobe.com/go/getflashplayer">
-			</embed>
-	</object>
+ Javascript must be enabled.
 </noscript>
-<div id="popup" style="display:block; position:absolute; zIndex:999; background:#ffffcc; top:1000;left:1000 ">HTML Overlay test</div>
+<div style="float:left;padding: 20px" id="rotationCompletedDiv">Rotation info</div>
+
+<div style="float:left;padding: 20px" >
+	<INPUT TYPE="button" Value="Gå til id:" onClick="gotoLocationDefaultDirection(document.getElementById('gotoPointIdText').innerText)"/>
+	<input type="text"  id="gotoPointIdText" value="0" />
+</div>
+
+<div style="float:left;padding: 20px" >
+	Url<br/>
+	<INPUT TYPE="button" NAME="getUrlBtn" Value="Get Url" onClick="getUrl()">
+	<INPUT TYPE="button" NAME="gotoUrlBtn" Value="Goto Url" onClick="gotoUrl()">
+	<INPUT TYPE="text" NAME="urlText" Value="">
+</div>
+
+<div style="float:left;padding: 20px">
+	Movie<br/>
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Record Movie" onClick="recordMovie()">
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Stop Recording" onClick="stopRecordingMovie()">
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Get Url" onClick="getMovieUrl()">
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Play Url" onClick="playMovieUrl()">
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Stop/Pause" onClick="stopMovie()">
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Resume Play" onClick="resumeMovie()">
+	<INPUT TYPE="text" NAME="movieUrlText" Value="">
+  	<label id="movieStatus"></label>
+</div>
+
+
+<div style="float:left;padding: 20px">
+	<INPUT TYPE="button" NAME="snapshotBtn" Value="Take snapshot" onClick="snapshot()">
+	<img id="snapshotImage"/>
+</div>
+
+
+<div id="popup" style="visibility:hidden;display:block; position:absolute; zIndex:999; background:#ffffcc;" onClick="flyToLocation(currentPointClick)">HTML Overlay test</div>
 <div id="mouseOverTest" style="display:block; position:absolute; zIndex:999; background:#000000; color:#FFFFFF; border-color:#FFFFFF; top:600;left:0;width:300;height:50 ">HTML Integration</div>
-
-
-
 </body>
 </html>
