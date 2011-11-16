@@ -135,6 +135,14 @@ $(document).ready(function() {
     viewer3dFlyToLocation(viewer3d_current_point_clicked);
     return false;
   });
+  
+  // Close overlay on click
+  $('.building-viewer-overlay').click(function() {
+    $('#building-viewer-point-information').fadeOut();
+    viewerToggleOverlay();
+  });
+  
+  
 });
 
 /**********************

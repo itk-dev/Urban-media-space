@@ -119,9 +119,9 @@
   position: absolute;
 }
 
-
 .building-viewer-overlay {
   background-color: #000;
+  cursor: pointer;
   height: 666px;
   left: 0px;
   top: 0;
@@ -150,7 +150,7 @@
 
 #building-viewer-point-title a {
   background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat right -300px;
-  color: #666;
+  color: #f45000;
   display: block;
   font-size: 150%;
   padding: 10px 60px 10px 10px;
