@@ -142,20 +142,20 @@ function viewer3d_page() {
     $output .= '<li class="previous"><a href="#" title="' . t('Go to previous destination') . '">' . t('Previous destination') . '</a></li>';
 
     // Next button (action is added in front-end).
-    $output .= ' <li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
+    $output .= '<li class="next last"><a href="#" title="' . t('Go to next destination') . '">' . t('Next destination') . '</a></li>';
   }
 
   // Help button.
-  $output .= ' <li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
+  $output .= '<li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
    // Menu button.
-  $output .= ' <li class="menu"><a href="#" title="' . t('Menu') . '">' . t('Menu') . '</a>';
+  $output .= '<li class="menu"><a href="#" title="' . t('Menu') . '">' . t('Menu') . '</a>';
   // Menu submenu.
   $output .= '<ul class="submenu">';
-  $output .= ' <li class="download"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
-  $output .= ' <li class="tips"><a href="#" title="' . t('Tips') . '">' . t('Tips') . '</a></li>';  
-  $output .= ' </ul>';
-  $output .= ' </li>'; 
+  $output .= '<li class="download"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
+  $output .= '<li class="tips"><a href="/3dviewer/tips" title="' . t('Tips') . '">' . t('Tips') . '</a></li>';  
+  $output .= '</ul>';
+  $output .= '</li>'; 
   
   $output .= '</ul>';
 
