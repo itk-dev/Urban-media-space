@@ -44,6 +44,7 @@ function viewer3d_points_form(&$form_state) {
         // Get point name from XML points and only show points avalible in XML.
         if ($points[$point['pid']]) {
           $point['name'] = $points[$point['pid']]['name'];
+          $point['type'] = $points[$point['pid']]['type'];
           $form['viewer3d_points'][$point['pid']] = _viewer3d_points_ordering_field($point);
         }        
         unset($points[$point['pid']]);
@@ -81,6 +82,7 @@ function _viewer3d_load_points($xml) {
     $pid = (Int)$point->attributes()->Id;
     $points[$pid] = array(
       'pid' => $pid,
+      'type' => (String)$point->attributes()->Type,
       'name' => (String)$point->attributes()->Name,
       'weight' => 50,
     );
@@ -100,6 +102,11 @@ function _viewer3d_points_ordering_field($point) {
   $field['pid'] = array(
     '#type' => 'hidden',
     '#value' => $point['pid'],
+  );
+
+  $field['type'] = array(
+    '#type' => 'hidden',
+    '#value' => $point['type'],
   );
 
   $field['name'] = array(
@@ -151,7 +158,10 @@ function theme_viewer3d_points_form($form) {
 
     // Render the hidden 'node id' field and the title of the record into the
     // same column of the row.
-    $row[] = drupal_render($form['viewer3d_points'][$key]['name']) . drupal_render($form['viewer3d_points'][$key]['pid']) . drupal_render($form['viewer3d_points'][$key]['label']);
+    $row[] = drupal_render($form['viewer3d_points'][$key]['name']) .
+             drupal_render($form['viewer3d_points'][$key]['pid']) .
+             drupal_render($form['viewer3d_points'][$key]['type']) .
+             drupal_render($form['viewer3d_points'][$key]['label']);
     $row[] = drupal_render($form['viewer3d_points'][$key]['jump_type']);
 
     // Add an identifying CSS class to our weight field, as it's the one
