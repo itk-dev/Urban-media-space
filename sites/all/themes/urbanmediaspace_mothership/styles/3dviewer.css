@@ -104,13 +104,65 @@
 }
 
 #building-viewer-nav-wrapper ul li.help a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -7px -394px;
   overflow: hidden;
   text-indent: -10000px;
 }
 
+#building-viewer-nav-wrapper ul li.help a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -7px -394px;
+}
+
 #building-viewer-nav-wrapper ul li.help a:hover {
   background-position: -7px -436px;
+}
+
+#building-viewer-nav-wrapper ul li.menu {
+  border-right: 0;
+  border-left: 1px dotted #e5e5e5;
+  float: right;
+}
+
+#building-viewer-nav-wrapper ul li.menu a {
+  padding-left: 38px;
+}
+
+#building-viewer-nav-wrapper ul li.menu a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -7px -474px;
+}
+
+#building-viewer-nav-wrapper ul li.menu a:hover {
+  background-position: -7px -508px;
+}
+
+#building-viewer-nav-wrapper ul li ul.submenu {
+  border-left: 1px dotted #e5e5e5;
+  display: none;
+  right: 135px;
+  position: absolute;
+  top: 0;
+  width: auto;
+}
+
+#building-viewer-nav-wrapper ul li ul.submenu li {
+  float: right;
+}
+
+#building-viewer-nav-wrapper ul li ul.submenu li.download a {
+  background-position: -5px -542px;
+  padding-left: 43px;
+}
+
+#building-viewer-nav-wrapper ul li ul.submenu li.download a:hover {
+  background-position: -5px -577px;
+}
+
+#building-viewer-nav-wrapper ul li ul.submenu li.tips a {
+  background-position: -7px -612px;
+  padding-left: 35px;
+}
+
+#building-viewer-nav-wrapper ul li ul.submenu li.tips a:hover {
+  background-position: -7px -646px;
 }
 
 .building-viewer-overlay,

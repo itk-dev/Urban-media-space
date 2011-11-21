@@ -39,4 +39,4 @@ $(document).ready(function() {
     Shadowbox.options.onOpen = moveCloseLink;
   }
 
-  });
+});
