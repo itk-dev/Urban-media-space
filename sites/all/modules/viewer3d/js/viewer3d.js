@@ -6,7 +6,7 @@ $(document).ready(function() {
                      "666",
                      "10.0.0",
                      viewerSettings['flash_location']+"/scripts/expressInstall.swf",
-                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']+'&markerSize='+viewerSettings['markerSize']+'&markerMinSize='+viewerSettings['markerMinSize']+'&rotationSpeed='+viewerSettings['rotationSpeed']},
+                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']+'&markerSize='+viewerSettings['markerSize']+'&markerMinSize='+viewerSettings['markerMinSize']+'&rotationSpeed='+viewerSettings['rotationSpeed']+'&mouseOutsideFlash=true'},
                      {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: view3dGetWMode()});
 
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
@@ -149,6 +149,25 @@ $(document).ready(function() {
 /**********************
  * API IMPLEMENTATION *
  **********************/
+function viewer3dSnapshot(){
+  var app = viewer3dMovie('BuildingViewer');
+  app = viewer3dGetObject('building-viewer');
+  if (!app) {
+    app = viewer3dGetObject('BuildingViewer');
+    if (!app) {
+      app = viewer3dGetObject('BuildingViewer-name');
+      if (!app)
+        alert("not found");
+        return;
+    }
+  }
+  var imageBase64 = app.snapshot();
+  $.post('3dviewer/download', {data: imageBase64}, function(data) {
+    window.open(data, 'Download');
+  });
+}
+
+
 function viewer3dGotoLocation(pos, angle, angle2) {
   var app = viewer3dMovie('BuildingViewer');
   app = viewer3dGetObject('building-viewer');

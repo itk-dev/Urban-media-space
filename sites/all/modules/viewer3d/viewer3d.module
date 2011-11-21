@@ -62,6 +62,15 @@ function viewer3d_menu() {
       'type' => MENU_CALLBACK,
       'file' => 'includes/viewer3d.ajax.inc',
     );
+
+    $items[$settings['path'] . '/download'] = array(
+      'title' => t('Download image'),
+      'description' => t('Download 3D viewer screenshoot'),
+      'page callback' => 'viewer3d_download',
+      'access arguments' => array('view model'),
+      'type' => MENU_CALLBACK,
+      'file' => 'includes/viewer3d.ajax.inc',
+    );
   }
 
   return $items;

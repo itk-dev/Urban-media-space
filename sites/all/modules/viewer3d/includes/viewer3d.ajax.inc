@@ -52,3 +52,35 @@ function viewer3d_load_information($pid) {
     return '<p>' . t('No information found about this point.') . '<p>';
   }
 }
+
+function viewer3d_download($filename = FALSE) {
+  // Image path.
+  $path = file_directory_path() . '/3dviewer_user_generated';
+
+  // If this is not a download, generate image.
+  if (!$filename) {
+    if (isset($_POST['data'])) {
+      $img = imagecreatefromstring(base64_decode($_POST['data']));
+      if ($img != false) {
+        // Create file path.
+        $filename = '/3dviewer_' . base_convert(mt_rand(0x1D39D3E06400000, 0x41C21CB8E0FFFFFF), 10, 36)  . '.png';
+        file_check_directory($path, FILE_CREATE_DIRECTORY);
+
+        // Save image.
+        imagepng($img, $path . '/' . $filename);
+
+        // Return file name.
+        echo '3dviewer/download/' . $filename;
+      }
+    }
+    return;
+  }
+
+  // Create filename.
+  $filename = $path . '/' . basename($filename);
+
+  // Download file.
+  header('Content-Type: image/png');
+  header('Content-Disposition: attachment;filename="'.basename($filename).'"');
+  readfile($filename);
+}
