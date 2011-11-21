@@ -145,8 +145,8 @@ $(document).ready(function() {
   
   // Toggle menu
 
-  function showSubmenu(){  $('ul.submenu').show('fast');}
-  function hideSubmenu(){ $('ul.submenu').hide('fast');}
+  function showSubmenu(){$('ul.submenu').show('fast');}
+  function hideSubmenu(){$('ul.submenu').hide('fast');}
   
   var config = {
     over: showSubmenu, // function = onMouseOver callback (REQUIRED)    
@@ -155,7 +155,12 @@ $(document).ready(function() {
   };
 
   $('#building-viewer-nav li.menu').hoverIntent(config)  
-  
+
+  $('.submenu .download a').click(function(e) {
+    viewer3dSnapshot();
+    return false;
+  });
+
 });
 
 /**********************
