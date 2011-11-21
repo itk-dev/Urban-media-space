@@ -16,6 +16,15 @@
 define('I18NMENU_NODE_BLOCK_SEPARATOR', '--');
 
 /**
+ * Implementation of hook_init().
+ */
+function i18nmenu_node_init() {
+  if ($node = menu_get_object()) {
+    i18nmenu_node_set_item($node);
+  }
+}
+
+/**
  * Return the information used to provide the [i18n] blocks.
  */
 function i18nmenu_node_block_info($module = NULL) {
@@ -50,6 +59,9 @@ function i18nmenu_node_block($op = 'list', $delta = 0) {
   switch ($op) {
     case 'list':
       $blocks = array();
+      $schema = drupal_get_schema('blocks');
+      $max_length = $schema['fields']['delta']['length'];
+
       // Retrieve blocks from all the modules defined in the block information.
       foreach (i18nmenu_node_block_info() as $module => $data) {
         $module_blocks = module_invoke($module, 'block');
@@ -61,10 +73,23 @@ function i18nmenu_node_block($op = 'list', $delta = 0) {
           // Create an [i18n] version for each block and store the parent module
           // as part of the delta.
           foreach ($module_blocks as $delta => $block) {
-            $blocks["$module$separator$delta"]['info'] = t('[i18n] !block', array('!block' => $block['info']));
+            // Truncate the [i18n] block delta to the maximum allowed length and
+            // check that there is no block with such a delta already defined.
+            $mtn_delta = substr($module . $separator . $delta, 0, $max_length);
+            if (!isset($blocks[$mtn_delta])) {
+              $blocks[$mtn_delta]['info'] = t('[i18n] !block', array('!block' => $block['info']));
+              // Inherit block settings except for the 'info' key.
+              $blocks[$mtn_delta] += $block;
+            }
+            else {
+              $limit = $max_length - strlen($module . $separator);
+              $info = str_replace('[i18n] ', '', $blocks[$mtn_delta]['info']);
+              drupal_set_message(t('The [i18n] version of <em>@current_block</em> cannot be provided: the block identifier is already assigned to <em>@block</em>. Try to change the original block identifier before character !limit.', array('@current_block' => $block['info'], '@block' => $info, '!limit' => $limit)), 'warning', FALSE);
+            }
           }
         }
       }
+
       return $blocks;
 
     case 'view':
@@ -358,8 +383,9 @@ function i18nmenu_node_form_alter(&$form, &$form_state, $form_id) {
       '#description' => t('If this is checked the menu item will be shared among all the node translations, however you will still be able to translate the menu link title.'),
     );
 
-    // If the node already has a menu just add the node translation option.
-    if (!empty($node->menu['mlid']) && $translation_support) {
+    // If the node already has a menu just add the node translation option, but
+    // only for source nodes.
+    if (!empty($node->menu['mlid']) && $translation_support && (empty($node->tnid) || $node->nid == $node->tnid)) {
       $node_translation_form['#default_value'] = i18nmenu_node_enabled($node->menu);
       $form['menu']['i18nmenu_node_translation'] = $node_translation_form;
       return;
@@ -479,12 +505,6 @@ function i18nmenu_node_nodeapi(&$node, $op, $a3 = NULL, $page = NULL) {
         }
       }
       break;
-
-    case 'view':
-      if ($page) {
-        i18nmenu_node_set_item($node);
-      }
-      break;
   }
 }
 
@@ -532,24 +552,29 @@ function i18nmenu_node_token_values($type, $node = NULL, $options = array()) {
   $values = array();
 
   if ($type == 'node') {
-    $value = '';
     $trail_raw = array();
-    $tnid = _i18nmenu_node_get_node_tnid($node);
-    $tnode = !empty($tnid) && $tnid != $nid ? (object) array('nid' => $tnid) : $node;
-    _i18nmenu_node_prepare($tnode);
+    $item = FALSE;
 
-    if (!empty($tnode->menu)) {
-      $item = $tnode->menu;
-
-      while ($item) {
-        array_unshift($trail_raw, _i18nmenu_get_item_title($item, FALSE, $node->language));
-        $item = empty($item['plid']) ? FALSE : menu_link_load($item['plid']);
+    // If the current node has no menu item we use the source node one.
+    if (empty($node->menu['mlid'])) {
+      $tnid = _i18nmenu_node_get_node_tnid($node);
+      if (!empty($tnid) && $tnid != $node->nid ) {
+        $tnode = (object) array('nid' => $tnid);
+        _i18nmenu_node_prepare($tnode);
+        // We use the source node menu item only if node translation is enabled.
+        $item = !empty($tnode->menu['mlid']) && i18nmenu_node_enabled($tnode->menu) ? $tnode->menu : FALSE;
       }
-
-      $value = implode('/', $trail_raw);
+    }
+    else {
+      $item = $node->menu;
     }
 
-    $values['i18n-menupath-raw'] = !empty($options['pathauto']) ? $trail_raw : $value;
+    while ($item) {
+      array_unshift($trail_raw, _i18nmenu_get_item_title($item, FALSE, $node->language));
+      $item = empty($item['plid']) ? FALSE : menu_link_load($item['plid']);
+    }
+
+    $values['i18n-menupath-raw'] = !empty($options['pathauto']) ? $trail_raw : implode('/', $trail_raw);
   }
 
   return $values;
@@ -651,7 +676,7 @@ function _i18nmenu_node_item_translations_refresh($query, $args = NULL, $force_s
  * trail.
  */
 function i18nmenu_node_set_item($node) {
-  if (!empty($node->tnid) && $node->tnid != $node->nid) {
+  if (!empty($node->tnid) && $node->tnid != $node->nid && i18nmenu_node_menu_link_enabled($node)) {
     $item = menu_get_item();
     $item['original_href'] = $item['href'];
     $href = explode('/', $item['href']);
@@ -675,6 +700,31 @@ function i18nmenu_node_translation_enabled($menu_name) {
  */
 function i18nmenu_node_enabled($item) {
   return isset($item['options']['translations']);
+}
+
+/**
+ * Return TRUE if the given node has a menu link with node translation enabled.
+ */
+function i18nmenu_node_menu_link_enabled($node) {
+  static $items = array();
+  $nid = empty($node->tnid) ? $node->nid : $node->tnid;
+
+  if (!isset($items[$nid])) {
+    $items[$nid] = FALSE;
+    // Give priority to the default menu.
+    $menu_name = variable_get('menu_default_node_menu', 'primary-links');
+    $item = db_fetch_array(db_query_range("SELECT options FROM {menu_links} WHERE link_path = 'node/%d' AND menu_name = '%s' AND module = 'menu' ORDER BY mlid ASC", $nid, $menu_name, 0, 1));
+    // Check all menus if a link does not exist in the default menu.
+    if (!$item) {
+      $item = db_fetch_array(db_query_range("SELECT options FROM {menu_links} WHERE link_path = 'node/%d' AND module = 'menu' ORDER BY mlid ASC", $nid, 0, 1));
+    }
+    if ($item) {
+      $item['options'] = unserialize($item['options']);
+      $items[$nid] = i18nmenu_node_enabled($item);
+    }
+  }
+
+  return $items[$nid];
 }
 
 /**

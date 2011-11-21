@@ -71,7 +71,7 @@ function i18nmenu_node_requirements($phase) {
       $info = drupal_parse_info_file($file);
       $version = explode('-', $info['version']);
       // We do not support extra version information, dev versions are ignored.
-      if (!empty($version[1]) && $version[1] < $data['version'] && (empty($version[2]) || $version[2] != 'dev')) {
+      if (!empty($version[1]) && version_compare($version[1], $data['version']) < 0 && (empty($version[2]) || $version[2] != 'dev')) {
         $requirements["i18nmenu_node_$module"] = array(
           'title' => $t('Menu translation (Node)'),
           'value' => $t('%module version needs to be at least %min_version', array('%module' => $info['name'], '%min_version' => $data['version'])),
@@ -117,5 +117,40 @@ function i18nmenu_node_update_6102() {
  */
 function i18nmenu_node_update_6103() {
   drupal_set_message(t('The <code>[i18n-menuhierarchy-raw]</code> token has been removed. Please be sure to replace all its occurrences with <code>[i18n-menupath-raw]</code>.'), 'warning');
+  return array();
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function i18nmenu_node_update_6104() {
+  // Update the Context reactions involving [i18n] blocks.
+  if (module_exists('context')) {
+    $contexts = context_load();
+    foreach ($contexts as $context) {
+      $update = FALSE;
+      if (isset($context->reactions['block'])) {
+        foreach ($context->reactions['block']['blocks'] as $key => $block) {
+          if ($block['module'] == 'i18nmenu_node') {
+            unset($context->reactions['block']['blocks'][$key]);
+            $key = str_replace(':', '--', $key);
+            $block['delta'] = str_replace(':', '--', $block['delta']);
+            $context->reactions['block']['blocks'][$key] = $block;
+            $update = TRUE;
+          }
+        }
+      }
+      if ($update) {
+        context_save($context);
+      }
+    }
+  }
+
+  // We "unofficially" support also the Domain Access module.
+  if (module_exists('domain')) {
+    $query = "UPDATE {domain_blocks} SET delta = REPLACE(delta, ':', '--') WHERE module = 'i18nmenu_node'";
+    return array(update_sql($query));
+  }
+
   return array();
 }
