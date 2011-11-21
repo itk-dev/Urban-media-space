@@ -147,6 +147,9 @@ function viewer3d_page() {
   // Help button.
   $output .= ' <li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
+  // Menu button.
+  $output .= ' <li class="menu"><a href="#" title="' . t('Menu') . '">' . t('Menu') . '</a></li>';
+
   $output .= '</ul>';
 
   $output .= '<ul id="building-viewer-menu">';
