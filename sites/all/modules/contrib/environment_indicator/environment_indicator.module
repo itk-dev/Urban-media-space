@@ -1,5 +1,4 @@
 <?php
-// $Id: environment_indicator.module,v 1.3.2.3 2009/12/12 13:59:35 mrfelton Exp $
 
 /**
  * @file
@@ -47,7 +46,7 @@ function environment_indicator_perm() {
 function environment_indicator_menu() {
   $items['admin/settings/environment_indicator'] = array(
     'title' => 'Environment indicator',
-    'description' => 'Adjust environment indicator menu settings.',
+    'description' => 'Adjust settings for the Environment Indicator.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('environment_indicator_settings'),
     'access arguments' => array('administer site configuration'),
@@ -59,10 +58,14 @@ function environment_indicator_menu() {
  * Module settings form.
  */
 function environment_indicator_settings() {
+  drupal_add_css('misc/farbtastic/farbtastic.css', 'module', 'all', FALSE);
+  drupal_add_js('misc/farbtastic/farbtastic.js');
+  drupal_add_js(drupal_get_path('module', 'environment_indicator') .'/environment_indicator.admin.js');
+  
   $form['environment_indicator_enabled'] = array(
     '#type' => 'radios',
     '#title' => t('Status'),
-    '#default_value' => variable_get('environment_indicator_enabled', 1),
+    '#default_value' => variable_get('environment_indicator_enabled', 1)? '1' : '0',
     '#options' => array(t('Disabled'), t('Enabled')),
     '#description' => t('Should the Environment Indicator display?'),
   );
@@ -95,6 +98,11 @@ function environment_indicator_settings() {
     '#description' => t('The colour of the environment indicator. Override this for each environment in settings.php.'),
     '#size' => 7,
   );
+  $form['environment_indicator_color_picker'] = array(
+    '#type' => 'markup',
+    '#value' => '<div id="environment-indicator-color-picker"></div>',
+  );
+
   $form['environment_indicator_suppress_pages'] = array(
     '#type' => 'textarea',
     '#title' => t('Turn off Environment Indicator on these pages'),
@@ -129,18 +137,19 @@ function environment_indicator_init() {
 
   // Performance: Defer execution.
   drupal_add_js($path .'/environment_indicator.min.js', 'module', 'header', TRUE);
+  //drupal_add_js($path .'/environment_indicator.js', 'module', 'header', TRUE);
 
   if ($setting = variable_get('environment_indicator_margin', 1)) {
-    $settings['margin'] = $setting;
+    $settings['margin'] = check_plain($setting);
   }
   if ($setting = variable_get('environment_indicator_position', 'left')) {
-    $settings['position'] = $setting;
+    $settings['position'] = check_plain($setting);
   }
   if ($setting = variable_get('environment_indicator_text', 'ENVIRONMENT INDICATOR')) {
-    $settings['text'] = $setting;
+    $settings['text'] = check_plain($setting);
   }
   if ($setting = variable_get('environment_indicator_color', '#d00c0c')) {
-    $settings['color'] = $setting;
+    $settings['color'] = check_plain($setting);
   }
 
   drupal_add_js(array('environment_indicator' => $settings), 'setting');

@@ -95,6 +95,16 @@ Finally, move apache-solr-1.4.1/example/solr/conf/protwords.txt and rename
 it like protwords.bak. Then move the protwords.txt that comes with the
 ApacheSolr Drupal module to take its place.
 
+Make sure that the conf directory includes the following files - the Solr core
+may not load if you don't have at least an empty file present:
+solrconfig.xml
+schema.xml
+elevate.xml
+mapping-ISOLatin1Accent.txt
+protwords.txt
+stopwords.txt
+synonyms.txt
+
 Now start the solr application by opening a shell, changing directory to
 apache-solr-1.4.1/example, and executing the command java -jar start.jar
 

@@ -1,13 +1,23 @@
+Module Filter 6.x-1.7, 2011-09-15
+---------------------------------
+#1202170 by greenSkin: Added Module Filter to package "Administration".
+#1090826 by greenSkin: Fixed update.php warning when updating to 6.x-1.6.
+by greenSkin: Fixed deleting set variables when module is uninstalled.
+by greenSkin: When dynamic positioning is enabled, the 'Save configuration'
+  button gets fixed to the top of the browser when scrolled below the tabs.
+by greenSkin: Left scrolling gets applied to the dynamic positioning of the
+  'Save configuration'.
+
 
 Module Filter 6.x-1.6, 2011-03-12
 ---------------------------------
 #904984 by greenSkin: Fixed sorting of modules/tabs. Uncapitalized modules/tabs
-now correctly sort into capitalized modules/tabs rather than sorting
-independently below the capitalized modules/tabs.
+  now correctly sort into capitalized modules/tabs rather than sorting
+  independently below the capitalized modules/tabs.
 #1033012 by greenSkin: Hide incompatible module rows when the 'Unavailable'
-checkbox is unchecked.
+  checkbox is unchecked.
 #1050182 by greenSkin: Fixed filtering rows where <strong> is used in the
-module description.
+  module description.
 #1032996 by greenSkin: Added visual aids functionality.
 #1085792 by greenSkin: Removed autocomplete functionality.
 by greenSkin: The count of enabled modules is no longer built via JavaScript
