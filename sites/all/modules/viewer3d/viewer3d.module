@@ -148,9 +148,15 @@ function viewer3d_page() {
   // Help button.
   $output .= ' <li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
-  // Menu button.
-  $output .= ' <li class="menu"><a href="#" title="' . t('Menu') . '">' . t('Menu') . '</a></li>';
-
+   // Menu button.
+  $output .= ' <li class="menu"><a href="#" title="' . t('Menu') . '">' . t('Menu') . '</a>';
+  // Menu submenu.
+  $output .= '<ul class="submenu">';
+  $output .= ' <li class="download"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
+  $output .= ' <li class="tips"><a href="#" title="' . t('Tips') . '">' . t('Tips') . '</a></li>';  
+  $output .= ' </ul>';
+  $output .= ' </li>'; 
+  
   $output .= '</ul>';
 
   $output .= '<ul id="building-viewer-menu">';

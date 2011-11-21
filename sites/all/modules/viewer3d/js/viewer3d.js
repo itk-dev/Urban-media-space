@@ -143,6 +143,18 @@ $(document).ready(function() {
     viewerToggleOverlay();
   });
   
+  // Toggle menu
+
+  function showSubmenu(){  $('ul.submenu').show('fast');}
+  function hideSubmenu(){ $('ul.submenu').hide('fast');}
+  
+  var config = {
+    over: showSubmenu, // function = onMouseOver callback (REQUIRED)    
+    timeout: 500, // number = milliseconds delay before onMouseOut    
+    out: hideSubmenu // function = onMouseOut callback (REQUIRED)    
+  };
+
+  $('#building-viewer-nav li.menu').hoverIntent(config)  
   
 });
 
