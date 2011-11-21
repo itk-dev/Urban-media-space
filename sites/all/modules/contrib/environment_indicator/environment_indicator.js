@@ -1,4 +1,3 @@
-/* $Id: environment_indicator.js,v 1.1.2.4 2009/12/12 13:53:37 mrfelton Exp $ */
 
 /**
  * @file
@@ -7,6 +6,8 @@
  * @author Tom Kirkpatrick (mrfelton), www.kirkdesigns.co.uk
  */
  
+(function ($) {
+
 Drupal.environmentIndicator = Drupal.environmentIndicator || {};
 
 /**
@@ -87,3 +88,5 @@ $.fn.backgroundPosition = function() {
   var posY = p.split(' ')[1].replace(/px/,'');
   return [posX, posY];
 };
+
+})(jQuery);

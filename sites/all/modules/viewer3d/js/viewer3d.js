@@ -90,7 +90,8 @@ $(document).ready(function() {
   $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
-      view3dLoadInfoBox($(this).attr('href'))
+      viwer3dInfoShow = true;
+      viewer3dRotateToDefaultDirection();
       return false;
     }
     return false;
@@ -239,7 +240,7 @@ function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
         return;
     }
   }
-  app.createJumpPoint(jumpName,pos, angle1, angle2);
+  app.createJumpPoint(jumpName, pos, angle1, angle2);
 }
 
 
@@ -255,7 +256,7 @@ function viewer3dCreateLoadPoint(jumpName, url) {
         return;
     }
   }
-  app.createLoadPoint(jumpName,url);
+  app.createLoadPoint(jumpName, url);
 }
 
 function viewer3dSetPointLabel(point, label) {
@@ -270,7 +271,7 @@ function viewer3dSetPointLabel(point, label) {
         return;
     }
   }
-  app.setPointLabel(point,label);
+  app.setPointLabel(point, label);
 }
 
 function viewer3dMovie(movieName) {
@@ -293,6 +294,12 @@ function viewer3dMovie(movieName) {
  ****************************/
 function view3dLocationChanged(id) {
   viewer3d_current_point = id;
+  
+  if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
+    $('#building-viewer-point-title').hide();
+  } else {
+    $('#building-viewer-point-title').show();    
+  }
 
   // Try to find information in the cache
   var title = jQuery.data(document.body, "title_"+id);
@@ -334,17 +341,52 @@ function view3dMouseOverPoint(id, x, y, height) {
   $('#building-viewer-point-tip').css('left', (x - 8) + 'px').css('top', (y - 10) + 'px');
 
   // Get point title.
-  var title = jQuery.data(document.body, "title_tip_"+id);
-  if (title) {
-    view3dUpdateTip(title);
+  if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
+    // Set a default title for midway points.
+    view3dUpdateTip(Drupal.t('Go here'));
   }
   else {
+    // Look up local cache for the title.
+    var title = jQuery.data(document.body, "title_tip_"+id);
+    if (title) {
+      view3dUpdateTip(title);
+    }
+    else {
+      // Ask the backend for a title.
+      var viewerSettings = Drupal.settings.viewer3d;
+      $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
+        data = Drupal.parseJson(data);
+        jQuery.data(document.body, 'title_tip_' + id, data.value);
+        view3dUpdateTip(data.value);
+      });
+    }
+  }
+}
+
+function view3dRotationCompleted(id) {
+
+  // Info box, if requested else do ...
+  if (viwer3dInfoShow) {
     var viewerSettings = Drupal.settings.viewer3d;
-    $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
-      data = Drupal.parseJson(data);
-      jQuery.data(document.body, 'title_tip_'+id, data.value);
-      view3dUpdateTip(data.value);
-    });
+    var href = viewerSettings.path + '/ajax/info/' + id;
+
+    // Lookup the local cache.
+    var info = jQuery.data(document.body, "info_"+id);
+    if (info) {
+      $('#building-viewer-point-information .building-viewer-point-inner').html(info);
+      viewerToggleOverlay();
+      $('#building-viewer-point-information').fadeIn();
+    }
+    else {
+      // Make ajax call to get extended information information about the point.
+      $.get(href, function(data) {
+        data = Drupal.parseJson(data);
+        $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
+        viewerToggleOverlay();
+        $('#building-viewer-point-information').fadeIn();
+        jQuery.data(document.body, 'info_'+id, data.value);
+      });
+    }
   }
 }
 
@@ -359,13 +401,12 @@ function view3dMouseOutPoint(id) {
  * IMPLEMENTATION OF HELPERS *
  *****************************/
 function view3dGetWMode() {
-//  if (/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)) {
-//    return "opaque";
-//  }
-//  else {
-//    return "window";
-//  }
-  return "opaque";
+  if (/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent) || /Firefox/i.test(navigator.userAgent)) {
+    return "opaque";
+  }
+  else {
+    return "window";
+  }
 }
 
 function view3dUpdateTitle(title) {
@@ -376,7 +417,8 @@ function view3dUpdateTitle(title) {
   $('#building-viewer-point-title a').click(function() {
     if (viewer3d_click) {
       viewer3d_click = false;
-      view3dLoadInfoBox($(this).attr('href'))
+      viwer3dInfoShow = true;
+      viewer3dRotateToDefaultDirection();
       return false;
     }
     return false;
@@ -387,28 +429,6 @@ function view3dUpdateTitle(title) {
 }
 
 function view3dLoadInfoBox(href) {
-  id = href.split('/').pop();
-
-  // Rotate the users view in the viewer.
-  //viewer3dGotoLocationDefaultDirection(id);
-
-  // Lookup the local cache.
-  var info = jQuery.data(document.body, "info_"+id);
-  if (info) {
-    $('#building-viewer-point-information .building-viewer-point-inner').html(info);
-    viewerToggleOverlay();
-    $('#building-viewer-point-information').fadeIn();
-  }
-  else {
-    // Make ajax call to get extended information information about the point.
-    $.get(href, function(data) {
-      data = Drupal.parseJson(data);
-      $('#building-viewer-point-information .building-viewer-point-inner').html(data.value);
-      viewerToggleOverlay();
-      $('#building-viewer-point-information').fadeIn();
-      jQuery.data(document.body, 'info_'+id, data.value);
-    });
-  }
 }
 
 function view3dUpdateTip(tip) {
@@ -418,6 +438,9 @@ function view3dUpdateTip(tip) {
 
 // Used to prevent dlb click.
 var viewer3d_click = true;
+
+// Fix problem with rotation complete event and info box.
+var viwer3dInfoShow = false;
 
 // Toggle overlay, opt = show, hide
 function viewerToggleOverlay(opt) {

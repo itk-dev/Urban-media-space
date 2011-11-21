@@ -82,11 +82,16 @@
 }
 #module-filter-submit.fixed {
   position: fixed;
-  bottom: 0;
   background-color: #F6F6F6;
   border: 1px solid #D6DBDE;
   margin-left: -1px;
   width: 167px;
+}
+#module-filter-submit.fixed-top {
+  top: 0;
+}
+#module-filter-submit.fixed-bottom {
+  bottom: 0;
 }
 #module-filter-right {
   display: block;
