@@ -153,7 +153,7 @@ function viewer3d_page() {
   // Menu submenu.
   $output .= '<ul class="submenu">';
   $output .= '<li class="download"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
-  $output .= '<li class="tips"><a href="/3dviewer/tips" title="' . t('Tips') . '">' . t('Tips') . '</a></li>';  
+  $output .= '<li class="tips"><a href="/3dviewer/tips" title="' . t('Tips') . ' ' . t('(opens in a new window)') . '" target="_blank">' . t('Tips') . '</a></li>';  
   $output .= '</ul>';
   $output .= '</li>'; 
   
