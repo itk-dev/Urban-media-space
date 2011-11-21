@@ -121,6 +121,14 @@ function viewer3d_admin_form() {
     '#default_value' => isset($default['markerMinSize']) ? $default['markerMinSize'] : 30,
   );
 
+  $form['viewer3d']['rotationSpeed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Rotation speed'),
+    '#description' => t('Rotation speed when arriving at a point.'),
+    '#size' => '4',
+    '#default_value' => isset($default['rotationSpeed']) ? $default['rotationSpeed'] : 1,
+  );
+
   $form['viewer3d']['text'] = array(
     '#type' => 'textarea',
     '#title' => t('Introduction text'),
