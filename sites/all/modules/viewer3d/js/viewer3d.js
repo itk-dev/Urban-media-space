@@ -146,6 +146,7 @@ $(document).ready(function() {
   // Close overlay on click
   $('.building-viewer-overlay').click(function() {
     $('#building-viewer-point-information').fadeOut();
+    $('#building-viewer-help').hide();
     viewerToggleOverlay();
   });
   
@@ -528,14 +529,14 @@ var viwer3dInfoShow = false;
 function viewerToggleOverlay(opt) {
   $('.building-viewer-overlay')
   .css('opacity', .5)
-  .toggle('fast', function() {
+  .toggle(50, function() {
     viewer3d_click = true;
   });
 }
 
 function viewerToggleHelp() {
-  viewerToggleOverlay();
   $('#building-viewer-help').toggle();
+  viewerToggleOverlay();
 }
 
 /******************
