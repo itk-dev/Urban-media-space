@@ -85,6 +85,12 @@ $(document).ready(function() {
     viewerToggleHelp();
     return false;
   });
+  
+  // Help link
+  $('.start-3dviewer').click(function() {
+    viewerToggleHelp();
+    return false;
+  });
 
   // Bind to starting point title link.
   $('#building-viewer-point-title a').click(function() {
