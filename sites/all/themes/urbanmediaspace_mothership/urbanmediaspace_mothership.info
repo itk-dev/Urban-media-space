@@ -32,6 +32,9 @@ stylesheets[all][]   = styles/developer.css
 stylesheets[all][]   = styles/l10n_client.css
 stylesheets[print][] = styles/print.css
 
+;IE specific stylesheets
+ie stylesheets[if lt IE 9][all][] = styles/ie.css
+
 ;--------------------- scripts ------------------------------
 scripts[] = scripts/jquery.example.min.js
 scripts[] = scripts/jquery.hoverintent.minified.js
