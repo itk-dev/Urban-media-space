@@ -182,6 +182,10 @@ function viewer3d_page() {
   $output .= '<div id="building-viewer-point-tip">';
   $output .= '<a href="#" title="">#####</a>';
   $output .= '</div>';
+  
+  $output .= '<div id="building-viewer-overview-point-tip">';
+  $output .= '<a href="#" title="">#####</a>';
+  $output .= '</div>';  
 
   // Point title
   $output .= '<div id="building-viewer-point-title">';

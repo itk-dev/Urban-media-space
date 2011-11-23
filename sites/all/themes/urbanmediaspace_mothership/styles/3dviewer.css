@@ -244,12 +244,14 @@
   margin: 0 10px 0 0;
 }
 
-#building-viewer-point-tip {
+#building-viewer-point-tip,
+#building-viewer-overview-point-tip {
   position: absolute;
   z-index: 100;
 }
 
-#building-viewer-point-tip a {  
+#building-viewer-point-tip a,
+#building-viewer-overview-point-tip a {
   display: block;
   height: 20px;
   overflow: hidden;

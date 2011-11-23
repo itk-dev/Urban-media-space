@@ -112,7 +112,7 @@ $(document).ready(function() {
 
   // Set tooltip on point placeholder.
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
-  $('#building-viewer-point-tip [title]').qtip({
+  $('#building-viewer-point-tip [title], #building-viewer-overview-point-tip [title]').qtip({
       position: {
       corner: {
          target: 'topMiddle',
@@ -142,6 +142,12 @@ $(document).ready(function() {
     viewer3dFlyToLocation(viewer3d_current_point_clicked);
     return false;
   });
+  
+  $('#building-viewer-overview-point-tip a').click(function() {
+    $(this).qtip("hide");
+    viewer3dGotoLocationDefaultDirection(viewer3d_current_point_clicked);
+    return false;
+  });  
   
   // Close overlay on click
   $('.building-viewer-overlay').click(function() {
@@ -416,7 +422,7 @@ function view3dOverviewMouseOverPoint(id, x, y, height) {
   viewer3d_current_point_clicked = id;
 
   // Move point 
-  $('#building-viewer-point-tip').animate({
+  $('#building-viewer-overview-point-tip').animate({
       top: (y - 10) + 'px',
       left: (x - 10) + 'px'
     },
@@ -426,13 +432,13 @@ function view3dOverviewMouseOverPoint(id, x, y, height) {
   // Get point title.
   if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
     // Set a default title for midway points.
-    view3dUpdateTip(Drupal.t('Go here'));
+    view3dUpdateOverviewTip(Drupal.t('Go here'));
   }
   else {
     // Look up local cache for the title.
     var title = jQuery.data(document.body, "title_tip_"+id);
     if (title) {
-      view3dUpdateTip(title);
+      view3dUpdateOverviewTip(title);
     }
     else {
       // Ask the backend for a title.
@@ -440,7 +446,7 @@ function view3dOverviewMouseOverPoint(id, x, y, height) {
       $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
         data = Drupal.parseJson(data);
         jQuery.data(document.body, 'title_tip_' + id, data.value);
-        view3dUpdateTip(data.value);
+        view3dUpdateOverviewTip(data.value);
       });
     }
   }
@@ -516,6 +522,11 @@ function view3dLoadInfoBox(href) {
 
 function view3dUpdateTip(tip) {
   var point = $('#building-viewer-point-tip a');
+  $(point).qtip("api").updateContent(tip);
+}
+
+function view3dUpdateOverviewTip(tip) {
+  var point = $('#building-viewer-overview-point-tip a');
   $(point).qtip("api").updateContent(tip);
 }
 
