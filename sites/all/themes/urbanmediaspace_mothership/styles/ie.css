@@ -1,4 +1,5 @@
-#building-viewer-overview-point-tip a {  
+#building-viewer-point-tip a,
+#building-viewer-overview-point-tip a { 
   background: url('spacer.gif');
   display: block;
   height: 20px;
