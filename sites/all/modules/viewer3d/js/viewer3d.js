@@ -167,6 +167,10 @@ $(document).ready(function() {
     out: hideSubmenu // function = onMouseOut callback (REQUIRED)    
   };
 
+  $('#building-viewer-nav li.menu').click(function(){
+    return false;
+  });  
+  
   $('#building-viewer-nav li.menu').hoverIntent(config)  
 
   $('.submenu .download a').click(function(e) {

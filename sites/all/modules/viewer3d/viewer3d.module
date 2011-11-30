@@ -155,16 +155,12 @@ function viewer3d_page() {
   }
 
   // Help button.
-  $output .= '<li class="help"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
+  $output .= '<li class="help align-right"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
    // Menu button.
-  $output .= '<li class="menu"><a href="#" title="' . t('Menu') . '">' . t('Menu') . '</a>';
-  // Menu submenu.
-  $output .= '<ul class="submenu">';
-  $output .= '<li class="download"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
-  $output .= '<li class="tips"><a href="/3dviewer/tips" title="' . t('Tips') . ' ' . t('(opens in a new window)') . '" target="_blank">' . t('Tips') . '</a></li>';  
-  $output .= '</ul>';
-  $output .= '</li>'; 
+  $output .= '<li class="download align-right"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
+  $output .= '<li class="tips align-right">' . l(t('Tips'),'node/800', array('attributes' => array('title' => t('Tips (åbner i nyt vindue)'), 'target' => '_blank'))) . '</a></li>';  
+  $output .= '<li class="info align-right">' . l(t('Info'),'node/800', array('attributes' => array('title' => t('Info (åbner i nyt vindue)'), 'target' => '_blank'))) . '</a></li>';  
   
   $output .= '</ul>';
 

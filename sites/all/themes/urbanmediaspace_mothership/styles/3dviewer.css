@@ -11,7 +11,6 @@
   overflow: hidden;
   margin: 0 40px 0 0;
   position: relative;
-  text-transform: uppercase;
   z-index: 95;
 }
 
@@ -33,6 +32,10 @@
   border-right: 1px dotted #e5e5e5;
   float: left;
   list-style: none;
+}
+
+#building-viewer-nav-wrapper ul li.align-right {
+  float: right;
 }
 
 #building-viewer-nav-wrapper ul li a {
@@ -70,8 +73,12 @@
   top: -40px;
 }
 
+#building-viewer-nav-wrapper ul li a {
+  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat;
+}
+
 #building-viewer-nav-wrapper ul li.home a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -12px -93px;
+  background-position: -12px -93px;
   padding-left: 34px;
 }
 
@@ -80,7 +87,7 @@
 }
 
 #building-viewer-nav-wrapper ul li.previous a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -12px -157px;
+  background-position: -12px -157px;
   padding-left: 34px;
 }
 
@@ -89,7 +96,7 @@
 }
 
 #building-viewer-nav-wrapper ul li.next a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat right -223px;
+  background-position: right -223px;
   padding-right: 38px;
 }
 
@@ -100,7 +107,6 @@
 #building-viewer-nav-wrapper ul li.help {
   border-right: 0;
   border-left: 1px dotted #e5e5e5;
-  float: right;
 }
 
 #building-viewer-nav-wrapper ul li.help a {
@@ -109,7 +115,7 @@
 }
 
 #building-viewer-nav-wrapper ul li.help a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -7px -394px;
+  background-position: -7px -394px;
 }
 
 #building-viewer-nav-wrapper ul li.help a:hover {
@@ -126,43 +132,35 @@
   padding-left: 38px;
 }
 
-#building-viewer-nav-wrapper ul li.menu a {
-  background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat -7px -474px;
-}
-
 #building-viewer-nav-wrapper ul li.menu a:hover {
   background-position: -7px -508px;
 }
 
-#building-viewer-nav-wrapper ul li ul.submenu {
-  border-left: 1px dotted #e5e5e5;
-  display: none;
-  right: 135px;
-  position: absolute;
-  top: 0;
-  width: auto;
-}
-
-#building-viewer-nav-wrapper ul li ul.submenu li {
-  float: right;
-}
-
-#building-viewer-nav-wrapper ul li ul.submenu li.download a {
+#building-viewer-nav-wrapper ul li.download a {
   background-position: -5px -542px;
   padding-left: 43px;
 }
 
-#building-viewer-nav-wrapper ul li ul.submenu li.download a:hover {
+#building-viewer-nav-wrapper ul li.download a:hover {
   background-position: -5px -577px;
 }
 
-#building-viewer-nav-wrapper ul li ul.submenu li.tips a {
+#building-viewer-nav-wrapper ul li.tips a {
   background-position: -7px -612px;
   padding-left: 35px;
 }
 
-#building-viewer-nav-wrapper ul li ul.submenu li.tips a:hover {
+#building-viewer-nav-wrapper ul li.tips a:hover {
   background-position: -7px -646px;
+}
+
+#building-viewer-nav-wrapper ul li.info a {
+  background-position: -7px -679px;
+  padding-left: 35px;
+}
+
+#building-viewer-nav-wrapper ul li.info a:hover {
+  background-position: -7px -713px;
 }
 
 .building-viewer-overlay,
