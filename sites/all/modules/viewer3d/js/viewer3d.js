@@ -157,6 +157,7 @@ $(document).ready(function() {
   });
   
   // Toggle menu
+  // Not used at the moment.
 
   function showSubmenu(){$('ul.submenu').show('fast');}
   function hideSubmenu(){$('ul.submenu').hide('fast');}
@@ -173,7 +174,7 @@ $(document).ready(function() {
   
   $('#building-viewer-nav li.menu').hoverIntent(config)  
 
-  $('.submenu .download a').click(function(e) {
+  $('.download a').click(function(e) {
     viewer3dSnapshot();
     return false;
   });

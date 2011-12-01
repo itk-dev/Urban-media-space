@@ -158,9 +158,9 @@ function viewer3d_page() {
   $output .= '<li class="help align-right"><a href="#" title="' . t('Help') . '">' . t('Help') . '</a></li>';
 
    // Menu button.
-  $output .= '<li class="download align-right"><a href="#" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
   $output .= '<li class="tips align-right">' . l(t('Tips'),'node/800', array('attributes' => array('title' => t('Tips (åbner i nyt vindue)'), 'target' => '_blank'))) . '</a></li>';  
   $output .= '<li class="info align-right">' . l(t('Info'),'node/801', array('attributes' => array('title' => t('Info (åbner i nyt vindue)'), 'target' => '_blank'))) . '</a></li>';  
+  $output .= '<li class="download align-right"><a href="#' . t('Download screenshot') . '" title="' . t('Download screenshot') . '">' . t('Download screenshot') . '</a></li>';
   
   $output .= '</ul>';
 
