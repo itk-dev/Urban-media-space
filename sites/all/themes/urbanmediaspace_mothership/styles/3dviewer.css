@@ -110,12 +110,9 @@
 }
 
 #building-viewer-nav-wrapper ul li.help a {
-  overflow: hidden;
-  text-indent: -10000px;
-}
-
-#building-viewer-nav-wrapper ul li.help a {
   background-position: -7px -394px;
+  padding-left: 38px;
+  padding-right: 16px;
 }
 
 #building-viewer-nav-wrapper ul li.help a:hover {
@@ -136,15 +133,6 @@
   background-position: -7px -508px;
 }
 
-#building-viewer-nav-wrapper ul li.download a {
-  background-position: -5px -542px;
-  padding-left: 43px;
-}
-
-#building-viewer-nav-wrapper ul li.download a:hover {
-  background-position: -5px -577px;
-}
-
 #building-viewer-nav-wrapper ul li.tips a {
   background-position: -7px -612px;
   padding-left: 35px;
@@ -161,6 +149,16 @@
 
 #building-viewer-nav-wrapper ul li.info a:hover {
   background-position: -7px -713px;
+}
+
+#building-viewer-nav-wrapper ul li.download a {
+  background-position: -5px -542px;
+  border-left: 1px dotted #e5e5e5;
+  padding-left: 43px;
+}
+
+#building-viewer-nav-wrapper ul li.download a:hover {
+  background-position: -5px -577px;
 }
 
 .building-viewer-overlay,
