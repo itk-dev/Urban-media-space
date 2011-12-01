@@ -41,7 +41,7 @@
 #building-viewer-nav-wrapper ul li a {
   border: 1px solid #fff;
   display: block;
-  padding: 9px 20px 6px;
+  padding: 8px 20px 7px;
 }
 
 #building-viewer-nav-wrapper #building-viewer-nav li {
@@ -110,13 +110,13 @@
 }
 
 #building-viewer-nav-wrapper ul li.help a {
-  background-position: -7px -394px;
+  background-position: -6px -396px;
   padding-left: 38px;
   padding-right: 16px;
 }
 
 #building-viewer-nav-wrapper ul li.help a:hover {
-  background-position: -7px -436px;
+  background-position: -6px -425px;
 }
 
 #building-viewer-nav-wrapper ul li.menu {
@@ -130,35 +130,35 @@
 }
 
 #building-viewer-nav-wrapper ul li.menu a:hover {
-  background-position: -7px -508px;
+  background-position: -6px -508px;
 }
 
 #building-viewer-nav-wrapper ul li.tips a {
-  background-position: -7px -612px;
+  background-position: -6px -612px;
   padding-left: 35px;
 }
 
 #building-viewer-nav-wrapper ul li.tips a:hover {
-  background-position: -7px -646px;
+  background-position: -6px -646px;
 }
 
 #building-viewer-nav-wrapper ul li.info a {
-  background-position: -7px -679px;
+  background-position: -6px -679px;
   padding-left: 35px;
 }
 
 #building-viewer-nav-wrapper ul li.info a:hover {
-  background-position: -7px -713px;
+  background-position: -6px -713px;
 }
 
 #building-viewer-nav-wrapper ul li.download a {
-  background-position: -5px -542px;
+  background-position: -3px -542px;
   border-left: 1px dotted #e5e5e5;
   padding-left: 43px;
 }
 
 #building-viewer-nav-wrapper ul li.download a:hover {
-  background-position: -5px -577px;
+  background-position: -3px -577px;
 }
 
 .building-viewer-overlay,
