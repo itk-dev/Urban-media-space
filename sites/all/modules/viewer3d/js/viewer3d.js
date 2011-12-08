@@ -159,8 +159,6 @@ $(document).ready(function() {
   $('#building-viewer-nav li.menu').click(function(){
     return false;
   });  
-  
-  $('#building-viewer-nav li.menu').hoverIntent(config)  
 
   $('.download a').click(function(e) {
     viewer3dSnapshot();
