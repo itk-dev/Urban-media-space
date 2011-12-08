@@ -196,8 +196,9 @@ function viewer3dSnapshot(){
         return;
     }
   }
+  var viewerSettings = Drupal.settings.viewer3d;
   var imageBase64 = app.snapshot();
-  $.post('3dviewer/download', {data: imageBase64}, function(data) {
+  $.post(viewerSettings.path + '/download', {data: imageBase64}, function(data) {
     window.open(data, 'Download');
   });
 }
