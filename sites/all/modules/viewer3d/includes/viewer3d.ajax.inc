@@ -54,6 +54,8 @@ function viewer3d_load_information($pid) {
 }
 
 function viewer3d_download($filename = FALSE) {
+  $settings = variable_get('viewer3d', array());
+
   // Image path.
   $path = file_directory_path() . '/3dviewer_user_generated';
 
@@ -63,14 +65,14 @@ function viewer3d_download($filename = FALSE) {
       $img = imagecreatefromstring(base64_decode($_POST['data']));
       if ($img != false) {
         // Create file path.
-        $filename = '/3dviewer_' . base_convert(mt_rand(0x1D39D3E06400000, 0x41C21CB8E0FFFFFF), 10, 36)  . '.png';
+        $filename = '/3dmodel_' . base_convert(mt_rand(0x1D39D3E06400000, 0x41C21CB8E0FFFFFF), 10, 36)  . '.png';
         file_check_directory($path, FILE_CREATE_DIRECTORY);
 
         // Save image.
         imagepng($img, $path . '/' . $filename);
 
         // Return file name.
-        echo '3dviewer/download/' . $filename;
+        echo $settings['path'] . '/download' . $filename;
       }
     }
     return;
