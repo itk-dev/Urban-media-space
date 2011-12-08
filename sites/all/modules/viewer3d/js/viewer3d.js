@@ -156,18 +156,6 @@ $(document).ready(function() {
     viewerToggleOverlay();
   });
   
-  // Toggle menu
-  // Not used at the moment.
-
-  function showSubmenu(){$('ul.submenu').show('fast');}
-  function hideSubmenu(){$('ul.submenu').hide('fast');}
-  
-  var config = {
-    over: showSubmenu, // function = onMouseOver callback (REQUIRED)    
-    timeout: 500, // number = milliseconds delay before onMouseOut    
-    out: hideSubmenu // function = onMouseOut callback (REQUIRED)    
-  };
-
   $('#building-viewer-nav li.menu').click(function(){
     return false;
   });  
@@ -176,6 +164,7 @@ $(document).ready(function() {
 
   $('.download a').click(function(e) {
     viewer3dSnapshot();
+    e.preventDefault();
     return false;
   });
 
@@ -196,6 +185,7 @@ function viewer3dSnapshot(){
         return;
     }
   }
+  
   var viewerSettings = Drupal.settings.viewer3d;
   var imageBase64 = app.snapshot();
   $.post(viewerSettings.path + '/download', {data: imageBase64}, function(data) {
