@@ -82,7 +82,14 @@ function viewer3d_download($filename = FALSE) {
   $filename = $path . '/' . basename($filename);
 
   // Download file.
-  header('Content-Type: image/png');
-  header('Content-Disposition: attachment;filename="'.basename($filename).'"');
+  if (strstr($_SERVER["HTTP_USER_AGENT"],"MSIE") == false) {
+    header("Content-Type: application/force-download");
+    header('Content-Description: File Transfer');
+  }
+  else {
+    header('Content-Type: image/png');
+    header('Content-Disposition: attachment;filename="'.basename($filename).'"');
+  }
+
   readfile($filename);
 }
