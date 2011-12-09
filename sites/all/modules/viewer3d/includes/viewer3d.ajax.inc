@@ -87,6 +87,8 @@ function viewer3d_download($filename = FALSE) {
     header('X-Download-Options: noopen '); // For IE8
     header('X-Content-Type-Options: nosniff'); // For IE8
   }
+  header("Content-type: application/octet-stream");
+  header("Content-Length: ".filesize($filename));
   header('Content-Disposition: attachment;filename="'.basename($filename).'"');
   header('Content-Type: image/png');
   header('Cache-Control: must-revalidate, post-check=0, pre-check=0');

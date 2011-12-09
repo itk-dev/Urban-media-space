@@ -186,6 +186,7 @@ function viewer3dSnapshot(){
   
   var viewerSettings = Drupal.settings.viewer3d;
   var imageBase64 = app.snapshot();
+  
   $.post(viewerSettings.path + '/download', {data: imageBase64}, function(data) {
     window.open(data, 'Download');
   });
