@@ -1,0 +1,4 @@
+http://prod.dalux.dk/mmhus_buildingview.aspx?createsession.xml?123
+http://prod.dalux.dk/mmhus_buildingview.aspx?123.xml?loadscene&scene.dcz
+http://prod.dalux.dk/mmhus_buildingview.aspx?123.xml?SETSCENEOPTION&Camera.RenderScript&Combined
+http://prod.dalux.dk/mmhus_buildingview.aspx?123.png?TOPVIEWMODE&-500&-500&1000&1000?RES&2048&2048

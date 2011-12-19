@@ -54,23 +54,12 @@ var hasProductInstall = DetectFlashVer(6, 0, 65);
 
 //Correct wmode, to have mouse working outside of browserwindow.
 function getWMode(){
-	return 'opaque';
-	//Chrome and IE works with 'opaque', Firefox and Opera works with 'window'
-	if(/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent)){
-		return 'opaque';
-	}else{
+	//opaque mode is default, since html overlay usually works with that.
+	//IE, Chrome and Safari works with 'opaque', Firefox and Opera works with 'window'
+	if(window.opera || /Firefox/i.test(navigator.userAgent)){
 		return 'window';
-	}
-}
-
-//When using Chrome, the mouse gets stuck in flash. So this functions returns false for chrome.
-function useCustomCursor(){
-	//return false;
-	//Chrome and IE works with 'opaque', Firefox and Opera works with 'window'
-	if(/Chrome/i.test(navigator.userAgent)){
-		return "false";
 	}else{
-		return "true";
+		return 'opaque';
 	}
 }
 
@@ -100,7 +89,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"allowFullScreen","true",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer",
-		"flashvars", "customCursor=" + useCustomCursor() + "&mouseOutsideFlash=true&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V40a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
+				"flashvars", "id=BuildingViewer&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V71a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
 	);
 } else if (hasRequestedVersion) {
 	// if we've detected an acceptable version
@@ -119,7 +108,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"allowFullScreen","true",
 			"type", "application/x-shockwave-flash",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer",
-			"flashvars", "customCursor=" + useCustomCursor() + "&mouseOutsideFlash=true&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V40a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
+				"flashvars", "id=BuildingViewer&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V71a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
 	);
   } else {  // flash is too old or we can't detect the plugin
     var alternateContent = 'Alternate HTML content should be placed here. '
@@ -132,19 +121,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 </div>
 <br>
 <!---->
-<INPUT TYPE="button" NAME="pos1" Value="Hop til 7" onClick="gotoLocation(7, 1,-0.5)">
-<INPUT TYPE="button" NAME="pos2" Value="Hop til 8" onClick="gotoLocation(8, 0,0)">
-<INPUT TYPE="button" NAME="pos3" Value="Hop til 8 (ingen retning)" onClick="gotoLocationDefaultDirection(8)">
-<INPUT TYPE="button" NAME="pos3" Value="Rotér til default retning" onClick="rotateToDefaultDirection()">
 
-<INPUT TYPE="button" NAME="fly1" Value="Animér til 7" onClick="flyToLocation(7)">
-<INPUT TYPE="button" NAME="fly2" Value="Animér til 8" onClick="flyToLocation(8)">
-
-<!--<INPUT TYPE="button" NAME="hoptil1" Value="Lav hoptil1 punkt" onClick="createJumpPoint('> hoptil1', 5, 0,0)">
-<INPUT TYPE="button" NAME="hoptil2" Value="Lav hoptil2 punkt" onClick="createJumpPoint('> hoptil2', 1, 0,0)">-->
-
-
-<LABEL ID="atPointLbl"></LABEL>
 <!---->
 <script language="JavaScript" type="text/javascript">
 
@@ -340,6 +317,21 @@ currentPointClick = "-1";
 <noscript>
  Javascript must be enabled.
 </noscript>
+
+<INPUT TYPE="button" NAME="pos3" Value="Hop til 8 (ingen retning)" onClick="gotoLocationDefaultDirection(8)">
+<INPUT TYPE="button" NAME="pos3" Value="Rotér til default retning" onClick="rotateToDefaultDirection()">
+
+<INPUT TYPE="button" NAME="fly1" Value="Animér til 7" onClick="flyToLocation(7)">
+<INPUT TYPE="button" NAME="fly2" Value="Animér til 8" onClick="flyToLocation(8)">
+
+<!--<INPUT TYPE="button" NAME="hoptil1" Value="Lav hoptil1 punkt" onClick="createJumpPoint('> hoptil1', 5, 0,0)">
+<INPUT TYPE="button" NAME="hoptil2" Value="Lav hoptil2 punkt" onClick="createJumpPoint('> hoptil2', 1, 0,0)">-->
+
+
+<LABEL ID="atPointLbl"></LABEL>
+<div style="visibility:visible">
+<INPUT TYPE="button" NAME="pos1" Value="Hop til 7" onClick="gotoLocation(7, 1,-0.5)">
+<INPUT TYPE="button" NAME="pos2" Value="Hop til 8" onClick="gotoLocation(8, 0,0)">
 <div style="float:left;padding: 20px" id="rotationCompletedDiv">Rotation info</div>
 
 <div style="float:left;padding: 20px" >
@@ -375,5 +367,6 @@ currentPointClick = "-1";
 
 <div id="popup" style="visibility:hidden;display:block; position:absolute; zIndex:999; background:#ffffcc;" onClick="flyToLocation(currentPointClick)">HTML Overlay test</div>
 <div id="mouseOverTest" style="display:block; position:absolute; zIndex:999; background:#000000; color:#FFFFFF; border-color:#FFFFFF; top:600;left:0;width:300;height:50 ">HTML Integration</div>
+</div>
 </body>
 </html>
