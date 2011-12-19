@@ -151,6 +151,10 @@
   background-position: -6px -713px;
 }
 
+#building-viewer-nav-wrapper ul li.download {
+  border-left: 1px solid #fff;
+}
+
 #building-viewer-nav-wrapper ul li.download a {
   background-position: -3px -542px;
   border-left: 1px dotted #e5e5e5;
