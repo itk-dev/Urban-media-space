@@ -133,8 +133,8 @@ function viewer3d_page() {
   $output .= '<div id="building-viewer-help">';
   $output .= '<a href="#close" class="building-viewer-close"><span>' . t('Close') . '</span></a>';
   $output .= '<div id="building-viewer-help-inner-wrapper" class="content">';
-  $output .= '<h2>' . (isset($help['header']) ? $help['header'] : '[Hjælpetekst header]') . '</h2>';
-  $output .= isset($help['text']) ? $help['text'] : '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
+  $output .= '<h2>' . (isset($help['header']) ? t($help['header']) : '[Hjælpetekst header]') . '</h2>';
+  $output .= isset($help['text']) ? t($help['text']) : '[Hjælpe tekst (skal hentes fra 3D viewer settings)]';
   $output .= '</div>';
   $output .= '</div>';
 
