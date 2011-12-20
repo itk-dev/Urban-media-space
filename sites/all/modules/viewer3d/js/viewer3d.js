@@ -518,11 +518,13 @@ function view3dLoadInfoBox(href) {
 function view3dUpdateTip(tip) {
   var point = $('#building-viewer-point-tip a');
   $(point).qtip("api").updateContent(tip);
+  // $(point).attr('title', tip);
 }
 
 function view3dUpdateOverviewTip(tip) {
-  var point = $('#building-viewer-overview-point-tip a');
-  $(point).qtip("api").updateContent(tip);
+  var overviewPoint = $('#building-viewer-overview-point-tip a');
+  $(overviewPoint).qtip("api").updateContent(tip);
+  // $(overviewPoint).attr('title', tip);
 }
 
 // Used to prevent dlb click.
