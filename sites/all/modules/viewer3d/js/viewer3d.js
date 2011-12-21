@@ -122,7 +122,10 @@ $(document).ready(function() {
         y: -5
       }
     },
-    content: Drupal.t('Go here'),
+    content: {
+      text: Drupal.t('Go here'),
+      prerender: true
+    },
     style: {
       name: 'dark',
       background: '#333',
