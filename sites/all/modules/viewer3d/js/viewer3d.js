@@ -122,6 +122,7 @@ $(document).ready(function() {
         y: -5
       }
     },
+    content: Drupal.t('Go here'),
     style: {
       name: 'dark',
       background: '#333',
@@ -381,14 +382,6 @@ function view3dMouseOverPoint(id, x, y, height) {
   // qtip blocks flash point, so save the id to get around this.
   viewer3d_current_point_clicked = id;
 
-  // Move point 
-  $('#building-viewer-point-tip').animate({
-      top: (y - 10) + 'px',
-      left: (x - 10) + 'px'
-    },
-    50
-  );
-
   // Get point title.
   if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
     // Set a default title for midway points.
@@ -398,7 +391,7 @@ function view3dMouseOverPoint(id, x, y, height) {
     // Look up local cache for the title.
     var title = jQuery.data(document.body, "title_tip_"+id);
     if (title) {
-      view3dUpdateTip(title);
+      view3dUpdateTip(title, x, y);
     }
     else {
       // Ask the backend for a title.
@@ -406,7 +399,7 @@ function view3dMouseOverPoint(id, x, y, height) {
       $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
         data = Drupal.parseJson(data);
         jQuery.data(document.body, 'title_tip_' + id, data.value);
-        view3dUpdateTip(data.value);
+        view3dUpdateTip(data.value, x, y);
       });
     }
   }
@@ -515,10 +508,19 @@ function view3dUpdateTitle(title) {
 function view3dLoadInfoBox(href) {
 }
 
-function view3dUpdateTip(tip) {
+function view3dUpdateTip(tip, x, y) {
   var point = $('#building-viewer-point-tip a');
   $(point).qtip("api").updateContent(tip);
   // $(point).attr('title', tip);
+
+  // Move point 
+  $('#building-viewer-point-tip').animate({
+      top: (y - 10) + 'px',
+      left: (x - 10) + 'px'
+    },
+    50
+  );
+
 }
 
 function view3dUpdateOverviewTip(tip) {
