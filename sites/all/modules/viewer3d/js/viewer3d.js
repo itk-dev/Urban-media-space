@@ -385,7 +385,7 @@ function view3dMouseOverPoint(id, x, y, height) {
   // Get point title.
   if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
     // Set a default title for midway points.
-    view3dUpdateTip(Drupal.t('Go here'));
+    view3dUpdateTip(Drupal.t('Go here'), x, y);
   }
   else {
     // Look up local cache for the title.
@@ -409,24 +409,16 @@ function view3dOverviewMouseOverPoint(id, x, y, height) {
   // qtip blocks flash point, so save the id to get around this.
   viewer3d_current_point_clicked = id;
 
-  // Move point 
-  $('#building-viewer-overview-point-tip').animate({
-      top: (y - 10) + 'px',
-      left: (x - 10) + 'px'
-    },
-    50
-  );
-
   // Get point title.
   if (Drupal.settings.viewer3d_route[id].type == 'MidwayPoint') {
     // Set a default title for midway points.
-    view3dUpdateOverviewTip(Drupal.t('Go here'));
+    view3dUpdateOverviewTip(Drupal.t('Go here'), x, y);
   }
   else {
     // Look up local cache for the title.
     var title = jQuery.data(document.body, "title_tip_"+id);
     if (title) {
-      view3dUpdateOverviewTip(title);
+      view3dUpdateOverviewTip(title, x, y);
     }
     else {
       // Ask the backend for a title.
@@ -434,7 +426,7 @@ function view3dOverviewMouseOverPoint(id, x, y, height) {
       $.get(viewerSettings['path'] + '/ajax/title/' + id + '/0', function(data) {
         data = Drupal.parseJson(data);
         jQuery.data(document.body, 'title_tip_' + id, data.value);
-        view3dUpdateOverviewTip(data.value);
+        view3dUpdateOverviewTip(data.value, x, y);
       });
     }
   }
@@ -511,22 +503,29 @@ function view3dLoadInfoBox(href) {
 function view3dUpdateTip(tip, x, y) {
   var point = $('#building-viewer-point-tip a');
   $(point).qtip("api").updateContent(tip);
-  // $(point).attr('title', tip);
+  view3dMoveTip(x, y);
+}
 
-  // Move point 
+function view3dMoveTip(x, y) {
   $('#building-viewer-point-tip').animate({
       top: (y - 10) + 'px',
       left: (x - 10) + 'px'
     },
     50
   );
-
 }
 
-function view3dUpdateOverviewTip(tip) {
+function view3dUpdateOverviewTip(tip, x, y) {
   var overviewPoint = $('#building-viewer-overview-point-tip a');
   $(overviewPoint).qtip("api").updateContent(tip);
-  // $(overviewPoint).attr('title', tip);
+
+  // Move point
+  $('#building-viewer-overview-point-tip').animate({
+      top: (y - 10) + 'px',
+      left: (x - 10) + 'px'
+    },
+    50
+  );
 }
 
 // Used to prevent dlb click.
