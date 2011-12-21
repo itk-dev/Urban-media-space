@@ -501,26 +501,19 @@ function view3dLoadInfoBox(href) {
 }
 
 function view3dUpdateTip(tip, x, y) {
-  var point = $('#building-viewer-point-tip a');
-  $(point).qtip("api").updateContent(tip);
-  view3dMoveTip(x, y);
-}
-
-function view3dMoveTip(x, y) {
-  $('#building-viewer-point-tip').animate({
-      top: (y - 10) + 'px',
-      left: (x - 10) + 'px'
-    },
-    50
-  );
+  var point = $('#building-viewer-point-tip');
+  $('a', point).qtip("api").updateContent(tip);
+  view3dMoveTip(point, x, y);
 }
 
 function view3dUpdateOverviewTip(tip, x, y) {
-  var overviewPoint = $('#building-viewer-overview-point-tip a');
-  $(overviewPoint).qtip("api").updateContent(tip);
+  var overviewPoint = $('#building-viewer-overview-point-tip');
+  $('a', overviewPoint).qtip("api").updateContent(tip);
+  view3dMoveTip(overviewPoint, x, y);
+}
 
-  // Move point
-  $('#building-viewer-overview-point-tip').animate({
+function view3dMoveTip(point, x, y) {
+  point.animate({
       top: (y - 10) + 'px',
       left: (x - 10) + 'px'
     },
