@@ -112,7 +112,7 @@ $(document).ready(function() {
 
   // Set tooltip on point placeholder.
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
-  $('#building-viewer-point-tip [title], #building-viewer-overview-point-tip [title]').qtip({
+  /*$('#building-viewer-point-tip [title], #building-viewer-overview-point-tip [title]').qtip({
       position: {
       corner: {
          target: 'topMiddle',
@@ -135,7 +135,7 @@ $(document).ready(function() {
         size: {x: 7, y: 5}
       }
     }
-  });
+  });*/
 
   $('#building-viewer-point-tip a').click(function() {
     $(this).qtip("hide");
@@ -475,7 +475,9 @@ function view3dRotationCompleted(id) {
 }
 
 function view3dMouseOutPoint(id) {
-
+  $('#building-viewer-point-tip a')
+  .hide()
+  .html(tip);
 }
 /***********************************
  * END OF MOVIE CALLBACK FUNCTIONS *
@@ -517,8 +519,14 @@ function view3dLoadInfoBox(href) {
 
 function view3dUpdateTip(tip) {
   var point = $('#building-viewer-point-tip a');
-  $(point).qtip("api").updateContent(tip);
+  //$(point).qtip("api").updateContent(tip);
   // $(point).attr('title', tip);
+        
+  $(point)
+  .show()
+  .css('display', 'block')
+  .css('top', '-40px')
+  .html(tip);
 }
 
 function view3dUpdateOverviewTip(tip) {

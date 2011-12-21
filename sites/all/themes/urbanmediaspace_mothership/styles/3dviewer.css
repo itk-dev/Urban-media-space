@@ -1,6 +1,7 @@
 #building-viewer-outer-wrapper {
-  overflow: hidden;
+  float: left;
   position: relative;
+  width: auto;
 }
 
 #building-viewer-nav-wrapper {
@@ -252,10 +253,14 @@
 
 #building-viewer-point-tip a,
 #building-viewer-overview-point-tip a {
-  display: block;
-  height: 20px;
-  overflow: hidden;
-  outline: 0;
-  text-indent: -10000px;
-  width: 20px;
+  background-color: #000;
+  border-radius: 4px;
+  color: #fff;
+  display: none;
+  font-size: 85%;
+  left: -38%;
+  padding: 5px 10px;
+  position: relative;
+  text-align: center;
+  white-space:nowrap;
 }
