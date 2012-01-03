@@ -74,15 +74,15 @@
        // and show the submenu
        $(this).addClass('active');
        $('ul.timeline-nav-secondary',$(this))
-       .fadeIn(125)
+       .fadeIn(250)
      },
-     timeout: 150, // set timeout in milliseconds
+     timeout: 1000, // set timeout in milliseconds
      out: function() {
        // Remove the active class
        // and hide the submenu
        $(this).removeClass('active');
        $('ul.timeline-nav-secondary',$(this))
-       .fadeOut(50)
+       .fadeOut(250)
      }
    };
 
@@ -94,9 +94,9 @@
        // Change background image
        $('#timeline-image').fadeOut(500, function() {
          $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
-       }).fadeIn(500);
+       }).fadeIn(250);
      },
-     timeout: 150, // set timeout in milliseconds
+     timeout: 1000, // set timeout in milliseconds
      out: function() {}
    };
 
@@ -105,7 +105,7 @@
    $('ul.timeline-nav-secondary > li').click(function() {
      $('#timeline-image').fadeOut(500, function() {
        $(this).css('background', 'url(' + timelineImages[Math.floor(Math.random()*2)] + '.jpg) no-repeat');
-     }).fadeIn(500);
+     }).fadeIn(250);
    });
 
 });
