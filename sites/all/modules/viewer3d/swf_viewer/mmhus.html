@@ -1,0 +1,372 @@
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<!-- 
+Smart developers always View Source. 
+
+This application was built using Adobe Flex, an open source framework
+for building rich Internet applications that get delivered via the
+Flash Player or to desktops via Adobe AIR. 
+
+Learn more about Flex at http://flex.org 
+// -->
+
+<head>
+<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--  BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="history/history.css" />
+<!--  END Browser History required section -->
+
+<title></title>
+<script src="AC_OETags.js" language="javascript"></script>
+
+<!--  BEGIN Browser History required section -->
+<script src="history/history.js" language="javascript"></script>
+<!--  END Browser History required section -->
+
+<style>
+body { margin: 0px;}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// Globals
+// Major version of Flash required
+var requiredMajorVersion = 10;
+// Minor version of Flash required
+var requiredMinorVersion = 0;
+// Minor version of Flash required
+var requiredRevision = 87;
+// -----------------------------------------------------------------------------
+// -->
+</script>
+</head>
+
+<body bgcolor="#b9b9b9">
+<div width="940" height="666">
+<script language="JavaScript" type="text/javascript">
+<!--
+// Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
+var hasProductInstall = DetectFlashVer(6, 0, 65);
+
+//Correct wmode, to have mouse working outside of browserwindow.
+function getWMode(){
+	//opaque mode is default, since html overlay usually works with that.
+	//IE, Chrome and Safari works with 'opaque', Firefox and Opera works with 'window'
+	if(window.opera || /Firefox/i.test(navigator.userAgent)){
+		return 'window';
+	}else{
+		return 'opaque';
+	}
+}
+
+// Version check based upon the values defined in globals
+var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+
+if ( hasProductInstall && !hasRequestedVersion ) {
+	// DO NOT MODIFY THE FOLLOWING FOUR LINES
+	// Location visited after installation is complete if installation is required
+	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+	var MMredirectURL = window.location;
+    document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+    var MMdoctitle = document.title;
+
+	AC_FL_RunContent(
+		"src", "playerProductInstall",
+		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
+		"width", "940",
+		"height", "666",
+		"wmode", getWMode(),
+		"align", "middle",
+		"id", "BuildingViewer",
+		"quality", "high",
+		"bgcolor", "#000000",
+		"name", "BuildingViewer",
+		"allowScriptAccess","sameDomain",
+		"allowFullScreen","true",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer",
+				"flashvars", "id=BuildingViewer&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V71a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
+	);
+} else if (hasRequestedVersion) {
+	// if we've detected an acceptable version
+	// embed the Flash Content SWF when all tests are passed
+	AC_FL_RunContent(
+			"src", "BuildingViewer",
+			"width", "940",
+			"height", "666",
+			"wmode", getWMode(),
+			"align", "middle",
+			"id", "BuildingViewer",
+			"quality", "high",
+			"bgcolor", "#000000",
+			"name", "BuildingViewer",
+			"allowScriptAccess","sameDomain",
+			"allowFullScreen","true",
+			"type", "application/x-shockwave-flash",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer",
+				"flashvars", "id=BuildingViewer&rotationSpeed=1&width=940&DaluxBuildingViewServerURL=http://prod.dalux.dk/mmhus/output/KBP_V71a/&OverviewURL=http://prod.dalux.dk/mmhus/overview_23-09-11/&currentLocation=8&angle=4.50&angle2=6.10&informationPoints=true&showTopBar=false&showLog=false&markerSize=50&markerMinSize=30"
+	);
+  } else {  // flash is too old or we can't detect the plugin
+    var alternateContent = 'Alternate HTML content should be placed here. '
+  	+ 'This content requires the Adobe Flash Player. '
+   	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+    document.write(alternateContent);  // insert non-flash content
+  }
+// -->
+</script>
+</div>
+<br>
+<!---->
+
+<!---->
+<script language="JavaScript" type="text/javascript">
+
+
+	var app;
+   	function view3DLoaded(){
+   		//Init app
+			app = thisMovie('BuildingViewer');
+	        if (!app) {
+	           app = getObject('BuildingViewer');
+	           if (!app) {
+	               app = getObject('BuildingViewer-name');
+	               if (!app)
+	                alert("not found");
+	           }
+	       }
+			createLoadPoint('16/3-2011', 'http://prod.dalux.dk/pihl/output/160311_7/');
+			createLoadPoint('26/3-2011', 'http://prod.dalux.dk/pihl/output/260711_7/');
+			createLoadPoint('30/9-2011', 'http://prod.dalux.dk/pihl/output/300911_7/');
+			createLoadPoint('Færdig', 'http://prod.dalux.dk/pihl/output/full_7/');
+			setPointLabel('44', "Taget");
+			setPointLabel('30', "Indgang");
+		}
+       
+	   function gotoLocation(pos, angle1, angle2){
+		   app.gotoLocation(pos, angle1, angle2);
+		}
+		
+		function gotoLocationDefaultDirection(pos){
+		   app.gotoLocationDefaultDirection(pos);
+		}
+		
+		function rotateToDefaultDirection(){
+           document.getElementById('rotationCompletedDiv').innerHTML = 'Rotating';
+		   app.rotateToDefaultDirection();
+		}
+		
+		function view3dRotationCompleted(id){
+	   	 document.getElementById('rotationCompletedDiv').innerHTML = 'Rotation completed';
+		}
+		
+		function flyToLocation(pos){
+		   app.flyToLocation(pos);
+		}
+		
+	   function createJumpPoint(jumpName, pos, angle1, angle2){
+		   app.createJumpPoint(jumpName,pos, angle1, angle2);
+		}
+		
+	   function createLoadPoint(jumpName, url){
+		   app.createLoadPoint(jumpName,url);
+		}
+		
+		 function setPointLabel(point, label){
+		   app.setPointLabel(point,label);
+		}
+		
+		function getUrl(){
+			document.getElementById('urlText').value = app.getUrl();
+		}
+		
+		function gotoUrl(){
+			app.gotoUrl(document.getElementById('urlText').value);
+		}
+		
+		
+		function recordMovie(){       
+           	app.recordMovie();
+		}
+		
+		function stopRecordingMovie() {       
+           	app.stopRecordingMovie();
+		}
+		
+		function getMovieUrl(){
+           	document.getElementById('movieUrlText').value = app.getMovieUrl();
+		}
+		
+		function playMovieUrl(){
+			document.getElementById('movieStatus').innerHTML = 'Playing';
+		   app.playMovieUrl(document.getElementById('movieUrlText').value);
+		}
+		
+		function stopMovie(){
+		   app.stopMovie();
+		}
+		
+		function resumeMovie(){
+		   app.resumeMovie();
+		}
+		
+		function view3dMovieCompleted(){
+		   document.getElementById('movieStatus').innerHTML = 'Movie finnished';
+		}
+		
+		function snapshot(){
+		   var imageBase64 = app.snapshot();
+		   document.getElementById('snapshotImage').src = 'data:image/png;base64,' + imageBase64;
+		}
+		
+		
+		function view3dLocationChanged(id){
+			var lbl = document.getElementById('atPointLbl');
+			if(lbl != null){
+				lbl.innerHTML = 'Ved punkt ' + id;
+			}
+			popup.style.visibility = "hidden";
+		}
+		
+		function view3dPointClicked(id, x, y){
+			var popup = document.getElementById("popup"); 
+			var flash = document.getElementById("BuildingViewer"); 
+			
+			popup.style.left = x + "px";
+			popup.style.top = y + "px";
+			popup.style.visibility = "visible";
+			popup.innerHTML = "Du har klikket punkt id " + id; 
+		}
+		
+		function view3dMouseOverPoint(id, x, y, height){
+			var popup = document.getElementById("popup"); 
+			var flash = document.getElementById("BuildingViewer"); 
+			
+			popup.style.left = (x - popup.offsetWidth / 2) + "px";
+			popup.style.top = (y - popup.offsetHeight - height / 2 + 10)  + "px";
+			popup.style.visibility = "visible";
+			popup.innerHTML = "Mouse over på punkt " + id; 
+			currentPointClick = id;
+		}
+		
+		function view3dMouseOutPoint(id){
+			popup.style.visibility = "hidden";
+		}
+		
+		function view3dOverviewMouseOverPoint(id, x, y, height){
+			var popup = document.getElementById("popup"); 
+			var flash = document.getElementById("BuildingViewer"); 
+			
+			popup.style.left = (x - popup.offsetWidth / 2) + "px";
+			popup.style.top = (y - popup.offsetHeight - height / 2 )  + "px";
+			popup.style.visibility = "visible";
+			popup.innerHTML = "Overview mouse over på punkt " + id; 
+
+		}
+		
+		function view3dOverviewMouseOutPoint(id){
+			popup.style.visibility = "hidden";
+		}
+		
+		function view3dMoved(){
+			var popup = document.getElementById("popup"); 
+			//popup.style.visibility = "hidden";
+		}
+
+       
+       function getObject(obj) {
+           var theObj;
+           if (document.all) {
+               if (typeof obj == "string") {
+                   return document.all(obj);
+               } else {
+                   return obj.style;
+               }
+           }
+           if (document.getElementById) {
+               if (typeof obj == "string") {
+                   return document.getElementById(obj);
+               } else {
+                   return obj.style;
+               }
+           }
+           return null;
+       }
+       
+       function thisMovie(movieName) {
+           // IE and Netscape refer to the movie object differently.
+           // This function returns the appropriate syntax depending on the browser.
+
+           var IE = /*@cc_on!@*/false
+
+
+           if (IE) {
+               return window[movieName];
+           } else {
+               return window.document[movieName];
+           }
+       }
+
+currentPointClick = "-1";
+       
+</script>
+
+<noscript>
+ Javascript must be enabled.
+</noscript>
+
+<INPUT TYPE="button" NAME="pos3" Value="Hop til 8 (ingen retning)" onClick="gotoLocationDefaultDirection(8)">
+<INPUT TYPE="button" NAME="pos3" Value="Rotér til default retning" onClick="rotateToDefaultDirection()">
+
+<INPUT TYPE="button" NAME="fly1" Value="Animér til 7" onClick="flyToLocation(7)">
+<INPUT TYPE="button" NAME="fly2" Value="Animér til 8" onClick="flyToLocation(8)">
+
+<!--<INPUT TYPE="button" NAME="hoptil1" Value="Lav hoptil1 punkt" onClick="createJumpPoint('> hoptil1', 5, 0,0)">
+<INPUT TYPE="button" NAME="hoptil2" Value="Lav hoptil2 punkt" onClick="createJumpPoint('> hoptil2', 1, 0,0)">-->
+
+
+<LABEL ID="atPointLbl"></LABEL>
+<div style="visibility:visible">
+<INPUT TYPE="button" NAME="pos1" Value="Hop til 7" onClick="gotoLocation(7, 1,-0.5)">
+<INPUT TYPE="button" NAME="pos2" Value="Hop til 8" onClick="gotoLocation(8, 0,0)">
+<div style="float:left;padding: 20px" id="rotationCompletedDiv">Rotation info</div>
+
+<div style="float:left;padding: 20px" >
+	<INPUT TYPE="button" Value="Gå til id:" onClick="gotoLocationDefaultDirection(document.getElementById('gotoPointIdText').value)"/>
+	<input type="text"  id="gotoPointIdText" value="0" />
+</div>
+
+<div style="float:left;padding: 20px" >
+	Url<br/>
+	<INPUT TYPE="button" NAME="getUrlBtn" Value="Get Url" onClick="getUrl()">
+	<INPUT TYPE="button" NAME="gotoUrlBtn" Value="Goto Url" onClick="gotoUrl()">
+	<INPUT TYPE="text" id="urlText"  NAME="urlText" Value="">
+</div>
+
+<div style="float:left;padding: 20px">
+	Movie<br/>
+	<INPUT TYPE="button" NAME="recordMovie" Value="Record Movie" onClick="recordMovie()">
+	<INPUT TYPE="button" NAME="stopRecordingMovie" Value="Stop Recording" onClick="stopRecordingMovie()">
+	<INPUT TYPE="button" NAME="getMovieUrl" Value="Get Url" onClick="getMovieUrl()">
+	<INPUT TYPE="button" NAME="playMovieUrl" Value="Play Url" onClick="playMovieUrl()">
+	<INPUT TYPE="button" NAME="stopMovie" Value="Stop/Pause" onClick="stopMovie()">
+	<INPUT TYPE="button" NAME="resumeMovie" Value="Resume Play" onClick="resumeMovie()">
+	<INPUT TYPE="text" id="movieUrlText" NAME="movieUrlText" Value="">
+  	<label id="movieStatus"></label>
+</div>
+
+
+<div style="float:left;padding: 20px">
+	<INPUT TYPE="button" NAME="snapshotBtn" Value="Take snapshot" onClick="snapshot()">
+	<img id="snapshotImage"/>
+</div>
+
+
+<div id="popup" style="visibility:hidden;display:block; position:absolute; zIndex:999; background:#ffffcc;" onClick="flyToLocation(currentPointClick)">HTML Overlay test</div>
+<div id="mouseOverTest" style="display:block; position:absolute; zIndex:999; background:#000000; color:#FFFFFF; border-color:#FFFFFF; top:600;left:0;width:300;height:50 ">HTML Integration</div>
+</div>
+</body>
+</html>

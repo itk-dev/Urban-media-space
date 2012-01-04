@@ -4,7 +4,7 @@ $(document).ready(function() {
                      "building-viewer",
                      "940",
                      "666",
-                     "10.0.0",
+                     "10.0.22",
                      viewerSettings['flash_location']+"/scripts/expressInstall.swf",
                      {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']+'&markerSize='+viewerSettings['markerSize']+'&markerMinSize='+viewerSettings['markerMinSize']+'&rotationSpeed='+viewerSettings['rotationSpeed']+'&mouseOutsideFlash=true'},
                      {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: view3dGetWMode()});
