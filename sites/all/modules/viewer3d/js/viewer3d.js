@@ -473,11 +473,11 @@ function view3dMouseOutPoint(id) {
  * IMPLEMENTATION OF HELPERS *
  *****************************/
 function view3dGetWMode() {
-  if (/msie/i.test(navigator.userAgent) || /Chrome/i.test(navigator.userAgent) || /Firefox/i.test(navigator.userAgent)) {
-    return "opaque";
+  if (window.opera || /Firefox/i.test(navigator.userAgent)) {
+    return "window";
   }
   else {
-    return "window";
+    return "opaque";
   }
 }
 
