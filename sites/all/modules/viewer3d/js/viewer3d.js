@@ -474,7 +474,7 @@ function view3dMouseOutPoint(id) {
  *****************************/
 function view3dGetWMode() {
   if (window.opera || /Firefox/i.test(navigator.userAgent)) {
-    return "window";
+    return "opaque";
   }
   else {
     return "opaque";
