@@ -1,14 +1,38 @@
 $(document).ready(function() { 
   var viewerSettings = Drupal.settings.viewer3d;
-  swfobject.embedSWF(viewerSettings['flash_location']+'/swf_viewer/BuildingViewer.swf',
-                     "building-viewer",
-                     "940",
-                     "666",
-                     "10.0.22",
-                     viewerSettings['flash_location']+"/scripts/expressInstall.swf",
-                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']+'&markerSize='+viewerSettings['markerSize']+'&markerMinSize='+viewerSettings['markerMinSize']+'&rotationSpeed='+viewerSettings['rotationSpeed']+'&mouseOutsideFlash=true'},
-                     {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: view3dGetWMode()});
+//  swfobject.embedSWF(viewerSettings['flash_location']+'/swf_viewer/BuildingViewer.swf',
+//                     "building-viewer",
+//                     "940",
+//                     "666",
+//                     "10.0.22",
+//                     viewerSettings['flash_location']+"/scripts/expressInstall.swf",
+//                     {width:'940',DaluxBuildingViewServerURL:viewerSettings['data']+'&OverviewURL='+viewerSettings['overviewURL']+'&currentLocation='+viewerSettings['currentLocation']+'&angle='+viewerSettings['angle']+'&angle2='+viewerSettings['angle2']+'&showTopBar='+viewerSettings['showTopBar']+'&showLog='+viewerSettings['showLog']+'&informationPoints='+viewerSettings['infoPoints']+'&markerSize='+viewerSettings['markerSize']+'&markerMinSize='+viewerSettings['markerMinSize']+'&rotationSpeed='+viewerSettings['rotationSpeed']+'&mouseOutsideFlash=true'},
+//                     {allowFullScreen:"true", allowScriptAccess:"sameDomain", wmode: view3dGetWMode()});
 
+  console.log(viewerSettings['data']);
+  console.log(viewerSettings['overviewURL']);
+
+  flashembed('building-viewer', viewerSettings['flash_location']+'/swf_viewer/BuildingViewer.swf', {
+        version: '10,22',
+	expressInstall: viewerSettings['flash_location']+'/scripts/expressInstall.swf',
+	wmode: 'opaque',
+	width: '940',
+	DaluxBuildingViewServerURL: viewerSettings['data'],
+	overviewURL: 'http://prod.dalux.dk/mmhus/overview_23-09-11/',
+	currentLocation: viewerSettings['currentLocation'],
+	angle: viewerSettings['angle'],
+	angle2: viewerSettings['angle2'],
+	showTopBar: viewerSettings['showTopBar'],
+	showLog: viewerSettings['showLog'], 
+	informationPoints: viewerSettings['infoPoints'],
+	markerSize: viewerSettings['markerSize'],  
+	markerMinSize: viewerSettings['markerMinSize'], 
+	rotationSpeed: viewerSettings['rotationSpeed'],        
+	mouseOutsideFlash: 'true',        
+	allowScriptAccess: 'sameDomain',
+        allowFullScreen: 'true'
+  });
+  
   // Configure qtip, see: http://craigsworks.com/projects/qtip/docs/
   $('#building-viewer-nav-wrapper li a').qtip({
       position: {
@@ -34,6 +58,10 @@ $(document).ready(function() {
       }
     }
   });
+
+  // Set id and name on object
+  $('#building-viewer object').attr('id', 'BuildingViewer');
+  $('#building-viewer object').attr('name', 'BuildingViewer');
 
   // Hide information on load
   $('#building-viewer-point-information').hide();
@@ -177,7 +205,6 @@ $(document).ready(function() {
  **********************/
 function viewer3dSnapshot(){
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -199,7 +226,6 @@ function viewer3dSnapshot(){
 
 function viewer3dGotoLocation(pos, angle, angle2) {
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -233,7 +259,6 @@ function viewer3dGetObject(obj) {
 
 function viewer3dGotoLocationDefaultDirection(pos) {
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -248,7 +273,6 @@ function viewer3dGotoLocationDefaultDirection(pos) {
 
 function viewer3dFlyToLocation(pos) {
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -261,9 +285,8 @@ function viewer3dFlyToLocation(pos) {
   app.flyToLocation(pos);
 }
 
-function viewer3dRotateToDefaultDirection() {
+function viewer3dRotateToDefaultDirection() {    
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -272,13 +295,12 @@ function viewer3dRotateToDefaultDirection() {
         alert("not found");
         return;
     }
-  }
+  }  
   app.rotateToDefaultDirection();
 }
 
 function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -294,7 +316,6 @@ function viewer3dCreateJumpPoint(jumpName, pos, angle1, angle2) {
 
 function viewer3dCreateLoadPoint(jumpName, url) {
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {
@@ -309,7 +330,6 @@ function viewer3dCreateLoadPoint(jumpName, url) {
 
 function viewer3dSetPointLabel(point, label) {
   var app = viewer3dMovie('BuildingViewer');
-  app = viewer3dGetObject('building-viewer');
   if (!app) {
     app = viewer3dGetObject('BuildingViewer');
     if (!app) {

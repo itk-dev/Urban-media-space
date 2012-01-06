@@ -73,6 +73,11 @@
   top: -40px;
 }
 
+#building-viewer {
+  height: 666px;
+  width: 940px;
+}
+
 #building-viewer-nav-wrapper ul li a {
   background: url('../gfx/3dviewer/3dviewer-sprites.png') no-repeat;
 }
