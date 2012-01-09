@@ -1,0 +1,6 @@
+; $Id: $
+
+name = Urban Mediaspace timeline module
+description = Views for Urban Mediaspace timeline
+dependencies[] = views
+core = 6.x
