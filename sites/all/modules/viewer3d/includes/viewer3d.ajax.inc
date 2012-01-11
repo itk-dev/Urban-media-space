@@ -5,7 +5,6 @@
  * Implementation of ajax callbacks from the flash 3D viewer.
  */
 
-define('VIEWER3D_TYPE_TITLE', 'title');
 define('VIEWER3D_TYPE_INFO', 'info');
 
 /**
@@ -16,13 +15,6 @@ define('VIEWER3D_TYPE_INFO', 'info');
  */
 function viewer3d_ajax($type, $pid, $html = TRUE) {
   switch ($type) {
-    case VIEWER3D_TYPE_TITLE:
-      $data = array(
-        'type' => VIEWER3D_TYPE_TITLE,
-        'value' => viewer3d_get_point_title($pid, $html),
-      );
-      break;
-
     case VIEWER3D_TYPE_INFO:
       $data = array(
         'type' => VIEWER3D_TYPE_INFO,

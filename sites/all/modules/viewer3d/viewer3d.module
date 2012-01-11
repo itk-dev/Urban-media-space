@@ -103,13 +103,15 @@ function viewer3d_page() {
   foreach (array('showLog', 'showTopBar', 'infoPoints') as $value) {
     $settings[$value] = $settings[$value] ? 'true' : 'false';
   }
-    
+
+  // Get point title.
+  $settings['titles'] = viewer3d_get_point_titles();
+
   // Add all the javascript bits.
   drupal_add_js(array('viewer3d' => $settings), 'setting');
   drupal_add_js(array('viewer3d_route' => $route), 'setting');
   drupal_add_js($path . '/js/swfobject.js', 'module');
-  drupal_add_js($path . '/js/viewer3d.js', 'module');
-  drupal_add_js($path . '/js/jquery.qtip.js', 'module');
+  drupal_add_js($path . '/js/viewer3d_v2.js', 'module');
   drupal_add_js($path . '/js/jquery.cookie.js', 'module');
 
   // Create viewer placeholder.
@@ -174,14 +176,6 @@ function viewer3d_page() {
   $output .= '<div id="building-viewer-wrapper">';
   $output .= '<div id="building-viewer"></div>';
   $output .= '</div>';
-
-  $output .= '<div id="building-viewer-point-tip">';
-  $output .= '<a href="#" title="">#####</a>';
-  $output .= '</div>';
-  
-  $output .= '<div id="building-viewer-overview-point-tip">';
-  $output .= '<a href="#" title="">#####</a>';
-  $output .= '</div>';  
 
   // Point information
   $output .= '<div id="building-viewer-point-information">';
@@ -313,20 +307,23 @@ function viewer3d_form_alter_submit($form, &$form_state) {
   unset($form_state['values']['points3d']);
 }
 
-function viewer3d_get_point_title($pid, $html = TRUE) {
-  $settings = variable_get('viewer3d', array());
+/**
+ * Helper function that loads all point titles into an array index by point id.
+ *
+ * @return $titles
+ */
+function viewer3d_get_point_titles() {
+  // Find points and nide
   $points = variable_get('viewer3d_points_used', array());
+  $nids = array_filter(array_values($points));
+  $points = array_flip(array_filter($points));
 
-  $title = t('Point @pid', array('@pid' => $pid));
-  if (isset($points[$pid])) {
-    $result = db_query('SELECT title FROM {node} WHERE nid=%d', $points[$pid]);
-    $title = db_fetch_object($result)->title;
+  // Load tiles based on nids.
+  $titles = array();
+  $result = db_query('SELECT nid, title FROM {node} WHERE nid in (' . implode(',', $nids) . ')');
+  while ($row = db_fetch_array($result)) {
+    $titles[$points[$row['nid']]] = $row['title'];
   }
-
-  if ($html) {
-    return l($title, $settings['path'].'/ajax/info/'.$pid);
-  }
-  else {
-    return $title;
-  }
+  
+  return $titles;
 }
