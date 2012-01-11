@@ -45,6 +45,15 @@ function viewer3d_load_information($pid) {
   }
 }
 
+/**
+ * Helper function to take shapshot in the 3d viewer. It encodes a based 64 data
+ * set into an png image and stores it on the server.
+ *
+ * @param mixed $filename
+ *    If non given an image will be generated else an download header is set and
+ *    the image is downloaded.
+ * @return type 
+ */
 function viewer3d_download($filename = FALSE) {
   $settings = variable_get('viewer3d', array());
 
