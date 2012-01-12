@@ -378,12 +378,12 @@ function view3dRotationCompleted(id) {
   //if (viwer3dInfoShow) {
     var viewerSettings = Drupal.settings.viewer3d;
     var href = viewerSettings.path + '/ajax/info/' + id;
-
+    
     // Lookup the local cache.
     var info = jQuery.data(document.body, "info_"+id);
     if (info) {
       $('#building-viewer-point-information .building-viewer-point-inner').html(info);
-      viewerToggleOverlay();
+      viewer3dObj.toggleOverlay();
       $('#building-viewer-point-information').fadeIn();
     }
     else {
