@@ -105,7 +105,7 @@ function viewer3d_page() {
   }
 
   // Get point title.
-  $settings['titles'] = viewer3d_get_point_titles();
+  $settings['titles'] = viewer3d_get_point_titles($route);
 
   // Add all the javascript bits.
   drupal_add_js(array('viewer3d' => $settings), 'setting');
@@ -309,10 +309,12 @@ function viewer3d_form_alter_submit($form, &$form_state) {
 
 /**
  * Helper function that loads all point titles into an array index by point id.
+ * The parameter $route is used to set titles for midway points.
  *
+ * @param array $route
  * @return $titles
  */
-function viewer3d_get_point_titles() {
+function viewer3d_get_point_titles($route) {
   // Find points and nide
   $points = variable_get('viewer3d_points_used', array());
   $nids = array_filter(array_values($points));
@@ -324,6 +326,12 @@ function viewer3d_get_point_titles() {
   while ($row = db_fetch_array($result)) {
     $titles[$points[$row['nid']]] = $row['title'];
   }
-  
+
+  // Give the midway points titles.
+  foreach ($route as $pid => $point) {
+    if ($point['type'] == 'MidwayPoint') {
+      $titles[$pid] = t('Go here');
+    }
+  }
   return $titles;
 }
