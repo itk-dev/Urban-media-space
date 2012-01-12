@@ -1691,3 +1691,50 @@ a[rel^=shadowbox]:visited {
 #site-header .block-langswitch .active {
   display: none;
 }
+
+/*
+  Timeline
+*/
+
+.timeline-nav-wrapper {
+  background-color: #e5e5e5;
+  padding: 0 5px 5px;
+}
+
+#content .timeline-row {
+  background-color: #f2f2f2;
+  border: 1px solid #d7d7d7;
+  margin: 0;
+  overflow: hidden;
+}
+
+.timeline-row li {
+  display: inline-block;
+  *float: left;
+  list-style: none;
+  text-align: center;
+}
+
+.timeline-row li h3.title {
+  background-color: #fff;
+  display: inline;
+  font-size: 85%;
+  font-weight: normal;
+  margin: 0;
+  padding: 5px;
+}
+
+#content .timeline-row li ul {
+  margin: 0;
+}
+
+.timeline-row li ul {
+  background-color: lightgray;
+  bottom: 6px;
+  display: none;
+  font-size: 85%;
+  left: 6px;
+  padding: 5px 10px;
+  position: absolute;
+}
+  

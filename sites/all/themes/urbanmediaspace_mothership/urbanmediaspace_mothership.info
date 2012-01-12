@@ -39,6 +39,7 @@ ie stylesheets[if lt IE 9][all][] = styles/ie.css
 scripts[] = scripts/jquery.example.min.js
 scripts[] = scripts/jquery.hoverintent.minified.js
 scripts[] = scripts/common.js
+scripts[] = scripts/timeline.js
 
 ;--------------------- features ----------------------------
 features[] = logo
