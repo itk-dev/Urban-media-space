@@ -1671,6 +1671,19 @@ a[rel^=shadowbox]:visited {
 }
 
 /*
+  Mailchimp newsletter
+*/
+
+.block-mailchimp .form-text {
+  width: 95%;
+}
+
+.block-mailchimp .edit-submit {
+  float: right;
+  margin: 0 0 10px;
+}
+
+/*
   Language select
 */
 
