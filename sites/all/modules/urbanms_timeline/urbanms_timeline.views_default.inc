@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_views_default_views().
  */
-function timeline_views_default_views() {
+function urbanms_timeline_views_default_views() {
   /*
    * View 'timeline'
    */
