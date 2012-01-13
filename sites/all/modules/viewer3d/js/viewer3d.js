@@ -34,7 +34,7 @@ $(document).ready(function() {
       }
     }
   });
-
+  
   // Hide information on load
   $('#building-viewer-point-information').hide();
 
@@ -169,12 +169,28 @@ $(document).ready(function() {
     e.preventDefault();
     return false;
   });
-
+    
 });
 
 /**********************
  * API IMPLEMENTATION *
  **********************/
+
+function viewer3dsetLabels() {
+  app = viewer3dGetObject('building-viewer');
+  if (!app) {
+    app = viewer3dGetObject('BuildingViewer');
+    if (!app) {
+      app = viewer3dGetObject('BuildingViewer-name');
+      if (!app)
+        alert("not found");
+        return;
+    }
+  }
+
+  app.setLabels([1,2,8], ['Køkken', 'Bad', 'Soveværelse']);
+}
+
 function viewer3dSnapshot(){
   var app = viewer3dMovie('BuildingViewer');
   app = viewer3dGetObject('building-viewer');
@@ -195,7 +211,6 @@ function viewer3dSnapshot(){
     window.location = data;
   });
 }
-
 
 function viewer3dGotoLocation(pos, angle, angle2) {
   var app = viewer3dMovie('BuildingViewer');
@@ -371,6 +386,9 @@ function view3DLoaded() {
     viewerToggleHelp();
   }
   $.cookie('viewer3d_help', 1);
+
+  // Set labels for infopoints and tooltips.
+  viewer3dsetLabels();
 }
 
 function view3dPointClicked(id, x, y) {
@@ -379,6 +397,10 @@ function view3dPointClicked(id, x, y) {
 
 function view3dMoved() {
 
+}
+
+function view3dInfoClicked(id) {
+  alert("Info bar clicked. Id: " + id);
 }
 
 function view3dMouseOverPoint(id, x, y, height) {
@@ -473,12 +495,7 @@ function view3dMouseOutPoint(id) {
  * IMPLEMENTATION OF HELPERS *
  *****************************/
 function view3dGetWMode() {
-  if (window.opera || /Firefox/i.test(navigator.userAgent)) {
-    return "opaque";
-  }
-  else {
-    return "opaque";
-  }
+  return "opaque";
 }
 
 function view3dUpdateTitle(title) {
