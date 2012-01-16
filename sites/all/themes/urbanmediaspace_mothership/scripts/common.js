@@ -11,20 +11,15 @@ $(document).ready(function() {
       .text()
   );
     
-  // Add example to mailchimp newsletter block
-  
+  // Add example to mailchimp newsletter block  
   var mailchimpBlock = $('.block-mailchimp');
   var mailchimpLabel = mailchimpBlock.find('label');
   
   // Hide label
   $(mailchimpLabel).hide();
-  
-  // Remove span with * from label
-  
-  $(mailchimpLabel).find('span.form-required').remove();
-  
+   
   // Add example function
-  $(mailchimpBlock).find('input.form-text').example($(mailchimpLabel).text());
+  $(mailchimpBlock).find('input.form-text').example(Drupal.t('Enter email address'));
 
   // Hijack carousel pager link
   $('.views-slideshow-ddblock-cycle-urbanmediaspace a.pager-link').click(function() {
