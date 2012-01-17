@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
+  var timelineList = $('.timeline-row-list');
+  
   var timelineConfig = {
     over: function() {
-      if ($('timeline-row:not(.active)')) {
+      if ($(timelineList).not('.active')) {
         $(this).addClass('active');
       }
     },
@@ -10,8 +12,8 @@ $(document).ready(function() {
     out: function() {      
       $(this).removeClass('active');
       
-      if (!$('.timeline-row li.col').hasClass('sticky')) {
-        $('.timeline-row').animate({
+      if (!timelineList.find('li.col').hasClass('sticky')) {
+        timelineList.animate({
           height: '23px'
         }, 250, function() {
           // Animation complete.
@@ -24,25 +26,25 @@ $(document).ready(function() {
   var config = {
     over: function() {
       thisItem = $(this);
-      $('.timeline-row').animate({
+      timelineList.animate({
         height: '53px'
       }, 250, function() {
         // Animation complete.
-        if (!$('.timeline-row li.col').hasClass('sticky')) {
-          $('ul',thisItem).fadeIn();
+        if (!timelineList.find('li.col').hasClass('sticky')) {
+          thisItem.find('ul').fadeIn();
         }
       });
     },
     timeout: 750, // set timeout in milliseconds
     out: function() {      
       if (!$(this).hasClass('sticky')) {        
-        $('ul',$(this)).hide();        
+        $(this).find('ul').hide();        
       }
     }
   }
   
   // Make list item sticky.
-  $('.timeline-row li').click(function() {
+  timelineList.find('li').click(function() {
     if ($(this).hasClass('.sticky')) {
       $(this).removeClass('sticky');      
     } else {
@@ -51,9 +53,9 @@ $(document).ready(function() {
   });
 
   // Add hoverIntent to menu items
-  $('.timeline-row li').hoverIntent(config);
+  timelineList.find('li').hoverIntent(config);
 
   // Add hoverIntent to timeline list.
-  $('.timeline-row').hoverIntent(timelineConfig);
+  $(timelineList).hoverIntent(timelineConfig);
 
 });
