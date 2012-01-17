@@ -170,3 +170,16 @@ function urbanmediaspace_mothership_link_formatter_plain($element) {
 
   return $url;
 }
+
+/**
+ *
+ * Theme function for adding panel pane tpl suggestions.
+ */
+
+function urbanmediaspace_preprocess_panels_pane(&$vars) {
+ $vars['template_files'][] = 'panels-pane-timeline';
+ print $vars['pane']->type;
+ if ($vars['pane']->type == 'node_title') {
+  $vars['template_files'][] = 'panels-pane-node-title';
+ }
+}

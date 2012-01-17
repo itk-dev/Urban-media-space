@@ -28,15 +28,17 @@
  * @ingroup views_templates
  */
 ?>
-<div class="timeline-nav-wrapper">
+<div class="timeline-row-wrapper">
   <?php if ($admin_links): ?>
     <div class="views-admin-links views-hide" style="display: none;">
       <?php print $admin_links; ?>
     </div>
   <?php endif; ?>
-  <ul class="timeline-row">
-  <?php if ($rows): ?>
-    <?php print $rows; ?>
-  <?php endif; ?>
-  </ul>
+  <div class="timeline-row">
+    <ul class="timeline-row-list">
+    <?php if ($rows): ?>
+      <?php print $rows; ?>
+    <?php endif; ?>
+    </ul>
+  </div>
 </div> <?php /* class view */ ?>

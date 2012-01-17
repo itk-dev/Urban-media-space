@@ -1696,26 +1696,65 @@ a[rel^=shadowbox]:visited {
   Timeline
 */
 
-.timeline-nav-wrapper {
+.view-timeline {
   background-color: #e5e5e5;
-  padding: 0 5px 5px;
-}
-
-#content .timeline-row {
-  background-color: #f2f2f2;
-  border: 1px solid #d7d7d7;
-  margin: 0;
   overflow: hidden;
+  padding: 4px;
+  position: relative;
 }
 
-.timeline-row li {
+.view-timeline .image {
+  border: 1px solid #d7d7d7;
+  float: left;
+}
+
+.view-timeline .image img {
+  border: 1px solid #f9f9f9;
+  display: block;
+}
+
+
+.view-timeline .content-wrapper {
+  background-color: rgba(0,0,0,.7);
+  height: 224px;
+  min-width: 325px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+
+.view-timeline .content-wrapper .content {
+  color: #fff;
+  padding: 20px;
+}
+
+.view-timeline .content-wrapper .content h3 {
+  font-size: 125%;
+}
+  
+.timeline-row-wrapper {
+  background-color: #e5e5e5;
+  padding: 0 4px 5px;
+}
+
+.timeline-row {
+  border: 1px solid #d7d7d7;
+}
+
+#content .timeline-row-list {
+  background-color: #f2f2f2;
+  border: 1px solid #f9f9f9;
+  margin: 0;
+}
+
+.timeline-row-list li {
   display: inline-block;
   *float: left;
   list-style: none;
   text-align: center;
 }
 
-.timeline-row li h3.title {
+.timeline-row-list li h3.title {
   background-color: #fff;
   display: inline;
   font-size: 85%;
@@ -1724,11 +1763,11 @@ a[rel^=shadowbox]:visited {
   padding: 5px;
 }
 
-#content .timeline-row li ul {
+#content .timeline-row-list li ul {
   margin: 0;
 }
 
-.timeline-row li ul {
+.timeline-row-list li ul {
   background-color: lightgray;
   bottom: 6px;
   display: none;
@@ -1737,4 +1776,3 @@ a[rel^=shadowbox]:visited {
   padding: 5px 10px;
   position: absolute;
 }
-  

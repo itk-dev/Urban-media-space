@@ -36,7 +36,7 @@ $(document).ready(function() {
     timeout: 750, // set timeout in milliseconds
     out: function() {      
       if (!$(this).hasClass('sticky')) {        
-        $('ul',$(this)).fadeOut();        
+        $('ul',$(this)).hide();        
       }
     }
   }

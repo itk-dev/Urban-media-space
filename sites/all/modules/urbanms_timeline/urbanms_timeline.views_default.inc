@@ -953,11 +953,14 @@ return $args;',
       'empty_zero' => 0,
       'hide_alter_empty' => 0,
       'link_to_node' => 0,
-      'exclude' => 0,
+      'exclude' => 1,
       'id' => 'title',
       'table' => 'node',
       'field' => 'title',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
     ),
     'field_teaser_value' => array(
       'label' => '',
@@ -994,7 +997,7 @@ return $args;',
         'multiple_from' => '',
         'multiple_reversed' => FALSE,
       ),
-      'exclude' => 0,
+      'exclude' => 1,
       'id' => 'field_teaser_value',
       'table' => 'node_data_field_teaser',
       'field' => 'field_teaser_value',
@@ -1038,7 +1041,7 @@ return $args;',
         'multiple_from' => '',
         'multiple_reversed' => FALSE,
       ),
-      'exclude' => 0,
+      'exclude' => 1,
       'id' => 'field_timeline_link_url',
       'table' => 'node_data_field_timeline_link',
       'field' => 'field_timeline_link_url',
@@ -1050,8 +1053,15 @@ return $args;',
     'view_node' => array(
       'label' => '',
       'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
+        'alter_text' => 1,
+        'text' => '<div class="content-wrapper">
+  <div class="content">
+    <h3 class="title">[title]</h3>
+    [field_teaser_value]
+    [field_timeline_link_url]
+    [view_node]
+  </div>
+</div>',
         'make_link' => 0,
         'path' => '',
         'absolute' => 0,
