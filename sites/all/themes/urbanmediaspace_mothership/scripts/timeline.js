@@ -14,7 +14,7 @@ $(document).ready(function() {
       
       if (!timelineList.find('li.col').hasClass('sticky')) {
         timelineList.animate({
-          height: '23px'
+          paddingBottom: '0'
         }, 250, function() {
           // Animation complete.
         });        
@@ -27,18 +27,27 @@ $(document).ready(function() {
     over: function() {
       thisItem = $(this);
       timelineList.animate({
-        height: '53px'
+        paddingBottom: '35px'
       }, 250, function() {
         // Animation complete.
+              
+        // Only hide the column if is  not sticky.
         if (!timelineList.find('li.col').hasClass('sticky')) {
-          thisItem.find('ul').fadeIn();
+          // Add active class.
+          thisItem.addClass('active');
+
+          thisItem.find('ul').css('display', 'block');
         }
       });
     },
     timeout: 750, // set timeout in milliseconds
-    out: function() {      
+    out: function() {
+
+      // Remove active class.
+      $(this).removeClass('active');
+      
       if (!$(this).hasClass('sticky')) {        
-        $(this).find('ul').hide();        
+        $(this).find('ul').css('display', 'none');        
       }
     }
   }

@@ -1742,7 +1742,7 @@ a[rel^=shadowbox]:visited {
 }
 
 #content .timeline-row-list {
-  background-color: #f2f2f2;
+  background: #f2f2f2 url('../gfx/timeline/timeline-gray-line.png') no-repeat center 19px;
   border: 1px solid #f9f9f9;
   margin: 0;
 }
@@ -1754,22 +1754,47 @@ a[rel^=shadowbox]:visited {
   text-align: center;
 }
 
-.timeline-row-list li h3.title {
-  background-color: #fff;
-  display: inline;
+.timeline-row-list li h3 {
   font-size: 85%;
   font-weight: normal;
   margin: 0;
-  padding: 5px;
+  padding: 3px 14px 4px;
+}
+
+.timeline-row-list li h3 span {
+  background: url('../gfx/timeline/timeline-dots.png') no-repeat 7px -35px;
+  display: block;
+  padding: 31px 7px 3px 3px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;  
+}
+
+.timeline-row-list li.active h3 span,
+.timeline-row-list li.sticky h3 span {
+  background-color: #f9f9f9;
+  background-position: -34px 7px;
+  border: 1px solid #d8d8d8;
+  border-bottom: 0;
+  margin-left: -3px;
+  padding: 30px 6px 3px 5px;
+  position: relative;
+  z-index: 10;
 }
 
 #content .timeline-row-list li ul {
+  background-color: #f9f9f9;
+  border: 1px solid #d8d8d8;
   margin: 0;
+  z-index: 9;
 }
 
 .timeline-row-list li ul {
   background-color: lightgray;
-  bottom: 6px;
+  bottom: 15px;
   display: none;
   font-size: 85%;
   left: 6px;
