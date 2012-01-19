@@ -197,11 +197,11 @@ h1#page-title {
 }
 
 #main-menu li.first {
-  margin: 0 15px 0 30px;
+  margin: 0 5px 0 30px;
 }
 
 #main-menu li {
-  margin: 0 15px;
+  margin: 0 5px 0 15px;
 }
 
 #main-menu a,
@@ -1668,6 +1668,19 @@ a[rel^=shadowbox]:visited {
 
 .block-tagadelic a:hover {
   text-decoration: underline;
+}
+
+/*
+  Mailchimp newsletter
+*/
+
+.block-mailchimp .form-text {
+  width: 95%;
+}
+
+.block-mailchimp .edit-submit {
+  float: right;
+  margin: 0 0 10px;
 }
 
 /*
