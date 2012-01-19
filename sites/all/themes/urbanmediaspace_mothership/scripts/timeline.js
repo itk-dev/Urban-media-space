@@ -15,7 +15,7 @@ $(document).ready(function() {
       if (!timelineList.find('li.col').hasClass('sticky')) {
         timelineList.animate({
           paddingBottom: '0'
-        }, 250, function() {
+        }, 100, function() {
           // Animation complete.
         });        
       }
@@ -28,7 +28,7 @@ $(document).ready(function() {
       thisItem = $(this);
       timelineList.animate({
         paddingBottom: '35px'
-      }, 250, function() {
+      }, 100, function() {
         // Animation complete.
               
         // Only hide the column if is  not sticky.
@@ -59,6 +59,28 @@ $(document).ready(function() {
     } else {
       $(this).addClass('sticky');
     }    
+  });
+
+  // Width of timeline nav wrapper.
+  var timelineListWidth = timelineList.width();
+  
+  timelineList.find('ul').each(function(index) {
+    submenuPos = $(this).position().left - ($(this).width()/2 - timelineList.width()/2);
+
+    if (submenuPos<=0) {
+      // If the submenu is position negative
+      // position is 0 pixels from left
+      $(this).css('left',0);
+    } else if (submenuPos+$(this).width()>timelineListWidth) {
+      // If the submenu is positionen to far to the right
+      // reset left and position it 0 pixels from right
+      $(this).css({'left': 'auto', 'right': 0});
+    } else {
+      // If the submenu fits inside the wrapper
+      // position it centered on the active menu item
+      $(this).css('left',submenuPos);
+    }
+
   });
 
   // Add hoverIntent to menu items
