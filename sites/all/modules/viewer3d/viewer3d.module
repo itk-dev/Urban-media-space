@@ -145,7 +145,7 @@ function viewer3d_page() {
   $output .= '<ul id="building-viewer-nav">';
 
   // Start link.
-  $output .= '<li class="home"><a href="#" title="' . t('Click here to go back to the starting point') . '">' . t('Back to start') . '</a></li>';
+  $output .= '<li class="home"><a href="#' . t('Click here to go back to the starting point') . '" title="' . t('Click here to go back to the starting point') . '">' . t('Back to start') . '</a></li>';
 
   $show_buttons = isset($settings['showPrevNext']) ? $settings['showPrevNext'] : 1;
   if ($show_buttons) {
