@@ -287,6 +287,11 @@ $(document).ready(function() {
   // Hide information overlay on load.
   $('#building-viewer-point-information').hide();
 
+  $('#building-viewer-nav .home a').click(function() {
+    viewer3dObj.gotoLocationDefaultDirection(viewer3dObj.settings.currentLocation);
+    return false;
+  });
+
   // Add event listners to the next and previous buttons.
   $('#building-viewer-nav .previous').click(function() {
     viewer3dObj.prevPoint();
