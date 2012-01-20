@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-  var timelineList = $('.timeline-row-list');
+  var timeline = $('.timeline-row-list');
   
   var timelineConfig = {
     over: function() {
-      if ($(timelineList).not('.active')) {
+      if ($(timeline).not('.active')) {
         $(this).addClass('active');
       }
     },
@@ -12,8 +12,8 @@ $(document).ready(function() {
     out: function() {      
       $(this).removeClass('active');
       
-      if (!timelineList.find('li.col').hasClass('sticky')) {
-        timelineList.animate({
+      if (!timeline.find('li.col').hasClass('sticky')) {
+        timeline.animate({
           paddingBottom: '0'
         }, 100, function() {
           // Animation complete.
@@ -26,17 +26,17 @@ $(document).ready(function() {
   var config = {
     over: function() {
       thisItem = $(this);
-      timelineList.animate({
+      timeline.animate({
         paddingBottom: '35px'
       }, 100, function() {
         // Animation complete.
               
         // Only hide the column if is  not sticky.
-        if (!timelineList.find('li.col').hasClass('sticky')) {
+        if (!timeline.find('li.col').hasClass('sticky')) {
           // Add active class.
           thisItem.addClass('active');
 
-          thisItem.find('ul').css('display', 'block');
+          thisItem.find('ul').fadeIn('fast');
         }
       });
     },
@@ -47,13 +47,13 @@ $(document).ready(function() {
       $(this).removeClass('active');
       
       if (!$(this).hasClass('sticky')) {        
-        $(this).find('ul').css('display', 'none');        
+        $(this).find('ul').fadeOut();
       }
     }
   }
-  
+   
   // Make list item sticky.
-  timelineList.find('li').click(function() {
+  timeline.find('li').click(function() {
     if ($(this).hasClass('.sticky')) {
       $(this).removeClass('sticky');      
     } else {
@@ -62,31 +62,35 @@ $(document).ready(function() {
   });
 
   // Width of timeline nav wrapper.
-  var timelineListWidth = timelineList.width();
+  var timelineWidth = timeline.width();
   
-  timelineList.find('ul').each(function(index) {
-    submenuPos = $(this).position().left - ($(this).width()/2 - timelineList.width()/2);
-
-    if (submenuPos<=0) {
-      // If the submenu is position negative
-      // position is 0 pixels from left
-      $(this).css('left',0);
-    } else if (submenuPos+$(this).width()>timelineListWidth) {
+  timeline.find('ul').each(function() {       
+    
+    listIndent = 19; // Used for indenting the items.   
+    listWidth = $(this).width(); // The width of the current list.       
+    listInitPos = $(this).parent('li').position().left; // The current lists initial position    
+    listPos = listInitPos - listWidth/2 + listIndent; // The new position of the list.
+       
+    if (listPos<=0) {
+      // If the submenu position is negative
+      // position it to the left.
+      $(this).css('left','17px');
+    } else if (listPos+listWidth>timelineWidth) {
       // If the submenu is positionen to far to the right
       // reset left and position it 0 pixels from right
-      $(this).css({'left': 'auto', 'right': 0});
+      $(this).css({'left': 'auto', 'right': '17px'});
     } else {
       // If the submenu fits inside the wrapper
       // position it centered on the active menu item
-      $(this).css('left',submenuPos);
+      $(this).css('left',listPos);
     }
 
   });
 
   // Add hoverIntent to menu items
-  timelineList.find('li').hoverIntent(config);
+  timeline.find('li').hoverIntent(config);
 
   // Add hoverIntent to timeline list.
-  $(timelineList).hoverIntent(timelineConfig);
+  $(timeline).hoverIntent(timelineConfig);
 
 });
