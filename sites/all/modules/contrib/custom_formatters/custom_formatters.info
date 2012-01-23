@@ -1,0 +1,13 @@
+name = Custom Formatters
+description = Allows users to easily define custom CCK Formatters.
+dependencies[] = content
+dependencies[] = token
+package = CCK
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-10-08
+version = "6.x-1.6"
+core = "6.x"
+project = "custom_formatters"
+datestamp = "1318069301"
+
