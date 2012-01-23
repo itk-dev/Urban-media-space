@@ -1,0 +1,127 @@
+Custom Formatters 6.x-1.6, 2011-10-08
+--------------------------------------------------------------------------------
+
+- #1255738 by scottrigby: Removed $module_name from Features integration.
+- #1202930: Added missing help.
+- #1181910: Added Label prefix settings.
+- #1177584: Fixed issue with Insert and basic Formatters.
+- #1173344: Fixed issue with Exported Formatters being exported unnecessarily.
+- #1143606 by scottrigby: Fixed issue with Features integration.
+- #1140492: Fixed Fieldgroup integration.
+- #1103586 by nicholas.alipaz: Added support for Views display and User display.
+- #1000164: Fixed issue with disabled formatters showing up on Insert config.
+- #957094: Fixed issue with Multigroup formats not being respected.
+- #934032: Fixed unsupported operand type issue.
+- #895918: Fixed issue with Basic to Advanced conversion.
+- #886150: Fixed issue with formatters with identical labels being filtered out.
+- #878202: Fixed Features export location.
+- #841000: Fixed issue with empty field check.
+- Added support for the EditArea real-time syntax highlighter.
+- Changed token selector to use token tree.
+
+
+Custom Formatters 6.x-1.5, 2011-04-13
+--------------------------------------------------------------------------------
+
+- #1042606: Fixed Custom Formatters/Features export issues.
+- #936526 by joelstein: Fix issue with Token 6.x-1.5.
+- #931372 by joelstein: Fix Features module integration.
+- #841272: Fixed support for Node Displays Body field.
+- #808660: Fixed Basic formatter recursion issue.
+- Fixed issue with Token support.
+
+
+Custom Formatters 6.x-1.5-beta4, 2010-06-27
+--------------------------------------------------------------------------------
+
+- Fixed issue with Features integration.
+
+
+Custom Formatters 6.x-1.5-beta3, 2010-06-27
+--------------------------------------------------------------------------------
+
+- #825290: Fixed issue with function declaration when using the Features module.
+- #824178: Fixed issue with advanced formatters displaying when field is empty.
+- #808660: Fixed issue with Display Suite integration and basic formatters.
+- #686030: Added ability to toggle formatter status.
+- Added new exportable method (hook_custom_formatters_defaults()).
+- Added features integration.
+- Changed custom formatters system location.
+- Removed 'cfid' column from database.
+
+
+Custom Formatters 6.x-1.5-beta2, 2010-06-09
+--------------------------------------------------------------------------------
+
+- #821346: Added 'basic' to 'advanced' formatter converter.
+- #764608: Changed preview content types field from radios to selectbox.
+- Added 'Save & Edit' button.
+- Added 'basic' formatter export.
+- Added export to tar/tgz.
+- Changed the 'name' and 'label' database fields to 64 characters.
+- Fixed issue with Imagefield description not rendering correctly via the Insert
+    module.
+
+
+Custom Formatters 6.x-1.5-beta1, 2010-03-02
+--------------------------------------------------------------------------------
+
+- Added support for CCKs Content Multigroup module.
+
+
+Custom Formatters 6.x-1.4, 2010-03-02
+--------------------------------------------------------------------------------
+
+- #721526: Improved Preview functionality.
+- #694814 by mauricemengel: Fixed error casued by
+    custom_formatters_token_values().
+- #691010: Added support for the Node displays module.
+- Added two new hooks for future development.
+- Added bulk operations.
+- Added pager to overview.
+- Fixed a bunch of PHP notices.
+- Removed 'Delete' button from clone form.
+
+
+Custom Formatters 6.x-1.3, 2010-02-01
+--------------------------------------------------------------------------------
+
+- #694814: Fixed errors with undefined variables.
+- #690948: Fixed issue where basic formatters where processed when fields were
+    empty.
+- #690936: Added additional tokens.
+- #686030: Added Preview feature.
+- #671532: Fixed issue with overly argumentative function.
+- Added hook to display additional tokens in the basic editor tokens list.
+- Added node tokens to basic editor.
+- Added developer documentation.
+- Fixed issue where using a basic formatter prevented further fields being
+    formatted.
+- Fixed issue where path_to_theme() in formatter returned path of module.
+- Improved coding standards via the Coder Tough Love module.
+- Improved node tokens preview.
+
+
+Custom Formatters 6.x-1.2, 2010-01-15
+--------------------------------------------------------------------------------
+
+- Added a basic HTML editor with Token support.
+- Added support for the Insert module.
+
+
+Custom Formatters 6.x-1.1, 2010-01-04
+--------------------------------------------------------------------------------
+
+- #671532: Fixed multiple warnings.
+- Added Clone feature.
+- Added Export feature.
+- Added support for multiple value formatters.
+- Added missing implementation of hook_perm().
+- Added basic help documentation.
+- Changed 'description' field to optional.
+
+
+Custom Formatters 6.x-1.0, 2009-12-30
+--------------------------------------------------------------------------------
+
+- Initial 6.x release.
