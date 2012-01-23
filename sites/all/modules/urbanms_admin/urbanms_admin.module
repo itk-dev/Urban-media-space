@@ -4,7 +4,23 @@
   * Implementation of hook_form_alter.
   */
 function urbanms_admin_form_alter(&$form, &$form_state, $form_id) {
+  
+  // Make sure we are looking at a node edit form.
   if (isset($form['type']) && isset($form['#node']) && $form['type']['#value'] .'_node_form' == $form_id) {
+    // Set the default value of translation fallback to true.
     $form['nodeblock']['translation_fallback']['#default_value'] = TRUE;
-   }
+    
+    // If it is a spotbox with external link
+    if ($form['type']['#value'] == 'spot_box_image_ext_link') {
+      // Set default value of link target to true.
+      //print_r($form['field_spot_box_ext_link'][0]['#field']);
+      if ($form['field_spot_box_ext_link'][0]['#field']['attributes']['target'] != 'user') {
+        //$form['field_spot_box_ext_link'][0]['#default_value']['attributes']['target'] = true;
+      }
+      
+      //$form['field_spot_box_ext_link'][0]['#field']['attributes']['target'] = true;
+    }
+    
+  }
+  
 }
