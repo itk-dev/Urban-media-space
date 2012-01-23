@@ -66,6 +66,12 @@ function urbanmediaspace_mothership_breadcrumb($breadcrumb) {
       for ($i = 0; $i < $size; $i++) {
         $breadcrumb[] = l($trail[$i]['title'], $trail[$i]['link_path']);
       }
+
+      // Insert project, if the 3dmodel is shown.
+      if (arg(0) == '3dmodel') {
+        $breadcrumb[] = l(t('Project'), 'projektet');
+      }
+
       // Last item should not be at link.
       $breadcrumb[] = t($trail[$i]['title']);
     }
