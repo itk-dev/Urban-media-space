@@ -1316,10 +1316,9 @@ body.context-editing div.draggable:hover a.context-block-handle {
   News
 */
 
-#main-content h1.news-title,
-#main-content .news-content {
+.two-sidebars .node.node-news {
   float: left;
-  width: 700px;
+  width: 460px;
 }
 
 #main-content .content .field-field-news-image {
@@ -1681,6 +1680,10 @@ a[rel^=shadowbox]:visited {
 .block-mailchimp .edit-submit {
   float: right;
   margin: 0 0 10px;
+}
+
+.block .campaign {
+  padding: 0 0 10px;
 }
 
 /*
