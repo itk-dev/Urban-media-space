@@ -1,4 +1,0 @@
-; $Id$
-name = Urban Mediaspace admin helper module
-description = Urban Mediaspace helper module.
-core = 6.x

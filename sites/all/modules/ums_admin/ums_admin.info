@@ -1,0 +1,5 @@
+name = UrbanMediaSpace admin
+description = Handles div. suff
+package = Other
+version = 1.0-beta1
+core = 6.x
