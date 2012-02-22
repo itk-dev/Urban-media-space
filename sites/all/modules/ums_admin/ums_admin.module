@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Set max-age for pages that are cacheable, when not in external cache 
+ * mode. This allows us to cache page in varnish at the same time use
+ * Drupal pages cache.
+ */
+function ums_admin_init(){
+  $cache_mode = variable_get('cache', CACHE_DISABLED);
+  if (drupal_page_is_cacheable() && $cache_mode != CACHE_EXTERNAL) {
+    $max_age = variable_get('page_cache_max_age', 0);
+    drupal_set_header('Cache-Control', 'public, max-age=' . $max_age);
+  }
+}
