@@ -48,9 +48,9 @@ stylesheets[all][] = "tracker.css"
 stylesheets[all][] = "update.css"
 stylesheets[all][] = "user.css"
 
-; Information added by drupal.org packaging script on 2010-10-21
-version = "6.x-3.2"
+; Information added by drupal.org packaging script on 2012-02-22
+version = "6.x-3.3"
 core = "6.x"
 project = "tao"
-datestamp = "1287680788"
+datestamp = "1329952556"
 

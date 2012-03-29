@@ -60,6 +60,33 @@ function tao_theme() {
 }
 
 /**
+ * Backport of Drupal 7's drupal_html_class().
+ */
+function tao_drupal_html_class($class) {
+  return tao_drupal_clean_css_identifier(drupal_strtolower($class));
+}
+
+/**
+ * Backport of Drupal 7's drupal_clean_css_identifier().
+ */
+function tao_drupal_clean_css_identifier($identifier, $filter = array(' ' => '-', '_' => '-', '/' => '-', '[' => '-', ']' => '')) {
+  // By default, we filter using Drupal's coding standards.
+  $identifier = strtr($identifier, $filter);
+
+  // Valid characters in a CSS identifier are:
+  // - the hyphen (U+002D)
+  // - a-z (U+0030 - U+0039)
+  // - A-Z (U+0041 - U+005A)
+  // - the underscore (U+005F)
+  // - 0-9 (U+0061 - U+007A)
+  // - ISO 10646 characters U+00A1 and higher
+  // We strip out any character not in the above list.
+  $identifier = preg_replace('/[^\x{002D}\x{0030}-\x{0039}\x{0041}-\x{005A}\x{005F}\x{0061}-\x{007A}\x{00A1}-\x{FFFF}]/u', '', $identifier);
+
+  return $identifier;
+}
+
+/**
  * DEPRECATED. CSS exclusion is better handled with positive (yet omitted)
  * entries in your .info file.
  *
