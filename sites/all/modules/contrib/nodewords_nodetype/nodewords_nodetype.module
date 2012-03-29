@@ -1,5 +1,4 @@
 <?php
-/* $Id: nodewords_nodetype.module,v 1.2.2.12 2010/01/19 18:55:52 hanoii Exp $ */
 
 /**
  * Implementation of hook_form_alter().
@@ -46,7 +45,7 @@ function nodewords_nodetype_form_alter(&$form, &$form_state, $form_id) {
       '#default_value' => variable_get('nodewords_nodetype_keywords_'. $form['#node_type']->type, ''),
       '#size' => 60,
       '#maxlength' => variable_get('nodewords_max_size', 255),
-      '#description' => t('Tokens are supported. This keywords will be appended after the global keywords. Enter a comma separated list of keywords for this page. Avoid duplication of words as this will lower your search engine ranking.'),
+      '#description' => t('Tokens are supported. This keywords will override the global keywords of your site, so please include them here if you need them to appear. Enter a comma separated list of keywords for this page. Avoid duplication of words as this will lower your search engine ranking.'),
     );
 
     $form['nodewords_nodetype']['description'] = array(
@@ -95,15 +94,20 @@ function nodewords_nodetype_form_alter(&$form, &$form_state, $form_id) {
  */
 function nodewords_nodetype_nodewords_tags_alter(&$output_tags, $tag_options) {
   if ($tag_options['type'] == NODEWORDS_TYPE_NODE) {
-    $node = node_load($tag_options['ids'][0]);
+    // $tag_options['id'] is nodewords-6.12 and above and $tag_options['ids'][0]
+    // is nodewords 6.11 and below
+    $nid = isset($tag_options['id']) ? $tag_options['id'] : $tag_options['ids'][0];
+    $node = node_load($nid);
 
     // Use node-type defaults for this node unless the user specified to use the node's specific values)
     if (is_null($node->nodewords_nodetype_override) || !$node->nodewords_nodetype_override) {
       // Keywords
       if ( ( $keywords = variable_get('nodewords_nodetype_keywords_'. $node->type, '') ) !== '' ) {
         $meta_keywords = token_replace($keywords, 'node', $node);
-        $output_tags['keywords'] = ($output_tags['keywords'] !== '' ? ',' : '' ) . $meta_keywords;
-        $output_tags['keywords'] = nodewords_unique($output_tags['keywords']);
+        $output_tags['keywords'] = $meta_keywords;
+        // nodewords_unique_values() is nodewords-6.12 and above and
+        // nodewords_unique() is nodewords 6.11 and below
+        $output_tags['keywords'] = function_exists('nodewords_unique_values') ? nodewords_unique_values($output_tags['keywords']) : nodewords_unique($output_tags['keywords']);
       }
 
       // Description
@@ -148,7 +152,7 @@ function nodewords_nodetype_nodeapi(&$node, $op, $teaser = NULL, $page = NULL) {
       // own condition.
       $nodewords_nodetype = db_fetch_object(db_query("SELECT * FROM {nodewords_nodetype_node} WHERE nid = %d AND vid = %d", $node->nid, $node->vid));
       return array(
-        'nodewords_nodetype_override' => isset($nodewords_nodetype->override) ? $nodewords_nodetype->override : '',
+        'nodewords_nodetype_override' => $nodewords_nodetype->override,
       );
       break;
 

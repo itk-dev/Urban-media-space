@@ -22,4 +22,3 @@ INSTALLATION:
 
 Last updated:
 ------------
-$Id: README.txt,v 1.2.2.1 2009/06/01 17:36:37 hanoii Exp $
