@@ -37,13 +37,13 @@
   </div>
 <?php endif; ?>
 
-<?php if ($exposed): ?>
+<?php if (isset($exposed)): ?>
   <div class="view-filters">
     <?php print $exposed; ?>
   </div>
 <?php endif; ?>
 
-<?php if ($attachment_before): ?>
+<?php if (isset($attachment_before)): ?>
   <div class="attachment attachment-before">
     <?php print $attachment_before; ?>
   </div>
@@ -69,17 +69,17 @@
   </div>
 <?php endif; ?>
 
-<?php if ($more): ?>
+<?php if (isset($more)): ?>
   <?php print $more; ?>
 <?php endif; ?>
 
-<?php if ($footer): ?>
+<?php if (isset($footer)): ?>
   <div class="view-footer">
     <?php print $footer; ?>
   </div>
 <?php endif; ?>
 
-<?php if ($feed_icon): ?>
+<?php if (isset($feed_icon)): ?>
   <div class="feed-icon">
     <?php print $feed_icon; ?>
   </div>

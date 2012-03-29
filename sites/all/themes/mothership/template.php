@@ -277,7 +277,7 @@ function mothership_preprocess(&$vars, $hook) {
     //-----------------------------------------------------
     //lets grap $links array and throw em into some vars we actually can use
     //comments
-    if ($vars['node']->links['comment_comments']) {
+    if (isset($vars['node']->links['comment_comments'])) {
         $vars['link_comment'] =  l($vars['node']->links['comment_comments']['title'], $vars['node']->links['comment_comments']['href'],
           array(
             'attributes' => array('class' => 'comment', 'title' => $vars['node']->links['comment_comments']['attributes']['title']),
@@ -287,7 +287,7 @@ function mothership_preprocess(&$vars, $hook) {
     }
 
     //comment_add
-    if ($vars['node']->links['comment_add']) {
+    if (isset($vars['node']->links['comment_add'])) {
       $vars['link_comment_add'] =  l($vars['node']->links['comment_add']['title'], $vars['node']->links['comment_add']['href'],
       array(
           'attributes' => array('class' => 'comment-add', 'title' => $vars['node']->links['comment_add']['attributes']['title']),
@@ -297,17 +297,17 @@ function mothership_preprocess(&$vars, $hook) {
     }
 
     //attachments
-    if ($vars['node']->links['upload_attachments']) {
+    if (isset($vars['node']->links['upload_attachments'])) {
       $vars['link_attachments'] =  l($vars['node']->links['upload_attachments']['title'], $vars['node']->links['upload_attachments']['href'], array('attributes' => array('class' => 'attachments','title' => $vars['node']->links['upload_attachments']['attributes']['title'] )));
     }
 
     //read more
-    if ($vars['node']->links['node_read_more']) {
+    if (isset($vars['node']->links['node_read_more'])) {
       $vars['link_read_more'] =  l($vars['node']->links['node_read_more']['title'], $vars['node']->links['node_read_more']['href'], array('attributes' => array('class' => 'read-more','title' => $vars['node']->links['node_read_more']['attributes']['title'] )));
     }
 
     //statistics_counter
-    if ($vars['node']->links['statistics_counter']) {
+    if (isset($vars['node']->links['statistics_counter'])) {
       $vars['statistics_counter'] = $vars['node']->links['statistics_counter']['title'];
     }
 
@@ -360,7 +360,7 @@ function mothership_preprocess(&$vars, $hook) {
     }
 
     //skinr
-    if( module_exists(skinr) ) {
+    if (module_exists('skinr')) {
         $classes[] = $vars['skinr'];
     }
 

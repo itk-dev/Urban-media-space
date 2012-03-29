@@ -18,10 +18,10 @@
   }
 ?>
 
-<body class="<?php print $body_classes; ?>"<?php print $background_image ?>>
+<body class="<?php print $body_classes; ?>"<?php print isset($background_image) ? $background_image : '' ?>>
   <p><a name="top" id="top"></a></p>
   <div id="wrapper">
-  <?php if ($aaktopbar): ?>
+  <?php if (isset($aaktopbar)): ?>
     <div id="aaktopbar" class="region clear-block">
       <div id="aaktopbar-inner" class="container-16">
         <?php print $aaktopbar; ?>
@@ -36,12 +36,12 @@
     <div id="site-header" class="clear-block">
 	    <div id="header-inner">
         <div id="branding" class="clear-block">
-          <?php if ($site_logo): ?>
+          <?php if (isset($site_logo)): ?>
             <span id="logo"><?php print $site_logo; ?></span>
           <?php endif; ?>
         </div> <!--/#branding -->
 
-        <?php if ($main_menu_links || $secondary_menu_links): ?>
+        <?php if (isset($main_menu_links) || isset($secondary_menu_links)): ?>
         <div id="site-menu" class="grid-12">
           <div id="navbar-inner">
             <?php print $main_menu_links; ?>
@@ -50,7 +50,7 @@
         </div> <!--/#site-menu -->
         <?php endif; ?>
 
-        <?php if ($search_box): ?>
+        <?php if (isset($search_box)): ?>
           <div id="search-box" class="grid-6 prefix-10"><?php print $search_box; ?></div>
         <?php endif; ?>
       </div> <!--/#header-inner -->
@@ -103,7 +103,7 @@
                   </div>
                 </div> <!--//end #sidebar-right-inner -->
                 <?php endif; ?>
-                <?php if ($title): ?>
+                <?php if (isset($title)): ?>
                   <h1 class="title" id="page-title"><?php print $title; ?></h1>
                 <?php endif; ?>
                 <?php print $content; ?>

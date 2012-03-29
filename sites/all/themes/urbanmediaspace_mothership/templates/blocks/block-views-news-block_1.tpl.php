@@ -33,7 +33,7 @@
 
   <?php if ($block->subject): ?>
     <h2 class="title"><?php print $block->subject; ?></h2>
-    <?php if ($feed_icon): ?>
+    <?php if (isset($feed_icon)): ?>
       <div class="feed-icon">
         <?php print $feed_icon; ?>
       </div>
@@ -44,6 +44,10 @@
     <?php print $block->content; ?>
   </div>
 
-  <?php print $edit_links; ?>
+  <?php 
+    if (isset($edit_links)) {
+      print $edit_links; 
+    }
+  ?>
 
 </div></div> <!-- /block-inner, /block -->

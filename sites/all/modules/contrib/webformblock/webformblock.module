@@ -12,10 +12,10 @@
  *
  */
 function webformblock_form_alter(&$form, $form_state, $form_id) {
-  $node = $form['#parameters'][2];
-  
   if ($form_id == 'webform_node_form') {
   
+    $node = $form['#parameters'][2];
+    
     $form['webform']['advanced']['addblock'] = array(
       '#type' => 'checkbox',
       '#return_value' => 1,

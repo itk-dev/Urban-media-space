@@ -35,7 +35,7 @@
    <?php foreach ($views_slideshow_ddblock_pager_items as $pager_item): ?>
     <div class="<?php print $settings['pager'] ?>-item <?php print $settings['pager'] ?>-item-<?php print $item_counter ?> <?php if ($item_counter == $number_of_items) print ' last' ?>">
      <div class="<?php print $settings['pager'] ?>-item-inner">
-       <a href="<?php print drupal_get_path_alias($pager_item['pager_link'],$language); ?>" title="<?php print $pager_item['pager_teaser_title']; ?>" class="pager-link"><?php print $pager_item['pager_image']; ?>
+       <a href="<?php print drupal_get_path_alias($pager_item['pager_link'], isset($language) ? $language : ''); ?>" title="<?php print $pager_item['pager_teaser_title']; ?>" class="pager-link"><?php print $pager_item['pager_image']; ?>
         <span class="<?php print $settings['pager'] ?>-item-inner-teaser-wrapper">
           <b class="<?php print $settings['pager'] ?>-item-inner-teaser-title"><?php print $pager_item['pager_teaser_title']; ?></b>
           <span class="<?php print $settings['pager'] ?>-item-inner-teaser"><?php print $pager_item['pager_teaser']; ?></span>

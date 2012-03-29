@@ -122,7 +122,7 @@ function nodewords_nodetype_nodewords_tags_alter(&$output_tags, $tag_options) {
         $meta_description = drupal_eval(strtr($description_php, $variables));
       }
 
-      if ( $meta_description != '' ) {
+      if (isset($meta_description) && $meta_description != '' ) {
         $output_tags['description'] = $meta_description;
       }
 

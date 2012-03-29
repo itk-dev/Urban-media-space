@@ -442,7 +442,7 @@ function _link_sanitize(&$item, $delta, &$field, &$node) {
     $item['attributes']['rel'] = str_replace('nofollow', '', $item['attributes']['rel']);
   }
   // Some old field data may have $element['#item']['attributes']['rel'] as an array, which will cause errors:
-  if (is_array($element['#item']['attributes']['rel'])) {
+  if (isset($element['#item']['attributes']['rel']) && is_array($element['#item']['attributes']['rel'])) {
     unset($element['#item']['attributes']['rel']);
   }
 

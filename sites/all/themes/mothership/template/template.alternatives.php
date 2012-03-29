@@ -15,6 +15,8 @@
  * div-span
  */
 function mothership_item_list($items = array(), $title = NULL, $type = 'ul', $attributes = NULL) {
+  $output = '';
+  
   //fix if the type is div-span
   if ($type == "div-span") {
     $type = "div";
@@ -24,7 +26,13 @@ function mothership_item_list($items = array(), $title = NULL, $type = 'ul', $at
     $item_type = $type;
   }
 
-  $attributes['class'] .= " item-list";
+  if (isset($attributes['class'])) {
+    $attributes['class'] .= " item-list";
+  }
+  else {
+    $attributes['class'] = " item-list";
+  }
+  
   //test if we have an title then add the div.item-list around the list
   if (isset($title)) {
     $output = '<div class="item-list">';
@@ -114,7 +122,7 @@ function mothership_item_list($items = array(), $title = NULL, $type = 'ul', $at
  * lets get rid of tht not verified
  */
 function mothership_username($object) {
-
+  $output = '';
   if ($object->uid && $object->name) {
     // Shorten the name when it is too long or it will break many tables.
     if (drupal_strlen($object->name) > 20) {
