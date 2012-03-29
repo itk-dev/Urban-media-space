@@ -39,6 +39,10 @@
     <?php print $block->content; ?>
   </div>
 
-  <?php print $edit_links; ?>
+  <?php 
+    if (isset($edit_links)) {
+      print $edit_links; 
+    }
+  ?>
 
 </div></div> <!-- /block-inner, /block -->

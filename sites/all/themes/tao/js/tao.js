@@ -1,4 +1,3 @@
-// $Id: tao.js,v 1.1.2.1 2010/09/28 19:39:45 yhahn Exp $
 
 Drupal.behaviors.tao = function (context) {
   $('fieldset.collapsible:not(.tao-processed) > legend > .fieldset-title').each(function() {

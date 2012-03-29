@@ -139,8 +139,8 @@ function template_preprocess_views_slideshow_ddblock(&$vars) {
 
     // Remove empty mappings
     foreach ($options['mapping_wrapper']['mappings'] as $key => $value) {
-      if (empty($value['target'])) {
-        unset($mappings[$key]);
+      if (empty($value['target']) && isset($value[$key])) {
+        unset($value[$key]);
       }
     }
 

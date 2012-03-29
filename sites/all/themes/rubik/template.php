@@ -1,5 +1,4 @@
 <?php
-// $Id: template.php,v 1.1.2.2 2010/09/28 20:55:08 yhahn Exp $
 
 /**
  * Implementation of hook_theme().
@@ -228,7 +227,7 @@ function rubik_preprocess_form_node(&$vars) {
     }
   }
   // Default to showing taxonomy in sidebar if nodeformcols is not present.
-  elseif (isset($vars['form']['taxonomy'])) {
+  elseif (isset($vars['form']['taxonomy']) && empty($vars['sidebar'])) {
     $vars['sidebar']['taxonomy'] = $vars['form']['taxonomy'];
     unset($vars['form']['taxonomy']);
   }
@@ -471,7 +470,7 @@ function rubik_admin_drilldown_menu_item_link($link) {
  * Override of theme('textfield').
  */
 function rubik_textfield($element) {
-  if ($element['#size'] >= 30 && empty($element['#field_prefix']) && empty($element['#field_suffix'])) {
+  if ($element['#size'] >= 30) {
     $element['#size'] = '';
     $element['#attributes']['class'] = isset($element['#attributes']['class']) ? "{$element['#attributes']['class']} fluid" : "fluid";
   }
@@ -523,9 +522,6 @@ function rubik_filter_form($form) {
     if (isset($form[$key]['#type']) && $form[$key]['#type'] === 'radio') {
       $select .= drupal_render($form[$key]);
     }
-  }
-  if (!$select && isset($form['format'])) {
-    $select = drupal_render($form['format']);
   }
   $help = theme('filter_tips_more_info');
   $output = "<div class='filter-options clear-block'>{$select}{$help}</div>";
@@ -587,7 +583,7 @@ function _rubik_icon_classes($path) {
   $args = explode('/', $path);
   if ($args[0] === 'admin' || (count($args) > 1 && $args[0] === 'node' && $args[1] === 'add')) {
     while (count($args)) {
-      $classes[] = 'path-'. str_replace('/', '-', implode('/', $args));
+      $classes[] = tao_drupal_html_class('path-'. str_replace('/', '-', implode('/', $args)));
       array_pop($args);
     }
     return implode(' ', $classes);

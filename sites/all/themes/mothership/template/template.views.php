@@ -17,8 +17,8 @@ function mothership_preprocess_views_view_unformatted(&$vars) {
   // Set up striping values.
   foreach ($rows as $id => $row) {
 
-    if (theme_get_setting(mothership_cleanup_views_row_count)) {
-      if (theme_get_setting(mothership_cleanup_views_row_identify)) {
+    if (theme_get_setting('mothership_cleanup_views_row_count')) {
+      if (theme_get_setting('mothership_cleanup_views_row_identify')) {
         $vars['classes'][$id] = 'views-row-' . ($id + 1);            
       }
       else{
@@ -26,8 +26,8 @@ function mothership_preprocess_views_view_unformatted(&$vars) {
       }
     }
 
-    if (theme_get_setting(mothership_cleanup_views_zebra)) {
-      if (theme_get_setting(mothership_cleanup_views_row_identify)) {
+    if (theme_get_setting('mothership_cleanup_views_zebra')) {
+      if (theme_get_setting('mothership_cleanup_views_row_identify')) {
         $vars['classes'][$id] .= ' views-row-' . ($id % 2 ? 'even' : 'odd');        
       }
       else{
@@ -35,8 +35,8 @@ function mothership_preprocess_views_view_unformatted(&$vars) {
       } 
     }
 
-    if ($id == 0 AND theme_get_setting(mothership_cleanup_views_first_last)) {
-      if (theme_get_setting(mothership_cleanup_views_row_identify)) {
+    if ($id == 0 AND theme_get_setting('mothership_cleanup_views_first_last')) {
+      if (theme_get_setting('mothership_cleanup_views_row_identify')) {
         $vars['classes'][$id] .= ' views-row-first';
       }
       else{
@@ -46,8 +46,8 @@ function mothership_preprocess_views_view_unformatted(&$vars) {
     }
   }
 
-  if (theme_get_setting(mothership_cleanup_views_first_last)) {
-    if (theme_get_setting(mothership_cleanup_views_row_identify)) {
+  if (theme_get_setting('mothership_cleanup_views_first_last')) {
+    if (theme_get_setting('mothership_cleanup_views_row_identify')) {
       $vars['classes'][$id] .= ' views-row-last';
     }
     else{
@@ -157,18 +157,18 @@ function mothership_preprocess_views_view_table(&$vars) {
   //rows classes
 
   foreach ($vars['rows'] as $num => $row) {
-    if ( $num == 0 AND theme_get_setting(mothership_cleanup_views_table_first_last) ) {
+    if ( $num == 0 AND theme_get_setting('mothership_cleanup_views_table_first_last') ) {
         $vars['row_classes'][$num]['first'] = "first";      
     }
-    if (theme_get_setting(mothership_cleanup_views_table_row_count)) { 
+    if (theme_get_setting('mothership_cleanup_views_table_row_count')) { 
       $vars['row_classes'][$num]['count'] = "row-" .$num; 
     }
  
-    if (theme_get_setting(mothership_cleanup_views_table_zebra)) { 
+    if (theme_get_setting('mothership_cleanup_views_table_zebra')) { 
       $vars['row_classes'][$num]['zebra'] = ($num % 2 == 0) ? 'odd' : 'even';
     }
   }
-  if (theme_get_setting(mothership_cleanup_views_table_first_last)) { 
+  if (theme_get_setting('mothership_cleanup_views_table_first_last')) { 
     $vars['row_classes'][$num][] = "last";
   }
   
