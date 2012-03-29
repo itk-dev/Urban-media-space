@@ -16,7 +16,7 @@
  limitations under the License.
 -->
 
-<config>
+<config name="drupal-multilingual-2.0-beta4">
 
   <!-- Set this to 'false' if you want solr to continue working after it has 
        encountered an severe configuration error.  In a production environment, 

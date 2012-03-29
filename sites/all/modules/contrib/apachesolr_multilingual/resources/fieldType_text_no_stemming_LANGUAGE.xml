@@ -1,4 +1,3 @@
-    
     <fieldType name="text[LANGUAGE_ID]" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
         <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-ISOLatin1Accent.txt"/>
@@ -13,6 +12,7 @@
                 enablePositionIncrements="true"
                 />
         <filter class="solr.WordDelimiterFilterFactory"
+                protected="protwords[LANGUAGE_ID].txt"
                 splitOnCaseChange="[SPLIT_ON_CASE_CHANGE_INDEX]"
                 splitOnNumerics="[SPILT_ON_NUMERICS_INDEX]"
                 stemEnglishPossessive="[STEM_ENGLISH_POSSESSIVE_INDEX]"
@@ -37,6 +37,7 @@
                 enablePositionIncrements="true"
                 />
         <filter class="solr.WordDelimiterFilterFactory"
+                protected="protwords[LANGUAGE_ID].txt"
                 splitOnCaseChange="[SPLIT_ON_CASE_CHANGE_QUERY]"
                 splitOnNumerics="[SPILT_ON_NUMERICS_QUERY]"
                 stemEnglishPossessive="[STEM_ENGLISH_POSSESSIVE_QUERY]"

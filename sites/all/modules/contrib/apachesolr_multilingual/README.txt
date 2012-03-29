@@ -24,6 +24,10 @@ multilingual search
 Installation
 ============
 
+Currently, the only version of apachesolr apachesolr_multilingual is
+compatible with is apachesolr 6.x-2.0-beta5:
+http://drupal.org/node/1173780
+
 1. Place whole apachesolr_multilingual folder into your Drupal
    modules/ or better sites/x/modules/ directory.
 
@@ -110,7 +114,7 @@ B) Multiple Languages and Apache Solr Multilingual Texfile
      "Body text inside H2 or H3 tags",
      "Body text inside H4, H5, or H6 tags",
      "Body text in inline tags like EM or STRONG"
-   and turn on the labguage specific fields like
+   and turn on the language specific fields like
      "tags_a_de",
      "tags_h1_de",
      "tags_h2_h3_de",
