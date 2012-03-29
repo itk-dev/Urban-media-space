@@ -1,10 +1,11 @@
 <?php
-// $Id: webformblock.install,v 1.1.2.1 2010/02/23 14:20:09 psynaptic Exp $
+// $Id$
 
 /**
  * @file
  * Webform Block module install file.
  */
+
 
 /**
  * Define the 'webform_block' table structure.
@@ -14,20 +15,14 @@
  */
 function webformblock_schema() {
   $schema['webform_block'] = array(
-    'fields' => array(
-      'nid' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'disp-width' => '11',
-      ),
-    ),
-    'primary key' => array(
-      'nid',
-    ),
+      'fields' => array(
+           'nid' => array('type' => 'int', 'not null' => TRUE, 'disp-width' => '11')),
+      'primary key' => array('nid'),
   );
-
+  
   return $schema;
 }
+
 
 /**
  * Implementation of hook_install().
@@ -37,6 +32,7 @@ function webformblock_schema() {
 function webformblock_install() {
   drupal_install_schema('webformblock');
 }
+
 
 /**
  * Implementation of hook_uninstall().
