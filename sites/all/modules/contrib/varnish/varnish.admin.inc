@@ -31,15 +31,17 @@ function varnish_admin_settings_form() {
     '#default_value' => variable_get('varnish_flush_cron', 0),
     '#description' => t('Internally Drupal will attempt to flush its page cache every time cron.php runs. This can mean too-frequent cache flushes if you have cron running frequently. NOTE: this cache flush is global!'),
   );
-
-  $form['varnish_legacy'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Varnish Legacy Mode'),
-    '#default_value' => variable_get('varnish_legacy', 0),
-    '#required' => TRUE,
-    '#description' => t('Check this if you use a version of varnish lower than 2.1'),
+  $form['varnish_version'] = array(
+    '#type' => 'select',
+    '#title' => t('Varnish version'),
+    '#default_value' => variable_get('varnish_version', 2.1),
+    '#description' => t('Select your varnish version.'),
+    '#options' => array(
+      '2' => '2.0.x',
+      '2.1' => '2.1.x',
+      '3' => '3.x',
+    ),
   );
-      
   $form['varnish_control_terminal'] = array(
     '#type' => 'textfield',
     '#title' => t('Varnish Control Terminal'),
@@ -79,12 +81,11 @@ function varnish_admin_settings_form() {
   else {
     $form['varnish_cache_clear']['#description'] .= ' '. t('Installing the !link will enable "Selective" clearing.', array('!link' => '<a href="http://drupal.org/project/expire" target="_blank">'. t('Expire module') .'</a>'));
   }
-
   // Check status
   $form['varnish_stats'] = array(
     '#type' => 'item',
     '#title' => t('Status'),
-    '#value' => theme('varnish_status', varnish_get_status()),
+    '#value' => theme('varnish_status', varnish_get_status(), floatval(variable_get('varnish_version', 2.1))),
   );
 
   return system_settings_form($form);
@@ -104,6 +105,9 @@ function varnish_admin_settings_form_validate($form, &$form_state) {
  * Menu callback for varnish admin settings.
  */
 function varnish_admin_reports_page() {
+  if (floatval(variable_get('varnish_version', 2.1)) >= 3) {
+    return t('Varnish 3 has removed the option to display statistics directly from the terminal. Use varnishstat instead.');
+  }
   // connect to varnish and do a full status report
   $status = _varnish_terminal_run(array('stats'));
   $output = '';
