@@ -24,7 +24,7 @@ function webformblock_form_alter(&$form, $form_state, $form_id) {
       '#description' => t('Allow this form to appear in its own block which can be positioned in any block region.'),
       '#weight' => -20,
     );
-  } elseif ($node->webform['addblock'] == 1) { 
+  } elseif (isset($node->webform['addblock']) && $node->webform['addblock'] == 1) { 
     form_clean_id(null, true);
     $anchorname = form_clean_id(str_replace('/', '', strtolower( drupal_get_path_alias('node/' . $node->nid) ))); 
     $form['#action'] = url(drupal_get_path_alias($_GET['q']), array('fragment' => $anchorname)); 
