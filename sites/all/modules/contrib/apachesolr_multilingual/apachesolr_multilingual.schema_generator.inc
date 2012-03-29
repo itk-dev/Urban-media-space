@@ -269,6 +269,7 @@ function apachesolr_multilingual_schema_generator_form_do_validate(&$form, &$for
     $blocks['<!-- field_tags_a_LANGUAGE -->'] = '<field name="tags_a[LANGUAGE_ID]" type="text[LANGUAGE_ID]" indexed="true" stored="false" omitNorms="true"/>';
     $blocks['<!-- field_tags_inline_LANGUAGE -->'] = '<field name="tags_inline[LANGUAGE_ID]" type="text[LANGUAGE_ID]" indexed="true" stored="false" omitNorms="true"/>';
     $blocks['<!-- fieldType_textSpell_multilingual_StopFilter -->'] = '<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_spell[LANGUAGE_ID].txt"/>';
+    $blocks['<!-- dynamicField_tm_LANGUAGE_* -->'] = '<dynamicField name="tm[LANGUAGE_ID]_*" type="text[LANGUAGE_ID]" indexed="true" stored="true" multiValued="true" termVectors="true"/>';
     $blocks['<!-- dynamicField_ts_LANGUAGE_* -->'] = '<dynamicField name="ts[LANGUAGE_ID]_*" type="text[LANGUAGE_ID]" indexed="true" stored="true" multiValued="false" termVectors="true"/>';
 
     // solrconfig.xml gettablefiles
