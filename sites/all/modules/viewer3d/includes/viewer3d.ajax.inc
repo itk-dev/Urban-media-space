@@ -83,13 +83,15 @@ function viewer3d_download($filename = FALSE) {
   $filename = $path . '/' . basename($filename);
 
   // Download file.
-  if (strstr($_SERVER["HTTP_USER_AGENT"],"MSIE")) {
-    header('X-Download-Options: noopen '); // For IE8
-    header('X-Content-Type-Options: nosniff'); // For IE8
+  if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
+    //header('X-Download-Options: noopen '); // For IE8
+    //header('X-Content-Type-Options: nosniff'); // For IE8
+  }
+  else {
+    header('Content-Disposition: attachment;filename="'.basename($filename).'"');
   }
   header("Content-Type: image/png");
   header("Content-Length: ".filesize($filename));
-  header('Content-Disposition: attachment;filename="'.basename($filename).'"');
   header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
   header('Pragma: public');
 
