@@ -154,7 +154,7 @@ function viewer3d() {
   this.snapshot = function() {
     var imageBase64 = this.getApp().snapshot();
     $.post(this.settings.path + '/download', {data: imageBase64}, function(data) {
-      window.location = data;
+      window.open(data, '_blank');
     });
   }
 
