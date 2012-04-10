@@ -90,7 +90,7 @@ function viewer3d_download($filename = FALSE) {
   header("Content-Type: image/png");
   header("Content-Length: ".filesize($filename));
   header('Content-Disposition: attachment;filename="'.basename($filename).'"');
-  header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+  //header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
   header('Pragma: public');
 
   readfile($filename);
