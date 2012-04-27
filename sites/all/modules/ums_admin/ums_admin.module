@@ -12,3 +12,14 @@ function ums_admin_init(){
     drupal_set_header('Cache-Control', 'public, max-age=' . $max_age);
   }
 }
+
+/**
+ * Implementation of hook_form_alter.
+ *
+ * This ensures that nodeblock also shows when no translation exists.
+ */
+function ums_admin_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['type']) && isset($form['#node']) && $form['type']['#value'] .'_node_form' == $form_id) {
+    $form['nodeblock']['translation_fallback']['#default_value'] = TRUE;
+  }
+}
