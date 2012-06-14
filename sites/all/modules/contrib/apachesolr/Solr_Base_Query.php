@@ -209,10 +209,8 @@ class Solr_Base_Query implements Drupal_Solr_Query_Interface {
     }
     else {
       foreach ($fields as $pos => $values) {
-        if (!empty($values['#name']) && !empty($values['#value'])) {
-          if ($values['#name'] == $name && $values['#value'] == $value) {
-            unset($fields[$pos]);
-          }
+        if ($values['#name'] == $name && $values['#value'] == $value) {
+          unset($fields[$pos]);
         }
       }
     }
@@ -416,7 +414,7 @@ class Solr_Base_Query implements Drupal_Solr_Query_Interface {
       $alias = isset($this->field_map[$name]) ? $this->field_map[$name] : $name;
       // Get the values for $name
       $extracted = $this->filter_extract($filterstring, $alias);
-      if (!empty($extracted)) {
+      if (count($extracted)) {
         // A trailing space is required since we match all individual
         // filter terms using a trailing space.
         $filter_pos_string = $this->filterstring . ' ';
