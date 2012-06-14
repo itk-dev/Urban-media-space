@@ -1,7 +1,7 @@
-$Id: readme.txt,v 1.5.2.3.2.1 2009/05/20 03:13:14 patnaik Exp $
+$Id: readme.txt,v 1.5.2.3.2.4 2011/02/18 02:38:05 patnaik Exp $
 
-htmLawed Drupal 6.x module
-==========================
+htmLawed Drupal 6.x module, version 2
+=====================================
 
     GPL v3 license
     Copyright Santosh Patnaik, MD, PhD
@@ -9,6 +9,8 @@ htmLawed Drupal 6.x module
 
 About the module
 ----------------
+
+    NOTE: There is a newer, version 3 of the module. Check on drupal.org.
 
     The htmLawed Drupal module enables the use of the htmLawed (X)HTML filter/purifier in Drupal. Unlike Drupal's HTML filter, htmLawed allows fine control on the HTML markup (e.g., restricting URLs by protocols and limiting element attributes), balances tags, beautifies HTML code, etc. Unlike filters like HTMLPurifier or HTML Tidy, the single-file htmLawed is much faster, more customizable, uses 10-20x less memory, is 10-20x smaller, works with PHP 4, covers all HTML markup, and does not require an external library or PHP extension.
 
@@ -50,19 +52,23 @@ Module installation
 
 3.  Browse to the 'Administer' > 'Site configuration' > 'Input formats' section. There you can 'configure' an input format to make it use htmLawed by selecting it in the list of filters available for the input format.
 
-    With htmLawed turned on, you may safely disable Drupal's 'HTML filter'. Depending on the other filters enabled for the input format, you may need to 'rearrange' the filters. Usually, htmLawed would be set to run as the last filter (perhaps second-last, if the 'Line break converter' filter is enabled).
+    With htmLawed turned on, you may safely disable Drupal's 'HTML filter'. Depending on the other filters enabled for the input format, you may need to 'rearrange' the filters. Usually, htmLawed would be set to run as the last filter.
 
     If a filter that relies on the '<', '>' or '&' character (such as Drupal's 'PHP evaluator') is being used with the input format, then that filter should run before htmLawed. Further, if that filter generates HTML markup, then htmLawed should be configured to permit such markup.
 
 4.  The htmLawed filter is a customizable one. Two values, those of 'Config.' and 'Spec.', dictate the customization. Configuring the htmLawed module thus involves specifying the 'Config.' and 'Spec.' values in the settings form. The htmLawed module permits you to use different 'Config.' and 'Spec.' values for different input formats, content-types, etc.
 
-    To get to the settings form, choose to 'configure' an input format and then choose the 'Configure' link on the ensuing page. A sub-form ('Default') can be used to set the default values to be used for any content-type. Content-type-specific sub-forms allow you to over-ride the default values as well as to choose to use (or disable) htmLawed.
+    To get to the settings form, choose to 'configure' an input format and then choose the 'Configure' link on the ensuing page. 
+    
+    Check the 'Do not cache' item to disable the use of cached filtered content, for content filtered using this input format, which may have other filters besides htmLawed, will not be cached after filtering. Filtering will thus occur every time the content is displayed. Note that besides the Drupal core, other modules may have their own caching logic.
+    
+    A sub-form ('Default') can be used to set the default values to be used for any content-type or when a content-type cannot be identified by htmLawed. Content-type-specific sub-forms allow you to over-ride the default values as well as to choose to use (or disable) htmLawed on a content-type-specific basis.
 
     The 'Config.' form-fields are filled with comma-separated, quoted, key-value pairs; e.g., '"safe"=>1, "elements"=>"a, em, strong"' (these are interpreted as PHP array elements). The 'Spec.' field is optional. The 'Help' field should be filled with information/tips about the filter (such as what tags are allowed) to be displayed to the users. A checkbox is provided in the content-type-specific sub-forms to allow the 'Default' values to be used. If it is unchecked, the content-type-specific values will be used during filtering.
 
     Filtering is further individualized for 'Body', 'Comment', 'Teaser' and 'Other'. 'Body' refers to the main content (such as a blog-post). 'Comment' refers to a user comment on the main content. 'Teaser' (called 'RSS' in version 1 of the module) refers to the news-feed (RSS) items and teasers generated from the main content. You may have a need for 'Other' (in 'Default') if you use modules like 'Views' to have extra input fields (like 'Header') that are not content (node)-type-specific. Content-type-specific settings for 'Other' are obviously not possible. 
 
-    *   If htmLawed is enabled for 'Teaser', the htmLawed filtering is done at the end of all other filtering, including any prior htmLawed filtering because of 'Body'.
+    *   If htmLawed is enabled for 'Teaser', the htmLawed filtering is done at the end of all other filtering, including any prior htmLawed filtering because of 'Body'. Note that if enabled, the teasers will get filtered twice by htmLawed: first as per 'Body' and then as per 'Teaser'. Thus, you may want to have, for instance, 'p' and 'br' elements allowed in the configuration for 'Teaser' if at the end of all prior filterings, those elements will end up in the content that will be again passed to htmLawed.
 
     *   For 'Body' and 'Comment', filtering can also be enabled for 'save', in which case the submitted input is first filtered before being saved in the site database. However, you have to check if this causes conflicts with filters (other than Drupal's 'PHP evaluator') that rely on the '<', '>' or '&' character.
 
@@ -70,17 +76,17 @@ Module installation
 
     *   The default settings are used to pre-fill the htmLawed module form-fields and during the filtering only if the specific settings cannot be found. Emptying a 'Config.' field does not mean that the default settings will be used.
 
-    *   Highly customized filtering can be achieved by appropriately setting 'Config.' and 'Spec.' Refer to htmLawed documentation for more.
+    *   Highly customized filtering can be achieved by appropriately setting 'Config.' and 'Spec.' Note that the value for 'Spec.' is provided as a string without quotes. Refer to htmLawed documentation for more.
 
 5.   For restricting user access to the administration of htmLawed settings, go to the 'Administer' > 'User management' section of your site. Ideally, only the main administrator of the site should have the access.
 
-6.   A Drupal handbook may be available for htmLawed. Check http://drupal.org/search/apachesolr_search/htmLawed?filters=type%3Abook
+6.   A Drupal handbook may be available for htmLawed. Check http://drupal.org/node/255886 or http://drupal.org/search/apachesolr_search/htmLawed?filters=type%3Abook
 
 
 Notes
 -----
 
-1. Check for conflicts with any third-party filter modules in use.
+1. Check for conflicts or issues with any third-party filter modules or modules like Views that may be in use. Proper configuration of htmLawed may resolve the issue.
 
 2. You can replace files inside 'htmLawed/htmLawed/' with the latest versions from http://www.bioinformatics.org/phplabware/internal_utilities/htmlawed/index.php.
 
@@ -98,7 +104,9 @@ Notes
 
 9. When a new content-type is created, the htmLawed-settings to be used with it must be set; otherwise, the default settings will be used.
 
-10. The latest version of Drupal 6 is recommended for use with this module.
+10. The htmLawed filter allows use of custom functions during htmLawed filtering. If you want use of such functions, besdies setting appropriate values in the 'Config.' fields for the htmLawed module, you would need to have the functions accessible by htmLawed. One option is to have a custom PHP file with the functions in the root Drupal folder and have it included by Drupal by adding a 'require_once' call in the settings.php file.
+
+11. The latest version of Drupal 6 is recommended for use with this module.
 
 
 Filter workflow
