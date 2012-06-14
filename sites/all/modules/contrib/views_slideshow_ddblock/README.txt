@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.3.2.2 2010/04/17 04:38:58 ppblaauw Exp $
 
 Views Slideshow: ddblock
 ------------------------
@@ -40,7 +39,7 @@ INSTALLATION
 JQUERY EASING PLUG-IN INSTALLATION
 ----------------------------------
 1. Download version 1.1.1 at http://plugins.jquery.com/project/Easing.
-2. Copy jquery.easing.1.1.1.js to sites/all/modules/views_slideshow_ddblock.
+2. Copy jquery.easing.1.1.1.js to sites/all/modules/views_slideshow_ddblock/js.
 
 STEPS TO CREATE A FIRST SLIDESHOW AFTER INSTALLATION OF THE MODULES
 -------------------------------------------------------------------

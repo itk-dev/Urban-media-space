@@ -1,4 +1,3 @@
-// $Id: views_slideshow_ddblock.js,v 1.3.2.2 2010/07/16 11:59:53 ppblaauw Exp $
 
 /**
  *  @file
@@ -59,12 +58,6 @@ Drupal.behaviors.viewsSlideshowDdblockCycle = function (context) {
       }
     }  
     
-    // stop slideshow when video is started used with flowplayer
-    //$f(opts.currSlide).onStart(function() { 
-      //alert('stop slideshow ('+opts.currSlide+')');
-    //  $container.cycle('pause');
-    //});
-
     //when scrollable pager is used set active pager-item to current slide
     if (opts.pager1 == 'scrollable-pager' ){
       opts.myScrollable.click(opts.currSlide);
@@ -159,9 +152,16 @@ Drupal.behaviors.viewsSlideshowDdblockCycle = function (context) {
 
       // disable click if pager is mouseover
       if (ViewsSlideshowDdblockSettings.pagerEvent == 'mouseover') {
+        if (ViewsSlideshowDdblockSettings.pagerDisableClick == 1) {
           $("#views-slideshow-ddblock-" + pager + "-" + ViewsSlideshowDdblockSettings.block + " a.pager-link").click(function() {
             return false;
           });
+        }
+        else {
+          $("#views-slideshow-ddblock-" + pager + "-" + ViewsSlideshowDdblockSettings.block + " a.pager-link").click(function() {
+            location.href = this.href;
+          });
+        }
       }
        
       // disable click if prev/next pager is mouseover
@@ -277,7 +277,10 @@ Drupal.behaviors.viewsSlideshowDdblockCycle = function (context) {
           
           //previtem navigation, default used
           //prev: '.prev',
-
+          
+          // speed of scrollable pager
+          speed: ViewsSlideshowDdblockSettings.pagerSpeed,
+          
           //enable api property
           api:true
    
@@ -288,6 +291,19 @@ Drupal.behaviors.viewsSlideshowDdblockCycle = function (context) {
         //set scrollable pager option
         options.myScrollable = myScrollable;
       }
+      
+      function randomFromTo(from, to){
+        return Math.floor(Math.random() * (to - from + 1) + from);
+      }
+      
+      if (ViewsSlideshowDdblockSettings.startSlide == 'random') {
+        startThisSlide = randomFromTo(0,ViewsSlideshowDdblockSettings.nrOfItems);  
+        options.startingSlide = startThisSlide;
+      }
+      if (parseFloat(ViewsSlideshowDdblockSettings.startSlide) > 0 && parseFloat(ViewsSlideshowDdblockSettings.startSlide) < ViewsSlideshowDdblockSettings.nrOfItems) {
+        options.startingSlide = ViewsSlideshowDdblockSettings.startSlide;
+      }
+      
       
       //start with slidenr from URL
       function getUrlVars() {

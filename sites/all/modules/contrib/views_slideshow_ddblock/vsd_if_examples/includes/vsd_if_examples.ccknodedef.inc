@@ -1,5 +1,4 @@
 <?php
-// $Id: vsd_if_examples.ccknodedef.inc,v 1.1.2.1 2010/04/24 04:01:38 ppblaauw Exp $
 
 /**
  * @file

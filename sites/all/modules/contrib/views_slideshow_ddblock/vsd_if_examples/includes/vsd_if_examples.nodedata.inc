@@ -1,5 +1,4 @@
 <?php
-// $Id: vsd_if_examples.nodedata.inc,v 1.1 2010/03/29 03:54:14 ppblaauw Exp $
 
 /**
  * @file
