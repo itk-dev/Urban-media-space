@@ -299,11 +299,11 @@ function _print_pdf_tcpdf($print, $html, $filename = NULL) {
   $html = preg_replace($pattern, '$1$2', $html);
 
   require_once($print_pdf_pdf_tool);
-  if (strpos(PDF_PRODUCER, 'PHP4') === FALSE) {
-    module_load_include('inc', 'print_pdf', 'print_pdf.class');
+  if (defined('PDF_PRODUCER') && (strpos(PDF_PRODUCER, 'PHP4') !== FALSE)) {
+    module_load_include('inc', 'print_pdf', 'print_pdf.class_php4');
   }
   else {
-    module_load_include('inc', 'print_pdf', 'print_pdf.class_php4');
+    module_load_include('inc', 'print_pdf', 'print_pdf.class');
   }
 
   $font = Array(
@@ -317,11 +317,15 @@ function _print_pdf_tcpdf($print, $html, $filename = NULL) {
   $pdf = new PrintTCPDF($orientation , 'mm', $print_pdf_paper_size, TRUE);
 
   // set document information
-  $pdf->SetAuthor(strip_tags($print['submitted']));
+  if (isset($print['submitted'])) {
+    $pdf->SetAuthor(strip_tags($print['submitted']));
+  }
   $pdf->SetCreator(variable_get('site_name', 'Drupal'));
   $pdf->SetTitle(html_entity_decode($print['title'], ENT_QUOTES, 'UTF-8'));
-  $keys = implode(' ', explode("\n", trim(strip_tags($print['taxonomy']))));
-  $pdf->SetKeywords($keys);
+  if (isset($print['taxonomy'])) {
+    $keys = implode(' ', explode("\n", trim(strip_tags($print['taxonomy']))));
+    $pdf->SetKeywords($keys);
+  }
   $pdf->setPDFVersion('1.6');
   $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting', FALSE));
 
