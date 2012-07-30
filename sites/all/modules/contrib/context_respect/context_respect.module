@@ -1,0 +1,55 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Context Respect module file.
+ */
+
+
+/*
+ * hook_ctools_plugin_api
+ */
+function context_respect_ctools_plugin_api($module, $api) {
+  if ($module == 'context' && $api == 'plugins') {
+    return array('version' => 3);
+  }
+}
+
+/*
+ * hook_context_plugins
+ */
+function context_respect_context_plugins() {
+  $plugins['context_respect_reaction_block'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'context_respect') . '/plugins',
+      'file' => 'context_respect_reaction_block.inc',
+      'class' => 'context_respect_reaction_block',
+      'parent' => 'context_reaction_block',
+    ),
+  );
+
+  $plugins['context_respect_layouts_reaction_block'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'context_respect') . '/plugins',
+      'file' => 'context_respect_layouts_reaction_block.inc',
+      'class' => 'context_respect_layouts_reaction_block',
+      'parent' => 'context_respect_reaction_block',
+    ),
+  );
+
+  return $plugins;
+}
+
+/*
+ * hook_context_registry_alter
+ */
+function context_respect_context_registry_alter(&$registry) {
+  if (!empty($registry['reactions']['block'])) {
+    $registry['reactions']['block']['plugin'] = 'context_respect_reaction_block';
+
+    if (module_exists('context_layouts')) {
+      $registry['reactions']['block']['plugin'] = 'context_respect_layouts_reaction_block';
+    }
+  }
+}
