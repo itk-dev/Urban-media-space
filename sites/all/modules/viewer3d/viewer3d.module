@@ -174,7 +174,11 @@ function viewer3d_page() {
   
   // Viewer placeholder
   $output .= '<div id="building-viewer-wrapper">';
-  $output .= '<div id="building-viewer"></div>';
+  $output .= '<div id="building-viewer">';
+  
+  // Alternate content - if the browser does not support flash.
+  $output .= '<p>' . t('Din browser understøtter ikke flash') . '</p>';
+  $output .= '</div>';
   $output .= '</div>';
 
   // Point information

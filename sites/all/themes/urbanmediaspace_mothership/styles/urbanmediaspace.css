@@ -1707,3 +1707,9 @@ a[rel^=shadowbox]:visited {
 #site-header .block-langswitch .active {
   display: none;
 }
+
+
+/* Styling for the alternate content if flash is not supported by the browser */
+#building-viewer p {
+  padding-top: 50px;
+}
