@@ -1713,3 +1713,20 @@ a[rel^=shadowbox]:visited {
 #building-viewer p {
   padding-top: 50px;
 }
+
+/* Mediaqueries */
+
+/* Make sure the menu fits the screen on devices with at smaller screen */
+
+@media screen and (max-device-width: 480px) {
+  #main-menu li {
+    padding: 0;
+  }
+
+  #main-menu a,
+  #main-menu a:link,
+  #main-menu a:visited {
+    font-size: 75%;
+    line-height: 100%;
+  }  
+}
