@@ -57,6 +57,57 @@ html.js .resizable-textarea textarea {
   padding: 3px 3px 4px;
 }
 
+/* Stem på nyt navn form */
+
+#webform-client-form-923 .form-text,
+#webform-client-form-923 .form-item {
+  font-size: 110%;
+}
+
+#webform-client-form-923 .form-radios .form-item {
+  background-color: #f1f1f1;
+  float: left;
+  margin-right: 15px;
+  width: 31%;
+}
+
+#webform-client-form-923 .form-item label.option {
+  cursor: pointer;
+  display: block;
+  padding: 5px;
+}
+
+#webform-client-form-923 .form-radios .form-item:hover {
+  background-color: #e1e1e1;
+}
+
+#webform-client-form-923 .form-button {
+  float: right;
+  font-size: 175%;
+  margin-right: 33px;
+}
+
+#webform-client-form-923 .form-button input {
+  background: -webkit-gradient(linear, left top, left bottom, from(#457401), to(#73ab22));
+  background: -moz-linear-gradient(top, #457401, #73ab22);  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#457401, endColorstr=#73ab22); /* For Internet Explorer 5.5 - 7 */  
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#457401, endColorstr=#73ab22)";/* For Internet Explorer 8 */
+  border: 1px solid #73ab22;
+  color: #fff;
+  margin-top: 10px;
+  padding: 10px 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+  width: 200px;
+}
+
+#webform-client-form-923 .form-button input:hover {
+  border: 1px solid #54870d;
+  background: -webkit-gradient(linear, left top, left bottom, from(#457401), to(#73ab22));
+  background: -moz-linear-gradient(top, #457401, #73ab22);  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#457401, endColorstr=#73ab22); /* For Internet Explorer 5.5 - 7 */  
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#457401, endColorstr=#73ab22)";/* For Internet Explorer 8 */
+}
+
 /*
   aaktopbar
 */
