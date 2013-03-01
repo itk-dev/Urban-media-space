@@ -1,5 +1,4 @@
 <?php
-// $Id: vsd_if_examples.viewsdef.inc,v 1.1.2.1 2010/04/17 04:38:59 ppblaauw Exp $
 
 /**
  * @file

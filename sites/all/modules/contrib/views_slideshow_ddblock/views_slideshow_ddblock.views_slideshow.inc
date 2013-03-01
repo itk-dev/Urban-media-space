@@ -1,5 +1,4 @@
 <?php
-// $Id: views_slideshow_ddblock.views_slideshow.inc,v 1.3.2.3 2010/07/21 11:08:37 ppblaauw Exp $
 
 /**
  *  @file
@@ -90,8 +89,10 @@ function views_slideshow_ddblock_views_slideshow_option_definition() {
             'pager' => 'number-pager',
             'pager_container' => '.custom-pager-item',
             'nr_of_pager_items' => 3,
+            'pager_speed' => 1000,
             'pager_position' => 'top',
             'pager_event' => 'click',
+            'pager_disable_click' => 1,
             'pager_fast' => 1,
             'pager_pause' => 1,
           ),
@@ -385,7 +386,7 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
     '#description' => t("The transition effect between content. Multiple effects can be set in the Custom jQuery Cycle Plugin Settings."),
   );
 
-  $options = drupal_map_assoc(array(0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 4000, 5000));
+  $options = drupal_map_assoc(array(0, 125, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 4000));
   $form['views_slideshow_ddblock']['settings']['speed'] = array(
     '#type' => 'select',
     '#title' => t('Speed'),
@@ -438,6 +439,7 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
   $form['views_slideshow_ddblock']['settings']['pager_toggle'] = array(
     '#type' => 'checkbox',
     '#title' => t('Use Pager'),
+    '#id' => 'pager-toggle-checkbox',
     '#default_value' => $view->options['views_slideshow_ddblock']['settings']['pager_toggle'],
     '#required' => FALSE,
     '#description' => t("Use a pager to select slides"),
@@ -490,6 +492,18 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
     '#description' => t("Number of pager items used in a scrollable pager."),
   );
 
+  $options = drupal_map_assoc(array(1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500, 1750, 2000));
+  $form['views_slideshow_ddblock']['settings']['pager_settings']['pager_speed'] = array(
+    '#type' => 'select',
+    '#title' => t('Pager speed'),
+    '#default_value' => $view->options['views_slideshow_ddblock']['settings']['pager_settings']['pager_speed'],
+    '#options' => $options,
+    '#required' => TRUE,
+    '#prefix' => '<div id="ddblock-pager-speed-wrapper">',
+    '#suffix' => '</div>',
+    '#description' => t("Speed of the pager. Used in a scrollable pager. (1000 = 1 second, 1 = direct)."),
+  );
+
   $options = array(
     'top' => t('Top'),
     'right' => t('Right'),
@@ -525,6 +539,16 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
     '#description' => t("The event on which the pager reacts."),
   );
 
+  $form['views_slideshow_ddblock']['settings']['pager_settings']['pager_disable_click'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Pager disable click'),
+    '#default_value' => $view->options['views_slideshow_ddblock']['settings']['pager_settings']['pager_disable_click'],
+    '#prefix' => '<div id="ddblock-pager-pause-wrapper"'. $extra .'>',
+    '#suffix' => '</div>',
+    '#required' => FALSE,
+    '#description' => t("Disable the click event when the hover event is used."),
+  );
+  
   $form['views_slideshow_ddblock']['settings']['pager_settings']['pager_fast'] = array(
     '#type' => 'checkbox',
     '#title' => t('Fast Pager'),
@@ -762,7 +786,8 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
     '#options' => $before_effect_options,
     '#multiple' => FALSE,
     '#required' => FALSE,
-    '#description' => t("Before effect of the slide text"),
+    '#description' => t("The before event is before a slide is shown, here the slidetext of the
+previous slide will be hidden."),
   );
 
   $speed_options = drupal_map_assoc(array(0, 250, 500, 1000, 2000, 3000, 4000, 5000));
@@ -789,7 +814,9 @@ function views_slideshow_ddblock_views_slideshow_options_form(&$form, &$form_sta
     '#options' => $after_effect_options,
     '#multiple' => FALSE,
     '#required' => FALSE,
-    '#description' => t("After effect of the slide text"),
+    '#description' => t("The after event is after a slide is shown, here the slidetext of the
+current slide will be shown.
+"),
   );
 
   $form['views_slideshow_ddblock']['settings']['slide_text_settings']['slide_jquery']['slide_text_after_speed'] = array(
@@ -894,8 +921,6 @@ function views_slideshow_ddblock_views_slideshow_options_form_validate($form, &$
   }
 }
 
-
-
 /**
  * Get theme sizes of a theme.
  *
@@ -941,6 +966,7 @@ function _views_slideshow_ddblock_get_effects() {
     'curtainX' => t('curtainX'),
     'curtainY' => t('curtainY'),
     'fade' => t('fade'),
+    'fadeout' => t('fadeout'),
     'fadeZoom' => t('fadeZoom'),
     'growX' => t('growX'),
     'growY' => t('growY'),

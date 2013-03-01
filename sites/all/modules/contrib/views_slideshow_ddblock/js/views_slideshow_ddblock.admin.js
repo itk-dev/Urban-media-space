@@ -1,4 +1,3 @@
-// $Id: views_slideshow_ddblock.admin.js,v 1.2.2.3 2010/07/21 11:08:37 ppblaauw Exp $
 
 /**
  *  @file

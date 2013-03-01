@@ -1,5 +1,4 @@
 <?php
-// $Id: views_slideshow_ddblock.module,v 1.3.2.2 2010/04/25 08:10:34 ppblaauw Exp $
 
 /**
  *  @file
@@ -139,8 +138,8 @@ function template_preprocess_views_slideshow_ddblock(&$vars) {
 
     // Remove empty mappings
     foreach ($options['mapping_wrapper']['mappings'] as $key => $value) {
-      if (empty($value['target']) && isset($value[$key])) {
-        unset($value[$key]);
+      if (empty($value['target'])) {
+        unset($mappings[$key]);
       }
     }
 
@@ -188,10 +187,13 @@ function template_preprocess_views_slideshow_ddblock(&$vars) {
       'next'                       => (int) $options['settings']['next'],
       'overflow'                   => $options['settings']['overflow'],
       'pager'                      => $options['settings']['pager_settings']['pager'],
+      'pager_toggle'               => $options['settings']['pager_toggle'],
       'pagerPosition'              => $options['settings']['pager_settings']['pager_position'],
       'nrOfPagerItems'             => (int) $options['settings']['pager_settings']['nr_of_pager_items'],
+      'pagerSpeed'                 => (int) $options['settings']['pager_settings']['pager_speed'],
       'pagerContainer'             => $options['settings']['pager_settings']['pager_container'],
       'pagerEvent'                 => $options['settings']['pager_settings']['pager_event'],
+      'pagerDisableClick'          => (int) $options['settings']['pager_settings']['pager_disable_click'],
       'pagerFast'                  => (int) $options['settings']['pager_settings']['pager_fast'],
       'pagerPause'                 => (int) $options['settings']['pager_settings']['pager_pause'],
       'pager2'                     => (int) $options['settings']['pager2'],
@@ -213,6 +215,7 @@ function template_preprocess_views_slideshow_ddblock(&$vars) {
       $vars['views_slideshow_ddblock_slider_settings']['debug_info']          = $options['debug_info'];
       $vars['views_slideshow_ddblock_slider_settings']['output_type']         = 'view_fields';
       $vars['views_slideshow_ddblock_slider_settings']['pager']               = $options['settings']['pager_settings']['pager'];
+      $vars['views_slideshow_ddblock_slider_settings']['pager_toggle']        = $options['settings']['pager_toggle'];
       $vars['views_slideshow_ddblock_slider_settings']['pager_position']      = $options['settings']['pager_settings']['pager_position'];
       $vars['views_slideshow_ddblock_slider_settings']['pager2']              = $options['settings']['pager2'];
       $vars['views_slideshow_ddblock_slider_settings']['pager2_position']     = $options['settings']['pager2_settings']['pager2_position'];

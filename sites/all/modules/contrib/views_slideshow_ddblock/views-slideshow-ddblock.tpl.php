@@ -1,5 +1,4 @@
 <?php
-// $Id: views-slideshow-ddblock.tpl.php,v 1.3.2.1 2010/04/17 04:38:58 ppblaauw Exp $
 
 /**
  * @file
