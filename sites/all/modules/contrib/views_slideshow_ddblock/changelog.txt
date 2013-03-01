@@ -1,19 +1,7 @@
 /*
  * Change Log for views_slideshow_ddblock module
  */
-2011-09-14
-#1143760 by SP3boy: Fix pager disable pager functionality
-add pagerspeed for scrollable pager
-#920288 add using pager as link functionality
-add shorter transition effect of 125ms, removed 5000 ms
-adjust before and after event help text
 
-2011-06-22
-#1143760 by ppblaauw: Fix disable pager functionality
-Add random start slide functionality
-update jcycle plugin to version 2.99
-add fadeout effect
- 
 2011-04-22
 #1001756 by ppblaauw: add text module as dependency to example module
 

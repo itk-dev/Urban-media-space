@@ -18,7 +18,7 @@ jQuery.extend(Drupal, {
             Drupal.l10nClient.toggle(1);
             $('#l10n-client .string-search').focus();      
           } else {
-            if($('#l10n-client').is('.hidden')) {
+            if($('#l10n-client').is('.l10n-client-minimized')) {
               Drupal.l10nClient.toggle(1);
               if(!$.browser.safari) {
                 $('#l10n-client .string-search').focus();
@@ -38,7 +38,7 @@ jQuery.extend(Drupal, {
       switch(state) {
         case 1:
           $('#l10n-client-string-select, #l10n-client-string-editor, #l10n-client .labels .label').show();
-          $('#l10n-client').height('22em').removeClass('hidden');
+          $('#l10n-client').height('22em').removeClass('l10n-client-minimized');
           $('#l10n-client .labels .toggle').text('X');
           if(!$.browser.msie) {
             $('body').css('border-bottom', '22em solid #fff');
@@ -47,7 +47,7 @@ jQuery.extend(Drupal, {
         break;
         case 0:
           $('#l10n-client-string-select, #l10n-client-string-editor, #l10n-client .labels .label').hide();
-          $('#l10n-client').height('2em').addClass('hidden');
+          $('#l10n-client').height('2em').addClass('l10n-client-minimized');
           $('#l10n-client .labels .toggle').text(Drupal.t('Translate Text'));
           if(!$.browser.msie) {
             $('body').css('border-bottom', '0px');
@@ -117,7 +117,7 @@ Drupal.behaviors.l10nClient = function (context) {
 
   // When l10n_client window is clicked, toggle based on current state.
   $('#l10n-client .labels .toggle').click(function() {
-    if($('#l10n-client').is('.hidden')) {
+    if($('#l10n-client').is('.l10n-client-minimized')) {
       Drupal.l10nClient.toggle(1);
     } else { 
       Drupal.l10nClient.toggle(0);
