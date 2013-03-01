@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 /* width percentages add to 99% rather than 100% to prevent float
 overflows from occurring in an unnamed browser that can't decide
 how it wants to round. */

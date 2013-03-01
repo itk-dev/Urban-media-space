@@ -96,7 +96,6 @@ function globalredirect_settings() {
     '#default_value' => $settings['frontpage_redirect'],
   );
 
-<<<<<<< HEAD
   $form['settings']['ignore_admin_path'] = array(
     '#type' => 'checkbox',
     '#title' => t('Ignore Admin Path'),
@@ -104,8 +103,6 @@ function globalredirect_settings() {
                          This is useful if you are experiencing problems with Global Redirect and want to protect the admin section of your website. NOTE: This may not be desirable if you are using path aliases for certain admin URLs.'),
     '#default_value' => $settings['ignore_admin_path'],
   );
-=======
->>>>>>> master
 
   $form['buttons']['submit'] = array(
     '#type' => 'submit',
@@ -120,8 +117,6 @@ function globalredirect_settings() {
   );
 
   return $form;
-<<<<<<< HEAD
-=======
 }
 
 
@@ -155,47 +150,10 @@ function globalredirect_settings_submit_save($form_id, &$form_state) {
     variable_set('globalredirect_settings', $settings);
   }
   drupal_set_message(t('Globalredirect settings have been saved.'));
->>>>>>> master
 }
 
 
 /**
-<<<<<<< HEAD
- * Save submit handler for the globalredirect_settings form.
- * Compares the submitted settings to the defaults and unsets any that are equal. This was we only store overrides.
- */
-function globalredirect_settings_submit_save($form_id, &$form_state) {
-  // Grab the defaults
-  $defaults = _globalredirect_get_settings(TRUE);
-
-  // Copy out the settings
-  $settings = $form_state['values']['settings'];
-
-  // Compare each setting to the default. If equal, remove. If not, cast to an int (FormAPI converts keys to string).
-  foreach ($settings as $key => $value) {
-    if ($value == $defaults[$key]) {
-      unset($settings[$key]);
-    }
-    else {
-      $settings[$key] = (int)$value;
-    }
-  }
-
-  // If we've ended up with an empty settings array, delete the settings variable...
-  if (empty($settings)) {
-    variable_del('globalredirect_settings');
-  }
-  // ... otherwise store the settings
-  else {
-    variable_set('globalredirect_settings', $settings);
-  }
-  drupal_set_message(t('Globalredirect settings have been saved.'));
-}
-
-
-/**
-=======
->>>>>>> master
  * Reset submit handler for the globalredirect_settings form.
  * This simply deletes any overridden settings which forces the system to fallback to defaults
  */

@@ -115,11 +115,7 @@ function print_mail_block($op = 'list', $delta = 0, $edit = array()) {
       switch ($delta) {
       case 0:
         $block['subject'] = t('Most emailed');
-<<<<<<< HEAD
         $result = db_query_range("SELECT path FROM {print_mail_page_counter} LEFT JOIN {node} n ON path = CONCAT('node/', n.nid) WHERE status <> 0 OR status IS NULL ORDER BY sentcount DESC", 0, 3);
-=======
-        $result = db_query_range("SELECT path FROM {print_mail_page_counter} LEFT JOIN {node} ON path = CONCAT('node/', node.nid) WHERE status <> 0 OR status IS NULL ORDER BY sentcount DESC", 0, 3);
->>>>>>> master
         if (db_affected_rows()) {
           $block['content'] = '<div class="item-list"><ul>';
           while ($obj = db_fetch_object($result)) {
@@ -576,11 +572,7 @@ function print_mail_views_api() {
 function print_mail_rules_action_info() {
   return array(
     'print_mail_action_submit' => array(
-<<<<<<< HEAD
       'label' => t('Send node as HTML formatted email'),
-=======
-      'label' => t('Send node as HTML formated email'),
->>>>>>> master
       'module' => 'Node',
       'eval input' => array('to', 'from', 'subject', 'message'),
       'arguments' => array(
@@ -629,11 +621,7 @@ function print_mail_action_submit_form($settings, &$form) {
     '#type' => 'textarea',
     '#title' => t('Message'),
     '#default_value' => $settings['message'],
-<<<<<<< HEAD
     '#description' => t('The message that should be displayed (optional).'),
-=======
-    '#description' => t('The message that should be displayed.'),
->>>>>>> master
   );
 }
 

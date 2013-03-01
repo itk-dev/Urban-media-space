@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 
 /**
  * @file
@@ -8,8 +7,6 @@
  * @ingroup print
  */
 
-=======
->>>>>>> master
 class print_join_page_counter extends views_join {
   // PHP 4 doesn't call constructors of the base class automatically from a
   // constructor of a derived class. It is your responsibility to propagate
@@ -24,7 +21,3 @@ class print_join_page_counter extends views_join {
     parent::build_join($select_query, $table, $view_query);
   }
 }
-<<<<<<< HEAD
-=======
-?>
->>>>>>> master

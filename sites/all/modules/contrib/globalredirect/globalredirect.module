@@ -115,7 +115,6 @@ function globalredirect_init() {
         $request = drupal_substr($request, 0, -2);
       }
   }
-<<<<<<< HEAD
 
   // If the feature is enabled, check and redirect taxonomy/term/* requests to their proper handler defined by hook_term_path().
   if ($settings['term_path_handler'] && module_exists('taxonomy') && preg_match('/taxonomy\/term\/([0-9]+)$/', $request, $matches)) {
@@ -129,21 +128,6 @@ function globalredirect_init() {
     }
   }
 
-=======
-
-  // If the feature is enabled, check and redirect taxonomy/term/* requests to their proper handler defined by hook_term_path().
-  if ($settings['term_path_handler'] && module_exists('taxonomy') && preg_match('/taxonomy\/term\/([0-9]+)$/', $request, $matches)) {
-    // So the feature is enabled, as is taxonomy module and the current request is a taxonomy term page.
-    // NOTE: This will only match taxonomy term pages WITHOUT a depth modifier
-    $term = taxonomy_get_term($matches[1]);
-
-    // Get the term path for this term (handler is defined in the vocab table under module). If it differs from the request, then redirect.
-    if (!empty($term) && ($term_path = taxonomy_term_path($term)) != $request) {
-      $request = $term_path;
-    }
-  }
-
->>>>>>> master
   // If Content Translation module is enabled then check the path is correct.
   if ($settings['language_redirect'] && module_exists('translation') && (arg(0) == 'node') && is_numeric(arg(1)) && (arg(2) == '')) {
     switch (variable_get('language_negotiation', LANGUAGE_NEGOTIATION_NONE)) {
@@ -238,12 +222,6 @@ function globalredirect_init() {
       'href' => url(drupal_is_front_page() ? '<front>' : $_REQUEST['q'], array('absolute' => TRUE, 'query' => $query_string)),
     ));
   }
-<<<<<<< HEAD
-
-  // Add the Content-Location header to the page
-  if ($settings['content_location_header']) {
-    drupal_set_header('Content-Location: '. url(drupal_is_front_page() ? '<front>' : $_REQUEST['q'], array('absolute' => TRUE, 'query' => $query_string)));
-=======
 
   // Add the Content-Location header to the page
   if ($settings['content_location_header']) {
@@ -252,18 +230,6 @@ function globalredirect_init() {
 }
 
 /**
- * A wrapper for drupal_goto() that does not pass through if $path is an
- * external URL.
- */
-function globalredirect_goto($path = '', $query = NULL, $fragment = NULL, $http_response_code = 301) {
-  if (!globalredirect_url_is_external($path)) {
-    return drupal_goto($path, $query, $fragment, $http_response_code);
->>>>>>> master
-  }
-}
-
-/**
-<<<<<<< HEAD
  * A wrapper for drupal_goto() that does not pass through if $path is an
  * external URL.
  */
@@ -288,22 +254,6 @@ function globalredirect_url_is_external($path) {
 /**
  * Implements hook_menu().
  */
-=======
- * Check if a path is external (e.g. http://example.com).
- *
- * This is a simple copy of url_is_external() which if given an URL with an
- * invalid protocal will return FALSE, an undesired value. This function will
- * return TRUE given an URL with an invalid protocol.
- */
-function globalredirect_url_is_external($path) {
-  $colonpos = strpos($path, ':');
-  return $colonpos !== FALSE && !preg_match('![/?#]!', substr($path, 0, $colonpos));
-}
-
-/**
- * Implements hook_menu().
- */
->>>>>>> master
 function globalredirect_menu() {
   $items['admin/settings/globalredirect'] = array(
     'title' => 'Global Redirect',
@@ -380,7 +330,6 @@ function _globalredirect_is_active($settings) {
   }
 
   /**
-<<<<<<< HEAD
    * If we're going to ignore the admin path, return false.
    * This is added to allow people to continue to get to the 'admin*' and 'batch*' paths,
    * even if the module is misbehaving.
@@ -390,8 +339,6 @@ function _globalredirect_is_active($settings) {
   }
 
   /**
-=======
->>>>>>> master
    * We seem to have passed all the tests - let say we're active
    */
   return TRUE;
@@ -412,10 +359,7 @@ function _globalredirect_get_settings($default_only = FALSE) {
     'content_location_header' => 0,
     'term_path_handler' => 1,
     'frontpage_redirect' => 1,
-<<<<<<< HEAD
     'ignore_admin_path' => 1,
-=======
->>>>>>> master
   );
 
   if ($default_only) {

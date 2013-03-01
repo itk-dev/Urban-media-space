@@ -1,7 +1,6 @@
 <?php
 
 /**
-<<<<<<< HEAD
  * @file
  * PDF Version Views integration
  *
@@ -9,8 +8,6 @@
  */
 
 /**
-=======
->>>>>>> master
  * Implements hook_views_data().
  */
 function print_pdf_views_data() {

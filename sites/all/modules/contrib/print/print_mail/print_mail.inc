@@ -265,28 +265,12 @@ function print_mail_form_validate($form, &$form_state) {
  */
 function print_mail_form_submit($form, &$form_state) {
   if (!array_key_exists('cancel', $form_state['values'])) {
-<<<<<<< HEAD
-=======
-    if (!empty($form_state['values']['fld_from_name'])) {
-      $from = '"'. mime_header_encode($form_state['values']['fld_from_name']) .'" <'. $form_state['values']['fld_from_addr'] .'>';
-    }
-    else {
-      $from = $form_state['values']['fld_from_addr'];
-    }
->>>>>>> master
     $cid = isset($form_state['values']['cid']) ? $form_state['values']['cid'] : NULL;
     $print_mail_text_message = filter_xss_admin(variable_get('print_mail_text_message', t('Message from sender')));
     $sender_message = $print_mail_text_message .':<br /><br /><em>'. nl2br(check_plain($form_state['values']['txt_message'])) .'</em>';
 
     $print = print_controller($form_state['values']['path'], $cid, PRINT_MAIL_FORMAT, $form_state['values']['chk_teaser'], $sender_message);
 
-<<<<<<< HEAD
-=======
-    // Spaces in img URLs must be replaced with %20
-    $pattern = '!<(img\s[^>]*?)>!is';
-    $print['content'] = preg_replace_callback($pattern, '_print_replace_spaces', $print['content']);
-
->>>>>>> master
     if ($print !== FALSE) {
       $print_mail_send_option_default = variable_get('print_mail_send_option_default', PRINT_MAIL_SEND_OPTION_DEFAULT);
 

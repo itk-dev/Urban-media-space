@@ -1,7 +1,6 @@
 <?php
 
 /**
-<<<<<<< HEAD
  * @file
  * Printer-friendly version Views integration
  *
@@ -9,8 +8,6 @@
  */
 
 /**
-=======
->>>>>>> master
  * Implements hook_views_data().
  */
 function print_views_data() {
