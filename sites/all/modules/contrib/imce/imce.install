@@ -12,7 +12,6 @@ function imce_install() {
   drupal_install_schema('imce');
   module_load_include('inc', 'imce', 'inc/imce.core.profiles');
   imce_install_profiles();
-  drupal_set_message(t('!module has been installed.', array('!module' => l('IMCE', 'admin/settings/imce'))));
 }
 
 /**

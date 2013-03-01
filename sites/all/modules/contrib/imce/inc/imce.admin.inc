@@ -239,7 +239,7 @@ function imce_profile_form(&$form_state, $pid = 0) {
   );
   $form['dimensions'] = array(
     '#type' => 'textfield',
-    '#title' => t('Maximum image resolution'),
+    '#title' => t('Maximum image dimensions'),
     '#default_value' => $profile['dimensions'],
     '#description' => t('The maximum allowed image size (e.g. 640x480). Set to 0 for no restriction. If an <a href="!image-toolkit-link">image toolkit</a> is installed, files exceeding this value will be scaled down to fit.', array('!image-toolkit-link' => url('admin/settings/image-toolkit'))),
     '#field_suffix' => '<kbd>'. t('WIDTHxHEIGHT') .'</kbd>'

@@ -155,18 +155,22 @@ function imce_textarea($element) {
  * Get the profile for the user.
  */
 function imce_user_profile($user) {
+  static $ups = array();
+  if (isset($ups[$user->uid])) {
+    return $ups[$user->uid];
+  }
   $profiles = variable_get('imce_profiles', array());
   if ($user->uid == 1 && isset($profiles[1])) {
-    return $profiles[1];
+    return $ups[$user->uid] = $profiles[1];
   }
   else {
     foreach (variable_get('imce_roles_profiles', array()) as $rid => $role) {
       if (isset($user->roles[$rid]) && isset($profiles[$role['pid']])) {
-        return $profiles[$role['pid']];
+        return $ups[$user->uid] = $profiles[$role['pid']];
       }
     }
   }
-  return FALSE;
+  return $ups[$user->uid] = FALSE;
 }
 
 /**
@@ -176,19 +180,7 @@ function imce_access($user = FALSE) {
   if ($user === FALSE) {
     global $user;
   }
-
-  if ($user->uid == 1) {
-    return TRUE;
-  }
-
-  $roles_profiles = variable_get('imce_roles_profiles', array());
-  foreach ($user->roles as $rid => $name) {
-    if (isset($roles_profiles[$rid]['pid']) && $roles_profiles[$rid]['pid']) {
-      return TRUE;
-    }
-  }
-
-  return FALSE;
+  return imce_user_profile($user) ? TRUE : FALSE;
 }
 
 /**
@@ -198,7 +190,6 @@ function imce_user_page_access($account, $user = FALSE) {
   if ($user === FALSE) {
     global $user;
   }
-
   return ($user->uid == 1 || $account->uid == $user->uid) && ($profile = imce_user_profile($account)) && $profile['usertab'];
 }
 
@@ -206,5 +197,5 @@ function imce_user_page_access($account, $user = FALSE) {
  * Check if the directory name is regular.
  */
 function imce_reg_dir($dirname) {
-  return $dirname == '.' || (is_string($dirname) && $dirname != '' && !preg_match('@(^\s)|(^/)|(^\./)|(\s$)|(/$)|(/\.$)|(\.\.)|(//)|(\\\\)|(/\./)@', $dirname));
+  return $dirname == '.' || is_int($dirname) || (is_string($dirname) && $dirname != '' && !preg_match('@(^\s)|(^/)|(^\./)|(\s$)|(/$)|(/\.$)|(\.\.)|(//)|(\\\\)|(/\./)@', $dirname));
 }
