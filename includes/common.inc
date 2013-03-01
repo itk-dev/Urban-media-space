@@ -292,13 +292,8 @@ function drupal_get_destination() {
  *   (optional) A Drupal path or a full URL, which will be passed to url() to
  *   compute the redirect for the URL.
  * @param $query
-<<<<<<< HEAD
  *   (optional) A URL-encoded query string to append to the link, or an array of
  *   query key/value-pairs without any URL-encoding. Passed to url().
-=======
- *   A URL-encoded query string to append to the link, or an array of query
- *   key/value-pairs without any URL-encoding. Passed to url().
->>>>>>> master
  * @param $fragment
  *   (optional) A destination fragment identifier (named anchor).
  * @param $http_response_code
