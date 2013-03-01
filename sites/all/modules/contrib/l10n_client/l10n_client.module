@@ -1,5 +1,4 @@
 <?php
-// $Id: l10n_client.module,v 1.22.2.13.2.5 2010/12/08 14:37:03 goba Exp $
 
 /**
  * @file
@@ -223,7 +222,7 @@ function l10n_client_footer() {
 
 
     $output = "
-      <div id='l10n-client' class='hidden'>
+      <div id='l10n-client' class='l10n-client-minimized'>
         <div class='labels'>
           <span class='toggle'>$toggle_label</span>
           <div class='label strings'>$string_label</div>
@@ -612,7 +611,7 @@ function l10n_client_user_token($account = NULL) {
  * Submit translation to the server.
  */
 function l10n_client_submit_translation($langcode, $source, $translation, $user_key, $user_token) {
-  $server_uid = current(split(':', $user_key));
+  $server_uid = current(explode(':', $user_key));
   $signature = md5($user_key . $langcode . $source . $translation . $user_token);
   $server_url = variable_get('l10n_client_server', 'http://localize.drupal.org');
 

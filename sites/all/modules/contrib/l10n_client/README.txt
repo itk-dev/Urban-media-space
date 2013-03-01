@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.4.2.2 2010/08/04 10:07:37 goba Exp $
 
 CONTENTS
 --------
@@ -42,7 +41,7 @@ functionalities to the 5.x version without modifying Drupal itself.
 INSTALLATION
 ------------
 
- 1. Enable the Localization client module at Administer > Site configuration >
+ 1. Enable the Localization client module at Administer > Site building >
     Modules
  2. Enable two or more languages at Administer > Site configuration > Languages
     For help with building a multilingual website please check the Drupal
@@ -102,7 +101,7 @@ See also http://drupal.org/project/l10n_update.
 CONTRIBUTORS & SPONSORS
 --------------------------------------------------------------------------------
 
- * G‡bor Hojtsy http://drupal.org/user/4166 (original author)
+ * GÃ¡bor Hojtsy http://drupal.org/user/4166 (original author)
  * Young Hahn / Development Seed - http://developmentseed.org/ (friendly user interface)
 
 Initial development was sponsored by Google Summer of Code 2007,
