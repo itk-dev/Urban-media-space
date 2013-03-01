@@ -14,14 +14,6 @@ function filefield_sources_menu() {
 }
 
 /**
- * Implements hook_init().
- */
-function filefield_sources_init() {
-  // Currently needed for IMCE to set a custom variable.
-  filefield_sources_includes();
-}
-
-/**
  * Implements hook_elements().
  */
 function filefield_sources_elements() {
