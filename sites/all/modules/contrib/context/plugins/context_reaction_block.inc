@@ -280,6 +280,7 @@ class context_reaction_block extends context_reaction {
         if (!empty($options['blocks'])) {
           foreach ($options['blocks'] as $block) {
             $block = (object) $block;
+            
             $block->context = $context->name;
             $block->bid = "{$block->module}-{$block->delta}";
             $block->cache = isset($info[$block->bid]->cache) ? $info[$block->bid]->cache : BLOCK_NO_CACHE;
@@ -326,6 +327,14 @@ class context_reaction_block extends context_reaction {
    * Build a block's content. Largely taken from block_list().
    */
   protected function build_block($block, $reset = FALSE) {
+    //Check the block language properties and see if the block should be rendered.
+    global $language;
+    $block_lang = db_result(db_query("SELECT language FROM {i18n_blocks} WHERE module = '%s' AND delta = '%s'", $block->module, $block->delta));
+    
+    if(!empty($block_lang) && $block_lang != $language->language){
+      $block->content = '';
+    }
+    
     // Block caching is not compatible with node_access modules. We also
     // preserve the submission of forms in blocks, by fetching from cache
     // only if the request method is 'GET'.
@@ -336,6 +345,7 @@ class context_reaction_block extends context_reaction {
 
     if (!isset($block->content)) {
       $block->content = '';
+      
       // Try fetching the block from cache.
       if ($cacheable && ($cid = _block_get_cache_id($block))) {
         if ($cache = cache_get($cid, 'cache_block')) {

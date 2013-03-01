@@ -312,7 +312,11 @@ function print_block($op = 'list', $delta = 0, $edit = array()) {
           break;
         case 1:
           $block['subject'] = t('Most printed');
+<<<<<<< HEAD
           $result = db_query_range("SELECT path FROM {print_page_counter} LEFT JOIN {node} n ON path = CONCAT('node/', n.nid) WHERE status <> 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3);
+=======
+          $result = db_query_range("SELECT path FROM {print_page_counter} LEFT JOIN {node} ON path = CONCAT('node/', node.nid) WHERE status <> 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3);
+>>>>>>> master
           if (db_affected_rows()) {
             $block['content'] = '<div class="item-list"><ul>';
             while ($obj = db_fetch_object($result)) {

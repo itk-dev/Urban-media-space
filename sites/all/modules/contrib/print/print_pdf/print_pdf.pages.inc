@@ -39,6 +39,7 @@ function print_pdf_controller() {
     }
 
     $pdf_filename = variable_get('print_pdf_filename', PRINT_PDF_FILENAME_DEFAULT);
+<<<<<<< HEAD
     if (module_exists('token')) {
       if (!empty($pdf_filename) && !empty($node)) {
         $pdf_filename = token_replace($pdf_filename, 'node', $node);
@@ -49,6 +50,16 @@ function print_pdf_controller() {
           // If there are still tokens, use a fallback solution
           $pdf_filename = str_replace('/', '_', $path);
         }
+=======
+    if (function_exists('token_replace') && !empty($pdf_filename) && !empty($node)) {
+      $pdf_filename = token_replace($pdf_filename, 'node', $node);
+    }
+    else {
+      $pdf_filename = token_replace($pdf_filename, 'global');
+      if (empty($pdf_filename) || count(token_scan($pdf_filename))) {
+        // If there are still tokens, use a fallback solution
+        $pdf_filename = str_replace('/', '_', $path);
+>>>>>>> master
       }
     }
   }
@@ -330,7 +341,11 @@ function _print_pdf_tcpdf($print, $html, $filename = NULL) {
     $pdf->SetKeywords($keys);
   }
   $pdf->setPDFVersion('1.6');
+<<<<<<< HEAD
   $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting', PRINT_PDF_FONT_SUBSETTING_DEFAULT));
+=======
+  $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting', FALSE));
+>>>>>>> master
 
   if ($language->direction == LANGUAGE_RTL) {
     $pdf->setRTL(TRUE);
@@ -400,7 +415,11 @@ function _print_pdf_wkhtmltopdf($print, $html, $filename = NULL) {
     exit;
   }
 
+<<<<<<< HEAD
   $descriptor = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'a'));
+=======
+  $descriptor = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
+>>>>>>> master
   $cmd = '"'. realpath($print_pdf_pdf_tool) ."\" --page-size $print_pdf_paper_size --orientation $print_pdf_page_orientation --dpi $dpi $print_pdf_wkhtmltopdf_options - -";
 
   $process = proc_open($cmd, $descriptor, $pipes, NULL, NULL);

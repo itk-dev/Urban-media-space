@@ -1,3 +1,7 @@
+Drupal 6.26, 2012-05-02
+----------------------
+- Fixed a small number of bugs.
+- Made code documentation improvements.
 
 Drupal 6.28, 2013-01-16
 ----------------------

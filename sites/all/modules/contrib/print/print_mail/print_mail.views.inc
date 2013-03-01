@@ -1,6 +1,7 @@
 <?php
 
 /**
+<<<<<<< HEAD
  * @file
  * Send by email Views integration
  *
@@ -8,6 +9,8 @@
  */
 
 /**
+=======
+>>>>>>> master
  * Implements hook_views_data().
  */
 function print_mail_views_data() {

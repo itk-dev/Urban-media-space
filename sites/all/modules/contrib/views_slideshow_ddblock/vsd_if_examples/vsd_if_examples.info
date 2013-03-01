@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name = Views slideshow: DDblock Examples
 description = Slideshow examples using image field.<br />Installs content type, view and example content.
 dependencies[] = views_slideshow
@@ -8,6 +9,18 @@ dependencies[] = imagefield
 dependencies[] = text 
 
 package = Views
+=======
+name = Views slideshow: DDblock Examples
+description = Slideshow examples using image field.<br />Installs content type, view and example content.
+dependencies[] = views_slideshow
+dependencies[] = views_slideshow_ddblock
+dependencies[] = content
+dependencies[] = content_copy
+dependencies[] = imagefield 
+dependencies[] = text 
+
+package = Views
+>>>>>>> master
 core = 6.x
 ; Information added by drupal.org packaging script on 2011-09-14
 version = "6.x-2.x-dev"

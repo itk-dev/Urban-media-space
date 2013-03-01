@@ -176,7 +176,11 @@ function print_pdf_block($op = 'list', $delta = 0, $edit = array()) {
       switch ($delta) {
       case 0:
         $block['subject'] = t('Most PDFd');
+<<<<<<< HEAD
         $result = db_query_range("SELECT path FROM {print_pdf_page_counter} LEFT JOIN {node} n ON path = CONCAT('node/', n.nid) WHERE status <> 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3);
+=======
+        $result = db_query_range("SELECT path FROM {print_pdf_page_counter} LEFT JOIN {node} ON path = CONCAT('node/', node.nid) WHERE status <> 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3);
+>>>>>>> master
         if (db_affected_rows()) {
           $block['content'] = '<div class="item-list"><ul>';
           while ($obj = db_fetch_object($result)) {
@@ -220,7 +224,11 @@ function print_pdf_requirements($phase) {
         }
         elseif (basename($print_pdf_pdf_tool) == 'dompdf_config.inc.php') {
           if (variable_get('print_pdf_autoconfig', PRINT_PDF_AUTOCONFIG_DEFAULT)) {
+<<<<<<< HEAD
             $directory = file_directory_path() . '/' . PRINT_PDF_DOMPDF_CACHE_DIR_DEFAULT . '/fonts';
+=======
+            $directory = dirname($print_pdf_pdf_tool) .'/lib/fonts';
+>>>>>>> master
             if (!is_dir($directory) || !is_writable($directory)) {
               $requirements['print_pdf_tool'] = array(
                 'title' => $t('DOMPDF font cache directory'),
@@ -251,7 +259,11 @@ function print_pdf_requirements($phase) {
 
           if (variable_get('print_pdf_autoconfig', PRINT_PDF_AUTOCONFIG_DEFAULT)) {
             foreach (array('cache', 'images') as $dir) {
+<<<<<<< HEAD
               $directory = file_directory_path() . '/' . PRINT_PDF_TCPDF_CACHE_DIR_DEFAULT . '/' . $dir;
+=======
+              $directory = dirname($print_pdf_pdf_tool) .'/'. $dir;
+>>>>>>> master
               if (!is_dir($directory) || !is_writable($directory)) {
                 $requirements['print_pdf_tool_'. $dir] = array(
                   'title' => $t('TCPDF directory'),
