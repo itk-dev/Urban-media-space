@@ -1633,8 +1633,12 @@ a[rel^=shadowbox]:link,
 a[rel^=shadowbox]:visited {
   cursor: pointer;
   display: inline-block;
-  margin: 0 0 15px;
   text-decoration: none;
+}
+
+a[rel^=shadowbox]:link img,
+a[rel^=shadowbox]:visited img {
+  margin: 0 0 15px;
 }
 
 /*
