@@ -877,6 +877,7 @@ body.context-editing div.draggable:hover a.context-block-handle {
   min-height: 500px;
   padding: 10px;
   width: 940px;
+  overflow: hidden;
 }
 
 /*
