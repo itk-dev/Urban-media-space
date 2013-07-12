@@ -178,7 +178,7 @@ function filefield_source_reference_autocomplete($type_name, $field_name, $filen
 function theme_filefield_source_reference_autocomplete_item($file) {
   $output = '';
   $output .= '<div class="filefield-source-reference-item">';
-  $output .= '<span class="filename">' . $file->filename . '</span> <span class="filesize">(' . format_size($file->filesize) . ')</span>';
+  $output .= '<span class="filename">' . check_plain($file->filename) . '</span> <span class="filesize">(' . format_size($file->filesize) . ')</span>';
   $output .= '</div>';
   return $output;
 }
@@ -217,7 +217,7 @@ function filefield_source_reference_get_files($filename, $field = NULL) {
 
     // 1 == contains, 0 == starts with.
     $like = empty($field['widget']['filefield_source_autocomplete']) ? '%s%%' : '%%%s%%';
-    $result = db_query_range("SELECT f.* FROM {" . $db_info['table'] . "} c INNER JOIN {files} f ON c." . $db_info['columns']['fid']['column'] . " = f.fid WHERE f.filename LIKE '" . $like . "' AND f.status = 1 ORDER BY f.timestamp DESC", $filename, 0, 30);
+    $result = db_query_range("SELECT f.* FROM {" . $db_info['table'] . "} c INNER JOIN {files} f ON c." . $db_info['columns']['fid']['column'] . " = f.fid WHERE f.filename LIKE '" . $like . "' AND f.status = 1 GROUP BY f.fid ORDER BY f.timestamp DESC", $filename, 0, 30);
 
     while ($file = db_fetch_object($result)) {
       $files[$file->fid] = $file;
