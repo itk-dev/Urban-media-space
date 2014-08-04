@@ -1,5 +1,4 @@
 <?php
-// $Id: flickr_block.install,v 1.5 2008/03/24 19:56:09 drewish Exp $
 
 function flickr_block_uninstall() {
   foreach (range(0, 6) as $delta) {

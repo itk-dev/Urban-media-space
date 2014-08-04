@@ -1,5 +1,4 @@
 <?php
-// $Id: flickr.module,v 1.42.2.7 2010/05/06 16:33:30 paulbooker Exp $
 
 require_once(drupal_get_path('module', 'flickr') .'/flickr.inc');
 
@@ -84,21 +83,22 @@ function flickr_menu() {
 }
 
 function flickr_photos_access($account) {
-  $view_access = FALSE;
+  global $user;
+  $photo_access = FALSE;
   if (!empty($account) && !empty($account->uid)) {
     if (isset($account->flickr['nsid'])) {
-      $view_access = user_access('administer flickr') ||
+      $photo_access = user_access('administer flickr') ||
         // Only admins can view blocked accounts
         $account->status && (
           user_access('view all flickr photos') ||
-          user_access('view own flickr photos') && $GLOBALS['user']->uid == $account->uid
+          user_access('view own flickr photos') && $user->uid == $account->uid
         );
     }
-    else {
+    else { // TODO: Should we display an error message?
       drupal_set_message(t('%user does not have a Flickr account', array('%user' => $account->name)), 'error');
     }
   }
-  return $view_access;
+  return $photo_access;
 }
 
 /**
@@ -160,7 +160,9 @@ function flickr_user($op, &$edit, &$account, $category = NULL) {
 }
 
 function flickr_photos($user = NULL) {
-  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  if (variable_get('flickr_css', 1)) {
+    drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  }
 
   global $pager_page_array, $pager_total, $pager_total_items;
   //set this to something else if you want multiple pagers
@@ -176,8 +178,8 @@ function flickr_photos($user = NULL) {
     $uid = 0;
   }
   else {
-    $account = $user;
-    if ($account->flickr['nsid']) {
+    $account = $user; // TODO: We can just use $account as the argument
+    if ($account->flickr['nsid']) { // TODO: Were actually storing the "identifier" which is potentially the $nsid
       $nsid = $account->flickr['nsid'];
     }
     else {
@@ -201,17 +203,18 @@ function flickr_photos($user = NULL) {
   return theme('flickr_photos', $uid, $photos);
 }
 
-function theme_flickr_photo($p, $size = NULL, $format = NULL, $attribs = NULL) {
-  $img = flickr_img($p, $size, $attribs);
-  $photo_url = flickr_photo_page_url($p['owner'], $p['id']);
-  $title = is_array($p['title']) ? $p['title']['_content'] : $p['title'];
-  return l($img, $photo_url, array('attributes' => array('title' => $title), 'absolute' => TRUE, 'html' => TRUE));
+function theme_flickr_photo($photo, $size = NULL, $format = NULL, $attributes = NULL) {
+  $img = flickr_img($photo, $size, $attributes);
+  $photo_url = flickr_photo_page_url($photo['owner'], $photo['id']);
+  $title = is_array($photo['title']) ? $photo['title']['_content'] : $photo['title'];
+  return l($img, $photo_url, array('attributes' => array('title' => $title, 'class' => 'flickr_photo'), 'absolute' => TRUE, 'html' => TRUE));
+
 }
 
-function theme_flickr_photo_box($p, $size = NULL, $format = NULL, $attribs = NULL) {
-  $img = flickr_img($p, $size, $attribs);
-  $title = is_array($p['title']) ? $p['title']['_content'] : $p['title'];
-  $photo_url = flickr_photo_page_url($p['owner'], $p['id']);
+function theme_flickr_photo_box($photo, $size = NULL, $format = NULL, $attributes = NULL) {
+  $img = flickr_img($photo, $size, $attributes);
+  $title = is_array($photo['title']) ? $photo['title']['_content'] : $photo['title'];
+  $photo_url = flickr_photo_page_url($photo['owner'], $photo['id']);
 
   $output = "<div class='flickr-photo-box'>\n";
   $output .= "<a href='$photo_url'>$img</a>";
@@ -224,7 +227,7 @@ function theme_flickr_photo_box($p, $size = NULL, $format = NULL, $attribs = NUL
 
 function theme_flickr_photos($uid, $photos) {
   $output = theme('pager', NULL, variable_get('flickr_photos_per_page', 20));
-  $output .= "<div class='flickr-photoset'>\n";
+  $output .= "<div class='flickr-photoset'>\n";  // TODO: is this correct ? 
   foreach ($photos['photo'] as $photo) {
     $output .= theme('flickr_photo_box', $photo, 'm');
   }
@@ -233,10 +236,10 @@ function theme_flickr_photos($uid, $photos) {
   return $output;
 }
 
-function theme_flickr_photoset($ps, $owner, $size, $attribs = NULL) {
+function theme_flickr_photoset($photoset, $owner, $size, $attributes = NULL) {
   if (module_exists('flickr_sets')) {
 	$output .= "<div class='flickr-photoset'>\n";
-	$photos = flickr_set_load($ps['id']);
+	$photos = flickr_set_load($photoset['id']);
 	foreach ((array) $photos['photoset']['photo'] as $photo) {
 	  //insert owner into $photo because theme_flickr_photo needs it
 	  $photo['owner'] = $owner;
@@ -245,11 +248,11 @@ function theme_flickr_photoset($ps, $owner, $size, $attribs = NULL) {
     $output .= '</div>';
 	return $output;
   } else {
-    $img = flickr_img($ps, $size, $attribs);    
+    $img = flickr_img($photoset, $size, $attributes);    
     $output = theme('pager', NULL, variable_get('flickr_photos_per_page', 20));
-    $photo_url = flickr_photoset_page_url($owner, $ps['id']);    
+    $photo_url = flickr_photoset_page_url($owner, $photoset['id']);    
     $output .= "<div class='flickr-photoset'>\n";
-    $title = is_array($ps['title']) ? $ps['title']['_content'] : $ps['title'];   
+    $title = is_array($photoset['title']) ? $photoset['title']['_content'] : $photoset['title'];   
     return l($img, $photo_url, array('attributes' => array('title' => $title), 'absolute' => TRUE, 'html' => TRUE));
   }
 }

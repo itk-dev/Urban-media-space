@@ -1,5 +1,4 @@
 <?php
-// $Id: flickr_sets.module,v 1.10.2.4 2009/03/25 16:18:08 paulbooker Exp $
 
 require_once(drupal_get_path('module', 'flickr') .'/flickr.inc');
 
@@ -45,9 +44,11 @@ function flickr_set_load($sid, $page = 1) {
 
 function flickr_sets_photosets($account, $nsid = NULL) {
   global $pager_page_array, $pager_total, $pager_total_items, $user;
-
-  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
-
+  
+  if (variable_get('flickr_css', 1)) {
+    drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  }
+  
   $uid = $account->uid;
   $nsid = $account->flickr['nsid'];
   //set this to something else if you want multiple pagers
@@ -75,7 +76,9 @@ function flickr_sets_photosets($account, $nsid = NULL) {
 function flickr_sets_photoset($account, $set) {
   global $pager_page_array, $pager_total, $pager_total_items, $user;
 
-  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  if (variable_get('flickr_css', 1)) {
+    drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  }
 
   $uid = $user->uid;
   $nsid = $account->flickr['nsid'];

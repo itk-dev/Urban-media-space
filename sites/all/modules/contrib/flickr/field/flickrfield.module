@@ -1,5 +1,4 @@
 <?php
-// $Id: flickrfield.module,v 1.4.2.3 2010/05/06 16:33:30 paulbooker Exp $
 
 /**
  * @file
@@ -12,7 +11,9 @@
  * Include css unconditionally.
  */
 function flickrfield_init() {
-  drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  if (variable_get('flickr_css', 1)) {
+    drupal_add_css(drupal_get_path('module', 'flickr') .'/flickr.css');
+  }
 }
 
 /**

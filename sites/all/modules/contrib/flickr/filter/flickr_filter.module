@@ -1,5 +1,4 @@
 <?php
-// $Id: flickr_filter.module,v 1.12.2.1 2009/01/13 21:12:12 paulbooker Exp $
 
 require_once(drupal_get_path('module', 'flickr') .'/flickr.inc');
 

@@ -1,13 +1,12 @@
-; $Id: flickr_filter.info,v 1.6 2008/03/24 19:56:09 drewish Exp $
 name = Flickr Filter
 description = Flickr Filter for inserting photos into content.
 dependencies[] = flickr
 package = Flickr
 core = 6.x
 
-; Information added by drupal.org packaging script on 2010-05-06
-version = "6.x-1.2"
+; Information added by Drupal.org packaging script on 2013-12-17
+version = "6.x-1.3"
 core = "6.x"
 project = "flickr"
-datestamp = "1273164907"
+datestamp = "1387302510"
 

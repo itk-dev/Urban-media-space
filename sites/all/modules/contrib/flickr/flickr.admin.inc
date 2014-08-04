@@ -1,5 +1,4 @@
 <?php
-// $Id: flickr.admin.inc,v 1.1.2.3 2009/06/24 19:35:08 ksenzee Exp $
 
 /**
  * Implementation of hook_settings
@@ -57,6 +56,13 @@ function flickr_admin_settings() {
     $form['flickr_default_userid']['#description'] .= t(" Disabled until a valid API Key is set.");
   }
 
+  $form['flickr_css'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use flickr.css'),
+    '#default_value' => variable_get('flickr_css', 1),
+    '#description' => t('Uncheck to take care of the styling yourself in custom CSS.'),
+  );  
+  
   // Add a submit handler before the system_settings_form submit handler.
   $form['#submit'] = array('flickr_admin_settings_submit');
   
