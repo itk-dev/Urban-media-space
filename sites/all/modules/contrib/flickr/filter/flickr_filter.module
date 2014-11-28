@@ -78,7 +78,6 @@ function flickr_filter_split_config($string) {
  */
 function flickr_filter_callback_photo($matches) {
   list($config, $attribs) = flickr_filter_split_config($matches[1]);
-
   if (isset($config['id'])) {
     if ($photo = flickr_photo_get_info($config['id'])) {
       return theme('flickr_filter_photo', $photo, $config['size'], $attribs);
@@ -92,7 +91,6 @@ function flickr_filter_callback_photo($matches) {
  */
 function flickr_filter_callback_photoset($matches) {
   list($config, $attribs) = flickr_filter_split_config($matches[1]);
-
   if (isset($config['id'])) {
     if ($photoset = flickr_photoset_get_info($config['id'])) {
       return theme('flickr_filter_photoset', $photoset, $photoset['owner'], $config['size'], $attribs);

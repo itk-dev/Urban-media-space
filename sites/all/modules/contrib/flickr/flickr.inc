@@ -274,10 +274,12 @@ function flickr_photo_page_url($owner, $id = NULL) {
  * @return
  *   url for the photoset page of photoset $id of owner $owner
  */
-function flickr_photoset_page_url($owner, $id = NULL) {
+function flickr_photoset_page_url($owner, $id = NULL, $photoset_id) {
+
   $nsid = is_array($owner) ? $owner['nsid']: $owner;
   if ($person = flickr_people_get_info($nsid)) {
-    return $person['photosurl']['_content'] .'sets/'. $id;
+    //return $person['photosurl']['_content'] . $id .'/in/set-' . $photoset_id;
+    return $person['photosurl']['_content'] . 'sets/' . $photoset_id . '/show';
   }
   else {
     return "http://flickr.com/photos/$nsid/sets/$id";

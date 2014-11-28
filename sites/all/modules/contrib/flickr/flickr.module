@@ -42,6 +42,9 @@ function flickr_theme() {
     'flickr_photoset' => array(
       'arguments' => array('ps', 'owner', 'size', 'attribs' => NULL),
     ),
+    'flickr_photo_in_set' => array(
+      'arguments' => array('ps', 'owner', 'size', 'photoset_id', 'attribs' => NULL),
+    ),
   );
 }
 
@@ -208,7 +211,14 @@ function theme_flickr_photo($photo, $size = NULL, $format = NULL, $attributes = 
   $photo_url = flickr_photo_page_url($photo['owner'], $photo['id']);
   $title = is_array($photo['title']) ? $photo['title']['_content'] : $photo['title'];
   return l($img, $photo_url, array('attributes' => array('title' => $title, 'class' => 'flickr_photo'), 'absolute' => TRUE, 'html' => TRUE));
+}
 
+function theme_flickr_photo_in_set($photo, $size = NULL, $photoset_id, $format = NULL, $attributes = NULL) {
+  $img = flickr_img($photo, $size, $attributes);
+  $photo_url = flickr_photoset_page_url($photo['owner'], $photo['id'], $photoset_id);
+  $title = is_array($photo['title']) ? $photo['title']['_content'] : $photo['title'];
+  //return l($img, $photo_url, array('attributes' => array('title' => $title, 'class' => 'flickr_photo', 'rel' => 'shadowbox', 'target' => '_blank'), 'absolute' => TRUE, 'html' => TRUE));
+  return l($img, $photo_url, array('attributes' => array('title' => $title, 'class' => 'flickr_photo', 'target' => '_blank'), 'absolute' => TRUE, 'html' => TRUE));
 }
 
 function theme_flickr_photo_box($photo, $size = NULL, $format = NULL, $attributes = NULL) {
@@ -243,7 +253,7 @@ function theme_flickr_photoset($photoset, $owner, $size, $attributes = NULL) {
 	foreach ((array) $photos['photoset']['photo'] as $photo) {
 	  //insert owner into $photo because theme_flickr_photo needs it
 	  $photo['owner'] = $owner;
-	  $output .= theme('flickr_photo', $photo, $size);
+	  $output .= theme('flickr_photo_in_set', $photo, $size, $photoset['id']);
 	}
     $output .= '</div>';
 	return $output;
